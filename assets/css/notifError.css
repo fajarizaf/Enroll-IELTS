@@ -1,0 +1,26 @@
+label.valid {
+                float:right;
+                margin-top: 10px;
+                margin-left: 5px;
+                background: url(../pic/icheck.png);
+                width:20px;
+                height:19px;
+                padding:0px;
+            }
+
+label.error {
+                padding-left:3px;
+                background: url(../pic/drop.png) no-repeat ;
+                background-position:142px 0px;
+                margin-left:0.3em;
+                color:orangered;
+                font-size:11px;
+                height:19px;
+                width:130px;
+                float: right;
+                text-align: right;
+                padding-right: 30px;
+
+
+            }
+

@@ -1,0 +1,128 @@
+@charset "utf-8";
+/* latin-ext */
+@font-face {
+  font-family: 'Armata';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Armata'), local('Armata-Regular'), url(http://fonts.gstatic.com/s/armata/v6/wN6sZB1yf-NzvaiFfY9_0fesZW2xOQ-xsNqO47m55DA.woff2) format('woff2');
+}
+
+@font-face {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Nunito-Regular'), url(http://themes.googleusercontent.com/static/fonts/nunito/v4/0rdItLTcOd8TSMl72RUU5w.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'Open Sans1';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Open Sans'), local('OpenSans'), url(http://themes.googleusercontent.com/static/fonts/opensans/v6/cJZKeOuBrn4kERxqtaUH3T8E0i7KZn-EPnyo3HZu7kw.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'Open Sans2';
+  font-style: normal;
+  font-weight: 600;
+  src: local('Open Sans Semibold'), local('OpenSans-Semibold'), url(http://themes.googleusercontent.com/static/fonts/opensans/v6/MTP_ySUJH_bn48VBG8sNSnhCUOGz7vYGh680lGh-uXM.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'Open Sans3';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Open Sans Bold'), local('OpenSans-Bold'), url(http://themes.googleusercontent.com/static/fonts/opensans/v6/k3k702ZOKiLJc3WVjuplzHhCUOGz7vYGh680lGh-uXM.woff) format('woff');
+}
+
+
+
+.nav-top ul li a {
+font-family:'Armata';
+font-size:14px;
+text-decoration:none;
+color:#666;
+}
+
+.search {
+ font-family:'Armata'; 
+}
+
+.nav-left li a {
+font-family:'Armata';
+font-size:12px;
+text-decoration:none;
+color:#666;    
+}
+
+.font2 {
+font-family:'Armata';
+text-decoration:none;
+color:#666;
+}
+
+.font3 {
+font-family: 'Nunito';
+text-decoration:none;
+color:#666;
+line-height:18px;
+}
+
+.font4 {
+font-family: 'Open Sans2';
+text-decoration:none;
+font-size:16px;
+color:#fff;
+}
+
+.font4 {
+font-family: 'Open Sans2';
+text-decoration:none;
+color:#666;
+line-height:18px;
+}
+
+ p , span, div {font-family:'Open Sans1';
+          color:#666;font-size: 13px;}
+        a {font-family:'Open Sans1';
+          font-size:13px;}
+
+table tr td {font-family:'Open Sans1';
+          color:#666;font-size: 13px;padding:7px;}
+table tr th {font-family:'Open Sans1';
+          font-size:13px;}          
+
+.comments textarea { 
+font-family: 'Open Sans2';
+font-size:12px;
+}
+
+.og-details h3 {
+font-family:'Armata';
+}
+
+og-details p {
+ font-family: 'Open Sans2'; 
+}
+
+.h1 {
+	color:red;
+	font-size:26px;
+	font-family: 'Open Sans2'; 
+}
+
+.h2 {
+	color:red;
+	font-size:22px;
+	font-family: 'Open Sans3'; 
+}
+
+.h3 {
+	color:red;
+	font-size:18px;
+	font-family: 'Open Sans3'; 
+}
+
+.title-tab div {
+	font-family: 'Open Sans3';
+}
