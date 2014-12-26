@@ -354,6 +354,8 @@ border-bottom-left-radius: 2px;
     border-radius:4px 4px 4px;
 }
 
+
+
 input[type=text],input[type=password] {
     border:1px solid #ececec;
     height:40px;
@@ -630,4 +632,46 @@ border:none;
 	margin-top:3px;
 	width:170px;
 	float:left;
+}
+
+.box-results {
+	width:97%;
+	height: 19px;
+	background: #f9edbe;
+    padding:10px;
+    border:1px solid #f0c36d;
+    margin-left:0px;
+    margin-top:10px;
+    -moz-border-radius:4px 4px 4px;
+    -webkit-border-radius:4px 4px 4px;
+    border-radius:4px 4px 4px;
+}
+
+.box-step-results {
+	width:236px;
+	height: 248px;
+	float: left;
+	margin-right: 23px;
+	border:1px solid #cfcfcf;
+	background:#fafafa;
+	padding:10px;
+}
+
+.btn-confirmations {
+	width:205px;
+	height: 28px;
+	background:#faecc7;
+	color:#b97607;
+	border:1px solid #f9bf5e;
+	text-align: center;
+	padding-top: 7px;
+	-moz-border-radius:3px 3px 3px;
+	-webkit-border-radius:3px 3px 3px;
+	border-radius:3px 3px 3px;
+	margin:0px auto;
+	cursor:pointer;
+}
+
+.btn-confirmations:hover {
+	background:#fff9ea;
 }

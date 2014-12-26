@@ -6,7 +6,7 @@
     <div class="h1" style="margin-top:20px;margin-bottom:20px;">Register</div>
 	<div class="box-tab">
     	<ul>
-        	<li id="btn-city" class="active"><div class="icon-city"></div><div class="title-tab"><div>STEP 1</div>Select a City</div></li>
+        	<li id="btn-city"  class="active"><div class="icon-city"></div><div class="title-tab"><div>STEP 1</div>Select a City</div></li>
             <li id="btn-date"><div class="icon-date"></div><div class="title-tab"><div>STEP 2</div>Find Test Date</div></li>
             <li id="btn-tos"><div class="icon-tos"></div><div class="title-tab"><div>STEP 3</div>Term & Conditions</div></li>
             <li id="btn-candidate"><div class="icon-candidate"></div><div class="title-tab"><div>STEP 4</div>Candidate Details</div></li>
@@ -44,14 +44,18 @@
                     <div class="h3" style="width:200px;float:left;margin-top:0px;margin-bottom:10px;">LIST BY CITY LOCATION EXAM</div>
                         <div class="statloc" style="float:right;width:120px;font-size:18px;margin-top:10px;"></div>
                           
-                          <div class="table-city" style="width:100%;height:200px;overflow:auto;">	
-                            <table class="table table-striped">
-                            	<tr>
-                                	<th style="width:30%;border-top:none;">Location Name</th>
+                        <table class="table talbe-striped" style="margin-bottom:0px;">
+                                <tr>
+                                  <th style="width:30%;border-top:none;">Location Name</th>
                                     <th style="width:40%;border-top:none;">Address</th>
                                     <th style="width:20%;border-top:none;">Available</th>
                                     <th style="width:10%;border-top:none;">Select</th>
                                 </tr>
+                        </table>
+
+                          <div class="table-city" style="width:100%;height:200px;overflow:auto;">	
+                            <table class="table table-striped">
+                            	  
 
                                 <?php foreach ($schedule as $row ) { ?>
                                 <?php $available = $this->listexams->getAvailable($this->listexams->getIdbranche($row->branchname ));
@@ -64,10 +68,10 @@
 
                                 ?>
                                 <tr>
-                                	<td style="color:#333;"><?php echo $row->branchname ?></td>
-                                    <td><?php $this->listexams->getaddr($row->branchname ); ?></td>
-                                    <td ><p class="font1" style="font-size:12px;color:#00a2c8;"><?php echo $return ?></p></td>
-                                    <td><input class="locations-test" style="margin-top:15px;" value="<?php echo $this->listexams->getIdbranches($row->branchname); ?>" type="radio" name="location-test" /></td>
+                                	<td style="color:#333;width:30%;"><?php echo $row->branchname ?></td>
+                                    <td style="width:40%;"><?php $this->listexams->getaddr($row->branchname ); ?></td>
+                                    <td style="width:20%;"><p class="font1" style="font-size:12px;color:#00a2c8;"><?php echo $return ?></p></td>
+                                    <td style="width:10%;"><input class="locations-test" style="margin-top:15px;" value="<?php echo $this->listexams->getIdbranches($row->branchname); ?>" type="radio" name="location-test" /></td>
                                 </tr>
                                 
                                 <?php } ?>
@@ -134,7 +138,16 @@
                         <div class="h3" style="width:200px;float:left;margin-top:0px;margin-bottom:10px;">Test Date Available</div>
                         <div class="statloc" style="float:right;width:180px;font-size:18px;margin-top:0px;text-align:right;"></div>
 
-                          <div class="table-date" style="width:100%;height:200px;overflow:auto;">    
+                          <table class="table table-striped" style="margin-bottom:0px">
+                              <tr>
+                                 <th style="width:30%;border-top:none;">Date</th>
+                                 <th style="width:40%;border-top:none;">Test Fee</th>
+                                 <th style="width:20%;border-top:none;">Module</th>
+                                  <th style="width:10%;border-top:none;">Availability</th>
+                              </tr>
+                          </table>  
+
+                          <div class="table-date" style="width:100%;height:200px;overflow:auto;padding-top:-2px;">    
                             
                           </div>
                           <div style="width:40px;float:left;display:none;" class="codeidschedules"></div>
@@ -384,8 +397,70 @@
 
             <!-- Content Tab Finish -->
             <div class="contents">
-            	<div class="left"></div>
-                <div class="right"></div>
+            	
+              <div class="h3" style="margin-top:10px;">Payment Information</div>
+
+              <div style="margin-top:10px;" class="box-results"></div>
+
+
+              <table style="margin-top:10px;margin-bottom:30px;" cellpadding="0px">
+                <tr>
+                  <td style="padding:1px;width:180px;">Test Date</td>
+                  <td style="padding:1px;">:</td>
+                  <td style="padding:1px;" class="result-Test-date"></td>
+                </tr>
+                <tr>
+                  <td style="padding:1px;">Test Venue</td>
+                  <td style="padding:1px;">:</td>
+                  <td style="padding:1px;" class="result-Test-venue"></td>
+                </tr>
+                <tr>
+                  <td style="padding:1px;">Test Module</td>
+                  <td style="padding:1px;">:</td>
+                  <td style="padding:1px;" class="result-Test-module"></td>
+                </tr>
+                <tr>
+                  <td style="padding:1px;">Make Your Payment</td>
+                  <td style="padding:1px;">:</td>
+                  <td style="padding:1px;" class="result-payment">IDR&nbsp;<span class="idr"></span>&nbsp;/&nbsp;USD.<span class="dollar"></span>&nbsp;/&nbsp;GBP.<span class="gbp"></span></td>
+                </tr>
+              </table>
+
+              <div class="box-step-results">
+                <b style="color:#333">IDR Account</b>
+                <P>
+                  Lembaga Pendidikan UniShaduGuna<br/>
+                  CIMB Niaga<br/>
+                  Cabang Sudirman - Jakarta Selatan<br/>
+                  Acct. No : 064.01.64515.006<br/>
+                </P>
+                <b style="color:#333">USD Account</b>
+                <p>
+                  Lembaga Pendidikan UniShaduGuna<br/>
+                  ANZ Panin Bank<br/>
+                  Jl. Jend. Sudirman ( Senayan ), Jakarta<br/>
+                  Acct. No : 098509.02.00012<br/>
+                </p>
+              </div>
+              <img src="<?php echo base_url() ?>assets/pic/pans.png" style="float:left;margin-top:120px;margin-right:23px;">
+                <div class="box-step-results">
+                  <img src="<?php echo base_url() ?>assets/pic/imagepaymentconfirm.png" style="text-align:center;margin-left:20px;margin-top:20px;">
+                  <div class="btn-confirmations">Payment Confirmations</div>
+                  <div style="width:170px;margin:0px auto;margin-top:7px;"> 
+                          upload proof of payment, <br/>
+                          at the time of confirmation
+                  </div>
+                </div>
+               <img src="<?php echo base_url() ?>assets/pic/pans.png" style="float:left;margin-top:120px;margin-right:23px;">
+                <div class="box-step-results">
+                  <img src="<?php echo base_url() ?>assets/pic/notif-messages.png" style="text-align:center;margin-left:60px;margin-top:30px;">
+                  <div style="width:170px;margin:0px auto;margin-top:7px;"> 
+                                    After confirmation, you will get an email 
+                  confirmation that we have received the 
+                  payment process
+                  </div>
+                </div>
+              
             </div>
             
 

@@ -213,6 +213,7 @@
         // button next di city di click
         $('#next-city').click(function() {
            $('#parentloading').fadeIn('slow');
+           $("html, body").animate({ scrollTop: 0 }, "slow");
 
             var counter=2;
               var countdown = setInterval(function(){
@@ -256,6 +257,7 @@
 
          // button next di city di click
         $('#next-city').click(function() {
+            $("html, body").animate({ scrollTop: 0 }, "slow");
             var counter=2;
               var countdown = setInterval(function(){
                 if (counter == 0) {
@@ -314,6 +316,7 @@
         // button next di city di click
         $('#next-date').click(function() {
            $('#parentloading').fadeIn('slow');
+           $("html, body").animate({ scrollTop: 0 }, "slow");
 
             var counter=2;
               var countdown = setInterval(function(){
@@ -347,6 +350,7 @@
         // button next di city di click
         $('#next-tos').click(function() {
            $('#parentloading').fadeIn('slow');
+           $("html, body").animate({ scrollTop: 0 }, "slow");
 
             var counter=2;
               var countdown = setInterval(function(){

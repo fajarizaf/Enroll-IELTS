@@ -91,8 +91,6 @@
                 
                 <div class="h3" style="margin-bottom:20px;">Basic Info</div>
 
-        <?php $atributes = array ('id' => 'myformRegister'); ?> 
-        <?php echo form_open_multipart ('member/proses_register', $atributes); ?>
 
         <?php foreach ($datausers as $row) { ?>
 
@@ -295,14 +293,14 @@
 
                   <tr>
                     <td colspan="3">
-                      <input type="submit" name="Register" id="SubmitRegister" style="float:right;width:200px;" class="btn btn-warning"  value="Register">
+                      <div name="Register" id="SubmitRegister" style="float:right;width:200px;" class="btn btn-warning" >Register</div>
                     </td>
                   </tr>
 
 
                 <table>
           <?php } ?>
-        <?php echo form_close(); ?>
+       
 
                 </div>
 
@@ -313,19 +311,74 @@
         <script>
           $(document).ready(function() {
 
-                          $('#SubmitRegister').click(function() { 
+                          $('#SubmitRegister').click(function() {
+                            $('#parentloading').fadeIn('slow'); 
+                            $("html, body").animate({ scrollTop: 0 }, "slow");
+                             var idschedules = $('input[name=date-test]:checked').val();
 
-                            var idschedules = $('input[name=date-test]:checked').val();
 
-                              $.ajax({
-                                  type  : "POST",
-                                  url: ""+base_url+"register/proses_register/"+idschedules+"",
-                                  success : function(data){
-                     
-                                     
-                                          
+                             var counter=2;
+                              var countdown = setInterval(function(){
+                                if (counter == 0) {
+                                clearInterval(countdown);
+                                $('#parentloading').fadeOut('slow');
+
+                                  if($('input[name=date-test]').is(':checked')) {
+                                      $.ajax({
+                                      type  : "POST",
+                                      url: ""+base_url+"register/proses_register/"+idschedules+"",
+                                      dataType: "json",
+                                      success : function(response){
+
+                                               $('#btn-city').attr('class','visited');
+                                               $('#btn-date').attr('class','visited');
+                                               $('#btn-tos').attr('class','visited');
+                                               $('#btn-tos').attr('class','visited');
+                                               $('#btn-candidate').attr('class','visited');
+                                               $('#btn-finish').attr('class','active');
+
+                                              var testvenue = $('.displaylocation').html();
+
+                                              $.each( response , function(key,val) {
+
+                                                $('.result-Test-date').html(val.testdate);
+                                                $('.result-Test-venue').html(testvenue);
+                                                $('.result-Test-module').html(val.module);
+                                                $('.idr').html(val.rupiah);
+                                                $('.dollar').html(val.dollar);
+                                                $('.gbp').html(val.gbp);
+
+
+
+                                                  if( val.status == 'success') {
+                                                     $('.box-results').html('<b class="font1" style="color:#802222;">Register successful.</b>  <span style="color:#e44b00;"> -  Your registration was successful. Here are the details:</span>');
+                                                     $('.content-tab').animate({ scrollLeft:'3840px' });
+                                                     $('#sticky').sticky('<span style="color:#802222;">Register successful.</span>');
+                                                     $('.box-tab ul li').attr('action','disabled');
+                                                  } else {
+                                                     $('.box-results').html('<b class="font1" style="color:#802222;">Already registered.</b>&nbsp; <span style="color:#e44b00;">- Your registration was successful. Here are the details:</span>');
+                                                     $('.content-tab').animate({ scrollLeft:'3840px' });
+                                                     $('#sticky').sticky('<span style="color:#802222;">Already registered.</span>');
+                                                     $('.box-tab ul li').attr('action','disabled');
+                                                  }
+                                                   
+                                              });
+
+                                           
+
+                                          }
+                                      });
+
+                                    } else {
+                                      $('#sticky').sticky('<span style="color:#802222;">date of the test must be selected</span>');
                                   }
-                              });
+
+                            }
+                              counter--;
+                            }, 500);
+
+
+
                           });
             });
         </script>

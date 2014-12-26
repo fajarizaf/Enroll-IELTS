@@ -7,28 +7,107 @@ class register_model extends CI_Model {
     }
 
 
+    function getmaxuser_schedule($idschedule) {
+        $query = $this->db->query('select * from schedules where idschedules="'.$idschedule.'"');
+        foreach ($query->result() as $row) {
+            $newmaxuser =  $row->maxuser - 1;
+        }
+
+                            if( $newmaxuser == '0') {
+                                    $dataupdate = array(
+                                        "schstatus" => '2'
+                                    );
+                                    $this->db->where('idschedules', $idschedule);
+                                    $this->db->update('schedules', $dataupdate);
+                             }
+
+        return $newmaxuser;
+    }
+
+
+
     function proses_register() {
 
 // jika sudah login dan sudah member
         if($this->session->userdata('statususer')) {
-            
-            $idroles = $this->session->userdata('statususer');
-            $reg = array(
-                        "idschedules" => $this->uri->segment(3),
-                        "idusers" => $this->session->userdata('idusers'),
-                        "registrationspayment" => 'unpaid',
-                        "status" => '0',
-                        "created" => date("Y-m-d H:i:s"),
-                        "createdby" => $this->session->userdata('idusers'),
-                    );
+           
+            $iduser = $this->session->userdata('idusers');
+            $cekRegistrasion = $this->db->query('select * from registrations where idschedules="'.$this->uri->segment(3).'" and idusers="'.$iduser.'"');
+            $cek = $cekRegistrasion->num_rows();
 
-                $query1 = $this->db->insert("registrations",$reg);
+            if($cek == 0) {
+                    $idroles = $this->session->userdata('statususer');
+                    $reg = array(
+                                "idschedules" => $this->uri->segment(3),
+                                "idusers" => $this->session->userdata('idusers'),
+                                "registrationspayment" => 'unpaid',
+                                "status" => '0',
+                                "created" => date("Y-m-d H:i:s"),
+                                "createdby" => $this->session->userdata('idusers'),
+                            );
 
-                if ($query1) {
-                    echo "success";
-                } else {
-                    echo "gagal";
-                }
+                    $query1 = $this->db->insert("registrations",$reg);
+
+
+
+
+                         //proses pengurangan kuota schedule test date
+                         $dataupdate = array(
+                                "maxuser" => $this->getmaxuser_schedule($this->uri->segment(3))
+                            );
+                            $this->db->where('idschedules', $this->uri->segment(3));
+                            $this->db->update('schedules', $dataupdate);
+ 
+
+
+
+                    $selectSchedules = $this->db->query('select * from schedules where idschedules="'.$this->uri->segment(3).'"');
+                    foreach ($selectSchedules->result() as $row) {
+
+                    if($row->idexams == '4') {
+                        $module = 'Academic';
+                    } else {
+                        $module = 'General Training';
+                    }
+                         
+                        $result = array(
+                            'testdate' => $this->generated_tanggal->ubahtanggal($row->schdate),
+                            'rupiah' => number_format($row->rupiah,2,',','.'),
+                            'dollar' => $row->dollar,
+                            'gbp' => $row->gbp,
+                            'module' => $module,
+                            'status' => 'success'
+                        );
+
+                        echo '{"result":'.json_encode($result).'}';
+                  }
+
+            } else {
+             
+                     $selectSchedules = $this->db->query('select * from schedules where idschedules="'.$this->uri->segment(3).'"');
+                     foreach ($selectSchedules->result() as $row) {
+
+                        if($row->idexams == '4') {
+                            $module = 'Academic';
+                        } else {
+                            $module = 'General Training';
+                        }
+                             
+                            $result = array(
+                                'testdate' => $this->generated_tanggal->ubahtanggal($row->schdate),
+                                'rupiah' => number_format($row->rupiah,2,',','.'),
+                                'dollar' => $row->dollar,
+                                'gbp' => $row->gbp,
+                                'module' => $module,
+                                'status' => 'registered'
+                            );
+
+                            echo '{"result":'.json_encode($result).'}';
+                     }   
+
+                      
+
+            }                
 
 
 // kondisi register baru             
@@ -117,27 +196,67 @@ class register_model extends CI_Model {
         
             $query =  $this->db->insert("users", $dt);
 
+
             $getiduser = $this->db->query('select * from users where useremail="'.$email_address.'"');
+
             foreach ($getiduser->result() as $row) {
                 $iduser = $row->idusers;
-            }
 
                 $reg = array(
-                        "idschedules" => $this->uri->segment(3),
-                        "idusers" => $iduser,
-                        "registrationspayment" => 'unpaid',
-                        "status" => '0',
-                        "created" => date("Y-m-d H:i:s"),
-                        "createdby" => $iduser,
-                    );
+                                "idschedules" => $this->uri->segment(3),
+                                "idusers" => $iduser,
+                                "registrationspayment" => 'unpaid',
+                                "status" => '0',
+                                "created" => date("Y-m-d H:i:s"),
+                                "createdby" => $iduser,
+                            );
+                 $query1 = $this->db->insert("registrations",$reg);
 
-                $query1 = $this->db->insert("registrations",$reg);
 
-                if ($query1) {
-                    echo "success";
-                } else {
-                    echo "gagal";
-                }
+
+                            //proses pengurangan kuota schedule test date
+                            $dataupdate = array(
+                                "maxuser" => $this->getmaxuser_schedule($this->uri->segment(3))
+                            );
+                            $this->db->where('idschedules', $this->uri->segment(3));
+                            $this->db->update('schedules', $dataupdate);
+                        
+
+                       
+                     $selectSchedules = $this->db->query('select * from schedules where idschedules="'.$this->uri->segment(3).'"');
+                     foreach ($selectSchedules->result() as $row) {
+
+                        if($row->idexams == '4') {
+                            $module = 'Academic';
+                        } else {
+                            $module = 'General Training';
+                        }
+                             
+                            $result = array(
+                                'testdate' => $this->generated_tanggal->ubahtanggal($row->schdate),
+                                'rupiah' => number_format($row->rupiah,2,',','.'),
+                                'dollar' => $row->dollar,
+                                'gbp' => $row->gbp,
+                                'module' => $module,
+                                'status' => 'success'
+                            );
+
+                            echo '{"result":'.json_encode($result).'}';
+                     }
+
+            }
+
+
+            
+                    
+                        
+
+                       
+
+                        
+                    
+
+
                 
         }
    
@@ -157,7 +276,7 @@ class register_model extends CI_Model {
     function getAll($where = "") {
         if ($where != "")
         $this->db->where($where);
-        $this->db->distinct();
+        $this->db->distinct(); 
         $this->db->select('branches.branchname');
         $this->db->join('exams', 'exams.idexams = schedules.idexams');
         $this->db->join('branches', 'branches.idbranches = schedules.idbranches');
@@ -292,12 +411,7 @@ class register_model extends CI_Model {
         ?>
 
                 <table class="table table-striped">
-                <tr>
-                    <th style="width:40%;border-top:none;">Location Name</th>
-                    <th style="width:40%;border-top:none;">Address</th>
-                    <th style="width:20%;border-top:none;">Available</th>
-                    <th style="width:10%;border-top:none;">Select</th>
-                </tr>
+                
             <?php foreach ($query->result() as $row ) { ?>
                         <?php $available = $this->getAvailable($this->getIdbranche($row->branchname ));
 
@@ -348,12 +462,7 @@ class register_model extends CI_Model {
          }   ?>
                  <?php if($query->result()) { ?>  
                     <table class="table table-striped">
-                            <tr>
-                               <th style="width:30%;border-top:none;">Date</th>
-                               <th style="width:40%;border-top:none;">Test Fee</th>
-                               <th style="width:20%;border-top:none;">Module</th>
-                                <th style="width:10%;border-top:none;">Availability</th>
-                            </tr>
+                       
                          
                      <?php foreach ($query->result() as $row ) { ?>
                         <tr>
@@ -426,12 +535,7 @@ class register_model extends CI_Model {
 
          <?php if($query->result()) { ?>  
             <table class="table table-striped">
-                    <tr>
-                       <th style="width:30%;border-top:none;">Date</th>
-                       <th style="width:40%;border-top:none;">Test Fee</th>
-                       <th style="width:20%;border-top:none;">Module</th>
-                        <th style="width:10%;border-top:none;">Availability</th>
-                    </tr>
+                  
                  
              <?php foreach ($query->result() as $row ) { ?>
                 <tr>
@@ -485,12 +589,7 @@ class register_model extends CI_Model {
     
 
             <table class="table table-striped">
-                    <tr>
-                       <th style="width:30%;border-top:none;">Date</th>
-                       <th style="width:40%;border-top:none;">Test Fee</th>
-                       <th style="width:20%;border-top:none;">Module</th>
-                        <th style="width:10%;border-top:none;">Availability</th>
-                    </tr>
+                    
 
              <?php foreach ($query->result() as $row ) { ?>
                 <tr>
