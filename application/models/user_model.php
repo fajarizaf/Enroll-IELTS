@@ -51,6 +51,28 @@ class   User_model extends CI_Model {
     }
 
 
+    public function getDataNotRegistered() {
+       $idusers = $this->session->userdata('idusers');
+       $idschedules = $this->uri->segment(3);
+
+
+       $getUserRegistered = $this->db->query('select * from registrations where idschedules="'.$idschedules.'"');
+
+       if($getUserRegistered->result()) {
+           foreach ($getUserRegistered->result() as $row) {
+               $user[] = $row->idusers;
+               $im_user = implode(',',$user);
+           }
+
+           $getUserNotRegistered = $this->db->query('select * from users where createdby="'.$idusers.'" and idusers not in ('.$im_user.')'); 
+           return $getUserNotRegistered->result();
+       } else {
+           $getUserNotRegistered = $this->db->query('select * from users where createdby="'.$idusers.'" '); 
+           return $getUserNotRegistered->result();
+       }
+    }
+
+
     
 }
 

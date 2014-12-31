@@ -44,6 +44,10 @@ text-decoration:none;
 color:#666;
 }
 
+.search-country {
+  font-family: 'Open Sans2';
+}
+
 .search {
  font-family:'Armata'; 
 }

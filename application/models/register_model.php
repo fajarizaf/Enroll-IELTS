@@ -30,84 +30,229 @@ class register_model extends CI_Model {
 
 // jika sudah login dan sudah member
         if($this->session->userdata('statususer')) {
+
+
+
+//apabila dia login sebagai candidate
+            if($this->session->userdata('statususer') == '3') {
            
-            $iduser = $this->session->userdata('idusers');
-            $cekRegistrasion = $this->db->query('select * from registrations where idschedules="'.$this->uri->segment(3).'" and idusers="'.$iduser.'"');
-            $cek = $cekRegistrasion->num_rows();
+                            $iduser = $this->session->userdata('idusers');
+                            $cekRegistrasion = $this->db->query('select * from registrations where idschedules="'.$this->uri->segment(3).'" and idusers="'.$iduser.'"');
+                            $cek = $cekRegistrasion->num_rows();
 
-            if($cek == 0) {
-                    $idroles = $this->session->userdata('statususer');
-                    $reg = array(
-                                "idschedules" => $this->uri->segment(3),
-                                "idusers" => $this->session->userdata('idusers'),
-                                "registrationspayment" => 'unpaid',
-                                "status" => '0',
-                                "created" => date("Y-m-d H:i:s"),
-                                "createdby" => $this->session->userdata('idusers'),
-                            );
+                            if($cek == 0) {
+                                    $idroles = $this->session->userdata('statususer');
+                                    $reg = array(
+                                                "idschedules" => $this->uri->segment(3),
+                                                "idusers" => $this->session->userdata('idusers'),
+                                                "registrationspayment" => 'unpaid',
+                                                "status" => '0',
+                                                "created" => date("Y-m-d H:i:s"),
+                                                "createdby" => $this->session->userdata('idusers'),
+                                            );
 
-                    $query1 = $this->db->insert("registrations",$reg);
-
-
-
-
-                         //proses pengurangan kuota schedule test date
-                         $dataupdate = array(
-                                "maxuser" => $this->getmaxuser_schedule($this->uri->segment(3))
-                            );
-                            $this->db->where('idschedules', $this->uri->segment(3));
-                            $this->db->update('schedules', $dataupdate);
- 
+                                    $query1 = $this->db->insert("registrations",$reg);
 
 
 
-                    $selectSchedules = $this->db->query('select * from schedules where idschedules="'.$this->uri->segment(3).'"');
-                    foreach ($selectSchedules->result() as $row) {
 
-                    if($row->idexams == '4') {
-                        $module = 'Academic';
-                    } else {
-                        $module = 'General Training';
-                    }
-                         
-                        $result = array(
-                            'testdate' => $this->generated_tanggal->ubahtanggal($row->schdate),
-                            'rupiah' => number_format($row->rupiah,2,',','.'),
-                            'dollar' => $row->dollar,
-                            'gbp' => $row->gbp,
-                            'module' => $module,
-                            'status' => 'success'
-                        );
+                                         //proses pengurangan kuota schedule test date
+                                         $dataupdate = array(
+                                                "maxuser" => $this->getmaxuser_schedule($this->uri->segment(3))
+                                            );
+                                            $this->db->where('idschedules', $this->uri->segment(3));
+                                            $this->db->update('schedules', $dataupdate);
+                 
 
-                        echo '{"result":'.json_encode($result).'}';
-                  }
 
-            } else {
-             
-                     $selectSchedules = $this->db->query('select * from schedules where idschedules="'.$this->uri->segment(3).'"');
-                     foreach ($selectSchedules->result() as $row) {
 
-                        if($row->idexams == '4') {
-                            $module = 'Academic';
-                        } else {
-                            $module = 'General Training';
-                        }
+                                    $selectSchedules = $this->db->query('select * from schedules where idschedules="'.$this->uri->segment(3).'"');
+                                    foreach ($selectSchedules->result() as $row) {
+
+                                    if($row->idexams == '4') {
+                                        $module = 'Academic';
+                                    } else {
+                                        $module = 'General Training';
+                                    }
+                                         
+                                        $result = array(
+                                            'testdate' => $this->generated_tanggal->ubahtanggal($row->schdate),
+                                            'rupiah' => number_format($row->rupiah,2,',','.'),
+                                            'dollar' => $row->dollar,
+                                            'gbp' => $row->gbp,
+                                            'module' => $module,
+                                            'status' => 'success'
+                                        );
+
+                                        echo '{"result":'.json_encode($result).'}';
+                                  }
+
+                            } else {
                              
-                            $result = array(
-                                'testdate' => $this->generated_tanggal->ubahtanggal($row->schdate),
-                                'rupiah' => number_format($row->rupiah,2,',','.'),
-                                'dollar' => $row->dollar,
-                                'gbp' => $row->gbp,
-                                'module' => $module,
-                                'status' => 'registered'
-                            );
+                                     $selectSchedules = $this->db->query('select * from schedules where idschedules="'.$this->uri->segment(3).'"');
+                                     foreach ($selectSchedules->result() as $row) {
 
-                            echo '{"result":'.json_encode($result).'}';
-                     }   
+                                        if($row->idexams == '4') {
+                                            $module = 'Academic';
+                                        } else {
+                                            $module = 'General Training';
+                                        }
+                                             
+                                            $result = array(
+                                                'testdate' => $this->generated_tanggal->ubahtanggal($row->schdate),
+                                                'rupiah' => number_format($row->rupiah,2,',','.'),
+                                                'dollar' => $row->dollar,
+                                                'gbp' => $row->gbp,
+                                                'module' => $module,
+                                                'status' => 'registered'
+                                            );
 
-                      
+                                            echo '{"result":'.json_encode($result).'}';
+                                     }   
 
-            }                
+                                      
+
+                            }
+
+    //apabila dia login sebagai reg center
+            } else {
+
+                    $idroles = '3';
+                    $title = $this->input->post('title');
+                    $username = $this->input->post('username');
+                    $password = $this->input->post('username');
+                    $last_name = $this->input->post('last_name');
+                    $first_name = $this->input->post('first_name');
+                    $gender = $this->input->post('gender');
+                    $phone_number = $this->input->post('phone_number');
+                    $email_address = $this->input->post('email_address');
+                    $address = $this->input->post('address');
+                    $city = $this->input->post('city');
+                    $zipcode = $this->input->post('zipcode');
+                    $country = $this->input->post('codecity');
+                    $date = $this->input->post('date_of_birth');
+                    $identity = $this->input->post('identity');
+                    $number_identity = $this->input->post('number_identity');
+                    $codecountryorigin = $this->input->post('codecountryorigin');
+                    $codelang = $this->input->post('codelang');
+                    $codesector = $this->input->post('codesector');
+                    $codelevel = $this->input->post('codelevel');
+                    $codequestion = $this->input->post('codequestion');
+                    $country_applying = $this->input->post('country_applying');
+                    $studying_english = $this->input->post('studying_english');
+                    $level_of_education = $this->input->post('level_of_education');
+                    $many_years = $this->input->post('many_years');
+                    $specialneeds = $this->input->post('specialneeds');
+                    $specialneedsdesc = $this->input->post('specialneedsdesc');
+                    $notes = $this->input->post('notes');
+                    $userphoto = $this->input->post('uploadfile');
+
+         
+
+                    if($codesector == '00') {
+                        $codesector = $this->input->post('sector_other');
+                    }
+                    if($codelevel == '0') {
+                        $codelevel =  $this->input->post('level_other');
+                    }
+                    if($codequestion == '0' ) {
+                        $codequestion = $this->input->post('other_taking_test');
+                    }
+                    if($country_applying == '0') {
+                        $country_applying = $this->input->post('other_country_applying');
+                    }
+
+
+                    $dt = array(
+                        "idroles" => $idroles,
+                        "usertitle" => $title,
+                        "username" => $username,
+                        "userpass" => $password,
+                        "userfamilyname" => $last_name,
+                        "userfirstname" => $first_name,
+                        "userothername" => 'x',
+                        "usergender" => $gender,
+                        "userphone" => $phone_number,
+                        "useremail" => $email_address,
+                        "useraddr1" => $address,
+                        "useraddr2" => $country,
+                        "useraddr3" => $city,
+                        "useraddr4" => $zipcode,
+                        "userdob" => $date,
+                        "useridcard" => $identity,
+                        "useridnumber" => $number_identity,
+                        "usercountryorigin" => $codecountryorigin,
+                        "userfirstlanguage" => $codelang,
+                        "useroccupationsector" => $codesector,
+                        "useroccupationlevel" => $codelevel,
+                        "userwhytaketest" => $codequestion,
+                        "usertargetcountry" => $country_applying,
+                        "usertakenielts" => $specialneeds,
+                        "userwherestudyingeng" => $studying_english,
+                        "userlevelofeducation" => $level_of_education,
+                        "useryearsofenglishstudy" => $many_years,
+                        "userspecialcondition" => $specialneedsdesc,
+                        "usernotes" => $notes,
+                        "userstatus" => '1',
+                        "userphoto" => $userphoto,
+                        "created" => date("Y-m-d H:i:s"),
+                        "updated" => date("Y-m-d H:i:s"),
+                        "createdby" => $this->session->userdata('idusers'),
+                        );
+                
+                    $query =  $this->db->insert("users", $dt);
+
+
+                    $getiduser = $this->db->query('select * from users where useremail="'.$email_address.'"');
+
+                    foreach ($getiduser->result() as $row) {
+                        $iduser = $row->idusers;
+
+                        $reg = array(
+                                        "idschedules" => $this->uri->segment(3),
+                                        "idusers" => $iduser,
+                                        "registrationspayment" => 'unpaid',
+                                        "status" => '0',
+                                        "created" => date("Y-m-d H:i:s"),
+                                        "createdby" => $this->session->userdata('idusers'),
+                                    );
+                         $query1 = $this->db->insert("registrations",$reg);
+
+
+
+                                    //proses pengurangan kuota schedule test date
+                                    $dataupdate = array(
+                                        "maxuser" => $this->getmaxuser_schedule($this->uri->segment(3))
+                                    );
+                                    $this->db->where('idschedules', $this->uri->segment(3));
+                                    $this->db->update('schedules', $dataupdate);
+                                
+
+                               
+                             $selectSchedules = $this->db->query('select * from schedules where idschedules="'.$this->uri->segment(3).'"');
+                             foreach ($selectSchedules->result() as $row) {
+
+                                if($row->idexams == '4') {
+                                    $module = 'Academic';
+                                } else {
+                                    $module = 'General Training';
+                                }
+                                     
+                                    $result = array(
+                                        'testdate' => $this->generated_tanggal->ubahtanggal($row->schdate),
+                                        'rupiah' => number_format($row->rupiah,2,',','.'),
+                                        'dollar' => $row->dollar,
+                                        'gbp' => $row->gbp,
+                                        'module' => $module,
+                                        'status' => 'regcenter'
+                                    );
+
+                                    echo '{"result":'.json_encode($result).'}';
+                             }
+
+                    }
+
+            }              
 
 
 // kondisi register baru             
@@ -246,20 +391,94 @@ class register_model extends CI_Model {
 
             }
 
-
-            
-                    
-                        
-
-                       
-
-                        
-                    
-
-
                 
         }
    
+    }
+
+
+// ambil informasi schedules
+    function getschedules() {
+            $selectSchedules = $this->db->query('select * from schedules where idschedules="'.$this->uri->segment(3).'"');
+                     foreach ($selectSchedules->result() as $row) {
+
+                        if($row->idexams == '4') {
+                            $module = 'Academic';
+                        } else {
+                            $module = 'General Training';
+                        }
+                             
+                            $result = array(
+                                'testdate' => $this->generated_tanggal->ubahtanggal($row->schdate),
+                                'rupiah' => number_format($row->rupiah,2,',','.'),
+                                'dollar' => $row->dollar,
+                                'gbp' => $row->gbp,
+                                'module' => $module,
+                                'status' => 'success'
+                            );
+
+                            echo '{"result":'.json_encode($result).'}';
+                     }
+    }
+
+
+
+
+// memproses register dengan user yang sudah ada dari reg center
+
+    function proses_register_center() {
+        $idusers = $this->input->post('idusers');
+        $idschedules = $this->input->post('idschedules');
+
+        $ex_user = explode(',' , $idusers);
+
+        foreach ($ex_user as $row) {
+
+            if($row != '') {
+           $data = array (
+                "idschedules" => $idschedules,
+                "idusers" => $row,
+                "registrationspayment" => 'unpaid',
+                "status" => 0,
+                "created" => date("Y-m-d H:i:s"),
+                "createdby" => $this->session->userdata('idusers')
+            );
+
+           $this->db->insert('registrations', $data);
+
+                            //proses pengurangan kuota schedule test date
+                            $dataupdate = array(
+                                "maxuser" => $this->getmaxuser_schedule($idschedules)
+                            );
+                            $this->db->where('idschedules', $idschedules);
+                            $this->db->update('schedules', $dataupdate);
+
+
+                    $selectSchedules = $this->db->query('select * from schedules where idschedules="'.$idschedules.'"');
+                     foreach ($selectSchedules->result() as $row) {
+
+                        if($row->idexams == '4') {
+                            $module = 'Academic';
+                        } else {
+                            $module = 'General Training';
+                        }
+                             
+                            $result = array(
+                                'testdate' => $this->generated_tanggal->ubahtanggal($row->schdate),
+                                'rupiah' => number_format($row->rupiah,2,',','.'),
+                                'dollar' => $row->dollar,
+                                'gbp' => $row->gbp,
+                                'module' => $module,
+                                'status' => 'success'
+                            );
+
+                            echo '{"result":'.json_encode($result).'}';
+                     }
+
+
+        }
+        }
+
     }
 	
 
@@ -410,7 +629,7 @@ class register_model extends CI_Model {
         $query = $this->db->query('select DISTINCT  branches.branchname from schedules, branches where branches.city="'.$city.'" and schedules.schstatus="1" and schedules.schdate > "'.date("Y-m-d H:i:s").'" ');
         ?>
 
-                <table class="table table-striped">
+            <table class="table table-striped">
                 
             <?php foreach ($query->result() as $row ) { ?>
                         <?php $available = $this->getAvailable($this->getIdbranche($row->branchname ));
@@ -429,8 +648,75 @@ class register_model extends CI_Model {
                     <td><input class="locations-test" style="margin-top:15px;" value="<?php echo $this->getIdbranches($row->branchname ); ?>" type="radio" name="location-test" /></td>
                 </tr>                
             <?php }  ?>
+
+
         </table>
     <?php }
+
+
+    function filterbyuser() {
+           $userd = $this->input->post('user');
+           $idusers = $this->session->userdata('idusers');
+           $idschedules = $this->input->post('idschedules');
+
+           $getUserRegistered = $this->db->query('select * from registrations where idschedules="'.$idschedules.'"');
+           $cekuser = $this->db->query('select * from registrations where idusers="'.$userd.'" and idschedules="'.$idschedules.'"');
+
+
+           if($cekuser->num_rows()) {
+               ?>
+
+                <ul class="list-country">
+                           <li style="width:30px;">
+                              
+                           </li>
+                           <li style="width:120px;">Not Found</li>
+                           <li style="width:150px;"></li>
+                           <li style="width:280px;"></li>
+                         </ul> 
+
+
+                <?php
+
+           } else {
+               $q = $this->db->query('select * from users where createdby="'.$idusers.'" and idusers like '.$userd.' ');
+               if($q->result()) {
+                $query = $this->db->query('select * from users where createdby="'.$idusers.'" and idusers like '.$userd.' ');
+               } else {
+
+                if($getUserRegistered->result()) {
+                       foreach ($getUserRegistered->result() as $row) {
+                           $user[] = $row->idusers;
+                           $im_user = implode(',',$user);
+                       } 
+                    $query = $this->db->query('select * from users where createdby="'.$idusers.'" and idusers not in ('.$im_user.')');
+                } else {
+                    $query = $this->db->query('select * from users where createdby="'.$idusers.'"');    
+                }
+
+                
+               } 
+?>
+
+
+                    <?php foreach ($query->result() as $row ) { ?>
+                        <ul value="<?php echo $row->idusers ?>" valuecode="<?php echo $row->idusers ?>" class="list-country">
+                           <li style="width:30px;">
+                              <input type="checkbox" name="listuser"  value="<?php echo $row->idusers; ?>" id="<?php echo $row->idusers; ?>" class="css-checkbox lrg" />
+                              <label for="<?php echo $row->idusers; ?>" tgl="<?php echo $this->generated_tanggal->ubahtanggal($row->created); ?>" famname="<?php echo $row->userfamilyname; ?>" name="checkbox67_lbl" class="css-label lrg web-two-style"></label>
+                           </li>
+                           <li style="width:120px;">IDIELTS<?php echo $row->idusers ?></li>
+                           <li style="width:150px;"><?php echo $this->generated_tanggal->ubahtanggal($row->created); ?></li>
+                           <li style="width:280px;"><?php echo $row->userfamilyname ?></li>
+                         </ul> 
+
+
+                    <?php }  
+
+
+           }
+
+ }
 
 
     function filterbydate($where = "") {

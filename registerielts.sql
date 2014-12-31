@@ -2,10 +2,10 @@
 -- version 4.0.4.1
 -- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: Dec 26, 2014 at 10:43 AM
--- Server version: 5.5.32
--- PHP Version: 5.4.19
+-- Inang: 127.0.0.1
+-- Waktu pembuatan: 31 Des 2014 pada 10.38
+-- Versi Server: 5.5.32
+-- Versi PHP: 5.4.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `registerielts`
+-- Basis data: `registerielts`
 --
 CREATE DATABASE IF NOT EXISTS `registerielts` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
 USE `registerielts`;
@@ -25,7 +25,7 @@ USE `registerielts`;
 -- --------------------------------------------------------
 
 --
--- Table structure for table `academic`
+-- Struktur dari tabel `academic`
 --
 
 CREATE TABLE IF NOT EXISTS `academic` (
@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `academic` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `academic`
+-- Dumping data untuk tabel `academic`
 --
 
 INSERT INTO `academic` (`userid`, `nop`, `noi`, `files`, `addr`) VALUES
@@ -135,7 +135,7 @@ INSERT INTO `academic` (`userid`, `nop`, `noi`, `files`, `addr`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `branches`
+-- Struktur dari tabel `branches`
 --
 
 CREATE TABLE IF NOT EXISTS `branches` (
@@ -157,7 +157,7 @@ CREATE TABLE IF NOT EXISTS `branches` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=40 ;
 
 --
--- Dumping data for table `branches`
+-- Dumping data untuk tabel `branches`
 --
 
 INSERT INTO `branches` (`idbranches`, `idusers`, `idpartners`, `branchname`, `branchphone`, `branchemail`, `branchaddr`, `city`, `activestatus`, `created`, `createdby`, `updated`, `updatedby`) VALUES
@@ -197,7 +197,7 @@ INSERT INTO `branches` (`idbranches`, `idusers`, `idpartners`, `branchname`, `br
 -- --------------------------------------------------------
 
 --
--- Table structure for table `captcha`
+-- Struktur dari tabel `captcha`
 --
 
 CREATE TABLE IF NOT EXISTS `captcha` (
@@ -210,7 +210,7 @@ CREATE TABLE IF NOT EXISTS `captcha` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=33053 ;
 
 --
--- Dumping data for table `captcha`
+-- Dumping data untuk tabel `captcha`
 --
 
 INSERT INTO `captcha` (`captcha_id`, `captcha_time`, `ip_address`, `word`) VALUES
@@ -231,7 +231,7 @@ INSERT INTO `captcha` (`captcha_id`, `captcha_time`, `ip_address`, `word`) VALUE
 -- --------------------------------------------------------
 
 --
--- Table structure for table `city`
+-- Struktur dari tabel `city`
 --
 
 CREATE TABLE IF NOT EXISTS `city` (
@@ -242,7 +242,7 @@ CREATE TABLE IF NOT EXISTS `city` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=39 ;
 
 --
--- Dumping data for table `city`
+-- Dumping data untuk tabel `city`
 --
 
 INSERT INTO `city` (`no`, `name`, `code`) VALUES
@@ -288,7 +288,7 @@ INSERT INTO `city` (`no`, `name`, `code`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `exams`
+-- Struktur dari tabel `exams`
 --
 
 CREATE TABLE IF NOT EXISTS `exams` (
@@ -303,7 +303,7 @@ CREATE TABLE IF NOT EXISTS `exams` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
--- Dumping data for table `exams`
+-- Dumping data untuk tabel `exams`
 --
 
 INSERT INTO `exams` (`idexams`, `examname`, `examstatus`, `created`, `createdby`, `updated`, `updatedby`) VALUES
@@ -313,7 +313,7 @@ INSERT INTO `exams` (`idexams`, `examname`, `examstatus`, `created`, `createdby`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `language`
+-- Struktur dari tabel `language`
 --
 
 CREATE TABLE IF NOT EXISTS `language` (
@@ -324,7 +324,7 @@ CREATE TABLE IF NOT EXISTS `language` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=45 ;
 
 --
--- Dumping data for table `language`
+-- Dumping data untuk tabel `language`
 --
 
 INSERT INTO `language` (`no`, `name`, `code`) VALUES
@@ -376,7 +376,7 @@ INSERT INTO `language` (`no`, `name`, `code`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `level`
+-- Struktur dari tabel `level`
 --
 
 CREATE TABLE IF NOT EXISTS `level` (
@@ -387,7 +387,7 @@ CREATE TABLE IF NOT EXISTS `level` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
 --
--- Dumping data for table `level`
+-- Dumping data untuk tabel `level`
 --
 
 INSERT INTO `level` (`no`, `name`, `code`) VALUES
@@ -403,7 +403,7 @@ INSERT INTO `level` (`no`, `name`, `code`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `menus`
+-- Struktur dari tabel `menus`
 --
 
 CREATE TABLE IF NOT EXISTS `menus` (
@@ -418,7 +418,7 @@ CREATE TABLE IF NOT EXISTS `menus` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
 --
--- Dumping data for table `menus`
+-- Dumping data untuk tabel `menus`
 --
 
 INSERT INTO `menus` (`idmenu`, `controllers`, `functions`, `name`, `desc`, `seq`, `color`) VALUES
@@ -434,7 +434,7 @@ INSERT INTO `menus` (`idmenu`, `controllers`, `functions`, `name`, `desc`, `seq`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `partners`
+-- Struktur dari tabel `partners`
 --
 
 CREATE TABLE IF NOT EXISTS `partners` (
@@ -449,7 +449,7 @@ CREATE TABLE IF NOT EXISTS `partners` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
 --
--- Dumping data for table `partners`
+-- Dumping data untuk tabel `partners`
 --
 
 INSERT INTO `partners` (`idpartners`, `partnername`, `partnerstatus`, `created`, `createdby`, `updated`, `updatedby`) VALUES
@@ -461,7 +461,7 @@ INSERT INTO `partners` (`idpartners`, `partnername`, `partnerstatus`, `created`,
 -- --------------------------------------------------------
 
 --
--- Table structure for table `privileges`
+-- Struktur dari tabel `privileges`
 --
 
 CREATE TABLE IF NOT EXISTS `privileges` (
@@ -471,7 +471,7 @@ CREATE TABLE IF NOT EXISTS `privileges` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `privileges`
+-- Dumping data untuk tabel `privileges`
 --
 
 INSERT INTO `privileges` (`idroles`, `idmenu`) VALUES
@@ -493,7 +493,7 @@ INSERT INTO `privileges` (`idroles`, `idmenu`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `question`
+-- Struktur dari tabel `question`
 --
 
 CREATE TABLE IF NOT EXISTS `question` (
@@ -504,7 +504,7 @@ CREATE TABLE IF NOT EXISTS `question` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
 
 --
--- Dumping data for table `question`
+-- Dumping data untuk tabel `question`
 --
 
 INSERT INTO `question` (`no`, `name`, `code`) VALUES
@@ -522,7 +522,7 @@ INSERT INTO `question` (`no`, `name`, `code`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `registrationlog`
+-- Struktur dari tabel `registrationlog`
 --
 
 CREATE TABLE IF NOT EXISTS `registrationlog` (
@@ -536,7 +536,7 @@ CREATE TABLE IF NOT EXISTS `registrationlog` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3822 ;
 
 --
--- Dumping data for table `registrationlog`
+-- Dumping data untuk tabel `registrationlog`
 --
 
 INSERT INTO `registrationlog` (`idregistrationlog`, `idregistrations`, `status`, `created`, `createdby`) VALUES
@@ -4368,7 +4368,7 @@ INSERT INTO `registrationlog` (`idregistrationlog`, `idregistrations`, `status`,
 -- --------------------------------------------------------
 
 --
--- Table structure for table `registrations`
+-- Struktur dari tabel `registrations`
 --
 
 CREATE TABLE IF NOT EXISTS `registrations` (
@@ -4385,10 +4385,10 @@ CREATE TABLE IF NOT EXISTS `registrations` (
   PRIMARY KEY (`idregistrations`),
   KEY `scheduleid_idx` (`idschedules`),
   KEY `userid_idx` (`idusers`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2213 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2267 ;
 
 --
--- Dumping data for table `registrations`
+-- Dumping data untuk tabel `registrations`
 --
 
 INSERT INTO `registrations` (`idregistrations`, `idschedules`, `idusers`, `registrationspayment`, `status`, `paymentreceipt`, `created`, `createdby`, `updated`, `updatedby`) VALUES
@@ -6546,12 +6546,16 @@ INSERT INTO `registrations` (`idregistrations`, `idschedules`, `idusers`, `regis
 (2204, 181, 2104, 'unpaid', 0, NULL, '2014-12-26 08:13:28', 2104, NULL, NULL),
 (2210, 193, 203, 'unpaid', 0, NULL, '2014-12-26 09:19:30', 203, NULL, NULL),
 (2211, 193, 2105, 'unpaid', 0, NULL, '2014-12-26 09:29:41', 2105, NULL, NULL),
-(2212, 182, 203, 'unpaid', 0, NULL, '2014-12-26 09:42:27', 203, NULL, NULL);
+(2212, 182, 203, 'unpaid', 0, NULL, '2014-12-26 09:42:27', 203, NULL, NULL),
+(2215, 199, 2106, 'unpaid', 0, NULL, '2014-12-29 04:16:00', 2, NULL, NULL),
+(2216, 181, 2107, 'unpaid', 0, NULL, '2014-12-29 04:31:42', 2, NULL, NULL),
+(2265, 196, 2108, 'unpaid', 0, NULL, '2014-12-31 09:07:26', 2, NULL, NULL),
+(2266, 196, 2110, 'unpaid', 0, NULL, '2014-12-31 09:09:30', 2, NULL, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `roles`
+-- Struktur dari tabel `roles`
 --
 
 CREATE TABLE IF NOT EXISTS `roles` (
@@ -6561,7 +6565,7 @@ CREATE TABLE IF NOT EXISTS `roles` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10000 ;
 
 --
--- Dumping data for table `roles`
+-- Dumping data untuk tabel `roles`
 --
 
 INSERT INTO `roles` (`idroles`, `rolesname`) VALUES
@@ -6573,7 +6577,7 @@ INSERT INTO `roles` (`idroles`, `rolesname`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `schedules`
+-- Struktur dari tabel `schedules`
 --
 
 CREATE TABLE IF NOT EXISTS `schedules` (
@@ -6599,7 +6603,7 @@ CREATE TABLE IF NOT EXISTS `schedules` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=208 ;
 
 --
--- Dumping data for table `schedules`
+-- Dumping data untuk tabel `schedules`
 --
 
 INSERT INTO `schedules` (`idschedules`, `idbranches`, `idexams`, `schdate`, `schsubmitentry`, `schclosingreg`, `appformreceive`, `schstatus`, `rupiah`, `dollar`, `gbp`, `maxuser`, `created`, `createdby`, `updated`, `updatedby`) VALUES
@@ -6750,7 +6754,7 @@ INSERT INTO `schedules` (`idschedules`, `idbranches`, `idexams`, `schdate`, `sch
 (178, 13, 4, '2014-09-27 00:00:00', '0000-00-00', '2014-09-18', '0000-00-00', 1, 2350000, 190, 120, 22, '2014-09-17 04:44:39', 1, '0000-00-00 00:00:00', 1),
 (179, 23, 4, '2015-01-10 00:00:00', '0000-00-00', '2014-12-31', '0000-00-00', 1, 2400000, 190, 120, 20, '2014-10-04 02:15:55', 1, '0000-00-00 00:00:00', 1),
 (180, 23, 4, '2015-01-17 00:00:00', '0000-00-00', '2015-01-08', '0000-00-00', 1, 2400000, 190, 120, 50, '2014-10-04 02:21:05', 1, '0000-00-00 00:00:00', 1),
-(181, 34, 4, '2015-01-29 00:00:00', '0000-00-00', '2015-01-20', '0000-00-00', 1, 2400000, 190, 120, 0, '2014-10-04 02:23:53', 1, '0000-00-00 00:00:00', 1),
+(181, 34, 4, '2015-01-29 00:00:00', '0000-00-00', '2015-01-20', '0000-00-00', 1, 2400000, 190, 120, -1, '2014-10-04 02:23:53', 1, '0000-00-00 00:00:00', 1),
 (182, 34, 3, '2015-01-10 00:00:00', '0000-00-00', '2014-12-31', '0000-00-00', 1, 2400000, 190, 120, 1, '2014-10-04 02:24:52', 1, '0000-00-00 00:00:00', 1),
 (183, 34, 3, '2015-01-29 00:00:00', '0000-00-00', '2015-01-20', '0000-00-00', 1, 2400000, 190, 120, 0, '2014-10-04 02:26:04', 1, '0000-00-00 00:00:00', 1),
 (184, 23, 4, '2015-01-31 00:00:00', '0000-00-00', '2015-01-22', '0000-00-00', 1, 2400000, 190, 120, 50, '2014-10-04 02:26:47', 1, '0000-00-00 00:00:00', 1),
@@ -6762,26 +6766,26 @@ INSERT INTO `schedules` (`idschedules`, `idbranches`, `idexams`, `schdate`, `sch
 (190, 35, 4, '2014-11-08 00:00:00', '0000-00-00', '2014-10-23', '0000-00-00', 1, 2400000, 190, 120, 1, '2014-10-22 07:17:01', 1, '0000-00-00 00:00:00', 1),
 (191, 36, 4, '2015-02-07 00:00:00', '0000-00-00', '2015-01-29', '0000-00-00', 1, 2400000, 190, 120, 50, '2014-11-03 02:42:02', 1, '0000-00-00 00:00:00', 1),
 (192, 36, 3, '2015-02-07 00:00:00', '0000-00-00', '2015-01-29', '0000-00-00', 1, 2400000, 190, 120, 5, '2014-11-03 02:47:25', 1, '0000-00-00 00:00:00', 1),
-(193, 34, 4, '2015-02-12 00:00:00', '0000-00-00', '2015-02-03', '0000-00-00', 1, 2400000, 190, 120, 1, '2014-11-03 02:48:45', 1, '0000-00-00 00:00:00', 1),
+(193, 34, 4, '2015-02-12 00:00:00', '0000-00-00', '2015-02-03', '0000-00-00', 2, 2400000, 190, 120, 0, '2014-11-03 02:48:45', 1, '0000-00-00 00:00:00', 1),
 (194, 36, 4, '2015-02-14 00:00:00', '0000-00-00', '2015-02-05', '0000-00-00', 1, 2400000, 190, 120, 50, '2014-11-03 02:49:27', 1, '0000-00-00 00:00:00', 1),
-(195, 36, 4, '2015-02-28 00:00:00', '0000-00-00', '2015-02-19', '0000-00-00', 1, 2400000, 190, 120, 50, '2014-11-03 02:50:53', 1, '0000-00-00 00:00:00', 1),
-(196, 36, 3, '2015-02-28 00:00:00', '0000-00-00', '2015-02-19', '0000-00-00', 1, 2400000, 190, 120, 5, '2014-11-03 02:52:01', 1, '0000-00-00 00:00:00', 1),
-(197, 20, 4, '2015-02-28 00:00:00', '0000-00-00', '2015-02-19', '0000-00-00', 1, 2400000, 190, 120, 20, '2014-11-03 02:52:33', 1, '0000-00-00 00:00:00', 1),
+(195, 36, 4, '2015-02-28 00:00:00', '0000-00-00', '2015-02-19', '0000-00-00', 1, 2400000, 190, 120, 47, '2014-11-03 02:50:53', 1, '0000-00-00 00:00:00', 1),
+(196, 36, 3, '2015-02-28 00:00:00', '0000-00-00', '2015-02-19', '0000-00-00', 1, 2400000, 190, 120, 6, '2014-11-03 02:52:01', 1, '0000-00-00 00:00:00', 1),
+(197, 20, 4, '2015-02-28 00:00:00', '0000-00-00', '2015-02-19', '0000-00-00', 1, 2400000, 190, 120, 19, '2014-11-03 02:52:33', 1, '0000-00-00 00:00:00', 1),
 (198, 20, 3, '2015-02-28 00:00:00', '0000-00-00', '2015-02-19', '0000-00-00', 1, 2400000, 190, 120, 5, '2014-11-03 02:53:07', 1, '0000-00-00 00:00:00', 1),
-(199, 34, 4, '2015-03-12 00:00:00', '0000-00-00', '2015-03-03', '0000-00-00', 1, 2400000, 190, 120, 0, '2014-11-03 03:23:13', 1, '0000-00-00 00:00:00', 1),
+(199, 34, 4, '2015-03-12 00:00:00', '0000-00-00', '2015-03-03', '0000-00-00', 1, 2400000, 190, 120, -1, '2014-11-03 03:23:13', 1, '0000-00-00 00:00:00', 1),
 (200, 36, 4, '2015-03-14 00:00:00', '0000-00-00', '2015-03-05', '0000-00-00', 1, 2400000, 190, 120, 50, '2014-11-03 04:00:52', 1, '0000-00-00 00:00:00', 1),
 (201, 13, 4, '2014-12-13 00:00:00', '0000-00-00', '2014-12-04', '0000-00-00', 1, 2400000, 190, 120, 0, '2014-11-17 02:45:32', 1, NULL, NULL),
-(202, 36, 3, '2015-03-14 00:00:00', '0000-00-00', '2015-03-05', '0000-00-00', 1, 2400000, 190, 120, 5, '2014-11-17 02:59:37', 1, NULL, NULL),
+(202, 36, 3, '2015-03-14 00:00:00', '0000-00-00', '2015-03-05', '0000-00-00', 1, 2400000, 190, 120, 2, '2014-11-17 02:59:37', 1, NULL, NULL),
 (203, 36, 4, '2015-03-21 00:00:00', '0000-00-00', '2015-03-12', '0000-00-00', 1, 2400000, 190, 120, 50, '2014-11-17 03:00:57', 1, NULL, NULL),
 (204, 36, 4, '2015-03-28 00:00:00', '0000-00-00', '2015-03-19', '0000-00-00', 1, 2400000, 190, 120, 50, '2014-11-17 03:01:31', 1, NULL, NULL),
-(205, 36, 3, '2015-03-28 00:00:00', '0000-00-00', '2015-03-19', '0000-00-00', 1, 2400000, 190, 120, 5, '2014-11-17 03:02:04', 1, NULL, NULL),
+(205, 36, 3, '2015-03-28 00:00:00', '0000-00-00', '2015-03-19', '0000-00-00', 1, 2400000, 190, 120, 4, '2014-11-17 03:02:04', 1, NULL, NULL),
 (206, 20, 4, '2015-03-28 00:00:00', '0000-00-00', '2015-03-19', '0000-00-00', 1, 2400000, 190, 120, 20, '2014-11-17 03:02:42', 1, NULL, NULL),
 (207, 20, 3, '2015-03-28 00:00:00', '0000-00-00', '2015-03-19', '0000-00-00', 1, 2400000, 190, 120, 5, '2014-11-17 03:03:10', 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sector`
+-- Struktur dari tabel `sector`
 --
 
 CREATE TABLE IF NOT EXISTS `sector` (
@@ -6792,7 +6796,7 @@ CREATE TABLE IF NOT EXISTS `sector` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=21 ;
 
 --
--- Dumping data for table `sector`
+-- Dumping data untuk tabel `sector`
 --
 
 INSERT INTO `sector` (`no`, `name`, `code`) VALUES
@@ -6820,7 +6824,7 @@ INSERT INTO `sector` (`no`, `name`, `code`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tokens`
+-- Struktur dari tabel `tokens`
 --
 
 CREATE TABLE IF NOT EXISTS `tokens` (
@@ -6832,7 +6836,7 @@ CREATE TABLE IF NOT EXISTS `tokens` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tokens`
+-- Dumping data untuk tabel `tokens`
 --
 
 INSERT INTO `tokens` (`idtokens`, `idusers`, `expiredtime`, `note`) VALUES
@@ -6972,7 +6976,7 @@ INSERT INTO `tokens` (`idtokens`, `idusers`, `expiredtime`, `note`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ttest`
+-- Struktur dari tabel `ttest`
 --
 
 CREATE TABLE IF NOT EXISTS `ttest` (
@@ -6984,7 +6988,7 @@ CREATE TABLE IF NOT EXISTS `ttest` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Struktur dari tabel `users`
 --
 
 CREATE TABLE IF NOT EXISTS `users` (
@@ -7028,20 +7032,20 @@ CREATE TABLE IF NOT EXISTS `users` (
   `updated` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updatedby` int(11) DEFAULT NULL,
   PRIMARY KEY (`idusers`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2106 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2111 ;
 
 --
--- Dumping data for table `users`
+-- Dumping data untuk tabel `users`
 --
 
 INSERT INTO `users` (`idusers`, `idroles`, `usertitle`, `username`, `userpass`, `userfamilyname`, `userfirstname`, `userothername`, `usergender`, `userphone`, `useremail`, `useraddr1`, `useraddr2`, `useraddr3`, `useraddr4`, `userdob`, `useridcard`, `useridnumber`, `usercountryorigin`, `userfirstlanguage`, `useroccupationsector`, `useroccupationlevel`, `userwhytaketest`, `usertargetcountry`, `usertakenielts`, `userrecenttestcentre`, `userdot`, `userwherestudyingeng`, `userlevelofeducation`, `useryearsofenglishstudy`, `userspecialcondition`, `usernotes`, `userphoto`, `useridfile`, `userstatus`, `created`, `createdby`, `updated`, `updatedby`) VALUES
 (1, 1, 'Mr', 'admin', '21232f297a57a5a743894a0e4a801fc3', 'Arthur', 'UTC-USG', 'x ', 'M', '081517800777', 'arthurjason97@yahoo.com', 'Kawasan De Park Cajupati Cluster Blok AB 8 No. 2 BSD City', 'Indonesia', 'Tangerang', '12940', '1997-11-14', 'passport', 'A1403601', '90', '054', '08', '7', '1', 'China', 'Y', '', '0000-00-00', 'TBI', '0', '9 years or more', '-', '-', '2219225-austin-carr-profile.jpg', NULL, 1, '2013-01-10 06:03:37', 0, '2013-01-09 16:03:37', 0),
 (2, 2, 'Mr', 'edlink', '24ad107ed9f5ae7fe315698395864869', 'Edlink', 'Edlink', 'Edlink', 'O', '0218292928', 'edlink@edlink.com', '', '', '', '', '0000-00-00', '', '', '0', '', '', '', '', '', '', '', '0000-00-00', '', '', '', '', '', NULL, NULL, 1, '2013-01-10 06:16:51', 0, '2013-01-09 16:16:51', 0),
-(3, 2, 'Mr', 'tbi', 'fa4d09504c196ca8419e14ae8979836c', 'TBI', 'TBI', 'TBI', 'O', '0219292929', 'tbi@tbi.com', NULL, NULL, NULL, NULL, NULL, 'TKP', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, '2013-01-17 06:26:37', NULL),
-(25, 2, 'Mrs', 'UTC', '21232f297a57a5a743894a0e4a801fc3', 'hana', 'hana', 'x ', 'M', '085711342495', 'contact@ieltsindonesia.co.id', 'jl. hr rasunasaid', 'Indonesia', 'jakarta', '12345', '2013-05-07', 'passport', 'v12345', '90', '054', '01', '4', '1', 'AUS', NULL, NULL, NULL, '', '0', '3 years', '', '', '', '', 1, '2013-05-07 11:17:02', 1, '2013-05-06 21:17:02', 1),
-(26, 2, 'Mr', 'UTC-USG', '482c811da5d5b4bc6d497ffa98491e38', 'UTC-USG', 'UTC-USG', 'x ', 'M', '085711342495', 'lilies.agustine@gmail.com', 'XXXXX', 'Indonesia', 'jakarta', '13300', '2013-05-23', 'passport', 'asd6562', '90', '054', '02', '2', '2', 'NZ', NULL, NULL, NULL, '', '0', '3 years', '', '', '', '', 1, '2013-05-07 11:29:33', 1, '2013-05-06 21:29:33', 1),
+(3, 2, 'Mr', 'tbi', '220727aa98fa59fdf4842eec86993c0a', 'TBI', 'TBI', 'TBI', 'O', '0219292929', 'tbi@tbi.com', NULL, NULL, NULL, NULL, NULL, 'TKP', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, '2013-01-17 06:26:37', NULL),
+(25, 2, 'Mrs', 'UTC', '52d33cb937bbdab234ab1729a0f8225b', 'hana', 'hana', 'x ', 'M', '085711342495', 'contact@ieltsindonesia.co.id', 'jl. hr rasunasaid', 'Indonesia', 'jakarta', '12345', '2013-05-07', 'passport', 'v12345', '90', '054', '01', '4', '1', 'AUS', NULL, NULL, NULL, '', '0', '3 years', '', '', '', '', 1, '2013-05-07 11:17:02', 1, '2013-05-06 21:17:02', 1),
+(26, 2, 'Mr', 'UTC-USG', '220727aa98fa59fdf4842eec86993c0a', 'UTC-USG', 'UTC-USG', 'x ', 'M', '085711342495', 'lilies.agustine@gmail.com', 'XXXXX', 'Indonesia', 'jakarta', '13300', '2013-05-23', 'passport', 'asd6562', '90', '054', '02', '2', '2', 'NZ', NULL, NULL, NULL, '', '0', '3 years', '', '', '', '', 1, '2013-05-07 11:29:33', 1, '2013-05-06 21:29:33', 1),
 (33, 9999, 'Mr', 'bc', 'ac43724f16e9241d990427ab7c8f4228', 'Council', 'British', 'UTC', 'M', '02192932992', 'report@ieltsindonesia.co.id', NULL, NULL, NULL, NULL, NULL, 'NIC', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, '2013-05-24 12:42:00', NULL),
-(88, 2, 'Mr', 'edlink sudirman', '7f95b733f4210c71482904eb422143f8', 'irawan', 'irawan', 'x ', 'M', '(62-21) 2524568', 'irawan@edlink.co.id', 'Plaza Sentral 10th Floor Jl. Jend. Sudirman Kav. 47 Jakarta', 'Indonesia', 'Jakarta', '12930 ', '2013-06-05', 'passport', '13213343', '90', '054', '01', '3', '2', 'CAN', NULL, NULL, NULL, '', '0', '2 years', '', '', '', '', 1, '2013-06-02 16:39:06', 1, '2013-06-02 02:39:06', 1),
+(88, 2, 'Mr', 'edlink sudirman', '220727aa98fa59fdf4842eec86993c0a', 'irawan', 'irawan', 'x ', 'M', '(62-21) 2524568', 'irawan@edlink.co.id', 'Plaza Sentral 10th Floor Jl. Jend. Sudirman Kav. 47 Jakarta', 'Indonesia', 'Jakarta', '12930 ', '2013-06-05', 'passport', '13213343', '90', '054', '01', '3', '2', 'CAN', NULL, NULL, NULL, '', '0', '2 years', '', '', '', '', 1, '2013-06-02 16:39:06', 1, '2013-06-02 02:39:06', 1),
 (89, 2, 'Mr', 'tbi serpong', '7f95b733f4210c71482904eb422143f8', 'tbi', 'serpong', 'x ', 'M', '62-21-53161062', 'tbiserpong@yahoo.com', 'Ruko Golden Boulevard Blok B 21-23\nJl. Pahlawan Seribu BSD City Tangerang', 'Indonesia', 'Tangerang', '16522', '2013-06-05', 'nic', '1237663', '90', '054', '01', '3', '2', 'NZ', NULL, NULL, NULL, '', '0', '3 years', '', '', '', '', 1, '2013-06-02 16:42:05', 1, '2013-06-02 02:42:05', 1),
 (90, 2, 'Mr', 'tbi pajajaran', '7f95b733f4210c71482904eb422143f8', 'tbi', 'pajajaran', 'x ', 'M', '02518385555', 'os@pajajaran.tbi.co.id', 'Vila Indah Pajajaran Jl. Pajajaran No. 88 K - L', 'Indonesia', 'Bogor', '17793', '2013-06-13', 'nic', '65321', '90', '054', '02', '3', '2', 'CAN', NULL, NULL, NULL, '', '0', 'Less than 1 year', '', '', '', '', 1, '2013-06-02 16:45:05', 1, '2013-06-02 02:45:05', 1),
 (91, 2, 'Mr', 'tbi sudirman', '7f95b733f4210c71482904eb422143f8', 'tbi', 'sudirman', 'x ', 'M', '62212522965', 'os@sudirman.tbi.co.id', 'Sequis Centre, Mezzaninine floor\nJl. Jend. Sudirman Kav 71', 'Indonesia', 'Jakarta', '16638', '2013-06-19', 'nic', '15683', '90', '054', '03', '2', '2', 'NZ', NULL, NULL, NULL, '', '0', '3 years', '', '', '', '', 1, '2013-06-02 16:48:45', 1, '2013-06-02 02:48:45', 1),
@@ -7277,7 +7281,7 @@ INSERT INTO `users` (`idusers`, `idroles`, `usertitle`, `username`, `userpass`, 
 (357, 3, 'Mr', 'sunuwd', '6e62d41119fe7cce028a0884244a774c', 'WIDIANTO', 'SUNU', 'x ', 'M', '0817254999', 'sunuwd@gmail.com', 'Jl. AH Nasution Cluster Pawenang A34\nRT 03 RW 05\nArcamanik', 'Indonesia', 'Bandung', '40294', '1983-04-13', 'nic', '3273241304830004', '90', '054', '08', '4', '1', 'UK', NULL, NULL, NULL, '', '3', '9 years or more', '', '', '1347069450_Photo Sunu W.jpg', '1531198371_ID Sunu.jpg', 1, '2013-11-11 10:05:10', 0, '2013-11-11 03:05:10', 0),
 (358, 3, 'Mis', 'fikhalutfi', '25cac41b45ce662f2b329c0a488346ff', 'Lutfi', 'Siti Fikha Muflihah', 'x ', 'F', '+6281298655198', 'fikha.lutfi@gmail.com', 'Jl. Warga No. 48B Rt. 08 Rw. 03 Pejaten Barat - Ps. Minggu', 'Indonesia', 'Jakarta Selatan', '12510', '1989-10-15', 'nic', '3174045510890005', '90', '054', '02', '4', '1', 'UK', NULL, NULL, NULL, '', '2', '9 years or more', '', '', '1908258975_4x6 pas photo.jpg', '970889756_2013-09-16 10.10.06.jpg', 1, '2013-11-11 10:34:08', 0, '2013-11-11 03:34:08', 0),
 (359, 3, 'Ms', 'astrid', '49a30d03c669a09f2c01c3655032af3e', 'metta', 'astrid', 'x ', 'F', '+6287770739666', 'aay.findisat@yahoo.com', 'Baranangsiang indah blok E 6 No. 12', 'Indonesia', 'bogor', '16710', '1996-05-31', 'passport', 'A0018892', '90', '054', '08', '7', '3', 'singapore', NULL, NULL, NULL, '', '1', '3 years', '', '', '1827313315_N9448.jpg  pp size.jpg  on line.jpg', '1441257282_passport-1.jpeg', 1, '2013-11-11 14:08:33', 0, '2013-11-11 07:08:33', 0),
-(360, 2, 'Mr', 'IEDUC Bandung', '24815d80c60635d0e959757a2bc824e3', 'IEDUC', 'Bandung', 'x ', 'M', '0227272519', 'IEDUC_bandung@yahoo.co.id', 'Jalan Cimanuk No.32', 'Indonesia', 'Bandung', '40115', '2013-11-20', 'nic', '122435jkh', '90', '054', '08', '2', '2', 'NZ', 'Y', '', '0000-00-00', '', '2', '5 years', '', '', '613639386_tucked-in-7486-40893-1-zoom.jpg', '1966104543_5305555_700b (1).jpg', 1, '2013-11-11 14:59:53', 1, '2013-11-11 07:59:53', 1),
+(360, 2, 'Mr', 'IEDUC Bandung', '220727aa98fa59fdf4842eec86993c0a', 'IEDUC', 'Bandung', 'x ', 'M', '0227272519', 'IEDUC_bandung@yahoo.co.id', 'Jalan Cimanuk No.32', 'Indonesia', 'Bandung', '40115', '2013-11-20', 'nic', '122435jkh', '90', '054', '08', '2', '2', 'NZ', 'Y', '', '0000-00-00', '', '2', '5 years', '', '', '613639386_tucked-in-7486-40893-1-zoom.jpg', '1966104543_5305555_700b (1).jpg', 1, '2013-11-11 14:59:53', 1, '2013-11-11 07:59:53', 1),
 (361, 3, 'Mr', 'budi baihaqi', '25f9e794323b453885f5181f1b624d0b', 'baihaqi', 'budi', 'x ', 'M', '081280007095', 'budhielbaihaqi@gmail.com', 'jl. buncit raya jakarta selatan', 'Indonesia', 'jakarta', '12760', '0000-00-00', 'nic', '3174080604950002', '90', '054', '08', '7', '2', 'UK', 'Y', '', '0000-00-00', 'TBI', '1', '9 years or more', '-', '-', '1734637724_Chrysanthemum.jpg', '1964999029_Desert.jpg', 1, '2013-11-11 16:00:21', 0, '2013-11-11 09:00:21', 0),
 (362, 2, 'Mr', 'Studyzone', '9a8d6541994b5e479a2ef28f74b938ee', 'Janto', 'Sugiharto ', 'x ', 'M', '54782154', 'janto@studyzone.co.id', 'Jl. Cideng Timur No. 79', 'Indonesia', 'Jakarta', '10160', '1985-11-14', 'nic', 'ujgy64542', '90', '054', '06', '2', '5', 'NZ', NULL, NULL, NULL, '', '2', '5 years', '', '', '106086725_tucked-in-7486-40893-1-zoom.jpg', '1361701677_5305555_700b (1).jpg', 1, '2013-11-11 18:55:24', 1, '2013-11-11 11:55:24', 1),
 (363, 3, 'Ms', 'Nur Eulis Pujiastuti Nahdiyat', '9535c12343044ded0de1dfb1d1186c72', 'Nahdiyat', 'Nur Eulis Pujiastuti', 'x ', 'F', '081298151004', 'nahdy.nahdy@hotmail.com', 'Pondok Rumput Jl. Manunggal Bhakti 1 no.2', 'Indonesia', 'Bogor', '16162', '1994-08-01', 'nic', '3201014108940002', '90', '054', '09', '7', '3', 'AUS', NULL, NULL, NULL, '', '0', '5 years', '', '', '572135740_image.jpg', '1193599369_image.jpg', 1, '2013-11-12 07:35:56', 0, '2013-11-12 00:35:56', 0),
@@ -7897,7 +7901,7 @@ INSERT INTO `users` (`idusers`, `idroles`, `usertitle`, `username`, `userpass`, 
 (973, 3, 'Mr', 'hijrahandi', '1ee69f91c1b3813078ec5cdb0ce9575d', 'Andi Syah Putra', 'Hijrah', 'x ', 'M', '08112007049', 'hijrah45p@gmail.com', 'Jalan Kembar Timur VI No. 3 RT 002 RW 007 Kel. Ancol Kec. Regol', 'Indonesia', 'Bandung', '40254', '1982-06-17', 'nic', '3273111706820001', '90', '054', 'Civil Servant', '4', '1', 'UK', NULL, NULL, NULL, '', '2', '9 years or more', '', '', '', '1012057890_Hijrah\\''sID.jpg', 1, '2014-04-28 02:54:41', 94, '2014-04-28 02:54:41', 94),
 (974, 3, 'Mr', 'PHILIP SANDORO', '111b02dd108362cd35100970014ff92a', 'SANDORO', 'PHILIP', 'x ', 'M', '08567101565', 'philip.sandoro@yahoo.com', 'Jl. Kekal no. 17 Kedung Badak Baru', 'Indonesia', 'BOGOR', '16164', '1991-07-27', 'nic', '3271062707910014', '90', '054', '07', '1', '1', 'UK', NULL, NULL, NULL, '', '2', '9 years or more', '', '', '', '2004466262_IDcard.jpg', 1, '2014-04-28 05:00:55', 0, '2014-04-28 05:00:55', 0),
 (975, 3, 'Mr', 'epokus1990', '798392c5dc36cdb19495418278355b89', 'Kusumah', 'Epo Prasetya', 'x ', 'M', '082120183052', 'epo.kusumah@gmail.com', 'Komp Taman Pagelaran Blok B13 no 20-21. Rt 04 Rw 12. Padasuka, Kec. Ciomas.', 'Indonesia', 'Bogor', '16610', '1990-05-02', 'passport', 'A7133788', '90', '054', '15', '4', '1', 'UK', 'Y', '', '0000-00-00', '', '2', 'Less than 1 year', '', '', '', '621383182_Passport.jpg', 1, '2014-04-28 05:40:53', 0, '2014-04-28 05:40:53', 0),
-(976, 2, 'Mrs', 'TBI Kelapa Gading ', 'e214cf827b303d9fab5069c24eb21ba1', 'Kelapa Gading', 'TBI', 'x ', 'M', '(021) 4585 2860', 'sc@kelapagading.tbi.co.id', 'Rukan Gading Bukit Indah P/24, P/25 Boulevard Artha Gading ', 'Indonesia', 'jakarta', '16511', '2014-04-30', 'nic', '193487545', '90', '054', '03', '2', '5', 'CAN', NULL, NULL, NULL, '', '1', '4 years', '', '', '', '1612364287_TBIlogocopy.jpg', 1, '2014-04-28 06:24:33', 1, '2014-04-28 06:24:33', 1),
+(976, 2, 'Mrs', 'TBI Kelapa Gading ', '220727aa98fa59fdf4842eec86993c0a', 'Kelapa Gading', 'TBI', 'x ', 'M', '(021) 4585 2860', 'sc@kelapagading.tbi.co.id', 'Rukan Gading Bukit Indah P/24, P/25 Boulevard Artha Gading ', 'Indonesia', 'jakarta', '16511', '2014-04-30', 'nic', '193487545', '90', '054', '03', '2', '5', 'CAN', NULL, NULL, NULL, '', '1', '4 years', '', '', '', '1612364287_TBIlogocopy.jpg', 1, '2014-04-28 06:24:33', 1, '2014-04-28 06:24:33', 1),
 (977, 3, 'Mr', 'GTP0514-afiantotito', 'cae2bb72c3d24a9a0da096a6398fb767', 'TITO', 'AFIANTO', 'x ', 'M', '+628127566544', '740154@telkom.co.id', 'Jl Durian no 29A		\n		\n', 'Indonesia', 'Pekanbaru', '28000', '1974-08-12', 'nic', '1471111208740021', '90', '054', '16', '4', '6', 'AUS', NULL, NULL, NULL, '-', '2', '9 years or more', '-', '-', '', '1622300130_IDNIC-AfiantoTito.jpg', 1, '2014-04-28 07:34:17', 360, '2014-04-28 07:34:17', 360),
 (978, 3, 'Ms', 'GTP0514-astripra', 'cae2bb72c3d24a9a0da096a6398fb767', 'PRAWESTI', 'ASTRI', 'x ', 'F', '08127517600', 'astri388@gmail.com', 'Jl. Skip ujung no.30 RT 02/07 Utan Kayu Selatan. Jakarta Timur		\n		\n', 'Indonesia', 'DKI Jakarta', '13120', '1982-08-15', 'nic', '3175015508820009', '90', '054', '16', '4', 'For Company Development Program', 'AUS', NULL, NULL, NULL, '-', '2', '9 years or more', '-', '-', '', '1009560141_NIC-AstriPrawesti.jpg', 1, '2014-04-28 16:17:02', 360, '2014-04-28 16:17:02', 360),
 (979, 3, 'Mr', 'GTP0514-karnobu', 'cae2bb72c3d24a9a0da096a6398fb767', 'Utomo', 'Karno Budiono', 'x ', 'M', '+628122010684', 'karno@telkom.co.id', 'Jl. Batu Permata III, No. 22  RT. 05/07. Cijawura - Bandung		\n		\n', 'Indonesia', 'Bandung', '40287', '1971-05-10', 'passport', 'A7617431', '90', '054', '16', '4', '6', 'NA', NULL, NULL, NULL, '-', '2', '6 years', '-', '-', '', '1960256729_IDPassport-KarnoBudionoUtomo.jpg', 1, '2014-04-28 16:23:09', 360, '2014-04-28 16:23:09', 360),
@@ -9019,20 +9023,25 @@ INSERT INTO `users` (`idusers`, `idroles`, `usertitle`, `username`, `userpass`, 
 (2102, 3, 'Ms', 'rina', 'rina', 'fajar', 'riza', 'x', 'M', '57967877456', 'fas@masterweb.com', 'bekasi', '238', 'bekasi', '174552', '2014-12-09', 'passport', 'asdadad', '238', '173', '08', '6', '5', 'CAN', 'N', NULL, NULL, '0', '2', '4 years', '-', '-', 'road-treatment.jpg', NULL, 0, '2014-12-26 08:07:51', NULL, '2014-12-26 01:07:51', NULL),
 (2103, 3, 'Mr', 'sasar', 'sasar', 'riza', 'fauzi', 'x', 'M', '098984535345', 'fast@gmail.com', 'bekasi', '238', 'bekasi', '098345', '2014-12-11', 'passport', 'dadasd', '005', '175', '05', '6', '3', 'CAN', 'N', NULL, NULL, '0', '3', '3 years', '-', '-', 'gal02.jpg', NULL, 0, '2014-12-26 08:09:58', NULL, '2014-12-26 01:09:58', NULL),
 (2104, 3, 'Mr', 'rara', 'rara', 'fajarizaf', 'rizaf', 'x', 'M', '097867868678', 'rara@masterweb.com', 'bekasi utara', '005', 'bekasi', '17445', '2014-12-16', 'passport', 'asdad', '006', '173', '07', '7', '3', 'CAN', 'N', NULL, NULL, '0', '2', '4 years', '-', '-', 'ikuti-tes-ielts.jpg', NULL, 0, '2014-12-26 08:13:28', NULL, '2014-12-26 01:13:28', NULL),
-(2105, 3, 'Ms', 'ranggas', 'ranggas', 'rangga', 'rangga', 'x', 'M', '089546456456', 'rangga@masterweb.com', 'bekasi utara', '238', 'bekasi', '174552', '2014-12-10', 'passport', 'asdad', '006', '175', '06', '7', '6', 'NZ', 'N', NULL, NULL, '0', '2', '4 years', '-', '-', 'photo-2-1024x768.png', NULL, 0, '2014-12-26 09:29:41', NULL, '2014-12-26 02:29:41', NULL);
+(2105, 3, 'Ms', 'ranggas', 'ranggas', 'rangga', 'rangga', 'x', 'M', '089546456456', 'rangga@masterweb.com', 'bekasi utara', '238', 'bekasi', '174552', '2014-12-10', 'passport', 'asdad', '006', '175', '06', '7', '6', 'NZ', 'N', NULL, NULL, '0', '2', '4 years', '-', '-', 'photo-2-1024x768.png', NULL, 0, '2014-12-26 09:29:41', NULL, '2014-12-26 02:29:41', NULL),
+(2106, 3, 'Mr', 'rara', 'rara', 'fafa', 'fafa', 'x', 'M', '089678678678', 'ga@masterweb.com', 'bekasi', '006', 'bekasi', '174552', '2014-12-18', 'passport', '12321313', '006', '174', '08', '5', '3', 'CAN', 'N', NULL, NULL, '0', '2', '2 years', '-', '-', 'C:\\fakepath\\gal02.jpg', NULL, 1, '2014-12-29 04:16:00', 2, '2014-12-28 21:16:00', NULL),
+(2107, 3, 'Mr', 'fafa', 'fafa', 'asadad', 'asdsadas', 'x', 'M', '087897956757', 'fav@masterweb.com', 'bekasi utara', '004', 'bekasi', '174552', '2014-12-10', 'passport', 'adad', '239', '175', '08', '3', '5', 'NZ', 'N', NULL, NULL, '0', '2', '3 years', '-', '-', 'C:\\fakepath\\IELTS-Content-Header.jpg', NULL, 1, '2014-12-29 04:31:42', 2, '2014-12-28 21:31:42', NULL),
+(2108, 3, 'Mr', 'sasa', 'sasa', 'sasa', 'sasa', 'x', 'M', '56756757', 'cv@masterweb.com', 'bekasi utara', '238', 'bekasi', '234234', '2014-12-10', 'passport', 'asdsada', '238', '173', '07', '6', '2', 'NZ', 'N', NULL, NULL, '0', '3', '2 years', '-', '-', 'C:\\fakepath\\gal02.jpg', NULL, 1, '2014-12-29 04:39:28', 2, '2014-12-28 21:39:28', NULL),
+(2109, 3, 'Mr', 'zizi', 'zizi', 'ada', 'ada', 'x', 'M', '054645645646', 'vb@masterweb.com', 'bekasi utara', '006', 'bekasi utara', '0345435', '2014-12-12', 'passport', 'adad', '238', '173', '07', '5', '7', 'EIR', 'N', NULL, NULL, '0', '2', '5 years', '-', '-', 'C:\\fakepath\\maps.png', NULL, 1, '2014-12-29 04:43:52', 2, '2014-12-28 21:43:52', NULL),
+(2110, 3, 'Mr', 'sdasd', 'sdasd', 'asdasd', 'asdasd', 'x', 'M', 'sdasd', 'asdasd', 'dasd', '003', 'asdasd', 'asdasd', '2014-12-11', 'passport', 'asdasdasd', '005', '173', '07', '7', '3', 'NZ', 'N', NULL, NULL, '0', '2', '4 years', '-', '-', 'important.png', NULL, 1, '2014-12-31 09:09:30', 2, '2014-12-31 02:09:30', NULL);
 
 --
--- Constraints for dumped tables
+-- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
 --
 
 --
--- Constraints for table `registrations`
+-- Ketidakleluasaan untuk tabel `registrations`
 --
 ALTER TABLE `registrations`
   ADD CONSTRAINT `scheduleidreg` FOREIGN KEY (`idschedules`) REFERENCES `schedules` (`idschedules`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `schedules`
+-- Ketidakleluasaan untuk tabel `schedules`
 --
 ALTER TABLE `schedules`
   ADD CONSTRAINT `branchid` FOREIGN KEY (`idbranches`) REFERENCES `branches` (`idbranches`) ON DELETE NO ACTION ON UPDATE NO ACTION,

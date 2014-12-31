@@ -37,6 +37,28 @@ class Register extends CI_Controller {
     }
 
 
+    public function formlogin() {
+
+        if($this->session->userdata('login') == 'true') {
+            redirect('register');
+        } else {
+
+        $this->load->view('global/header');
+        $this->load->view('login');
+        $this->load->view('global/footer');
+
+
+        }
+
+
+        
+            
+    }
+
+
+
+
+
 
 
 
@@ -77,11 +99,36 @@ class Register extends CI_Controller {
                 }
 
 
+                public function form_register_center() {
+ 
+                            $this->load->view('form_register_center');
+         
+                }
+
+
+    public function regcenter_existing_user() {
+        $data['user_regcenter'] = $this->user_model->getDataNotRegistered();
+        $where['idschedules'] = $this->uri->segment(3);
+        $data['kuotaAvailable'] = $this->app_model->getSelectedData('schedules', $where);
+        $this->load->view('regcenter_existing_user',$data);
+    }
+
+    public function getschedules() {
+        $this->register_model->getschedules();
+    }
+
 
     public function proses_register() {
         
         $this->register_model->proses_register();
     }
+
+
+    public function proses_register_center() {
+        
+        $this->register_model->proses_register_center();
+    }
+
 
     public function uploadphotos() {
         $store_path = "upload/";
@@ -126,9 +173,15 @@ class Register extends CI_Controller {
 
     }
 
+  
+
 
         public function filterbycity() {        
                 $this->register_model->filterbycity();
+        }
+
+        public function filterbyuser() {        
+                $this->register_model->filterbyuser();
         }
 
         public function filterbydate() {
@@ -357,6 +410,10 @@ class Register extends CI_Controller {
             <?php      }
 
         }
+
+
+
+
 
       
         

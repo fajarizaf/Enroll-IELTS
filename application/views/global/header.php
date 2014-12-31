@@ -6,6 +6,7 @@
 		<link href="<?php echo base_url() ?>assets/css/font.css" rel="stylesheet" type="text/css" />
         <link href="<?php echo base_url() ?>assets/css/bootstrap.css" rel="stylesheet" type="text/css" />
         <link href="<?php echo base_url();?>assets/css/notifError.css" rel="stylesheet" type="text/css" />
+        <link type="text/css" rel="stylesheet" href="<?php echo base_url();?>assets/css/checkbox.css"></link>
 
         <link rel="stylesheet" href="<?php echo base_url() ?>assets/js/chosen/chosen.css">
         <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/globalURL.js"></script>
@@ -59,7 +60,7 @@
 
                  <?php } else if($this->session->userdata('statususer') == '2') { ?>
                  // load form register sebagai user register center
-                     $('.sudahlogin').load(''+base_url+'register/form_registercenter/');
+                     $('.sudahlogin').load(''+base_url+'register/form_register_center/');
 
                  <?php } ?> 
 
@@ -71,7 +72,23 @@
                         if (counter == 0) {
                         clearInterval(countdown);
                              $('#parentloading').fadeOut('slow');
-                             $('.register-or-login').load(''+base_url+'register/form_candidate/');
+                             $('.register-or-login').load(''+base_url+'register/form_candidate/').hide().fadeIn('slow');
+                             $('#sticky').sticky('<span style="color:#802222;">please fill out a form below to complete</span>');
+                         }
+                        counter--;
+                      }, 500);                
+                 });
+
+
+                 $('#btnnewaccount1').click(function() {
+                    alert('asdasd');
+                     $('#parentloading').fadeIn('slow');
+                     var counter=2;
+                      var countdown = setInterval(function(){
+                        if (counter == 0) {
+                        clearInterval(countdown);
+                             $('#parentloading').fadeOut('slow');
+                             $('.sudahlogin').load(''+base_url+'register/form_candidate/');
                              $('#sticky').sticky('<span style="color:#802222;">please fill out a form below to complete</span>');
                          }
                         counter--;
@@ -101,12 +118,15 @@
         <div class="stat_member">
             <div class="stat_photo">
                 <img <?php if($this->session->userdata('images') == '') { ?> src="<?php echo base_url() ?>assets/pic/default.jpg"  <?php } else { ?>  src="<?php echo base_url() ?>upload/<?php echo $this->session->userdata('images') ?>"  <?php } ?> width="105%">
+                
             </div>
             <div class="stat"><span style="font-weight:bold;">Welcome</span><br/><?php echo $this->session->userdata('username'); ?></div>
         </div>
     <?php } else { ?>
         <div class="stat_members">
-            
+            <a href="<?php echo base_url() ?>register/formlogin/">
+            <div class="iconlogin"></div>
+            </a>
         </div>
     <?php } ?>
     </div>

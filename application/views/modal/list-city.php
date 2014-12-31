@@ -101,9 +101,9 @@
             </div>
             <div class="modal-body">
                
-            <input type="text" name="search-country"  class="search-country" style="width:532px;">
+                <input type="text" name="search-country"  class="search-country" style="width:532px;">
 
-                <ul class="list-country" style="border:1px solid #ccc;background:#efefef;-moz-border-radius:3px 3px 3px;-webkit-border-radius:3px 3px 3px;border-radius:3px 3px 3px;">
+                 <ul class="list-country" style="border:1px solid #ccc;background:#efefef;-moz-border-radius:3px 3px 3px;-webkit-border-radius:3px 3px 3px;border-radius:3px 3px 3px;">
                    <li class="font1" style="width:30px;color:#333;border-color:#ccc;">No</li>
                    <li class="font1" style="width:410px;color:#333;border-color:#ccc;">Country Name</li>
                    <li class="font1" style="width:40px;color:#333;border-color:#ccc;">Code</li>

@@ -18,6 +18,8 @@
 
          
 
+         
+
          // event combobox city di pilih
          $('#selectCity').change(function() {
             var city = $(this).val(); 
@@ -329,10 +331,8 @@
                         $('#btn-date').attr('class','visited');
                         $('#btn-tos').attr('class','active');
 
+                            
 
-
-                            var location = $('input[name=date-test]:checked').val(); 
-                            var dataString = 'location=' + location; 
 
                         $('.content-tab').animate({ scrollLeft:'1920px' });
                     } else {
@@ -399,12 +399,24 @@
                                     $.each( data, function(key,val) {
                                         if( val != 'gagal') {
                                           $('.load').fadeOut('slow');
-                                           
-                                          $('#sticky').sticky('<span style="color:#802222;">Login Success</span>');  
-                                          $('.register-or-login').load(''+base_url+'register/form_candidate_login/');
-                                          $('.menu ul').load(''+base_url+'register/menuadmin/');
-                                          $('.stat_members').load(''+base_url+'register/showstatus/');
-                                          $('.register-or-login').css({'opacity':'1'}); 
+                                          
+                                        // status login sebagai candidate
+                                          if(val == '3') { 
+                                              $('#sticky').sticky('<span style="color:#802222;">Login Success</span>');  
+                                              $('.register-or-login').load(''+base_url+'register/form_candidate_login/');
+                                              $('.menu ul').load(''+base_url+'register/menuadmin/');
+                                              $('.stat_members').load(''+base_url+'register/showstatus/');
+                                              $('.register-or-login').css({'opacity':'1'}); 
+                                        // status login sebagai regcenter
+                                          } else {
+                                              $('#sticky').sticky('<span style="color:#802222;">Login Success</span>');  
+                                              $('.register-or-login').load(''+base_url+'register/form_register_center/');
+                                              $('.menu ul').load(''+base_url+'register/menuadmin/');
+                                              $('.stat_members').load(''+base_url+'register/showstatus/');
+                                              $('.register-or-login').css({'opacity':'1'}); 
+                                          }
+
+
                                         } else {
                                           $('.load').fadeOut('slow');
                                           $('.register-or-login').css({'opacity':'1'}); 
@@ -412,6 +424,7 @@
                                           $('.password').val('');
                                           $('.username').focus(); 
                                           $('#sticky').sticky('<span style="color:#802222;">Login Failed</span>');
+
                                         }
                                     });
 
@@ -427,7 +440,7 @@
 
 
         
-
+  
 
 
 

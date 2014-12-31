@@ -351,16 +351,18 @@
 
 
                                                   if( val.status == 'success') {
-                                                     $('.box-results').html('<b class="font1" style="color:#802222;">Register successful.</b>  <span style="color:#e44b00;"> -  Your registration was successful. Here are the details:</span>');
-                                                     $('.content-tab').animate({ scrollLeft:'3840px' });
-                                                     $('#sticky').sticky('<span style="color:#802222;">Register successful.</span>');
-                                                     $('.box-tab ul li').attr('action','disabled');
-                                                  } else {
-                                                     $('.box-results').html('<b class="font1" style="color:#802222;">Already registered.</b>&nbsp; <span style="color:#e44b00;">- Your registration was successful. Here are the details:</span>');
-                                                     $('.content-tab').animate({ scrollLeft:'3840px' });
-                                                     $('#sticky').sticky('<span style="color:#802222;">Already registered.</span>');
-                                                     $('.box-tab ul li').attr('action','disabled');
+                                                       $('.box-results').html('<b class="font1" style="color:#802222;">Register successful.</b>  <span style="color:#e44b00;"> -  Your registration was successful. Here are the details:</span>');
+                                                       $('.content-tab').animate({ scrollLeft:'3840px' });
+                                                       $('#sticky').sticky('<span style="color:#802222;">Register successful.</span>');
+                                                       $('.box-tab ul li').attr('action','disabled');
+                                                    } else {
+                                                       $('.box-results').html('<b class="font1" style="color:#802222;">Already registered.</b>&nbsp; <span style="color:#e44b00;">- Your registration was successful. Here are the details:</span>');
+                                                       $('.content-tab').animate({ scrollLeft:'3840px' });
+                                                       $('#sticky').sticky('<span style="color:#802222;">Already registered.</span>');
+                                                       $('.box-tab ul li').attr('action','disabled');
                                                   }
+
+                                                  
                                                    
                                               });
 

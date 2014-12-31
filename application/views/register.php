@@ -442,7 +442,7 @@
                   Acct. No : 098509.02.00012<br/>
                 </p>
               </div>
-              <img src="<?php echo base_url() ?>assets/pic/pans.png" style="float:left;margin-top:120px;margin-right:23px;">
+              <img class="panss" src="<?php echo base_url() ?>assets/pic/pans.png" style="float:left;margin-top:120px;margin-right:23px;">
                 <div class="box-step-results">
                   <img src="<?php echo base_url() ?>assets/pic/imagepaymentconfirm.png" style="text-align:center;margin-left:20px;margin-top:20px;">
                   <div class="btn-confirmations">Payment Confirmations</div>
@@ -451,7 +451,7 @@
                           at the time of confirmation
                   </div>
                 </div>
-               <img src="<?php echo base_url() ?>assets/pic/pans.png" style="float:left;margin-top:120px;margin-right:23px;">
+               <img class="panss" src="<?php echo base_url() ?>assets/pic/pans.png" style="float:left;margin-top:120px;margin-right:23px;">
                 <div class="box-step-results">
                   <img src="<?php echo base_url() ?>assets/pic/notif-messages.png" style="text-align:center;margin-left:60px;margin-top:30px;">
                   <div style="width:170px;margin:0px auto;margin-top:7px;"> 
@@ -459,6 +459,13 @@
                   confirmation that we have received the 
                   payment process
                   </div>
+                </div>
+
+                <div class="important" style="margin-top:8px;">
+                <img style="float:left;" width="30px" src="<?php echo base_url() ?>assets/pic/important.png">
+                <p style="color:red;width:120px;float:left;font-weight:bold;margin-top:5px;margin-left:10px;" class="font1">Important</p>
+                <div style="clear:both;"></div>
+                    your Payment receipt must be uploaded before 16.00 WIB at (http://www.ieltsindonesia.co.id/registeronline/status). You will receive the confirmation of your IELTS Test Application within 1 hour after payment has been received. Late payments will not be processed and applications will need to be resubmitted in the following business day. Seats will also not be secured until payment is received. Thank you, IELTS INDONESIA
                 </div>
               
             </div>

@@ -488,9 +488,14 @@
                                                      $('.content-tab').animate({ scrollLeft:'3840px' });
                                                      $('#sticky').sticky('<span style="color:#802222;">Register successful.</span>');
                                                      $('.box-tab ul li').attr('action','disabled');
-                                                  }
-                                                   
+                                                  } else if( val.status == 'regcenter') {
+                                                     $('.box-results').html('<b class="font1" style="color:#802222;">Register successful.</b>  <span style="color:#e44b00;"> -   <b style="color:#cd4204">By Register Center</b> -  Here are the details:</span>');
+                                                     $('.content-tab').animate({ scrollLeft:'3840px' });
+                                                     $('#sticky').sticky('<span style="color:#802222;">Register successful.</span>');
+                                                     $('.box-tab ul li').attr('action','disabled');
+                                                  } 
                                               });
+                                                  
 
                                            
 

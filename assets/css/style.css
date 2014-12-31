@@ -675,3 +675,38 @@ border:none;
 .btn-confirmations:hover {
 	background:#fff9ea;
 }
+
+.user-selected {
+	width:252px;
+	min-height:30px;
+	background:#f9edbe;
+	border:1px solid #f0c36d;
+	-moz-border-radius:3px 3px 3px;
+	-webkit-border-radius:3px 3px 3px;
+	border-radius:3px 3px 3px;
+	float: left;
+	overflow: auto;
+	padding-left: 0px;
+}
+
+#deleteuserlist {
+	cursor:pointer;
+}
+
+.important {
+	color:#f89406;
+}
+
+.iconlogin {
+	width:105px;
+	height: 38px;
+	background: url(../pic/iconlogin.png) no-repeat;
+	margin-top:5px;
+}
+
+.iconlogin:hover {
+	width:105px;
+	height: 38px;
+	background: url(../pic/iconlogin-hover.png) no-repeat;
+	margin-top:5px;
+}
