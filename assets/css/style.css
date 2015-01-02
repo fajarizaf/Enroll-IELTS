@@ -36,12 +36,12 @@ body {
 
 .menu ul li {
 	padding:11px;
-	border-left:1px solid #ccc;	
+	border-left:1px solid #dcdcdc;	
 	width:auto;
 	float:left;
 	padding-left:30px;
 	padding-right:30px;
-	padding-bottom:13px;
+	padding-bottom:12px;
 }
 
 .menu ul li a {
@@ -709,4 +709,40 @@ border:none;
 	height: 38px;
 	background: url(../pic/iconlogin-hover.png) no-repeat;
 	margin-top:5px;
+}
+
+.icondelete {
+	width:24px;
+	height: 24px;
+	background:url(../pic/delete.gif) no-repeat; 
+	cursor:pointer; 
+	margin-right: 5px;
+	float: left;
+}
+
+.iconedit {
+	width:24px;
+	height: 24px;
+	background:url(../pic/edit.gif) no-repeat;
+	cursor:pointer; 
+	margin-right: 5px;
+	float: left;
+}
+
+.iconedit:hover {
+	background:url(../pic/edit.gif) no-repeat;
+	background-position: 0px -24px; 
+}
+
+.icondelete:hover {
+	background:url(../pic/delete.gif) no-repeat;
+	background-position: 0px -24px; 
+}
+
+.list-module {
+	width:100%;
+}
+
+.down-detail {
+	display: none;
 }

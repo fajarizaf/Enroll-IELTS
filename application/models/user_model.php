@@ -72,6 +72,21 @@ class   User_model extends CI_Model {
        }
     }
 
+    public function cek_roles($url) {
+
+      $idroles =$this->session->userdata('statususer');
+
+      $idmenu = $this->db->query('select * from menus where controllers="'.$url.'"');
+      foreach ($idmenu->result() as $row) {
+       $idmenus = $row->idmenu;
+
+       $privileges = $this->db->query('select * from privileges where idroles="'.$idroles.'" and idmenu="'.$idmenus.'"');
+       $result = $privileges->num_rows();
+       return $result;
+      }
+
+    }
+
 
     
 }
