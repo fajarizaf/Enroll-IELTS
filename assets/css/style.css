@@ -490,6 +490,12 @@ border:none;
     background-position: 490px 9px;
 }
 
+.search-admin
+ {
+	background: #efefef url(../pic/search.png) no-repeat;
+    background-position: 460px 9px;
+}
+
 
 
 .box-list-country {

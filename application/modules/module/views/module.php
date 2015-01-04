@@ -2,12 +2,15 @@
   $(document).ready(function() {
 
      $('#list-module').on('click','.iconedit', function() {
+          $('tr').removeAttr('status','show');
           $('.down-detail').css({'display':'none'});
           idexams = $(this).attr('value');
+          
 
                             var clases  = $(this).attr('show');
                             var valclas = '#'+clases;
                             $(''+valclas+'').css({'display':'table-row'});
+                            $(valclas).attr('status','show');
 
       });
 
@@ -19,7 +22,7 @@
         var idexams = $(this).attr('value');
         dataString = 'idexams=' + idexams;
 
-          var counter=2;
+            var counter=2;
               var countdown = setInterval(function(){
                 if (counter == 0) {
                 clearInterval(countdown);
@@ -49,31 +52,56 @@
       });
 
   
-     $('#module-update').submit(function() {
-            $('.sticky-close').click();
+      $('#list-module').on('click','.btnupdate', function() {
+        $('.sticky-close').click();
             $('#parentloading').fadeIn('slow');
 
-            
-            $.ajax({
-              type  : "POST",
-              url: $(this).attr('action'),
-              data: $(this).serialize(),
-              dataType:'json',          
-              success : function(data){
-                                    
-                   $.each( data, function(key,val) { 
 
-                        if(val == 'sukses') {
-                          $('#sticky').sticky('<span style="color:#802222;">Update Successfully</span>'); 
-                        } else {
-                          $('#sticky').sticky('<span style="color:#802222;">Update Unsuccessfully</span>'); 
+            var counter=2;
+              var countdown = setInterval(function(){
+                if (counter == 0) {
+                clearInterval(countdown);
+                $('#parentloading').fadeOut('slow');
+
+                      var namemodule = $('tr[status=show] td .shownamemodule').val();
+                      var idexams = $('tr[status=show] input[type=hidden]').val();
+                      if($('tr[status=show] td input[type=checkbox]').attr('checked')) {
+                        var isactive = '1';
+                      } else {
+                        var isactive = '0';
+                      }
+
+                      var dataString = 'modulename=' + namemodule + '&isactives=' + isactive + '&idexams=' + idexams;
+
+                      $.ajax({
+                        type  : "POST",
+                        url: ""+base_url+"module/updatemodule",
+                        data: dataString,
+                        dataType:'json',          
+                        success : function(data){
+                                              
+                             $.each( data, function(key,val) { 
+
+                                  if(val == 'sukses') {
+                                    $('#sticky').sticky('<span style="color:#802222;">Update Successfully</span>');
+                                    $('tr[status=show]').slideUp('slow');
+                                  } else {
+                                    $('#sticky').sticky('<span style="color:#802222;">Update Unsuccessfully</span>');
+                                    $('tr[status=show]').slideUp('slow'); 
+                                  }
+
+                             });               
+                                                  
                         }
+                      });
+                      return false;
 
-                   });               
-                                        
-              }
-            });
-            return false;
+                }
+                counter--;
+            }, 500);
+
+
+
     });
 
 
@@ -128,10 +156,10 @@
         <td><div value="<?php echo $row->idexams; ?>"  class="icondelete"></div></td>
       </tr>
 
-      <?php $attributes = array('class' => 'module-update', 'id' => 'module-update'); ?>
-      <?php echo form_open('module/updatemodule',$attributes);  ?>
-      <input type="hidden" name="idexams" value="<?php echo $row->idexams; ?>">
+      
+      
       <tr class="down-detail" id="show_edit<?php echo $row->idexams; ?>"  >
+      <input type="hidden" name="idexams" value="<?php echo $row->idexams; ?>">
             <td colspan="4" style="display:table-cell" >
               <table>
                 <tr>
@@ -145,14 +173,14 @@
                     <label style="margin-top:4px;" for="isactives<?php echo $row->idexams; ?>"  name="checkbox67_lbl" class="css-label lrg web-two-style"></label>
                     &nbsp;Is Active  
                     </td>
-                    <td><input type="submit" name="proses" class="btn btn-success" style="float:right;" value="Update"></input></td>
+                    <td><input type="submit" name="proses" class="btn btn-success btnupdate" style="float:right;" value="Update"></input></td>
                   </tr>
               </table>
             </td>
       </tr>      
     <?php $i++ ?>
     <?php } ?>
-    <?php echo form_close(); ?>
+  
   
 
 </table>

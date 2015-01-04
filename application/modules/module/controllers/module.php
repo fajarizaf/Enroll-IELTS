@@ -103,7 +103,7 @@ class Module extends CI_Controller {
                     <label style="margin-top:4px;" for="isactives<?php echo $row->idexams; ?>"  name="checkbox67_lbl" class="css-label lrg web-two-style"></label>
                     &nbsp;Is Active  
                     </td>
-                    <td><input type="submit" name="proses" class="btn btn-success" style="float:right;" value="Update"></input></td>
+                    <td><input type="submit" name="proses" class="btn btn-success btnupdate" style="float:right;" value="Update"></input></td>
                   </tr>
               </table>
             </td>

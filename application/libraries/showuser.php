@@ -41,6 +41,40 @@ class Showuser  {
   }
 
 
+  function getStatusUser($code) {
+    $CI =& get_instance();
+      $CI->load->model('app_model');
+
+        $data['idroles'] = $code;
+        $query =  $CI->app_model->getSelectedData('roles', $data);
+        
+        if($query) {
+          foreach ($query as $row ) {
+            echo $row->rolesname;
+          }
+        } else {
+          echo '-';
+        }
+  }
+
+
+  function getNameUser($code) {
+    $CI =& get_instance();
+      $CI->load->model('app_model');
+
+        $data['idusers'] = $code;
+        $query =  $CI->app_model->getSelectedData('users', $data);
+        
+        if($query) {
+          foreach ($query as $row ) {
+            echo $row->userfirstname;
+          }
+        } else {
+          echo '-';
+        }
+  }
+
+
   
 
 
