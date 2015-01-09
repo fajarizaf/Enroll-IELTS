@@ -68,6 +68,15 @@ function getnextmonth($date) {
         echo $this->ubahtanggaldefault($tgl2);//print tanggal
 }
 
+function getDay($date) {
+        $CI =& get_instance();
+        $CI->load->model('app_model');
+        $query = $CI->app_model->getDay($date);
+        foreach ($query as $row) {
+            echo $row->DAY;
+        }
+}
+
 
 function ubahtanggal($parameter) {
  $filter = explode(' ', $parameter);   

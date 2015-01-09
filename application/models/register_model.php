@@ -851,7 +851,7 @@ class register_model extends CI_Model {
 
              <div style="width:250px;height:100px;margin:0px auto;text-align:center;margin-top:90px;border:1px dashed #ccc;padding:20px;"> 
                 <img style="float:left;" src="<?php echo base_url() ?>assets/pic/notification.png" width="90px">
-                <div style="color:#bfbfbf;width:150px;font-size:16px;margin-top:17px;float:left;">No schedule of tests in <span style="color:orange;font-size:16px;"><?php echo $this->getexams($row->idexams); ?></span></div>
+                <div style="color:#bfbfbf;width:150px;font-size:16px;margin-top:17px;float:left;">No schedule of tests</div>
              </div>
           <?php } ?>
 

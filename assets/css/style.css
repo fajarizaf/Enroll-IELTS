@@ -39,8 +39,8 @@ body {
 	border-left:1px solid #dcdcdc;	
 	width:auto;
 	float:left;
-	padding-left:30px;
-	padding-right:30px;
+	padding-left:26px;
+	padding-right:26px;
 	padding-bottom:12px;
 }
 
@@ -752,3 +752,4 @@ border:none;
 .down-detail {
 	display: none;
 }
+

@@ -6,6 +6,7 @@ class Showuser  {
     function  __construct() {
         $CI =& get_instance();
 	      $this->instan = $CI;
+        $CI->load->library('encrypt');
     }
    
 
@@ -37,7 +38,6 @@ class Showuser  {
         } else {
           echo '-';
         }
-
   }
 
 
@@ -72,6 +72,20 @@ class Showuser  {
         } else {
           echo '-';
         }
+  }
+
+  function decode($value) {
+    $CI =& get_instance();
+      $pass = $CI->encrypt->decode($value);
+      echo $pass;
+  }
+
+
+  function getCountBooked($idschedules) {
+      $CI =& get_instance();
+      $CI->load->model('app_model');
+        $query =  $CI->app_model->getCountBooked($idschedules);
+        echo $query;
   }
 
 

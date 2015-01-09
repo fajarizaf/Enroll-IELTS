@@ -449,7 +449,7 @@
                 var idschedules = $('.codeidschedules').html();
 
                 
-                var counter=2;
+                            var counter=2;
                               var countdown = setInterval(function(){
                                 if (counter == 0) {
                                 clearInterval(countdown);
