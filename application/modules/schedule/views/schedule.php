@@ -127,13 +127,15 @@
 
 
 
-    $('.content-user').on('click','.iconedit', function() {
+    $('#list-user').on('click','.iconedit', function() {
       var url = $(this).attr('url');
           // Refresh List 
             $.get( ""+url+"", function( data ) {
-              $(".box-edituser").html(data);
+              $(".box-editschedule").html(data);
             });
     });
+
+
   
      
 
@@ -188,29 +190,30 @@
 
 <img style="position:absolute;margin-left:auto;margin-right:auto;left:50%;right:50%;top:500px;" class="load" src="<?php echo base_url() ?>assets/pic/load1.gif" >
 <div class="content-user">
-  <table id="list-user" class="table table-striped table-bordered" style="margin-top:10px;">
+  <table id="list-user" class="table  table-bordered" style="margin-top:10px;">
     <tr class="headtable">
       <th style="width:21%;">Test Dates</th>
       <th style="width:15%;">Module</th>
       <th style="width:9%;">Day</th>
-      <th style="width:42%;">Venue</th>
+      <th style="width:30%;">Venue</th>
       <th style="width:3%;">Booked</th>
       <th style="width:3%;">Rest</th>
+      <th style="width:3%;"></th>
       <th style="width:3%;"></th>
 
     </tr>
     <?php  if($schedule) { ?>
     <?php foreach ( $schedule as $row ) { ?>
 
-      
-        <td><?php echo $this->generated_tanggal->ubahtanggal($row->schdate); ?></td>
-        <td><?php echo $row->examname; ?></td>
-        <td><?php echo $this->generated_tanggal->getDay($row->schdate); ?></td>
-        <td><?php echo $row->branchname; ?></td>
-        <td><span class="label label-warning" style="padding-left:10px;padding-right:10px;"><?php echo $this->showuser->getCountBooked($row->idschedules); ?></span></td>
-        <td><?php echo $row->maxuser; ?></td>
-        <td><div url="<?php echo base_url() ?>schedules/editschedules/<?php echo $row->idschedules; ?>" href="#edituser" data-toggle="modal" class="iconedit"></div></td>
-        
+      <tr id="<?php echo $row->idschedules; ?>" <?php if( $row->schstatus == 2 || $row->schclosingreg < date("Y-m-d H:i:s") ) { ?> style="background:#efefef;"  <?php  }  ?>>
+        <td <?php if( $row->schstatus == 2 || $row->schclosingreg < date("Y-m-d H:i:s") ) { ?> style="color:#ccc;"  <?php  }  ?>><?php echo $this->generated_tanggal->ubahtanggal($row->schdate); ?></td>
+        <td <?php if( $row->schstatus == 2 || $row->schclosingreg < date("Y-m-d H:i:s") ) { ?> style="color:#ccc;"  <?php  }  ?>><?php echo $row->examname; ?></td>
+        <td <?php if( $row->schstatus == 2 || $row->schclosingreg < date("Y-m-d H:i:s") ) { ?> style="color:#ccc;"  <?php  }  ?>><?php echo $this->generated_tanggal->getDay($row->schdate); ?></td>
+        <td <?php if( $row->schstatus == 2 || $row->schclosingreg < date("Y-m-d H:i:s") ) { ?> style="color:#ccc;"  <?php  }  ?>><?php echo $row->branchname; ?></td>
+        <td <?php if( $row->schstatus == 2 || $row->schclosingreg < date("Y-m-d H:i:s") ) { ?> style="color:#ccc;"  <?php  }  ?>><span class="label label-warning" style="padding-left:10px;padding-right:10px;"><?php echo $this->showuser->getCountBooked($row->idschedules); ?></span></td>
+        <td <?php if( $row->schstatus == 2 || $row->schclosingreg < date("Y-m-d H:i:s") ) { ?> style="color:#ccc;"  <?php  }  ?>><?php echo $row->maxuser; ?></td>
+        <td <?php if( $row->schstatus == 2 || $row->schclosingreg < date("Y-m-d H:i:s") ) { ?> style="color:#ccc;"  <?php  }  ?>><div url="<?php echo base_url() ?>schedule/editschedules/<?php echo $row->idschedules; ?>" href="#editschedule" data-toggle="modal" class="iconedit"></div></td>
+        <td <?php if( $row->schstatus == 2 || $row->schclosingreg < date("Y-m-d H:i:s") ) { ?> style="color:#ccc;"  <?php  }  ?>><?php if( $row->schstatus == 2 || $row->schclosingreg < date("Y-m-d H:i:s") ) { ?><span class="label label-info" style="padding-left:10px;padding-right:10px;">Full</span><?php } ?></td>
       </tr>
     <?php } ?>
     <?php } else { ?>

@@ -1,42 +1,36 @@
-   <table id="list-user" class="table table-striped table-bordered" style="margin-top:10px;">  
-    <tr>
-      <th style="width:12%;">Registered ID</th>
-      <th style="width:15%;">Registration Date</th>
-      <th style="width:32%;">Full Name</th>
-      <th style="width:8%;">Status</th>
-      <th style="width:40px;">Email</th>
-      <th style="width:4%;">Create By</th>
-      <th style="width:1%;"></th>
-      <th style="width:1%;"></th>
+<table id="list-user" class="table table-striped table-bordered" style="margin-top:10px;"> 
+<tr class="headtable">
+      <th style="width:21%;">Test Dates</th>
+      <th style="width:15%;">Module</th>
+      <th style="width:9%;">Day</th>
+      <th style="width:42%;">Venue</th>
+      <th style="width:3%;">Booked</th>
+      <th style="width:3%;">Rest</th>
+      <th style="width:3%;"></th>
 
     </tr>
+    <?php  if($schedule) { ?>
+    <?php foreach ( $schedule as $row ) { ?>
 
-
-    <?php  if($refreshlist) { ?>
-    <?php foreach ( $refreshlist as $row ) { ?>
-
-      <tr atr="<?php echo $row->idusers ?>">
-        <td>IELTS<?php echo substr("00000" . $row->idusers, -6); ?></td>
-        <td><?php echo $this->generated_tanggal->ubahtanggal($row->created); ?></td>
-        <td><?php echo $row->userfamilyname.' '.$row->userfirstname ?></td>
-        <td><?php echo $this->showuser->getStatusUser($row->idroles) ?></td>
-        <td style="width:40px;"><?php echo $row->useremail ?></td>
-        <td><?php echo $this->showuser->getNameUser($row->createdby); ?></td>
-       <td><div url="<?php echo base_url() ?>user/edituser/<?php echo $row->idroles; ?>/<?php echo $row->idusers; ?>" href="#edituser" data-toggle="modal" class="iconedit"></div></td>
-        <td><div value="<?php echo $row->idusers; ?>"  class="icondelete"></div></td>
+      <tr <?php if( $row->schstatus == 2 || $row->schclosingreg < date("Y-m-d H:i:s") ) { ?> style="background:#efefef;"  <?php  }  ?>>
+        <td <?php if( $row->schstatus == 2 || $row->schclosingreg < date("Y-m-d H:i:s") ) { ?> style="color:#ccc;"  <?php  }  ?>><?php echo $this->generated_tanggal->ubahtanggal($row->schdate); ?></td>
+        <td <?php if( $row->schstatus == 2 || $row->schclosingreg < date("Y-m-d H:i:s") ) { ?> style="color:#ccc;"  <?php  }  ?>><?php echo $row->examname; ?></td>
+        <td <?php if( $row->schstatus == 2 || $row->schclosingreg < date("Y-m-d H:i:s") ) { ?> style="color:#ccc;"  <?php  }  ?>><?php echo $this->generated_tanggal->getDay($row->schdate); ?></td>
+        <td <?php if( $row->schstatus == 2 || $row->schclosingreg < date("Y-m-d H:i:s") ) { ?> style="color:#ccc;"  <?php  }  ?>><?php echo $row->branchname; ?></td>
+        <td <?php if( $row->schstatus == 2 || $row->schclosingreg < date("Y-m-d H:i:s") ) { ?> style="color:#ccc;"  <?php  }  ?>><span class="label label-warning" style="padding-left:10px;padding-right:10px;"><?php echo $this->showuser->getCountBooked($row->idschedules); ?></span></td>
+        <td <?php if( $row->schstatus == 2 || $row->schclosingreg < date("Y-m-d H:i:s") ) { ?> style="color:#ccc;"  <?php  }  ?>><?php echo $row->maxuser; ?></td>
+        <td <?php if( $row->schstatus == 2 || $row->schclosingreg < date("Y-m-d H:i:s") ) { ?> style="color:#ccc;"  <?php  }  ?>><div url="<?php echo base_url() ?>schedules/editschedules/<?php echo $row->idschedules; ?>" href="#edituser" data-toggle="modal" class="iconedit"></div></td>
       </tr>
 
     <?php } ?>
     <?php } else { ?>
-      <tr>
-      <td colspan="9" style="color:#333">filtering user as a <?php echo $this->showuser->getStatusUser($this->input->post('selectroles')); ?> is not found</td>
-      </tr>
+      <p>Not Found</p>
+      
     <?php } ?>
 
-      <tr>
+    <tr>
       <td colspan="9">
         <div class="pagination"><?php echo $this->pagination->create_links(); ?></div>
       </td>
-      </tr>
-
-    </table>
+    </tr>
+</table>
