@@ -213,7 +213,9 @@
       </tr>
     <?php } ?>
     <?php } else { ?>
-      <p>Not Found</p>
+      <tr>
+        <td colspan="6" >Not Found</td>
+      </tr>
       
     <?php } ?>
 

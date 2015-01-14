@@ -16,9 +16,6 @@
                 <h3 style="margin-top:-5px;"><?php echo $row->userfamilyname.' '.$row->userfirstname ?></h3>
                 Candidate
                 </div>
-                  <div class="stat_photo" style="float:right;">
-                    <img <?php if($row->userphoto == '') { ?> src="<?php echo base_url() ?>assets/pic/default.jpg"  <?php } else { ?>  src="<?php echo base_url() ?>upload/<?php echo $row->userphoto ?>"  <?php } ?> width="105%">
-                  </div>
                   <a style="float:right;" href="<?php echo base_url() ?>user/createpdf/<?php echo $row->idusers ?>"><img src="<?php echo base_url() ?>assets/pic/pdficon.png" width="42px" height="40px"></a>
               </div>
             </td>

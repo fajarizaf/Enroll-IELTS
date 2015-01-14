@@ -73,8 +73,8 @@ class Payment extends CI_Controller {
             if( is_null ($offset)) { $offset = 0; }else {$offset = $this->uri->segment(3);}
 
             $config['uri_segment'] = 3;
-            $config['base_url'] = base_url().'user/page/';
-            $config['total_rows'] = $this->useradmin_model->count_user();
+            $config['base_url'] = base_url().'payment/page/';
+            $config['total_rows'] = $this->payment_model->count_payment();
             $config['per_page'] = $limit;
             $config['num_link'] = 1;
             $config['next_page'] = '&laquo;';
@@ -82,7 +82,7 @@ class Payment extends CI_Controller {
 
 
                 $idusers = $this->session->userdata('idusers');
-                $data['refreshlist'] = $this->useradmin_model->getUser($idusers,$limit,$offset);
+                $data['refresh'] = $this->payment_model->getPayment($limit,$offset);
                 $this->pagination->initialize($config);
 
                 $this->load->view('refresh',$data);
