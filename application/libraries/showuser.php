@@ -57,6 +57,36 @@ class Showuser  {
         }
   }
 
+  function getUsername($code) {
+    $CI =& get_instance();
+      $CI->load->model('app_model');
+
+        $data['idusers'] = $code;
+        $query =  $CI->app_model->getSelectedData('users', $data);
+        
+        if($query) {
+          foreach ($query as $row ) {
+            echo $row->userfirstname;
+          }
+        }
+  }
+
+
+  function getRolesss($code) {
+    $CI =& get_instance();
+      $CI->load->model('app_model');
+
+        $data['idusers'] = $code;
+        $query =  $CI->app_model->getSelectedData('users', $data);
+        
+      
+          foreach ($query as $row ) {
+            $roles =  $row->idroles;
+            return $roles;
+          }
+    
+  }
+
 
   function getNameUser($code) {
     $CI =& get_instance();

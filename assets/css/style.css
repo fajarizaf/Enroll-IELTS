@@ -753,3 +753,17 @@ border:none;
 	display: none;
 }
 
+
+
+.btnpaid:hover {
+	background: #ffc04d;
+}
+
+#proof:hover {
+	background:#ffbe48;
+	cursor: pointer;
+}
+
+.box-proof {
+	display: none;
+}

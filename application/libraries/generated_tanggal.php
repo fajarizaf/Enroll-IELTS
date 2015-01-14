@@ -58,6 +58,9 @@ function ubahtanggaldefault($parameter) {
 }
 
 
+
+
+
 function getnextmonth($date) {
         $CI =& get_instance();
         $CI->load->model('schedules_model');
@@ -125,6 +128,14 @@ function ubahtanggal($parameter) {
  
  
  
+}
+
+
+
+
+function ubahtanggaltime($parameter) {
+ $filter = explode(' ', $parameter);         
+ return $filter[1];
 }
 
 

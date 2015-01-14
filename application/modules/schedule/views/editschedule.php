@@ -30,7 +30,7 @@
 
                   }); 
 
-      $( ".closingreg" ).datepicker({
+      $( "#closingreg" ).datepicker({
                     showOn: "button",
                     buttonImage: "<?php echo base_url(); ?>assets/pic/calendar.jpg",
                     buttonImageOnly: true,
@@ -51,7 +51,7 @@
     $('.box-editschedule').on('change','#date_of_birth', function() {
                     $('#date_of_birth').valid();
                 });
-    $('.box-editschedule').on('change','.closingreg', function() {
+    $('.box-editschedule').on('change','#closingreg', function() {
                     $('.closingreg').valid();
                 });
 
@@ -121,7 +121,7 @@
           <tr>
             <td>Closing Registration * </td>
             <td>
-              <input type="text" name="closingreg" value="<?php echo $rows->schclosingreg ?>" class="closingreg">
+              <input type="text" name="closingreg" value="<?php echo $rows->schclosingreg ?>" id="closingreg">
             </td>
           </tr>
 

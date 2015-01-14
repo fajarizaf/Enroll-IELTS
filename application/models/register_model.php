@@ -214,7 +214,7 @@ class register_model extends CI_Model {
                                         "registrationspayment" => 'unpaid',
                                         "status" => '0',
                                         "created" => date("Y-m-d H:i:s"),
-                                        "createdby" => $this->session->userdata('idusers'),
+                                        "createdbys" => $this->session->userdata('idusers'),
                                     );
                          $query1 = $this->db->insert("registrations",$reg);
 
@@ -353,7 +353,7 @@ class register_model extends CI_Model {
                                 "registrationspayment" => 'unpaid',
                                 "status" => '0',
                                 "created" => date("Y-m-d H:i:s"),
-                                "createdby" => $iduser,
+                                "createdbys" => $iduser,
                             );
                  $query1 = $this->db->insert("registrations",$reg);
 
@@ -441,7 +441,7 @@ class register_model extends CI_Model {
                 "registrationspayment" => 'unpaid',
                 "status" => 0,
                 "created" => date("Y-m-d H:i:s"),
-                "createdby" => $this->session->userdata('idusers')
+                "createdbys" => $this->session->userdata('idusers')
             );
 
            $this->db->insert('registrations', $data);
