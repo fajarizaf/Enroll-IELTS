@@ -190,7 +190,7 @@
 
 <img style="position:absolute;margin-left:auto;margin-right:auto;left:50%;right:50%;top:500px;" class="load" src="<?php echo base_url() ?>assets/pic/load1.gif" >
 <div class="content-user">
-  <table id="list-user" class="table  table-bordered" style="margin-top:10px;">
+  <table id="list-user" class="table table-striped  table-bordered" style="margin-top:10px;">
     <tr class="headtable">
       <th style="width:21%;">Test Venue</th>
       <th style="width:11%;">Schedule Date</th>

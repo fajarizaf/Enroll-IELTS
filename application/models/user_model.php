@@ -87,6 +87,13 @@ class   User_model extends CI_Model {
 
     }
 
+    public function getUserregistered($idschedules) {
+        $this->db->where('idschedules', $idschedules);
+        $query = $this->db->get('registrations');
+        $count = $query->num_rows();
+        echo $count;
+    }
+
     
 }
 

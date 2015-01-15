@@ -1,25 +1,49 @@
+<?php ini_set("memory_limit","12M"); ?>
+<link href="<?php echo base_url() ?>assets/css/font.css" rel="stylesheet" type="text/css" />
+<link href="<?php echo base_url() ?>assets/css/style.css" rel="stylesheet" type="text/css" />
+ <link href="<?php echo base_url() ?>assets/css/bootstrap.css" rel="stylesheet" type="text/css" />     
 
-      
+<style>
+  table tr td {
+    padding:3px;
+    border-top:0.5px solid #efefef;
+    font-size: 11px;
+  }
+
+  table {
+    width:100%;
+  }
+
+  .label {
+    font-weight:normal;
+  }
+
+
+</style>
+
+
+<div class="headerform">
+  
+</div>
 
 
 <?php foreach ($datauser as $row) { ?>
         <?php $atributes = array ('id' => 'formupdateuser'); ?> 
         <?php echo form_open('user/updateuser', $atributes); ?>    
 
-          <table class="table" >
-
-           
-
+        <div style="width:740px;margin:0px auto;margin-top:10px;">
+        <div class="h3" style="margin-top:10px;margin-bottom:20px;">Basic Info</div>
+          <table >
                   <tr>
-                    <th style="width:400px;">Registered ID</th>
-                    <th style="width:5px">:</th>
-                    <th style="width:400px;">IELTS<?php echo substr("00000" . $row->idusers, -6); ?></th>
+                    <td style="width:300px;color:#333;">User ID</td>
+                    <td style="width:5px;color:#333;">:</td>
+                    <td style="color:#333;">IELTS<?php echo substr("00000" . $row->idusers, -6); ?></td>
                   </tr>
 
 
                 
                   <tr>
-                    <td style="width:400px">Username</td>
+                    <td style="width:300px">Username</td>
                     <td style="width:10px">:</td>
                     <td><?php echo $row->username ?></td>
                   </tr>
@@ -75,7 +99,7 @@
                   <tr>
                     <td>Country</td>
                     <td>:</td>
-                    <td><div class="label" style="width:20px;float:left;"><?php echo  $row->useraddr2 ?></div>&nbsp;&nbsp;<?php $this->showuser->getnameaditionalinfo('city', $row->useraddr2 ) ?></td>
+                    <td><?php echo  $row->useraddr2 ?>&nbsp;&nbsp;<?php $this->showuser->getnameaditionalinfo('city', $row->useraddr2 ) ?></td>
                   </tr>
                   <tr>
                     <td>Date Of Birth</td>
@@ -85,11 +109,11 @@
                  
                 </table>
 
-                <div class="h3" style="margin-top:40px;margin-bottom:20px;">Detail Info</div>
+                <div class="h3" style="margin-top:10px;margin-bottom:20px;">Detail Info</div>
 
-                <table class="table table-striped">
+                <table >
                   <tr>
-                    <td style="width:400px;">Identity Document</td>
+                    <td style="width:300px;">Identity Document</td>
                     <td style="width:10px">:</td>
                     <td><?php echo $row->useridcard ?></td>
                   </tr>
@@ -204,12 +228,8 @@
                       <?php echo $row->usernotes ?>
                     </td>
                   </tr>
-                  
-
-
-
                 <table>
-
+              </div>
 
 <?php echo form_close(); ?> 
 

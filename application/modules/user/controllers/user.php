@@ -219,8 +219,16 @@ class User extends CI_Controller {
       $idusers = $this->uri->segment(3);
       $data['datauser'] = $this->useradmin_model->getedituser($idusers);
       $html = $this->load->view('candidate_pdf',$data, true);
-      $this->load->helper(array('dompdf', 'file'));        
+      $this->load->helper(array('dompdf', 'file'));    
       pdf_create($html, 'fajarizaf');
+
+    }
+
+    public function createpdfs() {
+      $idusers = $this->uri->segment(3);
+      $data['datauser'] = $this->useradmin_model->getedituser($idusers);
+      $html = $this->load->view('candidate_pdf',$data);
+
 
     }
 

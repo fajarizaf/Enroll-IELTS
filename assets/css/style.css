@@ -767,3 +767,20 @@ border:none;
 .box-proof {
 	display: none;
 }
+
+.iconpdf {
+	width:25px;
+	height:25px; 
+	background:url(../pic/pdf.png) no-repeat;
+}
+
+
+.headerform {
+	width:740px;
+	height: 97px;
+	margin:0px auto;
+	border-bottom:3px solid #ff1313;
+	margin:0px auto;
+	background:url(../pic/headapplicationform.png) no-repeat;
+	margin-top:-40px;
+}
