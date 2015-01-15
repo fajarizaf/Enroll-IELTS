@@ -21,7 +21,7 @@
 
 
 
-<table id="list-user" class="table  table-bordered" style="margin-top:10px;">
+<table id="list-user" class="table table-striped  table-bordered" style="margin-top:10px;">
     <tr class="headtable">
 
       <th style="width:11%;">Date Of Register</th>
@@ -39,7 +39,7 @@
         <td><?php $this->showuser->getDateRegisteredUsertime($row->idregistrations); ?></td>
         <td><?php echo $row->userfirstname.' '.$row->userfamilyname  ?></td>
         <td><?php echo $row->useraddr3  ?></td>
-        <td><div class="iconpdf"></div></td>
+        <td><a href="<?php echo base_url(); ?>report/createpdf/<?php $this->showuser->getidUsers($row->idregistrations); ?>"><div class="iconpdf"></div></a></td>
       </tr>
     <?php } ?>
     <?php } else { ?>

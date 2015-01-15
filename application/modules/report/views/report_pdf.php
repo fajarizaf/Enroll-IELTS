@@ -26,7 +26,7 @@
 </div>
 
 
-<?php foreach ($datauser as $row) { ?>
+<?php foreach ($datareport as $row) { ?>
         <?php $atributes = array ('id' => 'formupdateuser'); ?> 
         <?php echo form_open('user/updateuser', $atributes); ?>    
 

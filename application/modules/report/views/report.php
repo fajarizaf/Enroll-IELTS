@@ -9,7 +9,7 @@
     });
 
     $('.box-editreport').slimScroll({
-             width: '760px',
+             width: '765px',
              height:'380px'
     });
 

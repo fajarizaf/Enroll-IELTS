@@ -13,7 +13,7 @@
             <td colspan="3" style="border:none;">
               <div style="margin-bottom:10px;color:#fff;padding:10px;width:98%;height:40px;-moz-border-radius:5px 5px 5px;-webkit-border-radius:5px 5px 5px;border-radius:5px 5px 5px;background:orange;">
                 <div style="width:270px;float:left;color:#fff">
-                <h3 style="margin-top:-5px;"><?php echo $row->userfamilyname.' '.$row->userfirstname ?></h3>
+                <h3 style="margin-top:-5px;"><?php echo $row->userfirstname.' '.$row->userfamilyname  ?></h3>
                 Candidate
                 </div>
                   <a style="float:right;" href="<?php echo base_url() ?>user/createpdf/<?php echo $row->idusers ?>"><img src="<?php echo base_url() ?>assets/pic/pdficon.png" width="42px" height="40px"></a>
@@ -22,7 +22,7 @@
           </tr>  
 
                   <tr>
-                    <th style="width:400px;">Registered ID</th>
+                    <th style="width:400px;">User ID</th>
                     <th style="width:5px">:</th>
                     <th style="width:400px;">IELTS<?php echo substr("00000" . $row->idusers, -6); ?></th>
                   </tr>

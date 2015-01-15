@@ -11,7 +11,7 @@
             <td colspan="3" style="border:none;">
               <div style="margin-bottom:10px;color:#fff;padding:10px;width:98%;height:40px;-moz-border-radius:5px 5px 5px;-webkit-border-radius:5px 5px 5px;border-radius:5px 5px 5px;background:#00a6e3;">
                 <div style="width:270px;float:left;color:#fff">
-                <h3 style="margin-top:-5px;"><?php echo $row->userfamilyname.' '.$row->userfirstname ?></h3>
+                <h3 style="margin-top:-5px;"><?php echo $row->userfirstname.' '.$row->userfamilyname  ?></h3>
                 Registration Centre
                 </div>
                   <div class="stat_photo" style="float:right;">

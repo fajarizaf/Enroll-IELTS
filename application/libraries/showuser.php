@@ -213,6 +213,27 @@ function ubahtanggal2($parameter) {
         }
   }
 
+
+  function getNameUserfile($code) {
+    $CI =& get_instance();
+      $CI->load->model('app_model');
+
+        $data['idusers'] = $code;
+        $query =  $CI->app_model->getSelectedData('users', $data);
+        
+        if($query) {
+          foreach ($query as $row ) {
+            $v = $row->userfirstname;
+            $ex = explode(' ', $v);
+            $im = implode('-', $ex);
+            return $im;
+          }
+        } else {
+          echo '-';
+        }
+  }
+
+
   function decode($value) {
     $CI =& get_instance();
       $pass = $CI->encrypt->decode($value);
@@ -264,6 +285,18 @@ function ubahtanggal2($parameter) {
            
          <?php  }   
 
+  }
+
+
+  function getidUsers($idregistrations) {
+    $CI =& get_instance();
+      $CI->load->model('app_model');
+        $where['idregistrations'] = $idregistrations;
+        $query =  $CI->app_model->getSelectedData('registrations',$where);
+
+        foreach ($query as $row) {
+            echo $row->idusers;
+        }
   }
 
 

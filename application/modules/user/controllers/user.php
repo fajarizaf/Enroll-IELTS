@@ -216,11 +216,17 @@ class User extends CI_Controller {
 
 
     public function createpdf() {
+      ini_set('memory_limit', '128M');
       $idusers = $this->uri->segment(3);
+      $where['idusers'] = $this->uri->segment(3);
       $data['datauser'] = $this->useradmin_model->getedituser($idusers);
+      $nameuser = $this->app_model->getSelectedData('users',$where);
       $html = $this->load->view('candidate_pdf',$data, true);
       $this->load->helper(array('dompdf', 'file'));    
-      pdf_create($html, 'fajarizaf');
+
+      foreach ($nameuser as $row) {
+            pdf_create($html, $row->userfirstname.' '.$row->userfamilyname);  
+      } 
 
     }
 

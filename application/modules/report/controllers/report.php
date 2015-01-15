@@ -72,8 +72,8 @@ class Report extends CI_Controller {
             if( is_null ($offset)) { $offset = 0; }else {$offset = $this->uri->segment(3);}
 
             $config['uri_segment'] = 3;
-            $config['base_url'] = base_url().'payment/page/';
-            $config['total_rows'] = $this->payment_model->count_payment();
+            $config['base_url'] = base_url().'report/page/';
+            $config['total_rows'] = $this->report_model->count_report();
             $config['per_page'] = $limit;
             $config['num_link'] = 1;
             $config['next_page'] = '&laquo;';
@@ -81,7 +81,7 @@ class Report extends CI_Controller {
 
 
                 $idusers = $this->session->userdata('idusers');
-                $data['refresh'] = $this->payment_model->getPayment($limit,$offset);
+                $data['refresh'] = $this->report_model->getreport($limit,$offset);
                 $this->pagination->initialize($config);
 
                 $this->load->view('refresh',$data);
@@ -170,8 +170,22 @@ class Report extends CI_Controller {
         $this->load->view('editreport',$data);
     }
 
-    function updateschedule() {
-        $this->schedule_model->updateschedule();
+
+
+    public function createpdf() {
+      ini_set('memory_limit', '128M');
+      $idusers = $this->uri->segment(3);
+      $where['idusers'] = $this->uri->segment(3);
+      $data['datareport'] = $this->report_model->getdatareport($idusers);
+      $nameuser = $this->app_model->getSelectedData('users',$where);
+      $html = $this->load->view('report_pdf',$data, true);
+      $this->load->helper(array('dompdf', 'file')); 
+
+      foreach ($nameuser as $row) {
+            pdf_create($html, $row->userfirstname.' '.$row->userfamilyname);  
+      }   
+      
+
     }
 
 
