@@ -1,7 +1,7 @@
 <script>
   $(document).ready(function() {
 
-     $('#list-module').on('click','.iconedit', function() {
+  $('#list-module').on('click','.iconedit', function() {
           $('tr').removeAttr('status','show');
           $('.down-detail').css({'display':'none'});
           idexams = $(this).attr('value');
@@ -20,7 +20,7 @@
         $('.sticky-close').click();
         $('#parentloading').fadeIn('slow');
         var idexams = $(this).attr('value');
-        dataString = 'idexams=' + idexams;
+        dataString = 'idpartner=' + idexams;
 
             var counter=2;
               var countdown = setInterval(function(){
@@ -29,7 +29,7 @@
 
                   $.ajax({
                     type  : "POST",
-                    url: ""+base_url+"module/deletemodule",
+                    url: ""+base_url+"partner/deletepartner",
                     data: dataString,
                     dataType:'json',          
                     success : function(data){
@@ -52,8 +52,9 @@
         
       });
 
-  
-      $('#list-module').on('click','.btnupdate', function() {
+
+
+  $('#list-module').on('click','.btnupdate', function() {
         $('.sticky-close').click();
             $('#parentloading').fadeIn('slow');
 
@@ -64,7 +65,7 @@
                 clearInterval(countdown);
                 $('#parentloading').fadeOut('slow');
 
-                      var namemodule = $('tr[status=show] td .shownamemodule').val();
+                      var namemodule = $('tr[status=show] td .partnername').val();
                       var idexams = $('tr[status=show] input[type=hidden]').val();
                       if($('tr[status=show] td input[type=checkbox]').attr('checked')) {
                         var isactive = '1';
@@ -72,11 +73,11 @@
                         var isactive = '0';
                       }
 
-                      var dataString = 'modulename=' + namemodule + '&isactives=' + isactive + '&idexams=' + idexams;
+                      var dataString = 'partnername=' + namemodule + '&isactives=' + isactive + '&idpartners=' + idexams;
 
                       $.ajax({
                         type  : "POST",
-                        url: ""+base_url+"module/updatemodule",
+                        url: ""+base_url+"partner/updatepartner",
                         data: dataString,
                         dataType:'json',          
                         success : function(data){
@@ -103,18 +104,52 @@
 
 
 
+    });        
+
+
+  $('.content-user').on('click','.pagination a', function(e) {
+    e.preventDefault();
+    //return false;
+  });
+
+
+    $('.content-user').on('click','.pagination a', function() {
+        $('#parentloading').fadeIn('slow');
+        $('#list-module').css({'opacity':'0.5'});
+        var paramUrl = $(this).attr('href');
+        $("html, body").animate({ scrollTop: 0 }, "slow");
+        
+        var counter=1;
+              var countdown = setInterval(function(){
+                if (counter == 0) {
+                clearInterval(countdown);
+                $('#parentloading').fadeOut('slow');
+                $('#list-module').css({'opacity':'1'});
+
+                                            // get Pages 
+                                            $.get( ""+paramUrl+"", function( data ) {
+                                              $("#list-module").html(data);
+                                            });
+
+            }
+            counter--;
+        }, 500);
+
     });
 
 
-      $('#list-module').on('click','.css-label', function() {
-        var fors = $(this).attr('for');
-        if($('#'+fors+'').attr('checked')) {
-            $('#'+fors+'').val('0');
-        } else {
-            $('#'+fors+'').val('1');
-        }
-     });
 
+
+    $('#list-user').on('click','.iconedit', function() {
+      var url = $(this).attr('url');
+          // Refresh List 
+            $.get( ""+url+"", function( data ) {
+              $(".box-edittest").html(data);
+            });
+    });
+
+
+  
      
 
   });
@@ -127,20 +162,30 @@
   border:none;
 }
 
+.selecter .selecter-selected {
+  width:140px;
+}
+
+.selecter .selecter-options {
+  width:164px;
+}
+
+}
+
 </style>
 
 
 <div class="content">
 
-<div id="add-module" href="#addmodule" data-toggle="modal"  style="float:left;margin-top:10px;"class="btn btn-warning">Add Module</div>
-
+<div id="add-module" href="#addpartner" data-toggle="modal"  style="float:left;margin-top:21px;margin-right:10px;"class="btn btn-warning">Add Partner</div>
 <div style="clear:both;"></div>
 
 
-
+<img style="position:absolute;margin-left:auto;margin-right:auto;left:50%;right:50%;top:500px;" class="load" src="<?php echo base_url() ?>assets/pic/load1.gif" >
+<div class="content-user">
   <table id="list-module" class="table table-striped table-bordered" style="margin-top:10px;">
     <tr>
-      <th style="width:70%;">Name</th>
+      <th style="width:70%;">Partner Name</th>
       <th style="width:10%;">Status</th>
       <th style="width:4%;">Edit</th>
       <th style="width:4%;">Delete</th>
@@ -148,30 +193,30 @@
 
 
     <?php $i =1 ?>
-    <?php foreach ( $module as $row ) { ?>
+    <?php foreach ( $datapartner as $row ) { ?>
 
-      <tr atr="<?php echo $row->idexams ?>">
-        <td><?php echo $row->examname ?></td>
-        <td><?php echo $row->examstatus ?></td>
-        <td><div show="show_edit<?php echo $row->idexams; ?>" value="<?php echo $row->idexams; ?>" class="iconedit"></div></td>
-        <td><div value="<?php echo $row->idexams; ?>"  class="icondelete"></div></td>
+      <tr atr="<?php echo $row->idpartners ?>" style="background:#efefef">
+        <td><?php echo $row->partnername ?></td>
+        <td><?php echo $row->partnerstatus ?></td>
+        <td><div show="show_edit<?php echo $row->idpartners; ?>" value="<?php echo $row->idpartners; ?>" class="iconedit"></div></td>
+        <td><div value="<?php echo $row->idpartners; ?>"  class="icondelete"></div></td>
       </tr>
 
       
       
-      <tr class="down-detail" id="show_edit<?php echo $row->idexams; ?>"  >
-      <input type="hidden" name="idexams" value="<?php echo $row->idexams; ?>">
+      <tr class="down-detail" id="show_edit<?php echo $row->idpartners; ?>"   >
+      <input type="hidden" name="idpartners" value="<?php echo $row->idpartners; ?>">
             <td colspan="4" style="display:table-cell" >
               <table>
                 <tr>
                   <td style="padding-top:14px;">Module Name</td>
-                  <td colspan="2"><input type="text" name="modulename" value="<?php echo $row->examname ?>" class="shownamemodule"></input></td>
+                  <td colspan="2"><input type="text" name="partnername" value="<?php echo $row->partnername ?>" class="partnername"></input></td>
                 </tr>
                   <tr>
                     <td style="padding-top:14px;">Status</td>
                     <td>
-                    <input type="checkbox" name="isactives" <?php if($row->examstatus == 1) {echo 'checked';} ?> value="<?php echo $row->examstatus; ?>" id="isactives<?php echo $row->idexams; ?>"  class="css-checkbox lrg" />
-                    <label style="margin-top:4px;" for="isactives<?php echo $row->idexams; ?>"  name="checkbox67_lbl" class="css-label lrg web-two-style"></label>
+                    <input type="checkbox" name="isactives" <?php if($row->partnerstatus == 1) {echo 'checked';} ?> value="<?php echo $row->partnerstatus; ?>" id="isactives<?php echo $row->idpartners; ?>"  class="css-checkbox lrg" />
+                    <label style="margin-top:4px;" for="isactives<?php echo $row->idpartners; ?>"  name="checkbox67_lbl" class="css-label lrg web-two-style"></label>
                     &nbsp;Is Active  
                     </td>
                     <td><input type="submit" name="proses" class="btn btn-success btnupdate" style="float:right;" value="Update"></input></td>
@@ -182,7 +227,14 @@
     <?php $i++ ?>
     <?php } ?>
   
-  
+  <tr>
+      <td colspan="9">
+        <div class="pagination"><?php echo $this->pagination->create_links(); ?></div>
+      </td>
+    </tr>
 
 </table>
+
+
+</div>
 </div>

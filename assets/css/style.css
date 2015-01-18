@@ -784,3 +784,18 @@ border:none;
 	background:url(../pic/headapplicationform.png) no-repeat;
 	margin-top:-40px;
 }
+
+#filterdate {
+	background:url(../pic/icondate.png) no-repeat;
+	background-position: 170px 5px;
+	cursor: pointer;
+	margin-top:10px;
+}
+
+#filterdate:hover {
+	background:#efefef url(../pic/icondate.png) no-repeat;
+	background-position: 170px 5px;
+}
+
+
+

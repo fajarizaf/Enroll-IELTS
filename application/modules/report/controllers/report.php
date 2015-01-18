@@ -46,6 +46,7 @@ class Report extends CI_Controller {
                 $idroles = $this->session->userdata('statususer');
                 $data['menuadmin'] = $this->user_model->menuadmin($idroles);
                 $data['report'] = $this->report_model->getReport($limit,$offset);
+                $data['venuetest'] = $this->app_model->get_data('branches');
                 $this->pagination->initialize($config);
 
                 $this->load->view('global/header', $data);
@@ -186,6 +187,47 @@ class Report extends CI_Controller {
       }   
       
 
+    }
+
+
+    function filterByVenue($offset = NULL) {
+      $limit = 3;
+            if( is_null ($offset)) { $offset = 0; }else {$offset = $this->uri->segment(3);}
+            $idbranches = $this->input->post('selectvenues');
+
+            $config['uri_segment'] = 3;
+            $config['base_url'] = base_url().'report/pagevenue/';
+            $config['total_rows'] = $this->report_model->count_reportvenue($idbranches);
+            $config['per_page'] = $limit;
+            $config['num_link'] = 1;
+            $config['next_page'] = '&laquo;';
+            $config['prev_page'] = '&raquo;';
+                
+                $data['refresh'] = $this->report_model->filterByVenues($idbranches,$limit,$offset);
+                $this->pagination->initialize($config);
+
+                $this->load->view('refresh',$data);
+    }
+
+
+
+    function filterByDate($offset = NULL) {
+            $limit = 3;
+            if( is_null ($offset)) { $offset = 0; }else {$offset = $this->uri->segment(3);}
+            $date = $this->input->post('date');
+
+            $config['uri_segment'] = 3;
+            $config['base_url'] = base_url().'report/pagedate/';
+            $config['total_rows'] = $this->report_model->count_reportdate($date);
+            $config['per_page'] = $limit;
+            $config['num_link'] = 1;
+            $config['next_page'] = '&laquo;';
+            $config['prev_page'] = '&raquo;';
+                
+                $data['refresh'] = $this->report_model->filterByDate($date,$limit,$offset);
+                $this->pagination->initialize($config);
+
+                $this->load->view('refresh',$data);
     }
 
 

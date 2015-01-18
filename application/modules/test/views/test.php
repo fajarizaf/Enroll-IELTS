@@ -1,7 +1,7 @@
 <script>
   $(document).ready(function() {
     $('#addtestvenue').css({'width':'770px','margin-left':'-375px'});
-    $('#addtestvenue').css({'width':'770px','margin-left':'-375px'});
+    $('#edittest').css({'width':'770px','margin-left':'-375px'});
 
     $('.box-addtest').slimScroll({
              width: '760px',
@@ -101,39 +101,51 @@
 
 
 
-    $('.content-user').on('click','.pagination a', function() {
-        $('#parentloading').fadeIn('slow');
-        $('#list-user').css({'opacity':'0.5'});
-        var paramUrl = $(this).attr('href');
-        $("html, body").animate({ scrollTop: 0 }, "slow");
-        
-        var counter=1;
-              var countdown = setInterval(function(){
-                if (counter == 0) {
-                clearInterval(countdown);
-                $('#parentloading').fadeOut('slow');
-                $('#list-user').css({'opacity':'1'});
-
-                                            // get Pages 
-                                            $.get( ""+paramUrl+"", function( data ) {
-                                              $("#list-user").html(data);
-                                            });
-
-            }
-            counter--;
-        }, 500);
-
-    });
-
-
-
     $('#list-user').on('click','.iconedit', function() {
       var url = $(this).attr('url');
           // Refresh List 
             $.get( ""+url+"", function( data ) {
-              $(".box-editschedule").html(data);
+              $(".box-edittest").html(data);
             });
     });
+
+
+
+    $('#list-user').on('click','.icondelete', function() {
+        $('.sticky-close').click();
+        $('#parentloading').fadeIn('slow');
+        var idexams = $(this).attr('value');
+        dataString = 'idbranches=' + idexams;
+
+            var counter=2;
+              var countdown = setInterval(function(){
+                if (counter == 0) {
+                clearInterval(countdown);
+
+                  $.ajax({
+                    type  : "POST",
+                    url: ""+base_url+"test/deletetest",
+                    data: dataString,
+                    dataType:'json',          
+                    success : function(data){
+                      $('#parentloading').fadeOut('fast');
+                                          
+                         $.each( data, function(key,val) { 
+                                
+                                $('tr[atr='+val+']').css({'background':'#feeda9'}).fadeOut('slow');
+                                $('#sticky').sticky('<span style="color:#802222;">Delete Successfully</span>'); 
+                    
+                         });               
+                                              
+                      }
+                    });
+                    return false;
+
+            }
+            counter--;
+        }, 500);         
+        
+      });
 
 
   
@@ -175,16 +187,18 @@
       <th style="width:21%;">Name</th>
       <th style="width:9%;">Phone</th>
       <th style="width:49%;">Address</th>
-      <th style="width:2%;">Action</th>
+      <th style="width:2%;">Edit</th>
+      <th style="width:2%;">delete</th>
     </tr>
     <?php  if($test) { ?>
     <?php foreach ( $test as $row ) { ?>
 
-      <tr style="background:#efefef;">
+      <tr atr="<?php echo $row->idbranches ?>" id="<?php echo $row->idbranches ?>" style="background:#efefef;">
         <td><?php echo $row->branchname ?></td>
         <td><?php echo $row->branchphone ?></td>
         <td><?php echo $row->branchaddr ?></td>
-        <td><div url="<?php echo base_url() ?>test/edittest/<?php echo $row->idbranches; ?>/<?php echo $row->idusers; ?>" href="#edituser" data-toggle="modal" class="iconedit"></div></td>
+        <td><div url="<?php echo base_url() ?>test/edittest/<?php echo $row->idbranches; ?>" href="#edittest" data-toggle="modal" class="iconedit"></div></td>
+        <td><div value="<?php echo $row->idbranches; ?>"  class="icondelete"></div></td>
       </tr>
     <?php } ?>
     <?php } else { ?>

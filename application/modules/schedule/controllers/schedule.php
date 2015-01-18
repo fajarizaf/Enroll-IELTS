@@ -48,6 +48,7 @@ class Schedule extends CI_Controller {
                 $data['partner'] = $this->app_model->getSelectedData('partners',$where);
                 $data['menuadmin'] = $this->user_model->menuadmin($idroles);
                 $data['schedule'] = $this->schedule_model->getSchedule($limit,$offset);
+                $data['venuetest'] = $this->app_model->get_data('branches');
                 $this->pagination->initialize($config);
 
                 $this->load->view('global/header', $data);
@@ -75,8 +76,8 @@ class Schedule extends CI_Controller {
             if( is_null ($offset)) { $offset = 0; }else {$offset = $this->uri->segment(3);}
 
             $config['uri_segment'] = 3;
-            $config['base_url'] = base_url().'user/page/';
-            $config['total_rows'] = $this->useradmin_model->count_user();
+            $config['base_url'] = base_url().'schedule/page/';
+            $config['total_rows'] = $this->schedule_model->count_schedule();
             $config['per_page'] = $limit;
             $config['num_link'] = 1;
             $config['next_page'] = '&laquo;';
@@ -84,7 +85,7 @@ class Schedule extends CI_Controller {
 
 
                 $idusers = $this->session->userdata('idusers');
-                $data['refreshlist'] = $this->useradmin_model->getUser($idusers,$limit,$offset);
+                $data['schedule'] = $this->schedule_model->getSchedule($limit,$offset);
                 $this->pagination->initialize($config);
 
                 $this->load->view('refresh',$data);
@@ -125,7 +126,7 @@ class Schedule extends CI_Controller {
       $i = 1;  
       foreach ( $query as $row ) { ?>
          
-      <tr <?php if( $row->schstatus == 2 || $row->schclosingreg < date("Y-m-d H:i:s") ) { ?> style="background:#efefef;"  <?php  }  ?>>
+      <tr atr="<?php echo $row->idschedules ?>" id="<?php echo $row->idschedules; ?>" <?php if( $row->schstatus == 2 || $row->schclosingreg < date("Y-m-d H:i:s") ) { ?> style="background:#efefef;"  <?php  }  ?>>
         <td <?php if( $row->schstatus == 2 || $row->schclosingreg < date("Y-m-d H:i:s") ) { ?> style="color:#ccc;"  <?php  }  ?>><?php echo $this->generated_tanggal->ubahtanggal($row->schdate); ?></td>
         <td <?php if( $row->schstatus == 2 || $row->schclosingreg < date("Y-m-d H:i:s") ) { ?> style="color:#ccc;"  <?php  }  ?>><?php echo $row->examname; ?></td>
         <td <?php if( $row->schstatus == 2 || $row->schclosingreg < date("Y-m-d H:i:s") ) { ?> style="color:#ccc;"  <?php  }  ?>><?php echo $this->generated_tanggal->getDay($row->schdate); ?></td>
@@ -133,6 +134,9 @@ class Schedule extends CI_Controller {
         <td <?php if( $row->schstatus == 2 || $row->schclosingreg < date("Y-m-d H:i:s") ) { ?> style="color:#ccc;"  <?php  }  ?>><span class="label label-warning" style="padding-left:10px;padding-right:10px;"><?php echo $this->showuser->getCountBooked($row->idschedules); ?></span></td>
         <td <?php if( $row->schstatus == 2 || $row->schclosingreg < date("Y-m-d H:i:s") ) { ?> style="color:#ccc;"  <?php  }  ?>><?php echo $row->maxuser; ?></td>
         <td <?php if( $row->schstatus == 2 || $row->schclosingreg < date("Y-m-d H:i:s") ) { ?> style="color:#ccc;"  <?php  }  ?>><div url="<?php echo base_url() ?>schedule/editschedules/<?php echo $row->idschedules; ?>" href="#editschedule" data-toggle="modal" class="iconedit"></div></td>
+        <td><div value="<?php echo $row->idschedules; ?>"  class="icondelete"></div></td>
+        <td <?php if( $row->schstatus == 2 || $row->schclosingreg < date("Y-m-d H:i:s") ) { ?> style="color:#ccc;"  <?php  }  ?>><?php if( $row->schstatus == 2 || $row->schclosingreg < date("Y-m-d H:i:s") ) { ?><span class="label label-info" style="padding-left:10px;padding-right:10px;">Full</span><?php } else { echo '-'; } ?></td>
+
       </tr>
 
           <?php $i++ ?>
@@ -149,7 +153,6 @@ class Schedule extends CI_Controller {
       $i = 1;  
       foreach ( $query as $row ) { ?>
          
-      
         <td <?php if( $row->schstatus == 2 || $row->schclosingreg < date("Y-m-d H:i:s") ) { ?> style="color:#ccc;"  <?php  }  ?>><?php echo $this->generated_tanggal->ubahtanggal($row->schdate); ?></td>
         <td <?php if( $row->schstatus == 2 || $row->schclosingreg < date("Y-m-d H:i:s") ) { ?> style="color:#ccc;"  <?php  }  ?>><?php echo $row->examname; ?></td>
         <td <?php if( $row->schstatus == 2 || $row->schclosingreg < date("Y-m-d H:i:s") ) { ?> style="color:#ccc;"  <?php  }  ?>><?php echo $this->generated_tanggal->getDay($row->schdate); ?></td>
@@ -157,6 +160,8 @@ class Schedule extends CI_Controller {
         <td <?php if( $row->schstatus == 2 || $row->schclosingreg < date("Y-m-d H:i:s") ) { ?> style="color:#ccc;"  <?php  }  ?>><span class="label label-warning" style="padding-left:10px;padding-right:10px;"><?php echo $this->showuser->getCountBooked($row->idschedules); ?></span></td>
         <td <?php if( $row->schstatus == 2 || $row->schclosingreg < date("Y-m-d H:i:s") ) { ?> style="color:#ccc;"  <?php  }  ?>><?php echo $row->maxuser; ?></td>
         <td <?php if( $row->schstatus == 2 || $row->schclosingreg < date("Y-m-d H:i:s") ) { ?> style="color:#ccc;"  <?php  }  ?>><div url="<?php echo base_url() ?>schedule/editschedules/<?php echo $row->idschedules; ?>" href="#editschedule" data-toggle="modal" class="iconedit"></div></td>
+        <td><div value="<?php echo $row->idschedules; ?>"  class="icondelete"></div></td>
+        <td <?php if( $row->schstatus == 2 || $row->schclosingreg < date("Y-m-d H:i:s") ) { ?> style="color:#ccc;"  <?php  }  ?>><?php if( $row->schstatus == 2 || $row->schclosingreg < date("Y-m-d H:i:s") ) { ?><span class="label label-info" style="padding-left:10px;padding-right:10px;">Full</span><?php } else { echo '-'; } ?></td>
 
           <?php $i++ ?>
      <?php } ?>
@@ -189,6 +194,92 @@ class Schedule extends CI_Controller {
 
     function updateschedule() {
         $this->schedule_model->updateschedule();
+    }
+
+    function deleteschedule() {
+        $this->schedule_model->deleteschedules();
+    }
+
+    function filterbydate($offset = NULL) {
+         $limit = 2;
+       if( is_null ($offset)) { $offset = 0; }else {$offset = $this->uri->segment(4);}
+       $date = $this->input->post('date');
+
+            $config['uri_segment'] = 4;
+            $config['base_url'] = base_url().'schedule/pagedate/'.$date.'';
+            $config['total_rows'] = $this->schedule_model->count_scheduledate($date);
+            $config['per_page'] = $limit;
+            $config['num_link'] = 1;
+            $config['next_page'] = '&laquo;';
+            $config['prev_page'] = '&raquo;';
+
+
+       $data['schedule'] = $this->schedule_model->filterbydate($date,$limit,$offset);
+       $this->pagination->initialize($config);
+       $this->load->view('refresh',$data);
+    }
+
+
+    public function pagedate($offset = NULL) {
+
+            $limit = 2;
+            if( is_null ($offset)) { $offset = 0; }else {$offset = $this->uri->segment(4);}
+            $date = $this->uri->segment(3);
+
+            $config['uri_segment'] = 4;
+            $config['base_url'] = base_url().'schedule/pagedate/'.$date.'';
+            $config['total_rows'] = $this->schedule_model->count_scheduledate($date);
+            $config['per_page'] = $limit;
+            $config['num_link'] = 1;
+            $config['next_page'] = '&laquo;';
+            $config['prev_page'] = '&raquo;';
+
+                $data['schedule'] = $this->schedule_model->filterbydate($date,$limit,$offset);
+                $this->pagination->initialize($config);
+
+                $this->load->view('refresh',$data);
+    }
+
+
+
+    function filterbyvenue($offset = NULL) {
+         $limit = 2;
+       if( is_null ($offset)) { $offset = 0; }else {$offset = $this->uri->segment(4);}
+       $date = $this->input->post('venue');
+
+            $config['uri_segment'] = 4;
+            $config['base_url'] = base_url().'schedule/pagevenue/'.$date.'';
+            $config['total_rows'] = $this->schedule_model->count_schedulevenue($date);
+            $config['per_page'] = $limit;
+            $config['num_link'] = 1;
+            $config['next_page'] = '&laquo;';
+            $config['prev_page'] = '&raquo;';
+
+
+       $data['schedule'] = $this->schedule_model->filterbyvenue($date,$limit,$offset);
+       $this->pagination->initialize($config);
+       $this->load->view('refresh',$data);
+    }
+
+
+    public function pagevenue($offset = NULL) {
+
+            $limit = 2;
+            if( is_null ($offset)) { $offset = 0; }else {$offset = $this->uri->segment(4);}
+            $date = $this->uri->segment(3);
+
+            $config['uri_segment'] = 4;
+            $config['base_url'] = base_url().'schedule/pagevenue/'.$date.'';
+            $config['total_rows'] = $this->schedule_model->count_schedulevenue($date);
+            $config['per_page'] = $limit;
+            $config['num_link'] = 1;
+            $config['next_page'] = '&laquo;';
+            $config['prev_page'] = '&raquo;';
+
+                $data['schedule'] = $this->schedule_model->filterbyvenue($date,$limit,$offset);
+                $this->pagination->initialize($config);
+
+                $this->load->view('refresh',$data);
     }
 
 

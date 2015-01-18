@@ -5,12 +5,12 @@
 <?php
 
 
-class Test extends CI_Controller {
+class Partner extends CI_Controller {
 
 
     public function  __construct() {
         parent::__construct();
-        $this->load->model('test_model');
+        $this->load->model('partner_model');
         $this->load->model('user_model');
         $this->load->model('app_model');
         $this->load->helper(array('form','url'));
@@ -29,8 +29,8 @@ class Test extends CI_Controller {
             if( is_null ($offset)) { $offset = 0; }else {$offset = $this->uri->segment(3);}
 
             $config['uri_segment'] = 3;
-            $config['base_url'] = base_url().'test/page/';
-            $config['total_rows'] = $this->test_model->count_test();
+            $config['base_url'] = base_url().'partner/page/';
+            $config['total_rows'] = $this->partner_model->count_partner();
             $config['per_page'] = $limit;
             $config['num_link'] = 1;
             $config['next_page'] = '&laquo;';
@@ -47,13 +47,13 @@ class Test extends CI_Controller {
                 $where['partnerstatus'] = 1;
                 $data['partner'] = $this->app_model->getSelectedData('partners',$where);
                 $data['menuadmin'] = $this->user_model->menuadmin($idroles);
-                $data['test'] = $this->test_model->getTest($limit,$offset);
+                $data['datapartner'] = $this->partner_model->getPartner($limit,$offset);
                 $this->pagination->initialize($config);
 
                 $this->load->view('global/header', $data);
-                $this->load->view('test',$data);
-                $this->load->view('widget/addtest',$data);
-                $this->load->view('widget/edittest');
+                $this->load->view('partner',$data);
+                $this->load->view('widget/addpartner',$data);
+                $this->load->view('widget/editpartner');
                 $this->load->view('global/footer');
 
            } else {
@@ -75,15 +75,15 @@ class Test extends CI_Controller {
             if( is_null ($offset)) { $offset = 0; }else {$offset = $this->uri->segment(3);}
 
             $config['uri_segment'] = 3;
-            $config['base_url'] = base_url().'test/page/';
-            $config['total_rows'] = $this->test_model->count_test();
+            $config['base_url'] = base_url().'partner/page/';
+            $config['total_rows'] = $this->partner_model->count_partner();
             $config['per_page'] = $limit;
             $config['num_link'] = 1;
             $config['next_page'] = '&laquo;';
             $config['prev_page'] = '&raquo;';
 
 
-                $data['test'] = $this->test_model->getTest($limit,$offset);
+                $data['datapartner'] = $this->partner_model->getPartner($limit,$offset);
                 $this->pagination->initialize($config);
 
                 $this->load->view('refresh',$data);
@@ -95,8 +95,8 @@ class Test extends CI_Controller {
     }
 
 
-    public function addtest() {
-        $this->test_model->addtest();
+    public function addpartner() {
+        $this->partner_model->addpartner();
     }
 
     public function refreshList($offset = NULL) {
@@ -104,14 +104,14 @@ class Test extends CI_Controller {
        if( is_null ($offset)) { $offset = 0; } else {$offset = $this->uri->segment(3);}
 
             $config['uri_segment'] = 3;
-            $config['base_url'] = base_url().'test/page/';
-            $config['total_rows'] = $this->test_model->count_test();
+            $config['base_url'] = base_url().'partner/page/';
+            $config['total_rows'] = $this->partner_model->count_partner();
             $config['per_page'] = $limit;
             $config['num_link'] = 1;
             $config['next_page'] = '&laquo;';
             $config['prev_page'] = '&raquo;';
       
-      $data['test'] = $this->test_model->getTest($limit,$offset);
+      $data['datapartner'] = $this->partner_model->getPartner($limit,$offset);
       $this->pagination->initialize($config);
       $this->load->view('refresh',$data);
     }
@@ -148,12 +148,12 @@ class Test extends CI_Controller {
 
     }
 
-    function updatetest() {
-        $this->test_model->updatetest();
+    function updatepartner() {
+        $this->partner_model->updatepartner();
     }
 
-    function deletetest() {
-        $this->test_model->deletetest();
+    function deletepartner() {
+        $this->partner_model->deletepartner();
     }
 
 
