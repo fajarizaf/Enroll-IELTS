@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Inang: 127.0.0.1
--- Waktu pembuatan: 14 Jan 2015 pada 12.23
+-- Waktu pembuatan: 19 Jan 2015 pada 11.55
 -- Versi Server: 5.5.32
 -- Versi PHP: 5.4.19
 
@@ -154,45 +154,45 @@ CREATE TABLE IF NOT EXISTS `branches` (
   `updatedby` int(11) DEFAULT NULL,
   PRIMARY KEY (`idbranches`),
   KEY `userid_idx` (`idusers`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=40 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=42 ;
 
 --
 -- Dumping data untuk tabel `branches`
 --
 
 INSERT INTO `branches` (`idbranches`, `idusers`, `idpartners`, `branchname`, `branchphone`, `branchemail`, `branchaddr`, `city`, `activestatus`, `created`, `createdby`, `updated`, `updatedby`) VALUES
-(1, 2, 5, 'Edlink+ConneX Kelapa Gading', '021|4525965', 'kelapagading@edlink.or.id', 'Jl. raya Boulevard Timur Blok NE 1/41 Kelapa Gading \nJakarta', 'Jakarta', 1, '2013-01-10 21:32:24', 1, NULL, 1),
-(2, 2, 5, 'Edlink+ConneX Surabaya', '031|7382068', 'melly@edlink.or.id', 'Jl. HR Mohammad No.342B\nSurabaya \n', 'Surabaya', 1, '2013-01-10 21:33:03', 1, NULL, 1),
-(3, 3, 6, 'TBI Multatuli Medan', '061|4555123', 'mery_chris1012@hotmail.com', 'Kompleks Multatuli Indah Blok CC No.53-54\nMedan', 'Medan', 1, '2013-01-10 21:45:43', 1, NULL, 1),
-(4, 2, 5, 'Edlink+ConneX Bandung', '022|929102910', 'connexbandung@edlink.com', 'Jl. Sunda F4- G6 Bandung 40112', 'Bandung', 1, '2013-01-10 21:46:32', NULL, NULL, 1),
-(5, 3, 5, 'TBI Kuningan', '021|30027988', 'isofficer.kuningan@tbi.co.id', 'Menara Kuningan Jl. HR Rasuna Said Blok X-7 Kav 5 Jakarta Selatan', 'Jakarta', 1, '2013-03-08 06:59:35', NULL, NULL, 1),
-(6, 3, 6, 'TBI Sudirman', '021|252 2965', 'astika@sudirman.tbi.co.id', 'Sequis Centre Mezzanine floor Jl. jend Sudirman kav 71 Jakarta Selatan', 'Jakarta', 1, '2013-03-11 05:48:16', 1, NULL, 1),
-(10, 1, 7, 'FK UNPAD Bandung', '021|30027095', 'registration@ieltsindonesia.co.id', 'Fakultas Kedokteran UNPAD, 6th floor\nJL. Prof Eijkman 38, Cipaganti \nBandung', 'Bandung', 1, '2013-05-07 11:30:19', 1, NULL, 1),
-(11, 1, 7, 'The Energy Building (paramadina)', '021|30027095', 'registration@ieltsindonesia.co.id', 'Paramadina Graduate school, 22th\nJl. Jend Sudirman Kav 58 \nJakarta', 'Jakarta', 1, '2013-05-07 13:25:27', 1, NULL, 1),
-(12, 3, 6, 'TBI Fatmawati', '021|750 2616', 'isofficer.fatmawati@tbi.co.id', 'Wisma Subud Jl.RS Fatmawati No.52 - Cilandak\nJakarta Selatan', 'Jakarta', 1, '2013-05-07 13:37:07', 1, NULL, 1),
-(13, 26, 0, 'ELC Makasar', '+62411|857 000', 'dwi.nilamsari@elceducation.net', 'Jl. Lamadukeleng no 60 Makasar', 'Makassar', 1, '2013-05-07 13:41:53', 1, NULL, NULL),
-(14, 2, 5, 'Edlink+ConneX Bandung', '022|4262060', 'dita@edlink.or.id', 'Jl. Sunda F4-G6 Bandung 40112', 'Bandung', 1, '2013-05-31 00:21:14', 1, NULL, NULL),
-(15, 3, 6, 'TBI Serpong', '', 'tbiserpong@yahoo.com', 'Ruko Golden Boulevard blok B 21-23 Jl. Pahlawan Seribu BSD City Tangerang', 'Tangerang', 1, '2013-05-31 00:44:37', 1, NULL, 1),
-(16, 1, 7, 'Paramadina University- Medco Energy Jakarta', '021|30027095', 'registration@ieltsindonesia.co.id', 'Medco Energy/The Energy Building\n22th floor, Paramadina Graduate School\nJl. Jend Sudirman Kav 58\nJakarta', 'Jakarta', 1, '2013-05-31 15:52:51', 1, NULL, 1),
-(17, 2, 5, 'Edlink+ConneX Yogyakarta', '|', '', '', 'Yogyakarta', 1, '2013-05-31 18:03:36', 1, NULL, NULL),
-(20, 26, 7, 'FK UNPAD Bandung', '021 |30027095', 'registration@ieltsindonesia.co.id', 'Jl. Taman Curie 5 Bandung 40171', 'Bandung', 1, '2013-06-12 15:32:10', 1, NULL, NULL),
-(21, 26, 7, 'SNA Surabaya', '021|300 27 095', 'registration@ieltsindonesia.co.id', 'Jalan Citralan\nSurabaya', 'Surabaya', 1, '2013-07-31 16:25:08', 1, NULL, NULL),
-(22, 187, 7, 'Global Higher Education', '| 778 421823', '', 'Ruko Penuin Centre Block OC No.4\nBatam  Kepulauan Riau', 'Batam', 1, '2013-10-17 13:01:34', 1, NULL, NULL),
-(23, 26, 7, 'Paramadina University- Medco Energy Jakarta', '021|30027095', 'registration@ieltsindonesia.co.id', ' 	Medco Energy/The Energy Building 22th floor, Paramadina Graduate School Jl. Jend Sudirman Kav 58 Jakarta', 'Jakarta', 1, '2013-12-03 14:57:36', 1, NULL, NULL),
-(24, 26, 7, 'Surabaya', '021 |300 27 095', 'registration@ieltsindonesia.co.id', 'Surabaya', 'Surabaya', 1, '2014-03-21 06:48:38', 1, NULL, NULL),
-(27, 2, 7, 'ELC Makasar', '+62411|857 000', 'dwi.nilamsari@elceducation.net', 'Jl. Lamadukeleng no 60 Makasar', 'Makasar', 1, '2014-04-21 09:52:47', 1, NULL, 1),
-(28, 26, 7, 'BPPT ', '021|30027095/96', 'admin@ielts.utc-usg.com', 'BPPT (Badan Pengkajian Dan Penerapan Teknologi)\nJl Mh Thamrin 8 Jakarta Pusat 10340', 'Jakarta', 1, '2014-05-13 02:35:24', 1, NULL, NULL),
-(29, 26, 7, 'BPPT - Jakarta', '021|300 27 095', 'admin@ielts.utc-usg.com', 'BPPT Building II, Lantai 3\nJl. M. H. Thamrin No.8\nJakarta Pusat 10340', 'Jakarta', 1, '2014-06-16 09:41:19', 1, NULL, NULL),
-(30, 26, 7, 'ITB', '021|30027095', '', 'ITB Bandung\nLABTEK 8, 1st floor\nJalan Ganesha No. 10 Bandung', 'Bandung', 1, '2014-07-23 04:48:46', 1, NULL, NULL),
-(31, 26, 7, 'ITENAS', '021|300 27 095', 'admin@ielts.utc-usg.com', 'Jl. PKH Hasan mustapa No 23 Jawa Barat 40124', 'Bandung', 1, '2014-08-04 02:59:09', 1, NULL, NULL),
-(32, 2, 6, 'ITENAS Jln BPK Hasan Mustapa No.23', '0213002795', 'partner@ielts.utc-usg.com', 'Jln BPK Hasan Mustapa No.23 Jawa Barat Bandung 40124 Bandung', 'Bandung', 1, NULL, NULL, NULL, NULL),
-(33, 1, 7, 'Hotel Maharadja (2nd Floor)', NULL, 'ahmad.zakyi@gmail.com', 'Jalan Kapten Tendean No. 1, Jakarta Selatan, 12700', 'Jakarta', 1, NULL, NULL, NULL, NULL),
-(34, 26, 7, 'UTC', '021 |30027095', 'registration@ieltsindonesia.co.id', 'Unisadhuguna Testing Centre\nMenara Kuningan, 14th floor blok X-7 Kav-5\nJakarta Selatan 12940', 'Jakarta', 1, '2014-10-04 02:18:25', 1, NULL, NULL),
-(35, 26, 7, 'Universitas Indonesia', '021|7272625', 'sofie_mucher@yahoo.com', 'Universitas Indonesia\nBuilding, 2nd Floor (Gedung Kelas Khusus International - KKI FEUI)\nKampus UI, Depok', 'Depok', 1, '2014-10-22 07:14:25', 1, NULL, NULL),
-(36, 26, 7, 'Jakarta', '021|30027095', 'admin@ielts.utc-usg.com', 'Jakarta', 'Jakarta', 1, '2014-11-03 02:36:53', 1, NULL, NULL),
-(37, 1, 7, 'Grand Cempaka Hotel ', '', '', 'Grand Cempaka Hotel\r\n1st Floor, Jl. Let Jend Suprapto No 51\r\nCempaka Putih, Jakarta', 'Jakarta', 1, NULL, 1, NULL, NULL),
-(38, 1, 7, 'Hotel Cemara Jakarta', '', '', 'Jl Wahid Hasyim no 69 Jakarta Pusat', 'Jakarta', 1, NULL, 1, NULL, NULL),
-(39, 1, 7, 'V Hotel Bandung', '', '', 'V Hotel Lantai 6, meeting room (vision), Jalan terusan sentra ria - terusan setrawangi raya (belakang setrasari mall) Bandung', 'Bandung', 1, NULL, NULL, NULL, NULL);
+(1, 2, 5, 'Edlink+ConneX Kelapa Gading', '021|4525965', 'kelapagading@edlink.or.id', 'Jl. raya Boulevard Timur Blok NE 1/41 Kelapa Gading \nJakarta', '1', 1, '2013-01-10 21:32:24', 1, NULL, 1),
+(2, 2, 5, 'Edlink+ConneX Surabaya', '031|7382068', 'melly@edlink.or.id', 'Jl. HR Mohammad No.342B\nSurabaya \n', '2', 1, '2013-01-10 21:33:03', 1, NULL, 1),
+(3, 3, 6, 'TBI Multatuli Medan', '061|4555123', 'mery_chris1012@hotmail.com', 'Kompleks Multatuli Indah Blok CC No.53-54\nMedan', '3', 1, '2013-01-10 21:45:43', 1, NULL, 1),
+(4, 2, 5, 'Edlink+ConneX Bandung', '022|929102910', 'connexbandung@edlink.com', 'Jl. Sunda F4- G6 Bandung 40112', '4', 1, '2013-01-10 21:46:32', NULL, NULL, 1),
+(5, 3, 5, 'TBI Kuningan', '021|30027988', 'isofficer.kuningan@tbi.co.id', 'Menara Kuningan Jl. HR Rasuna Said Blok X-7 Kav 5 Jakarta Selatan', '1', 1, '2013-03-08 06:59:35', NULL, NULL, 1),
+(6, 3, 6, 'TBI Sudirman', '021|252 2965', 'astika@sudirman.tbi.co.id', 'Sequis Centre Mezzanine floor Jl. jend Sudirman kav 71 Jakarta Selatan', '1', 1, '2013-03-11 05:48:16', 1, NULL, 1),
+(10, 1, 7, 'FK UNPAD Bandung', '021|30027095', 'registration@ieltsindonesia.co.id', 'Fakultas Kedokteran UNPAD, 6th floor\nJL. Prof Eijkman 38, Cipaganti \nBandung', '4', 1, '2013-05-07 11:30:19', 1, NULL, 1),
+(11, 1, 7, 'The Energy Building (paramadina)', '021|30027095', 'registration@ieltsindonesia.co.id', 'Paramadina Graduate school, 22th\nJl. Jend Sudirman Kav 58 \nJakarta', '1', 1, '2013-05-07 13:25:27', 1, NULL, 1),
+(12, 3, 6, 'TBI Fatmawati', '021|750 2616', 'isofficer.fatmawati@tbi.co.id', 'Wisma Subud Jl.RS Fatmawati No.52 - Cilandak\nJakarta Selatan', '1', 1, '2013-05-07 13:37:07', 1, NULL, 1),
+(13, 26, 0, 'ELC Makasar', '+62411|857 000', 'dwi.nilamsari@elceducation.net', 'Jl. Lamadukeleng no 60 Makasar', '5', 1, '2013-05-07 13:41:53', 1, NULL, NULL),
+(14, 2, 5, 'Edlink+ConneX Bandung', '022|4262060', 'dita@edlink.or.id', 'Jl. Sunda F4-G6 Bandung 40112', '4', 1, '2013-05-31 00:21:14', 1, NULL, NULL),
+(15, 3, 6, 'TBI Serpong', '', 'tbiserpong@yahoo.com', 'Ruko Golden Boulevard blok B 21-23 Jl. Pahlawan Seribu BSD City Tangerang', '6', 1, '2013-05-31 00:44:37', 1, NULL, 1),
+(16, 1, 7, 'Paramadina University- Medco Energy Jakarta', '021|30027095', 'registration@ieltsindonesia.co.id', 'Medco Energy/The Energy Building\n22th floor, Paramadina Graduate School\nJl. Jend Sudirman Kav 58\nJakarta', '1', 1, '2013-05-31 15:52:51', 1, NULL, 1),
+(17, 2, 5, 'Edlink+ConneX Yogyakarta', '', '', '', '7', 1, '2013-05-31 18:03:36', 1, NULL, NULL),
+(20, 26, 7, 'FK UNPAD Bandung', '021 |30027095', 'registration@ieltsindonesia.co.id', 'Jl. Taman Curie 5 Bandung 40171', '4', 1, '2013-06-12 15:32:10', 1, NULL, NULL),
+(21, 26, 7, 'SNA Surabaya', '021|300 27 095', 'registration@ieltsindonesia.co.id', 'Jalan Citralan\nSurabaya', '2', 1, '2013-07-31 16:25:08', 1, NULL, NULL),
+(22, 187, 7, 'Global Higher Education', '| 778 421823', '', 'Ruko Penuin Centre Block OC No.4\nBatam  Kepulauan Riau', '8', 1, '2013-10-17 13:01:34', 1, NULL, NULL),
+(23, 26, 7, 'Paramadina University- Medco Energy Jakarta', '021|30027095', 'registration@ieltsindonesia.co.id', ' 	Medco Energy/The Energy Building 22th floor, Paramadina Graduate School Jl. Jend Sudirman Kav 58 Jakarta', '1', 1, '2013-12-03 14:57:36', 1, NULL, NULL),
+(24, 26, 7, 'Surabaya', '021 |300 27 095', 'registration@ieltsindonesia.co.id', 'Surabaya', '2', 1, '2014-03-21 06:48:38', 1, NULL, NULL),
+(27, 2, 7, 'ELC Makasar', '+62411|857 000', 'dwi.nilamsari@elceducation.net', 'Jl. Lamadukeleng no 60 Makasar', '5', 1, '2014-04-21 09:52:47', 1, NULL, 1),
+(28, 26, 7, 'BPPT ', '021|30027095/96', 'admin@ielts.utc-usg.com', 'BPPT (Badan Pengkajian Dan Penerapan Teknologi)\nJl Mh Thamrin 8 Jakarta Pusat 10340', '1', 1, '2014-05-13 02:35:24', 1, NULL, NULL),
+(29, 26, 7, 'BPPT - Jakarta', '021|300 27 095', 'admin@ielts.utc-usg.com', 'BPPT Building II, Lantai 3\nJl. M. H. Thamrin No.8\nJakarta Pusat 10340', '1', 1, '2014-06-16 09:41:19', 1, NULL, NULL),
+(30, 26, 7, 'ITB', '021|30027095', '', 'ITB Bandung\nLABTEK 8, 1st floor\nJalan Ganesha No. 10 Bandung', '4', 1, '2014-07-23 04:48:46', 1, NULL, NULL),
+(31, 1, 7, 'ITENAS', '021|300 27 095', 'admin@ielts.utc-usg.com', 'Jl. PKH Hasan mustapa No 23 Jawa Barat 40124', '4', 1, '2014-08-04 02:59:09', 1, NULL, NULL),
+(32, 2, 6, 'ITENAS Jln BPK Hasan Mustapa No.23', '0213002795', 'partner@ielts.utc-usg.com', 'Jln BPK Hasan Mustapa No.23 Jawa Barat Bandung 40124 Bandung', '4', 1, NULL, NULL, NULL, NULL),
+(33, 1, 7, 'Hotel Maharadja (2nd Floor)', '', 'ahmad.zakyi@gmail.com', 'Jalan Kapten Tendean No. 1, Jakarta Selatan, 12700', '1', 1, NULL, NULL, NULL, NULL),
+(34, 1, 7, 'UTC', '021 |30027095', 'registration@ieltsindonesia.co.id', 'Unisadhuguna Testing Centre\r\nMenara Kuningan, 14th floor blok X-7 Kav-5\r\nJakarta Selatan 12940', '1', 1, '2014-10-04 02:18:25', 1, NULL, NULL),
+(35, 26, 7, 'Universitas Indonesia', '021|7272625', 'sofie_mucher@yahoo.com', 'Universitas Indonesia\nBuilding, 2nd Floor (Gedung Kelas Khusus International - KKI FEUI)\nKampus UI, Depok', '9', 1, '2014-10-22 07:14:25', 1, NULL, NULL),
+(36, 26, 7, 'Jakarta', '021|30027095', 'admin@ielts.utc-usg.com', 'Jakarta', '1', 1, '2014-11-03 02:36:53', 1, NULL, NULL),
+(37, 1, 7, 'Grand Cempaka Hotel ', '', '', 'Grand Cempaka Hotel\r\n1st Floor, Jl. Let Jend Suprapto No 51\r\nCempaka Putih, Jakarta', '1', 1, NULL, 1, NULL, NULL),
+(38, 1, 7, 'Hotel Cemara Jakarta', '', '', 'Jl Wahid Hasyim no 69 Jakarta Pusat', '1', 1, NULL, 1, NULL, NULL),
+(39, 1, 7, 'V Hotel Bandung', '', '', 'V Hotel Lantai 6, meeting room (vision), Jalan terusan sentra ria - terusan setrawangi raya (belakang setrasari mall) Bandung', '4', 1, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -284,6 +284,33 @@ INSERT INTO `city` (`no`, `name`, `code`) VALUES
 (36, 'Burkina Faso', '029'),
 (37, 'Burundi', '031'),
 (38, 'Cambodia', '032');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `citybranches`
+--
+
+CREATE TABLE IF NOT EXISTS `citybranches` (
+  `idcity` int(50) NOT NULL AUTO_INCREMENT,
+  `cityname` varchar(200) NOT NULL,
+  PRIMARY KEY (`idcity`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=36 ;
+
+--
+-- Dumping data untuk tabel `citybranches`
+--
+
+INSERT INTO `citybranches` (`idcity`, `cityname`) VALUES
+(1, 'Jakarta'),
+(2, 'Surabaya'),
+(3, 'Medan'),
+(4, 'Bandung'),
+(5, 'Makassar'),
+(6, 'Tanggerang'),
+(7, 'Yogyakarta'),
+(8, 'Battam'),
+(9, 'Depok');
 
 -- --------------------------------------------------------
 
@@ -4388,7 +4415,7 @@ CREATE TABLE IF NOT EXISTS `registrations` (
   PRIMARY KEY (`idregistrations`),
   KEY `scheduleid_idx` (`idschedules`),
   KEY `userid_idx` (`idusers`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2267 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2168 ;
 
 --
 -- Dumping data untuk tabel `registrations`
@@ -6740,7 +6767,7 @@ INSERT INTO `schedules` (`idschedules`, `idbranches`, `idexams`, `schdate`, `sch
 (172, 13, 4, '2014-07-12', '0000-00-00', '0000-00-00', '0000-00-00', 1, 2350000, 190, 120, 14, '2014-06-20 07:47:57', 1, '0000-00-00 00:00:00', 1),
 (173, 20, 3, '2014-07-19', '0000-00-00', '0000-00-00', '0000-00-00', 1, 2350000, 190, 120, 24, '2014-07-02 05:04:33', 1, '0000-00-00 00:00:00', 1),
 (174, 30, 4, '2014-08-16', '0000-00-00', '2014-08-07', '0000-00-00', 1, 0, 0, 0, 20, '2014-07-23 04:51:04', 1, '0000-00-00 00:00:00', 1),
-(175, 20, 4, '0000-00-00', '0000-00-00', '2014-09-11', '0000-00-00', 1, 2350000, 190, 120, 20, '2014-08-19 09:17:08', 1, NULL, NULL),
+(175, 20, 4, '2014-12-17', '0000-00-00', '2014-09-11', '0000-00-00', 1, 2350000, 190, 120, 20, '2014-08-19 09:17:08', 1, NULL, NULL),
 (176, 20, 3, '2014-09-20', '0000-00-00', '2014-09-11', '0000-00-00', 1, 2350000, 190, 120, 4, '2014-08-19 09:17:51', 1, '0000-00-00 00:00:00', 1),
 (177, 20, 4, '2014-09-20', '0000-00-00', '2014-09-11', '0000-00-00', 1, 2350000, 190, 120, 6, '2014-08-19 09:19:35', 1, '0000-00-00 00:00:00', 1),
 (178, 13, 4, '2014-09-27', '0000-00-00', '2014-09-18', '0000-00-00', 1, 2350000, 190, 120, 22, '2014-09-17 04:44:39', 1, '0000-00-00 00:00:00', 1),
