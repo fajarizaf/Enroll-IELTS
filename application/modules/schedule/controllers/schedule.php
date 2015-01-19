@@ -278,7 +278,6 @@ class Schedule extends CI_Controller {
 
                 $data['schedule'] = $this->schedule_model->filterbyvenue($date,$limit,$offset);
                 $this->pagination->initialize($config);
-
                 $this->load->view('refresh',$data);
     }
 

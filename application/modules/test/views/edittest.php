@@ -21,6 +21,9 @@
       });
 
 
+    $('.chosen-container').css({'width':'210px'});
+
+
 
       $( "#date_of_births" ).datepicker({
                     showOn: "button",
@@ -86,6 +89,18 @@
                   <option value="<?php echo $rows->idpartners; ?>" ><?php echo $rows->partnername; ?></option>
                 <?php foreach ($partner as $row) { ?>
                   <option value="<?php echo $row->idpartners ?>"><?php echo $row->partnername ?></option> 
+                <?php } ?> 
+             </select>
+            </td>
+          </tr>
+
+          <tr>
+            <td style="width:270px;">City</td>
+            <td>
+             <select style="width:30px;" class="select"  id="selectcity" name="selectcity">
+             <option value="<?php echo $rows->city ?>"><?php echo $rows->cityname ?></option>
+                <?php foreach ($city as $row) { ?>
+                  <option value="<?php echo $row->idcity ?>"><?php echo $row->cityname ?></option> 
                 <?php } ?> 
              </select>
             </td>
@@ -201,6 +216,9 @@
               $( "#formupdatetest" ).validate({
                 rules: {
                   selectpartner: {
+                    required: true
+                  },
+                  selectcity: {
                     required: true
                   },
                   testvenuename: {

@@ -48,12 +48,14 @@ class Test extends CI_Controller {
                 $data['partner'] = $this->app_model->getSelectedData('partners',$where);
                 $data['menuadmin'] = $this->user_model->menuadmin($idroles);
                 $data['test'] = $this->test_model->getTest($limit,$offset);
+                $data['city'] = $this->app_model->get_data_desc('citybranches');
                 $this->pagination->initialize($config);
 
                 $this->load->view('global/header', $data);
                 $this->load->view('test',$data);
                 $this->load->view('widget/addtest',$data);
                 $this->load->view('widget/edittest');
+                $this->load->view('widget/filtercity',$data);
                 $this->load->view('global/footer');
 
            } else {
@@ -65,6 +67,15 @@ class Test extends CI_Controller {
         redirect('register');
       }
 
+    }
+
+
+    public function addcity() {
+        $this->test_model->addcity();
+    }
+
+    public function updatecity() {
+        $this->test_model->updatecity();
     }
 
 
@@ -99,6 +110,8 @@ class Test extends CI_Controller {
         $this->test_model->addtest();
     }
 
+    
+
     public function refreshList($offset = NULL) {
       $limit = 10;
        if( is_null ($offset)) { $offset = 0; } else {$offset = $this->uri->segment(3);}
@@ -129,6 +142,7 @@ class Test extends CI_Controller {
         <td><?php echo $row->branchname ?></td>
         <td><?php echo $row->branchphone ?></td>
         <td><?php echo $row->branchaddr ?></td>
+        <td><?php echo $row->cityname ?></td>
         <td><div url="<?php echo base_url() ?>test/edittest/<?php echo $row->idbranches; ?>" href="#edittest" data-toggle="modal" class="iconedit"></div></td>
         <td><div value="<?php echo $row->idbranches; ?>"  class="icondelete"></div></td>
 
@@ -142,6 +156,7 @@ class Test extends CI_Controller {
 
     function edittest() {
         $data['datatest'] = $this->test_model->getedittest();
+        $data['city'] = $this->app_model->get_data_desc('citybranches');
         $wheres['partnerstatus'] = 1;
         $data['partner'] = $this->app_model->getSelectedData('partners',$wheres);
         $this->load->view('edittest',$data);
@@ -155,6 +170,93 @@ class Test extends CI_Controller {
     function deletetest() {
         $this->test_model->deletetest();
     }
+
+    function deletecity() {
+        $this->test_model->deletecity();
+    }
+
+    function filterbypartner($offset = NULL) {
+         $limit = 2;
+       if( is_null ($offset)) { $offset = 0; }else {$offset = $this->uri->segment(4);}
+       $date = $this->input->post('partner');
+
+            $config['uri_segment'] = 4;
+            $config['base_url'] = base_url().'test/pagepartner/'.$date.'';
+            $config['total_rows'] = $this->test_model->count_testpartner($date);
+            $config['per_page'] = $limit;
+            $config['num_link'] = 1;
+            $config['next_page'] = '&laquo;';
+            $config['prev_page'] = '&raquo;';
+
+
+       $data['test'] = $this->test_model->filterbypartner($date,$limit,$offset);
+       $this->pagination->initialize($config);
+       $this->load->view('refresh',$data);
+    }
+
+
+
+    function filterbycity($offset = NULL) {
+         $limit = 2;
+       if( is_null ($offset)) { $offset = 0; }else {$offset = $this->uri->segment(4);}
+       $date = $this->input->post('city');
+
+            $config['uri_segment'] = 4;
+            $config['base_url'] = base_url().'test/pagecity/'.$date.'';
+            $config['total_rows'] = $this->test_model->count_testcity($date);
+            $config['per_page'] = $limit;
+            $config['num_link'] = 1;
+            $config['next_page'] = '&laquo;';
+            $config['prev_page'] = '&raquo;';
+
+
+       $data['test'] = $this->test_model->filterbycity($date,$limit,$offset);
+       $this->pagination->initialize($config);
+       $this->load->view('refresh',$data);
+    }
+
+
+    public function pagecity($offset = NULL) {
+
+            $limit = 2;
+            if( is_null ($offset)) { $offset = 0; }else {$offset = $this->uri->segment(4);}
+            $date = $this->uri->segment(3);
+
+            $config['uri_segment'] = 4;
+            $config['base_url'] = base_url().'test/pagecity/'.$date.'';
+            $config['total_rows'] = $this->test_model->count_testcity($date);
+            $config['per_page'] = $limit;
+            $config['num_link'] = 1;
+            $config['next_page'] = '&laquo;';
+            $config['prev_page'] = '&raquo;';
+
+                $data['test'] = $this->test_model->filterbycity($date,$limit,$offset);
+                $this->pagination->initialize($config);
+                $this->load->view('refresh',$data);
+    }
+
+
+    public function pagepartner($offset = NULL) {
+
+            $limit = 2;
+            if( is_null ($offset)) { $offset = 0; }else {$offset = $this->uri->segment(4);}
+            $date = $this->uri->segment(3);
+
+            $config['uri_segment'] = 4;
+            $config['base_url'] = base_url().'test/pagepartner/'.$date.'';
+            $config['total_rows'] = $this->test_model->count_testpartner($date);
+            $config['per_page'] = $limit;
+            $config['num_link'] = 1;
+            $config['next_page'] = '&laquo;';
+            $config['prev_page'] = '&raquo;';
+
+                $data['test'] = $this->test_model->filterbypartner($date,$limit,$offset);
+                $this->pagination->initialize($config);
+                $this->load->view('refresh',$data);
+    }
+
+
+
 
 
 

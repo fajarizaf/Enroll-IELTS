@@ -46,6 +46,7 @@ class Payment extends CI_Controller {
                 $idroles = $this->session->userdata('statususer');
                 $data['menuadmin'] = $this->user_model->menuadmin($idroles);
                 $data['payment'] = $this->payment_model->getPayment($limit,$offset);
+                $data['venuetest'] = $this->app_model->get_data('branches');
                 $this->pagination->initialize($config);
 
                 $this->load->view('global/header', $data);
@@ -172,6 +173,85 @@ class Payment extends CI_Controller {
 
     function updateschedule() {
         $this->schedule_model->updateschedule();
+    }
+
+
+    function filterbyvenue($offset = NULL) {
+         $limit = 2;
+       if( is_null ($offset)) { $offset = 0; }else {$offset = $this->uri->segment(4);}
+       $venue = $this->input->post('venue');
+
+            $config['uri_segment'] = 4;
+            $config['base_url'] = base_url().'payment/pagevenue/'.$venue.'';
+            $config['total_rows'] = $this->payment_model->count_paymentvenue($venue);
+            $config['per_page'] = $limit;
+            $config['num_link'] = 1;
+            $config['next_page'] = '&laquo;';
+            $config['prev_page'] = '&raquo;';
+
+
+       $data['refresh'] = $this->payment_model->filterbyvenue($venue,$limit,$offset);
+       $this->pagination->initialize($config);
+       $this->load->view('refresh',$data);
+    }
+
+
+     public function pagevenue($offset = NULL) {
+
+            $limit = 2;
+            if( is_null ($offset)) { $offset = 0; }else {$offset = $this->uri->segment(4);}
+            $date = $this->uri->segment(3);
+
+            $config['uri_segment'] = 4;
+            $config['base_url'] = base_url().'payment/pagevenue/'.$date.'';
+            $config['total_rows'] = $this->payment_model->count_paymentvenue($date);
+            $config['per_page'] = $limit;
+            $config['num_link'] = 1;
+            $config['next_page'] = '&laquo;';
+            $config['prev_page'] = '&raquo;';
+
+                $data['refresh'] = $this->payment_model->filterbyvenue($date,$limit,$offset);
+                $this->pagination->initialize($config);
+                $this->load->view('refresh',$data);
+    }
+
+
+     function filterbydate($offset = NULL) {
+         $limit = 2;
+       if( is_null ($offset)) { $offset = 0; }else {$offset = $this->uri->segment(4);}
+       $venue = $this->input->post('date');
+
+            $config['uri_segment'] = 4;
+            $config['base_url'] = base_url().'payment/pagedate/'.$venue.'';
+            $config['total_rows'] = $this->payment_model->count_paymentdate($venue);
+            $config['per_page'] = $limit;
+            $config['num_link'] = 1;
+            $config['next_page'] = '&laquo;';
+            $config['prev_page'] = '&raquo;';
+
+
+       $data['refresh'] = $this->payment_model->filterbydate($venue,$limit,$offset);
+       $this->pagination->initialize($config);
+       $this->load->view('refresh',$data);
+    }
+
+    public function pagedate($offset = NULL) {
+
+            $limit = 2;
+            if( is_null ($offset)) { $offset = 0; }else {$offset = $this->uri->segment(4);}
+            $date = $this->uri->segment(3);
+
+            $config['uri_segment'] = 4;
+            $config['base_url'] = base_url().'payment/pagedate/'.$date.'';
+            $config['total_rows'] = $this->payment_model->count_paymentdate($date);
+            $config['per_page'] = $limit;
+            $config['num_link'] = 1;
+            $config['next_page'] = '&laquo;';
+            $config['prev_page'] = '&raquo;';
+
+                $data['refresh'] = $this->payment_model->filterbydate($date,$limit,$offset);
+                $this->pagination->initialize($config);
+                $this->load->view('refresh',$data);
     }
 
 

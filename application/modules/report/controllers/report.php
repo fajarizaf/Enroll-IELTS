@@ -196,7 +196,7 @@ class Report extends CI_Controller {
             $idbranches = $this->input->post('selectvenues');
 
             $config['uri_segment'] = 3;
-            $config['base_url'] = base_url().'report/pagevenue/';
+            $config['base_url'] = base_url().'report/pagevenue/'.$idbranches.'';
             $config['total_rows'] = $this->report_model->count_reportvenue($idbranches);
             $config['per_page'] = $limit;
             $config['num_link'] = 1;
@@ -204,6 +204,25 @@ class Report extends CI_Controller {
             $config['prev_page'] = '&raquo;';
                 
                 $data['refresh'] = $this->report_model->filterByVenues($idbranches,$limit,$offset);
+                $this->pagination->initialize($config);
+                $this->load->view('refresh',$data);
+    }
+
+    public function pagevenue($offset = NULL) {
+
+            $limit = 2;
+            if( is_null ($offset)) { $offset = 0; }else {$offset = $this->uri->segment(4);}
+            $date = $this->uri->segment(3);
+
+            $config['uri_segment'] = 4;
+            $config['base_url'] = base_url().'report/pagevenue/'.$date.'';
+            $config['total_rows'] = $this->report_model->count_reportvenue($date);
+            $config['per_page'] = $limit;
+            $config['num_link'] = 1;
+            $config['next_page'] = '&laquo;';
+            $config['prev_page'] = '&raquo;';
+
+                $data['refresh'] = $this->report_model->filterByVenues($date,$limit,$offset);
                 $this->pagination->initialize($config);
 
                 $this->load->view('refresh',$data);
@@ -217,7 +236,27 @@ class Report extends CI_Controller {
             $date = $this->input->post('date');
 
             $config['uri_segment'] = 3;
-            $config['base_url'] = base_url().'report/pagedate/';
+            $config['base_url'] = base_url().'report/pagedate/'.$date.'';
+            $config['total_rows'] = $this->report_model->count_reportdate($date);
+            $config['per_page'] = $limit;
+            $config['num_link'] = 1;
+            $config['next_page'] = '&laquo;';
+            $config['prev_page'] = '&raquo;';
+                
+                $data['refresh'] = $this->report_model->filterByDate($date,$limit,$offset);
+                $this->pagination->initialize($config);
+
+                $this->load->view('refresh',$data);
+    }
+
+
+    function pagedate($offset = NULL) {
+            $limit = 3;
+            if( is_null ($offset)) { $offset = 0; }else {$offset = $this->uri->segment(4);}
+            $date = $this->uri->segment(3);
+
+            $config['uri_segment'] = 4;
+            $config['base_url'] = base_url().'report/pagedate/'.$date.'';
             $config['total_rows'] = $this->report_model->count_reportdate($date);
             $config['per_page'] = $limit;
             $config['num_link'] = 1;

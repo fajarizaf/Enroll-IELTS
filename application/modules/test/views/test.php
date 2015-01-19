@@ -2,6 +2,7 @@
   $(document).ready(function() {
     $('#addtestvenue').css({'width':'770px','margin-left':'-375px'});
     $('#edittest').css({'width':'770px','margin-left':'-375px'});
+    $('#filtercity').css({'width':'770px','margin-left':'-375px'});
 
     $('.box-addtest').slimScroll({
              width: '760px',
@@ -9,6 +10,11 @@
     });
 
     $('.box-edittest').slimScroll({
+             width: '760px',
+             height:'380px'
+    });
+
+    $('.box-filtercity').slimScroll({
              width: '760px',
              height:'380px'
     });
@@ -35,7 +41,7 @@
       });
 
 
-    $('#selectroles').change(function() {
+    $('#selectpartner').change(function() {
         $('#parentloading').fadeIn('slow');
         $('.content-user').css({'opacity':'0.2'}); 
         
@@ -43,12 +49,12 @@
               var countdown = setInterval(function(){
                 if (counter == 0) {
                 clearInterval(countdown);
-                var idroles = $('#selectroles').val();
-                var dataString = 'selectroles=' + idroles;
+                var idroles = $('#selectpartner').val();
+                var dataString = 'partner=' + idroles;
 
                   $.ajax({
                     type  : "POST",
-                    url: ""+base_url+"user/filterByRoles",
+                    url: ""+base_url+"test/filterbypartner",
                     data: dataString,      
                     success : function(data){
                          $('#parentloading').fadeOut('slow');
@@ -177,6 +183,19 @@
 <div class="content">
 
 <div id="add-module" href="#addtestvenue" data-toggle="modal"  style="float:left;margin-top:21px;margin-right:10px;"class="btn btn-warning">Add Test Venue</div>
+
+<div style="width:180px;float:left;margin-left:0px;margin-top:10px;">
+ <select style="width:30px;" class="select"  id="selectpartner" name="selectpartner">
+             <option value="">Select Partner</option>
+                <?php foreach ($partner as $row) { ?>
+                  <option value="<?php echo $row->idpartners ?>"><?php echo $row->partnername ?></option> 
+                <?php } ?> 
+             </select>
+</div>
+
+<div id="add-module" href="#filtercity" data-toggle="modal"  style="float:left;margin-top:21px;margin-right:10px;"class="btn btn-success">Filter By City</div>
+
+
 <div style="clear:both;"></div>
 
 
@@ -187,6 +206,7 @@
       <th style="width:21%;">Name</th>
       <th style="width:9%;">Phone</th>
       <th style="width:49%;">Address</th>
+      <th style="width:12%;">City</th>
       <th style="width:2%;">Edit</th>
       <th style="width:2%;">delete</th>
     </tr>
@@ -197,6 +217,7 @@
         <td><?php echo $row->branchname ?></td>
         <td><?php echo $row->branchphone ?></td>
         <td><?php echo $row->branchaddr ?></td>
+        <td><?php echo $row->cityname ?></td>
         <td><div url="<?php echo base_url() ?>test/edittest/<?php echo $row->idbranches; ?>" href="#edittest" data-toggle="modal" class="iconedit"></div></td>
         <td><div value="<?php echo $row->idbranches; ?>"  class="icondelete"></div></td>
       </tr>

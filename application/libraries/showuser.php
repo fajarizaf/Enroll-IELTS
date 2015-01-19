@@ -300,6 +300,14 @@ function ubahtanggal2($parameter) {
   }
 
 
+  function countvenue($idcity) {
+     $CI =& get_instance();
+      $CI->load->model('test_model');
+        $query =  $CI->test_model->countvenue($idcity);
+
+  }
+
+
   
 
 

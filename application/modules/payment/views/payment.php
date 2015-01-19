@@ -35,7 +35,7 @@
       });
 
 
-    $('#selectroles').change(function() {
+    $('#filterdate').change(function() {
         $('#parentloading').fadeIn('slow');
         $('.content-user').css({'opacity':'0.2'}); 
         
@@ -43,12 +43,44 @@
               var countdown = setInterval(function(){
                 if (counter == 0) {
                 clearInterval(countdown);
-                var idroles = $('#selectroles').val();
-                var dataString = 'selectroles=' + idroles;
+                var idroles = $('#filterdate').val();
+                var dataString = 'date=' + idroles;
 
                   $.ajax({
                     type  : "POST",
-                    url: ""+base_url+"user/filterByRoles",
+                    url: ""+base_url+"payment/filterbydate",
+                    data: dataString,      
+                    success : function(data){
+                         $('#parentloading').fadeOut('slow');
+                         $('.load').fadeOut('fast');
+                         $('.content-user').css({'opacity':'1'});            
+                         $('.content-user').html(data);              
+                                              
+                      }
+                    });
+                    return false;
+
+            }
+            counter--;
+        }, 500);
+
+    }); 
+
+
+    $('#selectvenues').change(function() {
+        $('#parentloading').fadeIn('slow');
+        $('.content-user').css({'opacity':'0.2'}); 
+        
+        var counter=2;
+              var countdown = setInterval(function(){
+                if (counter == 0) {
+                clearInterval(countdown);
+                var idroles = $('#selectvenues').val();
+                var dataString = 'venue=' + idroles;
+
+                  $.ajax({
+                    type  : "POST",
+                    url: ""+base_url+"payment/filterbyvenue",
                     data: dataString,      
                     success : function(data){
                          $('#parentloading').fadeOut('slow');
@@ -136,7 +168,9 @@
     });
 
 
-  
+  $( "#filterdate" ).datepicker({
+                    dateFormat: "yy-m-d",
+                  });
      
 
   });
@@ -157,33 +191,32 @@
   width:164px;
 }
 
+#filtertestvenue .selecter .selecter-selected {
+    width:230px;
+  }
+  #filtertestvenue .selecter .selecter-options{
+    width:254px;
+  }
+
 }
 
 </style>
 
 
 <div class="content">
-<?php if($this->session->userdata('statususer') == '1') { ?>
-<div id="add-module" href="#addschedule" data-toggle="modal"  style="float:left;margin-top:21px;margin-right:10px;"class="btn btn-warning">Add Schedule</div>
-<?php }?>
-<div style="width:165px;float:left;margin-left:0px;margin-top:10px;">
- <select style="width:30px;" class="select" id="searchby" name="searchby">
-    <option value="idusers">Search By</option>  
-    <option value="idusers">Registered ID</option> 
-    <option value="userfamilyname">Name</option>
- </select>
+
+<div style="width:215px;float:left;margin-left:0px;margin-top:10px;">
+ <input type="text" placeholder="Filter By Date" id="filterdate" name="filterdate">
 </div>
 
-<?php if($this->session->userdata('statususer') == '1') { ?>
-  <div style="width:165px;float:left;margin-left:10px;margin-top:10px;">
-   <select style="width:30px;" class="select" id="selectroles" name="selectroles">
-      <option value="all">Roles</option> 
-      <option value="2">Registration Center</option>
-      <option value="3">Candidate</option>
-      <option value="9999">Report</option>
+<div id="filtertestvenue" style="width:260px;float:left;margin-left:0px;margin-top:10px;">
+ <select class="select" id="selectvenues" name="selectvenues">
+      <option value="">Filter By Test Venue</option>
+    <?php foreach ($venuetest as $rew) { ?>
+      <option value="<?php echo $rew->idbranches; ?>"><?php echo $rew->branchname; ?></option> 
+    <?php } ?>
    </select>
-  </div>
-<?php }?>
+</div>
 
 <div style="clear:both;"></div>
 

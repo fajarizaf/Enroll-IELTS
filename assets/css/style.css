@@ -308,6 +308,15 @@ border-bottom-left-radius: 2px;
 	display: none;
 }
 
+.loads {
+	position: relative;
+	z-index: 99;
+	margin-top:-190px;
+	margin-left: 230px;
+	display: none;
+}
+
+
 
 .box-select {
 	width:310px;
@@ -796,6 +805,16 @@ border:none;
 	background:#efefef url(../pic/icondate.png) no-repeat;
 	background-position: 170px 5px;
 }
+.boxinputcity {
+	display: none;
+}
 
+.listcitynames {
+	cursor: pointer;
+}
+
+.listcitynames:hover {
+	color:orange;
+}
 
 
