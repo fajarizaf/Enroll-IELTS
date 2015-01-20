@@ -26,7 +26,7 @@
                     showOn: "button",
                     buttonImage: "<?php echo base_url(); ?>assets/pic/calendar.jpg",
                     buttonImageOnly: true,
-                    dateFormat: "yy-m-d",
+                    dateFormat: "yy-mm-dd",
 
                   }); 
 
@@ -34,7 +34,7 @@
                     showOn: "button",
                     buttonImage: "<?php echo base_url(); ?>assets/pic/calendar.jpg",
                     buttonImageOnly: true,
-                    dateFormat: "yy-m-d",
+                    dateFormat: "yy-mm-dd",
 
                   });
 
@@ -176,7 +176,6 @@
             <td></td>
             <td><input type="submit" style="float:left;" class="btn btn-warning" id="btnaddmodule" value="Update" />
                 <img class="load" style="margin:0px;float:left;margin-top:5px;margin-left:10px;" src="<?php echo base_url() ?>assets/pic/load1.gif" width="25">
-            
             </td>
           </tr>
 
@@ -213,14 +212,16 @@
                                             $('#editschedule').modal('hide');
                                             $('#sticky').sticky('<span style="color:#802222;">user has been Updated</span>');
 
-                                               
 
                                             // load content module 
                                             $.get( ""+base_url+"schedule/getUpdateSchedule/"+val.idschedules+"", function( data ) {
                                               $("#list-user #"+val.idschedules+"").html(data);
+                                                if(val.schstatus == 2) {
+                                                  $("#list-user #"+val.idschedules+"").css({'background':'#efefef'});
+                                                } else if(val.schstatus == 1) {
+                                                  $("#list-user #"+val.idschedules+"").css({'background':'#fff'});
+                                                }
                                             });
-
-                                           
 
 
                                           }  

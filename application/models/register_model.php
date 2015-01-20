@@ -25,6 +25,23 @@ class register_model extends CI_Model {
     }
 
 
+    
+    function readable_random_string($length = 6){
+        $conso=array("b","c","d","f","g","h","j","k","l",
+        "m","n","p","r","s","t","v","w","x","y","z");
+        $vocal=array("a","e","i","o","u");
+        $password="";
+        srand ((double)microtime()*1000000);
+        $max = $length/2;
+        for($i=1; $i<=$max; $i++)
+        {
+        $password.=$conso[rand(0,19)];
+        $password.=$vocal[rand(0,4)];
+        }
+        return $password;
+    }
+
+
 
     function proses_register() {
 
@@ -48,7 +65,7 @@ class register_model extends CI_Model {
                                                 "registrationspayment" => 'unpaid',
                                                 "status" => '0',
                                                 "created" => date("Y-m-d H:i:s"),
-                                                "createdby" => $this->session->userdata('idusers'),
+                                                "createdbys" => $this->session->userdata('idusers'),
                                             );
 
                                     $query1 = $this->db->insert("registrations",$reg);
@@ -62,8 +79,6 @@ class register_model extends CI_Model {
                                             );
                                             $this->db->where('idschedules', $this->uri->segment(3));
                                             $this->db->update('schedules', $dataupdate);
-                 
-
 
 
                                     $selectSchedules = $this->db->query('select * from schedules where idschedules="'.$this->uri->segment(3).'"');
@@ -119,8 +134,6 @@ class register_model extends CI_Model {
 
                     $idroles = '3';
                     $title = $this->input->post('title');
-                    $username = $this->input->post('username');
-                    $password = $this->input->post('username');
                     $last_name = $this->input->post('last_name');
                     $first_name = $this->input->post('first_name');
                     $gender = $this->input->post('gender');
@@ -166,8 +179,8 @@ class register_model extends CI_Model {
                     $dt = array(
                         "idroles" => $idroles,
                         "usertitle" => $title,
-                        "username" => $username,
-                        "userpass" => $password,
+                        "username" => $this->readable_random_string(11),
+                        "userpass" => md5($this->readable_random_string(15)),
                         "userfamilyname" => $last_name,
                         "userfirstname" => $first_name,
                         "userothername" => 'x',
@@ -260,7 +273,7 @@ class register_model extends CI_Model {
             $idroles = '3';
             $title = $this->input->post('title');
             $username = $this->input->post('username');
-            $password = $this->input->post('username');
+            $password = $this->input->post('password');
             $last_name = $this->input->post('last_name');
             $first_name = $this->input->post('first_name');
             $gender = $this->input->post('gender');
@@ -307,7 +320,7 @@ class register_model extends CI_Model {
                 "idroles" => $idroles,
                 "usertitle" => $title,
                 "username" => $username,
-                "userpass" => $password,
+                "userpass" => md5($password),
                 "userfamilyname" => $last_name,
                 "userfirstname" => $first_name,
                 "userothername" => 'x',
@@ -878,6 +891,10 @@ class register_model extends CI_Model {
                     
 
              <?php foreach ($query->result() as $row ) { ?>
+               <?php if( $row->schclosingreg < date("Y-m-d H:i:s") ) { ?>
+                 
+              <?php } else { ?>
+
                 <tr>
                     <td style="color:#333;"><?php echo $this->generated_tanggal->ubahtanggal($row->schdate); ?></td>
                     <td>
@@ -898,7 +915,9 @@ class register_model extends CI_Model {
                     </td>
                     <td><?php echo $row->examname ?></td>
                     <td><input class="date-test" style="margin-top:15px;" value="<?php echo $row->idschedules ?>" type="radio" name="date-test" /></td>
-                </tr>                
+                </tr>
+
+              <?php } ?>                    
             <?php }  ?>
 
             </table>

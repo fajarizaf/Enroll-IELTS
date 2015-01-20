@@ -398,12 +398,13 @@
                                 dataType: "json",
                                 success : function(data){
 
-                                    $.each( data, function(key,val) {
-                                        if( val != 'gagal') {
+                                    $.each( data , function(key,val) {
+                                     
+                                        if( val.status == 'sukses') {
                                           $('.load').fadeOut('slow');
                                           
                                         // status login sebagai candidate
-                                          if(val == '3') { 
+                                          if(val.idroles == '3') { 
                                               $('#sticky').sticky('<span style="color:#802222;">Login Success</span>');  
                                               $('.register-or-login').load(''+base_url+'register/form_candidate_login/');
                                               $('.menu ul').load(''+base_url+'register/menuadmin/');
@@ -419,7 +420,7 @@
                                           }
 
 
-                                        } else {
+                                        } else if( val.status == 'gagal') {
                                           $('.load').fadeOut('slow');
                                           $('.register-or-login').css({'opacity':'1'}); 
                                           $('.username').val('');
@@ -427,6 +428,14 @@
                                           $('.username').focus(); 
                                           $('#sticky').sticky('<span style="color:#802222;">Login Failed</span>');
 
+                                        } else if(val.status == 'notactivated') {
+                                            $('.register-or-login').css({'opacity':'1'});
+                                            $('.load').fadeOut('slow');
+                                            $('.box-alert').html('<div class="alert alert-warning" role="alert" style="padding:10px;font-size:14px;">The user must perform activation<button style="MARGIN-RIGHT:12px;line-height:22px;" type="button" class="close" data-dismiss="alert" aria-label="Close"><span style="color:#c39d5a;padding:8px;" aria-hidden="true">X</span></button></div>');
+                                            $('.alert').fadeIn('fast');
+                                             $('.username').val('');
+                                             $('.password').val('');
+                                             $('.username').focus();
                                         }
                                     });
 

@@ -21,6 +21,12 @@ class   User_model extends CI_Model {
         if($query->num_rows() == 1) {
 
                     foreach ($query->result() as $row) {
+
+                      if($row->userstatus == '0') {
+                        $response = array('status' => 'notactivated');
+                        echo '{"status":'.json_encode($response).'}';
+                      } else {
+
                         $session_data = array (
                             'idusers' => $row->idusers,
                             'statususer' => $row->idroles,
@@ -29,14 +35,16 @@ class   User_model extends CI_Model {
                             'login' => 'true'
                         );
                         $this->session->set_userdata($session_data);
-                        
-                        $response = array('status' => $row->idroles);
-                        echo json_encode($response);
+
+                        $response = array('status' => 'sukses','idroles' => $row->idroles);
+                        echo '{"status":'.json_encode($response).'}';
+
+                      }
                     }    
 
         } else {
                 $response = array('status' => 'gagal');
-                echo json_encode($response);
+                echo '{"status":'.json_encode($response).'}';
         }    
     }
 

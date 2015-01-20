@@ -358,6 +358,14 @@
                         account and register here:</p>
                           <table style="margin-top:20px;width:400px;margin-left:20px;">
                               <tr>
+                                <td class="box-alert" colspan="3">
+                                  <div class="alert alert-warning" role="alert" style="padding:10px;font-size:14px;">
+                                  Login Failed
+                                  <button style="MARGIN-RIGHT:12px;line-height:22px;" type="button" class="close" data-dismiss="alert" aria-label="Close"><span style="color:#c39d5a;padding:8px;" aria-hidden="true">X</span></button>
+                                  </div>
+                                </td>
+                              </tr>
+                              <tr>
                                 <td style="width:70px;">Username</td>
                                 <td style="width:10px;">:</td>
                                 <td style="width:200px;"><input class="username" type="text" style="width:100%;" name="username"></td>

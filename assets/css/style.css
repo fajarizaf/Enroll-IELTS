@@ -817,4 +817,16 @@ border:none;
 	color:orange;
 }
 
+.alert{
+	display: none;
+}
+
+.redorect {
+	display: none;
+}
+
+.ui-datepicker-title span {
+	color:#fff;
+}
+
 

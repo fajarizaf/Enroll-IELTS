@@ -210,7 +210,7 @@
         <?php } else { ?>
 
             <?php foreach ($menuadmin as $row) {   ?>
-            <li <?php if($this->uri->segment(1) == $row->controllers ) { ?>  class="active" <?php } ?>  style="border-top:5px solid #<?php echo $row->color  ?>;"><a href="#"><?php echo $row->name ?></a></li>
+            <li <?php if($this->uri->segment(1) == $row->controllers ) { ?>  class="active" <?php } ?>  style="border-top:5px solid #<?php echo $row->color  ?>;"><a href="<?php echo base_url(); ?><?php echo $row->controllers  ?>"><?php echo $row->name ?></a></li>
             <?php } ?>
 
         <?php } ?>

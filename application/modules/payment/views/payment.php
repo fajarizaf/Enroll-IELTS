@@ -159,7 +159,7 @@
 
 
 
-    $('#list-user').on('click','.iconedit', function() {
+    $('.content-user').on('click','.iconedit', function() {
       var url = $(this).attr('url');
           // Refresh List 
             $.get( ""+url+"", function( data ) {
@@ -227,22 +227,20 @@
     <tr class="headtable">
       <th style="width:21%;">Test Venue</th>
       <th style="width:11%;">Schedule Date</th>
-      <th style="width:10%;">User Code</th>
-      <th style="width:13%;">Username</th>
+      <th style="width:13%;">Candidate Name</th>
       <th style="width:3%;">Detail Candidate</th>
-      <th style="width:3%;">Payment Receipt</th>
+      <th style="width:1%;">Payment Receipt</th>
 
 
     </tr>
     <?php  if($payment) { ?>
     <?php foreach ( $payment as $row ) { ?>
-      <tr>
-        <td ><h4><?php echo $row->branchname ?></h4><p><?php echo $row->examname ?></p></td>
+      <tr >
+        <td ><h4 style="color:#333;padding-left:15px;"><?php echo $row->branchname ?></h4><p style="margin-left:15px;"><?php echo $row->examname ?></p></td>
         <td style="border-left:none;"><?php echo $this->generated_tanggal->ubahtanggal($row->schdate); ?></td>
-        <td style="border-left:none;">IELTS<?php echo substr("00000" . $row->idusers, -6); ?></td>
-        <td style="border-left:none;"><?php echo $row->userfirstname.' '.$row->userfamilyname  ?></td>
-        <td style="border-left:none;"><div url="<?php echo base_url() ?>payment/editpayment/<?php echo $row->idregistrations; ?>/" href="#editregistrations" data-toggle="modal" class="iconedit"></div></td>
-        <td style="border-left:none;"><?php $receipt =  $row->paymentreceipt; if($receipt != '') { ?><span class="label label-warning">Show</span><?php } else {?>n/a<?php } ?></td>
+        <td style="border-left:none;"><h4 style="color:orangered;"><?php echo $row->userfirstname.' '.$row->userfamilyname  ?></h4><p>IELTS<?php echo substr("00000" . $row->idusers, -6); ?></p></td>
+        <td style="border-left:none;"><div style="margin-top:10px;" url="<?php echo base_url() ?>payment/editpayment/<?php echo $row->idregistrations; ?>/" href="#editregistrations" data-toggle="modal" class="iconedit"></div></td>
+         <td style="border-left:none;"><?php $receipt =  $row->paymentreceipt; if($receipt != '') { ?><div style="margin-top:15px;" class="label label-warning">Confirmed</div><?php } else {?>n/a<?php } ?></td>
       </tr>
     <?php } ?>
     <?php } else { ?>

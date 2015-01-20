@@ -12,30 +12,54 @@
             <td colspan="3" style="border:none;">
             <?php $roles =  $this->showuser->getRolesss($row->createdbys); ?>
 
-            <?php if($roles == 3) { ?>
-              <div style="margin-bottom:10px;color:#fff;padding:10px;width:98%;height:40px;-moz-border-radius:5px 5px 5px;-webkit-border-radius:5px 5px 5px;border-radius:5px 5px 5px;background:orange;">
-                <div style="width:auto;float:left;color:#fff">
-                <h3 style="margin-top:-5px;"><?php echo $row->userfirstname.' '.$row->userfamilyname  ?></h3>
-                Candidate
-                </div>
-                <?php if($row->paymentreceipt != '') { ?><div class="label label-warning" style="float:left;margin-left:20px;padding:8px;margin-top:3px;">Confirmed</div><?php } ?>
-                  <?php if($row->paymentreceipt != '') { ?><div id="proof" class="label label-warning" style="float:left;margin-left:20px;padding:8px;margin-top:3px;">Proof of Payment</div><?php } ?>
-                <?php if($row->paymentreceipt != '') { ?><span class="label label-warning" style="float:right;padding:8px;border:1px solid #fff;margin-top:3px;">Paid</div><?php } ?>
+            
 
-              </div>
-            <?php } else if($roles == 2) { ?>
-              <div style="margin-bottom:10px;color:#fff;padding:10px;width:98%;height:40px;-moz-border-radius:5px 5px 5px;-webkit-border-radius:5px 5px 5px;border-radius:5px 5px 5px;background:#00a6e3;">
-                <div style="width:270px;float:left;color:#fff">
-                <h3 style="margin-top:-5px;"><?php echo $row->userfirstname.' '.$row->userfamilyname  ?></h3>
-                Candidate
-                </div>
 
-                <div style="width:100px;float:right;color:#fff;">Registered By :<br/>
-                <?php $this->showuser->getUsername($row->createdbys) ?>
-                </div>
+            <?php if($this->session->userdata('statususer') != 1 ) { ?>
 
-              </div>
-            <?php } ?>  
+                  <div style="margin-bottom:10px;color:#fff;padding:10px;width:98%;height:40px;-moz-border-radius:5px 5px 5px;-webkit-border-radius:5px 5px 5px;border-radius:5px 5px 5px;background:orange;">
+                    <div style="width:auto;float:left;color:#fff">
+                    <h3 style="margin-top:-5px;"><?php echo $row->userfirstname.' '.$row->userfamilyname  ?></h3>
+                    Candidate
+                    </div>
+                    <?php if($row->paymentreceipt != '') { ?><div class="label label-warning" style="float:left;margin-left:20px;padding:8px;margin-top:3px;">Confirmed</div><?php } ?>
+                      <?php if($row->paymentreceipt != '') { ?><div id="proof" class="label label-warning" style="float:left;margin-left:20px;padding:8px;margin-top:3px;">Proof of Payment</div><?php } ?>
+                    <?php if($row->paymentreceipt != '') { ?><span class="label label-warning" style="float:right;padding:8px;border:1px solid #fff;margin-top:3px;">Paid</div><?php } ?>
+
+                  </div>
+
+            <?php } else { ?>
+
+                <?php if($roles == 3) { ?>
+                  <div style="margin-bottom:10px;color:#fff;padding:10px;width:98%;height:40px;-moz-border-radius:5px 5px 5px;-webkit-border-radius:5px 5px 5px;border-radius:5px 5px 5px;background:orange;">
+                    <div style="width:auto;float:left;color:#fff">
+                    <h3 style="margin-top:-5px;"><?php echo $row->userfirstname.' '.$row->userfamilyname  ?></h3>
+                    Candidate
+                    </div>
+                    <?php if($row->paymentreceipt != '') { ?><div class="label label-warning" style="float:left;margin-left:20px;padding:8px;margin-top:3px;">Confirmed</div><?php } ?>
+                      <?php if($row->paymentreceipt != '') { ?><div id="proof" class="label label-warning" style="float:left;margin-left:20px;padding:8px;margin-top:3px;">Proof of Payment</div><?php } ?>
+                    <?php if($row->paymentreceipt != '') { ?><span class="label label-warning" style="float:right;padding:8px;border:1px solid #fff;margin-top:3px;">Paid</div><?php } ?>
+
+                  </div>
+                <?php } else if($roles == 2) { ?>
+                  <div style="margin-bottom:10px;color:#fff;padding:10px;width:98%;height:40px;-moz-border-radius:5px 5px 5px;-webkit-border-radius:5px 5px 5px;border-radius:5px 5px 5px;background:#00a6e3;">
+                    <div style="width:270px;float:left;color:#fff">
+                    <h3 style="margin-top:-5px;"><?php echo $row->userfirstname.' '.$row->userfamilyname  ?></h3>
+                    Candidate
+                    </div>
+
+                    <div style="width:100px;float:right;color:#fff;">Registered By :<br/>
+                    <?php $this->showuser->getUsername($row->createdbys) ?>
+                    </div>
+
+                  </div>
+                <?php } ?>
+                
+            <?php } ?>
+
+
+
+
 
             </td>
           </tr>  

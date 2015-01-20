@@ -114,6 +114,11 @@
                     </select>
                     </td>
                   </tr>
+
+                  <?php if($this->session->userdata('statususer') == 2) { ?>
+                  
+                  <?php } else { ?>
+
                   <tr>
                     <td>Username*</td>
                     <td>:</td>
@@ -129,6 +134,10 @@
                     <td>:</td>
                     <td><input type="password" id="retype_password" name="retype_password"></td>
                   </tr>
+
+
+                  <?php } ?>
+
 
                   <tr>
                     <td>Last Name (family name/surname)*</td>
@@ -518,6 +527,11 @@
             
             $( "#myformRegister" ).validate({
               rules: {
+
+                <?php if($this->session->userdata('statususer') == 2) { ?>
+                  
+                <?php } else { ?>
+
                 username: {
                   required: true
                 },
@@ -528,6 +542,10 @@
                       required: true,
                       equalTo: '#password'
                     },
+
+                <?php } ?>    
+
+
                 last_name: {
                   required: true
                 },
@@ -538,10 +556,12 @@
                   required: true
                 },
                 phone_number: {
-                  required: true
+                  required: true,
+                  number: true
                 },
                 email_address: {
-                  required: true
+                  required: true,
+                  email: true
                 },
                 confirm_email: {
                       required: true,
@@ -554,7 +574,8 @@
                   required: true
                 },
                 zipcode: {
-                  required: true
+                  required: true,
+                  number: true
                 },
                 codecity: {
                   required: true

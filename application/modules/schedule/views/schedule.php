@@ -264,7 +264,6 @@
         <td <?php if( $row->schstatus == 2 || $row->schclosingreg < date("Y-m-d H:i:s") ) { ?> style="color:#ccc;"  <?php  }  ?>><div url="<?php echo base_url() ?>schedule/editschedules/<?php echo $row->idschedules; ?>" href="#editschedule" data-toggle="modal" class="iconedit"></div></td>
         <td><div value="<?php echo $row->idschedules; ?>"  class="icondelete"></div></td>
         <td <?php if( $row->schstatus == 2 || $row->schclosingreg < date("Y-m-d H:i:s") ) { ?> style="color:#ccc;"  <?php  }  ?>><?php if( $row->schstatus == 2 || $row->schclosingreg < date("Y-m-d H:i:s") ) { ?><span class="label label-info" style="padding-left:10px;padding-right:10px;">Full</span><?php } else { echo '-'; } ?></td>
-
       </tr>
     <?php } ?>
     <?php } else { ?>
