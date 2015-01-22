@@ -1,7 +1,8 @@
 <script>
   $(document).ready(function() {
     $('#addschedule').css({'width':'770px','margin-left':'-375px'});
-    $('#editregistrations').css({'width':'785px','margin-left':'-375px'});
+    $('#editregistrations').css({'width':'885px','margin-left':'-445px'});
+    $('#confirmpayment').css({'width':'385px','margin-left':'-175px'});
 
     $('.box-schedule').slimScroll({
              width: '760px',
@@ -9,7 +10,7 @@
     });
 
     $('.box-editpayment').slimScroll({
-             width: '760px',
+             width: '870px',
              height:'380px'
     });
 
@@ -130,6 +131,33 @@
     });
 
 
+    $('.content-user').on('click','div[btn=paid]', function() {
+        var idreg = $(this).attr('atr');
+        $(this).html('<div class="ajaxload"></div><div style="width:20px;float:left;color:#fff;">proses...</div>');
+
+                  var counter=5;
+                      var countdown = setInterval(function(){
+                        if (counter == 0) {
+                        clearInterval(countdown);
+
+
+                   $.ajax({
+                            type  : "POST",
+                            url: ""+base_url+"payment/paid/"+idreg+"",
+                            success : function(data){              
+                                 $('tr[atr='+idreg+']').css({'background':'#feeda9'}).fadeOut('slow');
+                                 $('#sticky').sticky('<span style="color:#802222;">Payment Status Paid</span>'); 
+                          
+                            }
+                    });
+
+                  }
+                  counter--;
+                }, 500);           
+
+    });
+
+
 
 
 
@@ -171,7 +199,25 @@
   $( "#filterdate" ).datepicker({
                     dateFormat: "yy-m-d",
                   });
-     
+
+
+  $("input[types=btnconfirm]").click(function() {
+    $('.box-succesconfirm').hide('fast');
+    $('.box-confirm').fadeIn('fast');
+     $('#prosesconfirmpayment').show('fast');  
+    
+
+    var idreg = $(this).attr('atr');
+    var idregs = $(this).attr('atrs');
+    $('.idreg').val(idreg);
+    $('.idregs').val(idregs);
+  })
+  
+
+
+  
+
+
 
   });
 </script>
@@ -225,28 +271,48 @@
 <div class="content-user">
   <table id="list-user" class="table table-striped  table-bordered" style="margin-top:10px;">
     <tr class="headtable">
+      <th style="width:11%;">ID Registrations</th>
       <th style="width:21%;">Test Venue</th>
       <th style="width:11%;">Schedule Date</th>
-      <th style="width:13%;">Candidate Name</th>
-      <th style="width:3%;">Detail Candidate</th>
+      <?php if($this->session->userdata('statususer') == 3) { ?>
+      <th style="width:16%;">Date Of Register</th>
+      <th style="width:3%;">Detail</th>
+      <th style="width:3%;">Confirm Payment</th>
+      <?php } else { ?>
+      <th style="width:16%;">Candidate Name</th>
+      <th style="width:3%;">Detail</th>
       <th style="width:1%;">Payment Receipt</th>
+      <?php } ?>
 
 
     </tr>
     <?php  if($payment) { ?>
     <?php foreach ( $payment as $row ) { ?>
-      <tr >
-        <td ><h4 style="color:#333;padding-left:15px;"><?php echo $row->branchname ?></h4><p style="margin-left:15px;"><?php echo $row->examname ?></p></td>
+      <tr  atr="<?php echo $row->idregistrations ?>" id="<?php echo $row->idregistrations ?>" >
+        <td >REG<?php echo substr("00000" . $row->idregistrations, -6); ?></td>
+        <td style="border-left:none;" ><h4 style="color:#333;padding-left:15px;"><?php echo $row->branchname ?></h4><p style="margin-left:15px;"><?php echo $row->examname ?></p></td>
         <td style="border-left:none;"><?php echo $this->generated_tanggal->ubahtanggal($row->schdate); ?></td>
+        <?php if($this->session->userdata('statususer') == 3) { ?>
+          <?php if($row->paymentreceipt == '') { ?>
+            <td style="border-left:none"><?php echo $this->generated_tanggal->ubahtanggal($row->created); ?> <span style="margin-left:10px;" class="label label-info"><?php echo $this->generated_tanggal->ubahtanggaltime($row->created); ?></span></td>
+            <td style="border-left:none;"><div style="margin-top:10px;" url="<?php echo base_url() ?>payment/editpayment/<?php echo $row->idregistrations; ?>/" href="#editregistrations" data-toggle="modal" class="iconedit"></div></td>
+            <td style="border-left:none;"><input href="#confirmpayment" data-toggle="modal" types="btnconfirm"  atrs="<?php echo $row->idregistrations;  ?>" atr="REG<?php echo substr("00000" . $row->idregistrations, -6); ?>" type="button" class="btn btn-warning" value="Confirm"></td>
+          <?php } else { ?>
+            <td style="border-left:none"><?php echo $this->generated_tanggal->ubahtanggal($row->created); ?> <span style="margin-left:10px;" class="label label-info"><?php echo $this->generated_tanggal->ubahtanggaltime($row->created); ?></span></td>
+            <td style="border-left:none;"><div style="margin-top:10px;" url="<?php echo base_url() ?>payment/editpayment/<?php echo $row->idregistrations; ?>/" href="#editregistrations" data-toggle="modal" class="iconedit"></div></td>  
+            <td style="border-left:none;"><input  style="opacity:0.4"  type="button"  class="btn" value="Confirmed"></td>
+          <?php } ?>
+        <?php } else { ?>
         <td style="border-left:none;"><h4 style="color:orangered;"><?php echo $row->userfirstname.' '.$row->userfamilyname  ?></h4><p>IELTS<?php echo substr("00000" . $row->idusers, -6); ?></p></td>
         <td style="border-left:none;"><div style="margin-top:10px;" url="<?php echo base_url() ?>payment/editpayment/<?php echo $row->idregistrations; ?>/" href="#editregistrations" data-toggle="modal" class="iconedit"></div></td>
-         <td style="border-left:none;"><?php $receipt =  $row->paymentreceipt; if($receipt != '') { ?><div style="margin-top:15px;" class="label label-warning">Confirmed</div><?php } else {?>n/a<?php } ?></td>
+        <td style="border-left:none;"><?php $receipt =  $row->paymentreceipt; if($receipt != '') { ?><div style="margin-top:6px;padding-top:7px;padding-left:8px;cursor:pointer" btn="paid" atr="<?php echo $row->idregistrations ?>" class="label label-warning">Uploaded</div><?php } else {?>n/a<?php } ?></td>
+        <?php } ?>
       </tr>
     <?php } ?>
     <?php } else { ?>
-      <tr>
+    <tr>
         <td colspan="6" >Not Found</td>
-      </tr>
+    </tr>
       
     <?php } ?>
 

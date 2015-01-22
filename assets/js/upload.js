@@ -13,7 +13,7 @@ var AjaxUploads = {
 	UploadsReady:function(e){},
 	
 	UploadsConfig:{
-		actToUploads   : 'upload.php',
+		actToUploads   : ''+base_url+'register/uploadphotos',
 		methodUploads  : 'POST',
 		fileToUploads  : 'uploadidcard',
 		numberProgress : 'progressNumber',

@@ -53,6 +53,7 @@ class Payment extends CI_Controller {
                 $this->load->view('payment',$data);
                 $this->load->view('widget/addpayment',$data);
                 $this->load->view('widget/editpayment',$data);
+                $this->load->view('widget/confirmpayment',$data);
                 $this->load->view('global/footer');
 
            } else {
@@ -141,21 +142,33 @@ class Payment extends CI_Controller {
     }
 
 
-    function getUpdateSchedule() {
-      $query = $this->schedule_model->getupdateschedule(); ?>
+    function getUpdatePayment() {
+      $query = $this->payment_model->getupdatepayment(); ?>
 
      <?php 
       $i = 1;  
       foreach ( $query as $row ) { ?>
          
       
-        <td <?php if( $row->schstatus == 2 || $row->schclosingreg < date("Y-m-d H:i:s") ) { ?> style="color:#ccc;"  <?php  }  ?>><?php echo $this->generated_tanggal->ubahtanggal($row->schdate); ?></td>
-        <td <?php if( $row->schstatus == 2 || $row->schclosingreg < date("Y-m-d H:i:s") ) { ?> style="color:#ccc;"  <?php  }  ?>><?php echo $row->examname; ?></td>
-        <td <?php if( $row->schstatus == 2 || $row->schclosingreg < date("Y-m-d H:i:s") ) { ?> style="color:#ccc;"  <?php  }  ?>><?php echo $this->generated_tanggal->getDay($row->schdate); ?></td>
-        <td <?php if( $row->schstatus == 2 || $row->schclosingreg < date("Y-m-d H:i:s") ) { ?> style="color:#ccc;"  <?php  }  ?>><?php echo $row->branchname; ?></td>
-        <td <?php if( $row->schstatus == 2 || $row->schclosingreg < date("Y-m-d H:i:s") ) { ?> style="color:#ccc;"  <?php  }  ?>><span class="label label-warning" style="padding-left:10px;padding-right:10px;"><?php echo $this->showuser->getCountBooked($row->idschedules); ?></span></td>
-        <td <?php if( $row->schstatus == 2 || $row->schclosingreg < date("Y-m-d H:i:s") ) { ?> style="color:#ccc;"  <?php  }  ?>><?php echo $row->maxuser; ?></td>
-        <td <?php if( $row->schstatus == 2 || $row->schclosingreg < date("Y-m-d H:i:s") ) { ?> style="color:#ccc;"  <?php  }  ?>><div url="<?php echo base_url() ?>schedule/editschedules/<?php echo $row->idschedules; ?>" href="#editschedule" data-toggle="modal" class="iconedit"></div></td>
+        <td >REG<?php echo substr("00000" . $row->idregistrations, -6); ?></td>
+        <td style="border-left:none;" ><h4 style="color:#333;padding-left:15px;"><?php echo $row->branchname ?></h4><p style="margin-left:15px;"><?php echo $row->examname ?></p></td>
+        <td style="border-left:none;"><?php echo $this->generated_tanggal->ubahtanggal($row->schdate); ?></td>
+        <?php if($this->session->userdata('statususer') == 3) { ?>
+          <?php if($row->paymentreceipt == '') { ?>
+            <td style="border-left:none"><?php echo $this->generated_tanggal->ubahtanggal($row->created); ?> <span style="margin-left:10px;" class="label label-info"><?php echo $this->generated_tanggal->ubahtanggaltime($row->created); ?></span></td>
+            <td style="border-left:none;"><div style="margin-top:10px;" url="<?php echo base_url() ?>payment/editpayment/<?php echo $row->idregistrations; ?>/" href="#editregistrations" data-toggle="modal" class="iconedit"></div></td>
+            <td style="border-left:none;"><input href="#confirmpayment" data-toggle="modal" types="btnconfirm"  atrs="<?php echo $row->idregistrations;  ?>" atr="REG<?php echo substr("00000" . $row->idregistrations, -6); ?>" type="button" class="btn btn-warning" value="Confirm"></td>
+          <?php } else { ?>
+            <td style="border-left:none"><?php echo $this->generated_tanggal->ubahtanggal($row->created); ?> <span style="margin-left:10px;" class="label label-info"><?php echo $this->generated_tanggal->ubahtanggaltime($row->created); ?></span></td>
+            <td style="border-left:none;"><div style="margin-top:10px;" url="<?php echo base_url() ?>payment/editpayment/<?php echo $row->idregistrations; ?>/" href="#editregistrations" data-toggle="modal" class="iconedit"></div></td>  
+            <td style="border-left:none;"><input  style="opacity:0.4"  type="button"  class="btn" value="Confirmed"></td>
+          <?php } ?>
+        <?php } else { ?>
+        <td style="border-left:none;"><h4 style="color:orangered;"><?php echo $row->userfirstname.' '.$row->userfamilyname  ?></h4><p>IELTS<?php echo substr("00000" . $row->idusers, -6); ?></p></td>
+        <td style="border-left:none;"><div style="margin-top:10px;" url="<?php echo base_url() ?>payment/editpayment/<?php echo $row->idregistrations; ?>/" href="#editregistrations" data-toggle="modal" class="iconedit"></div></td>
+        <td style="border-left:none;"><?php $receipt =  $row->paymentreceipt; if($receipt != '') { ?><div style="margin-top:15px;" class="label label-warning">Uploaded</div><?php } else {?>n/a<?php } ?></td>
+        <?php } ?>
+
 
           <?php $i++ ?>
      <?php } ?>
@@ -166,9 +179,14 @@ class Payment extends CI_Controller {
 
 
     function editpayment() {
+        $idroles = $this->session->userdata('statususer');
         $idpayment = $this->uri->segment(3);
         $data['datapayment'] = $this->payment_model->geteditpayment($idpayment);
+        if($idroles == 3 ) {
+        $this->load->view('editpaymentcandidate',$data);
+        } else {
         $this->load->view('editpayment',$data);
+        }
     }
 
     function updateschedule() {
@@ -252,6 +270,16 @@ class Payment extends CI_Controller {
                 $data['refresh'] = $this->payment_model->filterbydate($date,$limit,$offset);
                 $this->pagination->initialize($config);
                 $this->load->view('refresh',$data);
+    }
+
+
+    public function confirmpayment() {
+      $this->payment_model->confirmpayment();
+
+    }
+
+    public function paid() {
+        $this->payment_model->paid();
     }
 
 

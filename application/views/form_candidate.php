@@ -87,6 +87,15 @@
                     $('#level_of_education').valid();
                 });
 
+                $('#btnaddrecog').click(function() {
+                  var n = $(".recognizing-organizations").length;
+                  if(n >= 5 ) {
+                  } else { 
+                    $('.btnaddrecognizing').before('<tr class="recognizing-organizations"><td colspan="3" ><table><tr style="border:none;"><td style="border:none;background:none;">Name of person/department</td><td style="border:none;background:none;">:</td><td style="border:none;background:none;"><input type="text" name="name-person[]" class="name-person"></td></tr><tr style="border:none"><td style="border:none;background:none;">Name of institution</td><td style="border:none;background:none;">:</td><td style="border:none;background:none;"><input type="text" name="name-institusi[]" class="name-institusi"></td></tr><tr style="border:none"><td style="border:none;background:none;">File/case number</td><td style="border:none;background:none;">:</td><td style="border:none;background:none;"><input type="text" name="case-number[]" class="case-number"></td></tr><tr style="border:none"><td style="border:none;background:none;">Address</td><td style="border:none;background:none;">:</td><td style="border:none;background:none;"><textarea class="addr" name="addr[]"></textarea></td></tr></table></td></tr>');
+                  }
+               
+                });
+
     
      });   
 
@@ -391,41 +400,11 @@
                     </td>
                   </tr>
 
-                  <tr class="recognizing-organizations">
-                    <td colspan="3" >
-                     <table>
-                       <tr style="border:none;">
-                        <td style="border:none;background:none;">Name of person/department</td>
-                        <td style="border:none;background:none;">:</td>
-                        <td style="border:none;background:none;"><input type="text" name="name-person" class="name-person"></td>
-                       </tr>
+                  
 
-                       <tr style="border:none">
-                        <td style="border:none;background:none;">Name of institution</td>
-                        <td style="border:none;background:none;">:</td>
-                        <td style="border:none;background:none;"><input type="text" name="name-institusi" class="name-institusi"></td>
-                       </tr>
-
-                       <tr style="border:none">
-                        <td style="border:none;background:none;">File/case number</td>
-                        <td style="border:none;background:none;">:</td>
-                        <td style="border:none;background:none;"><input type="text" name="case-number" class="case-number"></td>
-                       </tr>
-
-                       <tr style="border:none">
-                        <td style="border:none;background:none;">Address</td>
-                        <td style="border:none;background:none;">:</td>
-                        <td style="border:none;background:none;">
-                          <textarea class="addr" name="addr"></textarea>
-                        </td>
-                       </tr>
-                     </table>
-                    </td>
-                  </tr>
-
-                  <tr>
+                  <tr class="btnaddrecognizing">
                     <td colspan="3">
-                      <button name="upload" style="float:left;margin-top:0px;" class="btn" value="Upload">Add Recognising Organisations</button>
+                      <div name="upload" style="float:left;margin-top:0px;" class="btn" id="btnaddrecog" value="Upload">Add Recognising Organisations</div>
                     </td>
                   </tr>
 
@@ -442,6 +421,7 @@
         <?php echo form_close(); ?>
 
                 </div>
+
 
 
 

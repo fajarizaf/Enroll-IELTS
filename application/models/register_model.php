@@ -156,7 +156,6 @@ class register_model extends CI_Model {
                     $level_of_education = $this->input->post('level_of_education');
                     $many_years = $this->input->post('many_years');
                     $specialneeds = $this->input->post('specialneeds');
-                    $specialneedsdesc = $this->input->post('specialneedsdesc');
                     $notes = $this->input->post('notes');
                     $userphoto = $this->input->post('uploadfile');
 
@@ -173,6 +172,11 @@ class register_model extends CI_Model {
                     }
                     if($country_applying == '0') {
                         $country_applying = $this->input->post('other_country_applying');
+                    }
+                    if($specialneeds == 'YES') {
+                        $specialneedsdesc = $this->input->post('specialneedsdesc');
+                    } else if ($specialneeds == 'NO') {
+                        $specialneedsdesc = '-';
                     }
 
 
@@ -207,7 +211,7 @@ class register_model extends CI_Model {
                         "userspecialcondition" => $specialneedsdesc,
                         "usernotes" => $notes,
                         "userstatus" => '1',
-                        "userphoto" => $userphoto,
+                        "useridfile" => $userphoto,
                         "created" => date("Y-m-d H:i:s"),
                         "updated" => date("Y-m-d H:i:s"),
                         "createdby" => $this->session->userdata('idusers'),
@@ -296,7 +300,6 @@ class register_model extends CI_Model {
             $level_of_education = $this->input->post('level_of_education');
             $many_years = $this->input->post('many_years');
             $specialneeds = $this->input->post('specialneeds');
-            $specialneedsdesc = $this->input->post('specialneedsdesc');
             $notes = $this->input->post('notes');
             $userphoto = $this->input->post('uploadfile');
 
@@ -314,6 +317,12 @@ class register_model extends CI_Model {
             if($country_applying == '0') {
                 $country_applying = $this->input->post('other_country_applying');
             }
+            if($specialneeds == 'YES') {
+                $specialneedsdesc = $this->input->post('specialneedsdesc');
+            } else if ($specialneeds == 'NO') {
+                $specialneedsdesc = '-';
+            }
+
 
 
             $dt = array(
@@ -347,7 +356,7 @@ class register_model extends CI_Model {
                 "userspecialcondition" => $specialneedsdesc,
                 "usernotes" => $notes,
                 "userstatus" => '0',
-                "userphoto" => $userphoto,
+                "useridfile" => $userphoto,
                 "created" => date("Y-m-d H:i:s"),
                 "updated" => date("Y-m-d H:i:s"),
                 );
@@ -378,6 +387,27 @@ class register_model extends CI_Model {
                             );
                             $this->db->where('idschedules', $this->uri->segment(3));
                             $this->db->update('schedules', $dataupdate);
+
+
+                // input other option akademik
+                $nameperson = $this->input->post('name-person');
+                $nameinstitusi = $this->input->post('name-institusi');
+                $casenumber = $this->input->post('case-number');
+                $addr = $this->input->post('addr');  
+
+                    foreach( $nameperson as $key => $n ) {
+                      
+                        $data = array(
+                                'userid' => $iduser,
+                                'nop' => $nameperson[$key],
+                                'noi' => $nameinstitusi[$key],
+                                'files' => $casenumber[$key],
+                                'addr' => $addr[$key]
+                            );
+
+                        $this->db->insert('academic',$data);
+
+                    }        
                         
 
                        

@@ -1,5 +1,36 @@
+<script type="text/javascript">
+  $(document).ready(function() {
 
-      
+    $('#btnpaid').click(function() {
+        var idreg = $(this).attr('atr');
+        $(this).html('<div class="ajaxload"></div><div style="width:20px;float:left;color:#fff;">proses...</div>');
+
+                  var counter=5;
+                      var countdown = setInterval(function(){
+                        if (counter == 0) {
+                        clearInterval(countdown);
+
+
+                   $.ajax({
+                            type  : "POST",
+                            url: ""+base_url+"payment/paid/"+idreg+"",
+                            success : function(data){              
+                                 $('#editregistrations').modal('hide'); 
+                                 $('tr[atr='+idreg+']').css({'background':'#feeda9'}).fadeOut('slow');
+                                 $('#sticky').sticky('<span style="color:#802222;">Payment Status Paid</span>'); 
+                            }
+                    });
+
+                  }
+                  counter--;
+                }, 500);           
+
+    });
+
+  });
+</script>
+ 
+
 
 
 <?php foreach ($datapayment as $row) { ?>
@@ -24,8 +55,7 @@
                     </div>
                     <?php if($row->paymentreceipt != '') { ?><div class="label label-warning" style="float:left;margin-left:20px;padding:8px;margin-top:3px;">Confirmed</div><?php } ?>
                       <?php if($row->paymentreceipt != '') { ?><div id="proof" class="label label-warning" style="float:left;margin-left:20px;padding:8px;margin-top:3px;">Proof of Payment</div><?php } ?>
-                    <?php if($row->paymentreceipt != '') { ?><span class="label label-warning" style="float:right;padding:8px;border:1px solid #fff;margin-top:3px;">Paid</div><?php } ?>
-
+                    <?php if($row->paymentreceipt != '') { ?><span class="label label-warning" style="float:right;padding:8px;border:1px solid #fff;margin-top:3px;width:70px;">Paid</div><?php } ?>
                   </div>
 
             <?php } else { ?>
@@ -36,9 +66,10 @@
                     <h3 style="margin-top:-5px;"><?php echo $row->userfirstname.' '.$row->userfamilyname  ?></h3>
                     Candidate
                     </div>
-                    <?php if($row->paymentreceipt != '') { ?><div class="label label-warning" style="float:left;margin-left:20px;padding:8px;margin-top:3px;">Confirmed</div><?php } ?>
+                    <?php if($row->paymentreceipt != '') { ?><div class="label" style="float:left;margin-left:20px;padding:8px;margin-top:3px;">Confirmed</div><?php } ?>
                       <?php if($row->paymentreceipt != '') { ?><div id="proof" class="label label-warning" style="float:left;margin-left:20px;padding:8px;margin-top:3px;">Proof of Payment</div><?php } ?>
-                    <?php if($row->paymentreceipt != '') { ?><span class="label label-warning" style="float:right;padding:8px;border:1px solid #fff;margin-top:3px;">Paid</div><?php } ?>
+                      <div id="idcard" class="label label-warning" style="float:left;margin-left:20px;padding:8px;margin-top:3px;cursor:pointer">Id Card</div>
+                    <?php if($row->paymentreceipt != '') { ?><span id="btnpaid" atr="<?php echo $row->idregistrations ?>" class="label label-warning" style="width:70px;">Paid</div><?php } ?>
 
                   </div>
                 <?php } else if($roles == 2) { ?>
@@ -66,6 +97,10 @@
 
                   <tr class="box-proof">
                     <th colspan="3"><img style="width:740px;" src="<?php echo base_url(); ?>upload/<?php echo $row->paymentreceipt ?>"></th>
+                  </tr>
+
+                  <tr class="box-idcard">
+                    <th colspan="3"><img style="width:740px;" src="<?php echo base_url(); ?>upload/<?php echo $row->useridfile ?>"></th>
                   </tr>
 
                   <tr>

@@ -544,6 +544,10 @@ border:none;
 }
 
 .recognizing-organizations {
+
+}
+
+.boxaddres {
 	display: none;
 }
 
@@ -773,7 +777,16 @@ border:none;
 	cursor: pointer;
 }
 
+#idcard:hover {
+	background:#ffbe48;
+	cursor: pointer;
+}
+
 .box-proof {
+	display: none;
+}
+
+.box-idcard {
 	display: none;
 }
 
@@ -827,6 +840,47 @@ border:none;
 
 .ui-datepicker-title span {
 	color:#fff;
+}
+
+.btnuploadpayment {
+	width:30px;
+	height: 25px;
+	background: url(../pic/uploadpayment.png) no-repeat;
+}
+
+.imageproof {
+	width:200px;
+	height: 200px;
+	overflow: hidden;
+	border:1px solid #ccc;
+	float: left;
+}
+
+.box-succesconfirm {
+	display: none;
+}
+
+#btnpaid {
+	float:right;padding:8px;border:1px solid #fff;margin-top:3px;
+}
+
+#btnpaid:hover {
+	background: #ffca6a;
+	cursor:pointer;
+}
+
+.ajaxload {
+	width:16px;
+	height:11px;
+	background: url(../pic/ajax-loader-ffffff.gif) no-repeat;
+	float: left;
+	margin-right:3px;
+	margin-top:3px;
+}
+
+div[btn=paid] {
+	width:80px;
+	height: 20px;
 }
 
 

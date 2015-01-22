@@ -28,7 +28,7 @@
                     	<div style="margin-top:20px;margin-bottom:10px;" class="h3">WELCOME</div>
                         <div style="margin-bottom:20px;">IELTS is the International English Language Testing System. It is the world's most popular English language test for higher education and global migration, with over 2 million IELTS tests taken in the last year. The British Council offers IELTS tests and preparation courses in our centres throughout the world.</div>
                         <div class="h3">Apply Now</div>
-                        <p style="margin-top:10px;">Chose Your City from the list below :</p>
+                        <p style="margin-top:10px;">Choose Your City from the list below :</p>
 
                         <select id="selectCity" name="city" class="chosen-select" style="width:320px;">
                         <option value="">select city available</option>

@@ -198,7 +198,8 @@
       <th style="width:8%;">Status</th>
       <th style="width:40px;">Email</th>
       <th style="width:4%;">Create By</th>
-      <th style="width:1%;"></th>
+      <th style="width:1%;">edit</th>
+      <th style="width:1%;">delete</th>
 
     </tr>
     <?php  if($user) { ?>
@@ -212,6 +213,7 @@
         <td style="width:40px;"><?php echo $row->useremail ?></td>
         <td><?php echo $this->showuser->getNameUser($row->createdby); ?></td>
         <td><div url="<?php echo base_url() ?>user/edituser/<?php echo $row->idroles; ?>/<?php echo $row->idusers; ?>" href="#edituser" data-toggle="modal" class="iconedit"></div></td>
+        <td><div value="<?php echo $row->idusers; ?>"  class="icondelete"></div></td>
       </tr>
 
     <?php } ?>

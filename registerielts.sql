@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Inang: 127.0.0.1
--- Waktu pembuatan: 20 Jan 2015 pada 11.29
+-- Waktu pembuatan: 22 Jan 2015 pada 13.32
 -- Versi Server: 5.5.32
 -- Versi PHP: 5.4.19
 
@@ -130,7 +130,21 @@ INSERT INTO `academic` (`userid`, `nop`, `noi`, `files`, `addr`) VALUES
 (2022, 'Erlita Adriani', 'Sekretariat Badan Penelitian dan Pengembangan Pertanian', '', 'Erlita Adriani\nSekretariat Badan Penelitian dan Pengembangan Pertanian\nJln. Ragunan No. 29\nPasar Minggu\nJakarta Selatan 12540'),
 (2022, 'Diana Riasari / Group Public Relations', 'Kanmo Retail Group', '', 'Diana Riasari / Group Public Relations\nKanmo Retail Group\nMenara Era lt. 14\nJln. Senen Raya No. 135-137\nSenen\nJakarta Pusat'),
 (2067, 'Wahyu Sigit Masanto', 'Australian Awards - Indonesia', 'Nomor ID:  14/00775', 'Gedung Wirausaha, 7th Floor | Jalan HR Rasuna Said, Kav C-5, Kuningan Jakarta 12940 | Indonesia'),
-(2072, 'Muhammad Arif', 'LBB BUMS', 'nothing', 'LBB BUMS SURABAYA');
+(2072, 'Muhammad Arif', 'LBB BUMS', 'nothing', 'LBB BUMS SURABAYA'),
+(2184, 'aasdas', 'asdaasdasdasd', NULL, 'asdasd'),
+(2185, 'adsad', 'asda', 'dasd', 'asda'),
+(2185, 'asdasd', 'asd', 'asdasd', 'asda'),
+(2186, 'adad', 'asd', 'asdad', 'asdasdasd'),
+(2190, '', '', '', ''),
+(2190, '', '', '', ''),
+(2190, '', '', '', ''),
+(2190, '', '', '', ''),
+(2190, '', '', '', ''),
+(2191, '', '', '', ''),
+(2191, '', '', '', ''),
+(2191, '', '', '', ''),
+(2191, '', '', '', ''),
+(2191, '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -154,7 +168,7 @@ CREATE TABLE IF NOT EXISTS `branches` (
   `updatedby` int(11) DEFAULT NULL,
   PRIMARY KEY (`idbranches`),
   KEY `userid_idx` (`idusers`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=40 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=41 ;
 
 --
 -- Dumping data untuk tabel `branches`
@@ -4415,7 +4429,7 @@ CREATE TABLE IF NOT EXISTS `registrations` (
   PRIMARY KEY (`idregistrations`),
   KEY `scheduleid_idx` (`idschedules`),
   KEY `userid_idx` (`idusers`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2190 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2205 ;
 
 --
 -- Dumping data untuk tabel `registrations`
@@ -4449,7 +4463,7 @@ INSERT INTO `registrations` (`idregistrations`, `idschedules`, `idusers`, `regis
 (25, 43, 161, 'PAID', 1, '2099350889_ielts gilang.png', '2013-08-20 12:49:51', 161, NULL, 161),
 (26, 45, 162, 'unpaid', 1, NULL, '2013-08-21 15:14:44', 162, NULL, 162),
 (27, 51, 163, 'unpaid', 1, '656396852_Bukti Pembayaran IELTS.jpeg', '2013-08-22 11:08:00', 163, NULL, 163),
-(28, 47, 164, 'PAID', 1, '1008618859_photo-1.JPG', '2013-08-22 12:24:11', 164, NULL, 164),
+(28, 47, 164, 'unpaid', 0, '1008618859_photo-1.JPG', '2013-08-22 12:24:11', 164, NULL, 164),
 (29, 45, 165, 'unpaid', 1, NULL, '2013-08-23 13:38:59', 165, NULL, 165),
 (30, 47, 165, 'unpaid', 1, NULL, '2013-08-23 13:40:50', 165, NULL, 165),
 (31, 43, 165, 'PAID', 1, '611059118_Informasi Transaksi.jpg', '2013-08-23 13:43:43', 165, NULL, 165),
@@ -6460,7 +6474,7 @@ INSERT INTO `registrations` (`idregistrations`, `idschedules`, `idusers`, `regis
 (2056, 150, 1987, 'PAID', 1, '1932886831_Bukti Transfer Indra P.jpg', '2014-11-07 03:46:08', 1987, NULL, 1987),
 (2057, 151, 1975, 'unpaid', 1, NULL, '2014-11-07 04:26:06', 1975, NULL, 1975),
 (2058, 154, 1989, 'unpaid', 1, NULL, '2014-11-07 04:32:51', 1989, NULL, 1989),
-(2059, 146, 1988, 'unpaid', 1, '422033263_IMG-20141107-WA0000.jpg', '2014-11-07 04:35:41', 1988, NULL, 1988),
+(2059, 146, 1988, 'PAID', 1, '422033263_IMG-20141107-WA0000.jpg', '2014-11-07 04:35:41', 1988, NULL, 1988),
 (2060, 150, 1990, 'unpaid', 1, NULL, '2014-11-07 06:25:47', 1990, NULL, 1990),
 (2061, 150, 1991, 'PAID', 1, '2142166875_photo.PNG', '2014-11-07 06:59:00', 1991, NULL, 1991),
 (2062, 146, 1992, 'unpaid', 1, NULL, '2014-11-07 07:56:56', 1992, NULL, 1992),
@@ -6529,7 +6543,7 @@ INSERT INTO `registrations` (`idregistrations`, `idschedules`, `idusers`, `regis
 (2125, 150, 2044, 'PAID', 1, '103681676_Capture.JPG', '2014-11-15 07:38:30', 2044, NULL, 2044),
 (2126, 150, 2045, 'PAID', 1, '1185007747_image.jpg', '2014-11-15 10:10:40', 2045, NULL, 2045),
 (2127, 150, 2046, 'PAID', 1, '1465250375_20141117144953.jpg', '2014-11-15 12:12:33', 2046, NULL, 2046),
-(2128, 156, 2047, 'unpaid', 1, '944102358_IELTS Bukti Transfer.JPG', '2014-11-15 14:28:55', 2047, NULL, 2047),
+(2128, 156, 2047, 'PAID', 1, '944102358_IELTS Bukti Transfer.JPG', '2014-11-15 14:28:55', 2047, NULL, 2047),
 (2129, 150, 2048, 'PAID', 1, '1336855440_Destra Rahmayadi payment 6 December.jpg', '2014-11-15 15:22:38', 2048, NULL, 2048),
 (2130, 150, 2049, 'unpaid', 1, NULL, '2014-11-15 15:40:02', 2049, NULL, 2049),
 (2131, 150, 2052, 'PAID', 1, '1677728675_Image-19.JPG', '2014-11-16 09:08:38', 2052, NULL, 2052),
@@ -6561,7 +6575,7 @@ INSERT INTO `registrations` (`idregistrations`, `idschedules`, `idusers`, `regis
 (2156, 155, 2069, 'unpaid', 1, NULL, '2014-11-18 08:47:49', 2069, NULL, 2069),
 (2157, 152, 2070, 'PAID', 1, '86351179_bayar_ielts.jpg', '2014-11-18 14:03:07', 2070, NULL, 2070),
 (2158, 150, 2073, 'unpaid', 1, NULL, '2014-11-19 04:00:05', 2073, NULL, 2073),
-(2159, 154, 2074, 'unpaid', 1, '86351179_bayar_ielts.jpg', '2014-11-19 07:21:16', 2074, NULL, 2074),
+(2159, 154, 2074, 'PAID', 1, '86351179_bayar_ielts.jpg', '2014-11-19 07:21:16', 2074, NULL, 2074),
 (2160, 155, 1768, 'unpaid', 1, NULL, '2014-11-19 09:43:03', 1768, NULL, 1768),
 (2161, 154, 1769, 'unpaid', 1, NULL, '2014-11-19 09:51:55', 1769, NULL, 1769),
 (2162, 150, 2075, 'unpaid', 1, NULL, '2014-11-19 10:36:00', 2075, NULL, 2075),
@@ -6583,8 +6597,22 @@ INSERT INTO `registrations` (`idregistrations`, `idschedules`, `idusers`, `regis
 (2178, 205, 2172, 'unpaid', 0, NULL, '2015-01-20 07:28:41', 2, NULL, NULL),
 (2179, 196, 2173, 'unpaid', 0, NULL, '2015-01-20 07:30:49', 2, NULL, NULL),
 (2187, 183, 2181, 'unpaid', 0, NULL, '2015-01-20 08:09:55', 2181, NULL, NULL),
-(2188, 183, 2182, 'unpaid', 0, NULL, '2015-01-20 08:13:58', 2, NULL, NULL),
-(2189, 198, 203, 'unpaid', 0, NULL, '2015-01-20 09:45:32', 203, NULL, NULL);
+(2188, 183, 203, 'unpaid', 0, '', '2015-01-20 08:13:58', 203, NULL, NULL),
+(2189, 198, 203, 'unpaid', 0, 'membuat_email0.jpg', '2015-01-20 09:45:32', 203, NULL, NULL),
+(2190, 183, 2183, 'unpaid', 0, NULL, '2015-01-22 11:10:18', 2183, NULL, NULL),
+(2192, 183, 2185, 'unpaid', 0, NULL, '2015-01-22 11:27:25', 2185, NULL, NULL),
+(2193, 183, 2186, 'unpaid', 0, NULL, '2015-01-22 11:53:52', 2186, NULL, NULL),
+(2194, 205, 2187, 'unpaid', 0, NULL, '2015-01-22 12:36:13', 2187, NULL, NULL),
+(2195, 205, 2187, 'unpaid', 0, NULL, '2015-01-22 12:38:59', 2187, NULL, NULL),
+(2196, 205, 2188, 'unpaid', 0, NULL, '2015-01-22 12:38:59', 2188, NULL, NULL),
+(2197, 183, 2189, 'unpaid', 0, NULL, '2015-01-22 12:49:08', 2189, NULL, NULL),
+(2198, 183, 2190, 'unpaid', 0, NULL, '2015-01-22 12:54:19', 2190, NULL, NULL),
+(2199, 183, 2190, 'unpaid', 0, NULL, '2015-01-22 13:01:16', 2190, NULL, NULL),
+(2200, 183, 2191, 'unpaid', 0, NULL, '2015-01-22 13:01:16', 2191, NULL, NULL),
+(2201, 183, 2192, 'unpaid', 0, NULL, '2015-01-22 13:16:22', 2192, NULL, NULL),
+(2202, 183, 2192, 'unpaid', 0, NULL, '2015-01-22 13:19:15', 2192, NULL, NULL),
+(2203, 183, 2193, 'unpaid', 0, NULL, '2015-01-22 13:19:15', 2193, NULL, NULL),
+(2204, 183, 2194, 'unpaid', 0, NULL, '2015-01-22 13:22:37', 2194, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -6790,7 +6818,7 @@ INSERT INTO `schedules` (`idschedules`, `idbranches`, `idexams`, `schdate`, `sch
 (180, 23, 4, '2015-01-17', '0000-00-00', '2015-01-08', '0000-00-00', 1, 2400000, 190, 120, 50, '2014-10-04 02:21:05', 1, '0000-00-00 00:00:00', 1),
 (181, 34, 4, '2015-01-29', '0000-00-00', '2015-01-20', '0000-00-00', 2, 2400000, 190, 120, 0, '2015-01-20 09:06:34', 1, '0000-00-00 00:00:00', 1),
 (182, 34, 3, '2015-01-10', '0000-00-00', '2014-12-31', '0000-00-00', 1, 2400000, 190, 120, 1, '2014-10-04 02:24:52', 1, '0000-00-00 00:00:00', 1),
-(183, 34, 3, '2015-01-29', '0000-00-00', '2015-01-21', '0000-00-00', 1, 2400000, 190, 120, 0, '2015-01-20 10:18:13', 1, '0000-00-00 00:00:00', 1),
+(183, 34, 3, '2015-01-29', '0000-00-00', '2015-02-26', '0000-00-00', 1, 2400000, 190, 120, 1, '2015-01-22 13:20:44', 1, '0000-00-00 00:00:00', 1),
 (184, 23, 4, '2015-01-31', '0000-00-00', '2015-01-22', '0000-00-00', 1, 2400000, 190, 120, 50, '2014-10-04 02:26:47', 1, '0000-00-00 00:00:00', 1),
 (185, 20, 4, '2015-01-31', '0000-00-00', '2015-01-22', '0000-00-00', 1, 2400000, 190, 120, 19, '2014-10-04 02:27:29', 1, '0000-00-00 00:00:00', 1),
 (186, 2, 4, '2014-11-08', '0000-00-00', '2014-10-28', '0000-00-00', 1, 2400000, 190, 120, 11, '2014-10-06 07:32:09', 1, '0000-00-00 00:00:00', 1),
@@ -6804,16 +6832,16 @@ INSERT INTO `schedules` (`idschedules`, `idbranches`, `idexams`, `schdate`, `sch
 (194, 36, 4, '2015-02-14', '0000-00-00', '2015-02-05', '0000-00-00', 1, 2400000, 190, 120, 50, '2014-11-03 02:49:27', 1, '0000-00-00 00:00:00', 1),
 (195, 36, 4, '2015-02-28', '0000-00-00', '2015-02-19', '0000-00-00', 1, 2400000, 190, 120, 47, '2014-11-03 02:50:53', 1, '0000-00-00 00:00:00', 1),
 (196, 36, 3, '2015-02-28', '0000-00-00', '2015-02-19', '0000-00-00', 1, 2400000, 190, 120, 3, '2014-11-03 02:52:01', 1, '0000-00-00 00:00:00', 1),
-(197, 20, 4, '2015-02-28', '0000-00-00', '2015-02-19', '0000-00-00', 1, 2400000, 190, 120, 19, '2014-11-03 02:52:33', 1, '0000-00-00 00:00:00', 1),
-(198, 20, 3, '2015-02-28', '0000-00-00', '2015-01-21', '0000-00-00', 1, 2400000, 190, 120, 4, '2015-01-20 10:17:53', 1, '0000-00-00 00:00:00', 1),
+(197, 20, 4, '2015-02-28', '0000-00-00', '2015-02-20', '0000-00-00', 1, 2400000, 190, 120, 19, '2015-01-22 05:22:28', 1, '0000-00-00 00:00:00', 1),
+(198, 20, 3, '2015-02-28', '0000-00-00', '2015-02-19', '0000-00-00', 1, 2400000, 190, 120, 4, '2015-01-22 05:24:38', 1, '0000-00-00 00:00:00', 1),
 (199, 34, 4, '2015-03-12', '0000-00-00', '2015-03-03', '0000-00-00', 2, 2400000, 190, 120, 0, '2014-11-03 03:23:13', 1, '0000-00-00 00:00:00', 1),
 (200, 36, 4, '2015-03-14', '0000-00-00', '2015-03-05', '0000-00-00', 1, 2400000, 190, 120, 50, '2014-11-03 04:00:52', 1, '0000-00-00 00:00:00', 1),
 (201, 13, 4, '2014-12-13', '0000-00-00', '2014-12-04', '0000-00-00', 2, 2400000, 190, 120, 0, '2014-11-17 02:45:32', 1, NULL, NULL),
 (202, 36, 3, '2015-03-14', '0000-00-00', '2015-03-05', '0000-00-00', 1, 2400000, 190, 120, 1, '2014-11-17 02:59:37', 1, NULL, NULL),
 (203, 36, 4, '2015-03-21', '0000-00-00', '2015-03-12', '0000-00-00', 1, 2400000, 190, 120, 50, '2014-11-17 03:00:57', 1, NULL, NULL),
 (204, 36, 4, '2015-03-28', '0000-00-00', '2015-03-19', '0000-00-00', 1, 2400000, 190, 120, 50, '2014-11-17 03:01:31', 1, NULL, NULL),
-(205, 36, 3, '2015-03-28', '0000-00-00', '2015-03-19', '0000-00-00', 1, 2400000, 190, 120, 3, '2014-11-17 03:02:04', 1, NULL, NULL),
-(206, 20, 4, '2015-03-28', '0000-00-00', '2015-03-19', '0000-00-00', 1, 2400000, 190, 120, 20, '2014-11-17 03:02:42', 1, NULL, NULL),
+(205, 36, 3, '2015-03-28', '0000-00-00', '2015-03-19', '0000-00-00', 2, 2400000, 190, 120, 0, '2014-11-17 03:02:04', 1, NULL, NULL),
+(206, 20, 4, '2015-03-28', '0000-00-00', '2015-03-31', '0000-00-00', 1, 2400000, 190, 120, 20, '2015-01-22 05:19:13', 1, NULL, NULL),
 (207, 20, 3, '2015-03-28', '0000-00-00', '2015-03-19', '0000-00-00', 2, 2400000, 190, 120, 0, '2015-01-20 09:13:26', 1, NULL, NULL);
 
 -- --------------------------------------------------------
@@ -7066,7 +7094,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `updated` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updatedby` int(11) DEFAULT NULL,
   PRIMARY KEY (`idusers`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2183 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2195 ;
 
 --
 -- Dumping data untuk tabel `users`
@@ -9047,8 +9075,11 @@ INSERT INTO `users` (`idusers`, `idroles`, `usertitle`, `username`, `userpass`, 
 (2075, 3, 'Ms', 'chikakusumahadi', '6fdf1a9f66212438098af9596927dec6', 'Kusumahadi', 'Chiquita Vania', 'x ', 'F', '081381766666', 'chikakusumahadi@gmail.com', 'Jl. Alam Segar V no. 46\nPondok Pinang, Kebayoran Lama', 'Indonesia', 'Jakarta', '12310', '1997-09-02', 'nic', '3174054209970002', '90', '054', '000', '7', '1', 'UK', NULL, NULL, NULL, 'Sekolah Pelita Harapan International Sentul City', '1', '9 years or more', '', '', '', '1773974812_2014-11-1917.22.33.jpg', 1, '2014-11-19 10:35:21', 0, '2014-11-19 10:35:21', 0),
 (2076, 3, 'Mr', 'hanseliezer', '9ec9f752e4ded897225f79e228e1fab9', 'Eliezer', 'Hans', 'x ', 'M', '0818167488', 'je_makku@yahoo.com', 'Pondok Hijau Golf Kluster Chrysocolla CU6/52, Gading Serpong', 'Indonesia', 'Tangerang', '11151', '1996-11-17', 'nic', '3671011711960002', '90', '054', '08', '7', '1', 'CAN', NULL, NULL, NULL, '', '0', '5 years', '', '', '', '997733176_id.jpg', 1, '2014-11-19 11:18:56', 0, '2014-11-19 11:18:56', 0),
 (2077, 3, 'Ms', 'michelletjia', 'ea5485e52d42e5064896f985944e4580', 'Tjia', 'Michelle', 'x ', 'F', '08111142272', 'michelletjia@hotmail.com', 'Golf Mediteranian 1, Jl. Parahyangan no.30, Sentul City', 'Indonesia', 'Bogor', '16810', '1997-05-21', 'passport', 'A8548295', '90', '030', 'Student', '7', '1', 'UK', NULL, NULL, NULL, 'School', '1', '9 years or more', '', '', '', '861327293_ScreenShot2014-11-19at6.25.15PM.png', 1, '2014-11-19 11:26:58', 0, '2014-11-19 11:26:58', 0),
-(2090, 3, 'Ms', 'fajarizaf', '552db8570c0c66449df05bb8c20de43c', 'fajar', 'riza', 'x', 'M', '082111883712', 'fajarizaf@gmail.com', 'bekasi', '006', 'bekasi', '174552', '2014-12-09', 'number ide', '079879789789', '239', '250', '07', '6', '6', 'NZ', 'N', NULL, NULL, '0', '2', '3 years', '-', '-', 'ikuti-tes-ielts.jpg', NULL, 0, '2014-12-24 04:46:33', NULL, '2014-12-23 21:46:33', NULL),
-(2182, 3, 'Mis', 'codepakane', 'aa8c312c177977dc0830a991517381bf', 'asdad', 'adad', 'x', 'M', '23423424234', 'fafg', 'asdad', '239', 'asdad', 'asdadad', '2015-02-28', 'passport', 'asdasasd', '238', '174', '09', '6', '7', 'CAN', 'N', NULL, NULL, '0', '3', '4 years', '-', '-', 'vero 001.jpg', NULL, 1, '2015-01-20 08:13:58', 2, '2015-01-20 01:13:58', NULL);
+(2090, 3, 'Ms', 'fajarizaf', '552db8570c0c66449df05bb8c20de43c', 'fajar', 'riza', 'x', 'M', '082111883712', 'fajarizaf@gmail.com', 'bekasi', '006', 'bekasi', '174552', '2014-12-09', 'number ide', '079879789789', '239', '250', '07', '6', '6', 'NZ', 'N', NULL, NULL, '0', '2', '3 years', '-', '-', '', 'ikuti-tes-ielts.jpg', 0, '2014-12-24 04:46:33', NULL, '2014-12-23 21:46:33', NULL),
+(2182, 3, 'Mis', 'codepakane', 'aa8c312c177977dc0830a991517381bf', 'asdad', 'adad', 'x', 'M', '23423424234', 'fafg', 'asdad', '239', 'asdad', 'asdadad', '2015-02-28', 'passport', 'asdasasd', '238', '174', '09', '6', '7', 'CAN', 'N', NULL, NULL, '0', '3', '4 years', '-', '-', '', 'vero 001.jpg', 1, '2015-01-20 08:13:58', 2, '2015-01-20 01:13:58', NULL),
+(2183, 3, 'Mr', 'fas', 'c5341e883d09ced169abfac23dc13abc', 'adasd', 'adsad', 'x', 'M', '35345354345', 'fas@masterweb.com', 'asdad', '239', 'adasdasd', '4234234234', '2015-01-16', 'nic', 'adad', '238', '176', '13', '6', '6', 'EIR', 'N', NULL, NULL, '0', '2', '6 years', '-', '-', '', 'background.jpg', 0, '2015-01-22 11:10:18', NULL, '2015-01-22 04:10:18', NULL),
+(2184, 3, 'Dr', 'dera', '5a2993689ff374f7152b66380e8d9c7b', 'fajar', 'riza', 'x', 'M', '08978678567567', 'dera@masterweb.com', 'asdasdasd', '006', 'asdasdasd', '15467', '2015-01-23', 'nic', 'asdasd', '238', '176', '09', '4', '8', 'NZ', 'N', NULL, NULL, '0', '2', '4 years', '-', '-', '', 'housing-map-3.jpg', 0, '2015-01-22 11:24:46', NULL, '2015-01-22 04:24:46', NULL),
+(2185, 3, 'Mr', 'dedew', '42f40c44973af170c21b6f70f65bd751', 'adadd', 'asdasdas', 'x', 'M', '0894564646', 'dedew@masterweb.com', 'asdasdasd', '006', 'sadasd', '1231234', '2015-01-03', 'nic', '234234234', '239', '252', '09', '7', '9', 'NZ', 'N', NULL, NULL, '0', '3', '5 years', '-', '-', '', 'adwords-product.png', 0, '2015-01-22 11:27:25', NULL, '2015-01-22 04:27:25', NULL);
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
