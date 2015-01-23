@@ -1,4 +1,17 @@
-    
+<style>
+  .table tr td {
+    padding:4px;
+  }
+   .table tr th {
+    padding:4px;
+  }
+  table {
+    width:100%;
+  }
+  .label {
+    font-weight:normal;
+  }
+</style>    
 
 
 <?php foreach ($datauser as $row) { ?>
@@ -6,7 +19,6 @@
         <?php echo form_open('user/updateuser', $atributes); ?>    
 
           <table class="table" >
-
           <tr style="border:none;margin-top:-10px;">
             <td colspan="3" style="border:none;">
               <div style="margin-bottom:10px;color:#fff;padding:10px;width:98%;height:40px;-moz-border-radius:5px 5px 5px;-webkit-border-radius:5px 5px 5px;border-radius:5px 5px 5px;background:#00a6e3;">
@@ -19,16 +31,18 @@
                   </div>
               </div>
             </td>
-          </tr>  
+          </tr> 
 
-         
-         <tr>
+
+          <tr>
                     <th style="width:400px;">Registered ID</th>
                     <th style="width:5px">:</th>
                     <th style="width:400px;">IELTS<?php echo substr("00000" . $row->idusers, -6); ?></th>
                   </tr>
 
           <tr>
+
+          
             <td style="width:300px;">Username  </td>
             <td style="width:5px;">:</td>
             <td>

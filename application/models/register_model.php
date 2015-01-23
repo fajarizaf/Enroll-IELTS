@@ -152,7 +152,7 @@ class register_model extends CI_Model {
                     $codelevel = $this->input->post('codelevel');
                     $codequestion = $this->input->post('codequestion');
                     $country_applying = $this->input->post('country_applying');
-                    $studying_english = $this->input->post('studying_english');
+                    $studying_english = $this->input->post('studying_English');
                     $level_of_education = $this->input->post('level_of_education');
                     $many_years = $this->input->post('many_years');
                     $specialneeds = $this->input->post('specialneeds');
@@ -243,6 +243,27 @@ class register_model extends CI_Model {
                                     );
                                     $this->db->where('idschedules', $this->uri->segment(3));
                                     $this->db->update('schedules', $dataupdate);
+
+
+                              // input other option akademik
+                                $nameperson = $this->input->post('name-person');
+                                $nameinstitusi = $this->input->post('name-institusi');
+                                $casenumber = $this->input->post('case-number');
+                                $addr = $this->input->post('addr');  
+
+                                    foreach( $nameperson as $key => $n ) {
+                                      
+                                        $data = array(
+                                                'userid' => $iduser,
+                                                'nop' => $nameperson[$key],
+                                                'noi' => $nameinstitusi[$key],
+                                                'files' => $casenumber[$key],
+                                                'addr' => $addr[$key]
+                                            );
+
+                                        $this->db->insert('academic',$data);
+
+                                    }          
                                 
 
                                
@@ -296,7 +317,7 @@ class register_model extends CI_Model {
             $codelevel = $this->input->post('codelevel');
             $codequestion = $this->input->post('codequestion');
             $country_applying = $this->input->post('country_applying');
-            $studying_english = $this->input->post('studying_english');
+            $studying_english = $this->input->post('studying_English');
             $level_of_education = $this->input->post('level_of_education');
             $many_years = $this->input->post('many_years');
             $specialneeds = $this->input->post('specialneeds');
@@ -391,23 +412,25 @@ class register_model extends CI_Model {
 
                 // input other option akademik
                 $nameperson = $this->input->post('name-person');
-                $nameinstitusi = $this->input->post('name-institusi');
-                $casenumber = $this->input->post('case-number');
-                $addr = $this->input->post('addr');  
+                if($nameperson) {
+                    $nameinstitusi = $this->input->post('name-institusi');
+                    $casenumber = $this->input->post('case-number');
+                    $addr = $this->input->post('addr');  
 
-                    foreach( $nameperson as $key => $n ) {
-                      
-                        $data = array(
-                                'userid' => $iduser,
-                                'nop' => $nameperson[$key],
-                                'noi' => $nameinstitusi[$key],
-                                'files' => $casenumber[$key],
-                                'addr' => $addr[$key]
-                            );
+                        foreach( $nameperson as $key => $n ) {
+                          
+                            $data = array(
+                                    'userid' => $iduser,
+                                    'nop' => $nameperson[$key],
+                                    'noi' => $nameinstitusi[$key],
+                                    'files' => $casenumber[$key],
+                                    'addr' => $addr[$key]
+                                );
 
-                        $this->db->insert('academic',$data);
+                            $this->db->insert('academic',$data);
 
-                    }        
+                        }
+                }            
                         
 
                        

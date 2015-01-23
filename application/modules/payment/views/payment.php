@@ -10,7 +10,7 @@
     });
 
     $('.box-editpayment').slimScroll({
-             width: '870px',
+             width: '857px',
              height:'380px'
     });
 

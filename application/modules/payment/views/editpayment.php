@@ -37,7 +37,7 @@
         <?php $atributes = array ('id' => 'formupdatepayment'); ?> 
         <?php echo form_open('payment/updatepayment', $atributes); ?>    
 
-          <table class="table" >
+          <table class="table" style="margin-left:8px;">
 
           <tr style="border:none;margin-top:-10px;padding-bottom:20px;">
             <td colspan="3" style="border:none;">
@@ -48,7 +48,7 @@
 
             <?php if($this->session->userdata('statususer') != 1 ) { ?>
 
-                  <div style="margin-bottom:10px;color:#fff;padding:10px;width:98%;height:40px;-moz-border-radius:5px 5px 5px;-webkit-border-radius:5px 5px 5px;border-radius:5px 5px 5px;background:orange;">
+                  <div style="margin-bottom:10px;color:#fff;padding:10px;width:98%;height:40px;-moz-border-radius:5px 5px 5px;-webkit-border-radius:5px 5px 5px;border-radius:5px 5px 5px;background:orange;margin-left:-8px;">
                     <div style="width:auto;float:left;color:#fff">
                     <h3 style="margin-top:-5px;"><?php echo $row->userfirstname.' '.$row->userfamilyname  ?></h3>
                     Candidate
@@ -61,7 +61,7 @@
             <?php } else { ?>
 
                 <?php if($roles == 3) { ?>
-                  <div style="margin-bottom:10px;color:#fff;padding:10px;width:98%;height:40px;-moz-border-radius:5px 5px 5px;-webkit-border-radius:5px 5px 5px;border-radius:5px 5px 5px;background:orange;">
+                  <div style="margin-bottom:10px;color:#fff;padding:10px;width:98%;height:40px;-moz-border-radius:5px 5px 5px;-webkit-border-radius:5px 5px 5px;border-radius:5px 5px 5px;background:orange;margin-left:-8px;">
                     <div style="width:auto;float:left;color:#fff">
                     <h3 style="margin-top:-5px;"><?php echo $row->userfirstname.' '.$row->userfamilyname  ?></h3>
                     Candidate
@@ -70,19 +70,16 @@
                       <?php if($row->paymentreceipt != '') { ?><div id="proof" class="label label-warning" style="float:left;margin-left:20px;padding:8px;margin-top:3px;">Proof of Payment</div><?php } ?>
                       <div id="idcard" class="label label-warning" style="float:left;margin-left:20px;padding:8px;margin-top:3px;cursor:pointer">Id Card</div>
                     <?php if($row->paymentreceipt != '') { ?><span id="btnpaid" atr="<?php echo $row->idregistrations ?>" class="label label-warning" style="width:70px;">Paid</div><?php } ?>
-
                   </div>
                 <?php } else if($roles == 2) { ?>
-                  <div style="margin-bottom:10px;color:#fff;padding:10px;width:98%;height:40px;-moz-border-radius:5px 5px 5px;-webkit-border-radius:5px 5px 5px;border-radius:5px 5px 5px;background:#00a6e3;">
+                  <div style="margin-bottom:10px;color:#fff;padding:10px;width:98%;height:40px;-moz-border-radius:5px 5px 5px;-webkit-border-radius:5px 5px 5px;border-radius:5px 5px 5px;background:#00a6e3;margin-left:-8px;">
                     <div style="width:270px;float:left;color:#fff">
                     <h3 style="margin-top:-5px;"><?php echo $row->userfirstname.' '.$row->userfamilyname  ?></h3>
                     Candidate
                     </div>
-
                     <div style="width:100px;float:right;color:#fff;">Registered By :<br/>
                     <?php $this->showuser->getUsername($row->createdbys) ?>
                     </div>
-
                   </div>
                 <?php } ?>
                 
@@ -104,15 +101,15 @@
                   </tr>
 
                   <tr>
-                    <th style="width:400px;">Date Of Register</th>
-                    <th style="width:5px">:</th>
-                    <th style="width:400px;"><?php echo $this->generated_tanggal->ubahtanggal($row->created); ?> <span style="margin-left:10px;" class="label label-info"><?php echo $this->generated_tanggal->ubahtanggaltime($row->created); ?></span> </th>
+                    <th style="width:400px;background:#efefef;">Date Of Register</th>
+                    <th style="width:5px;background:#efefef;">:</th>
+                    <th style="width:400px;background:#efefef;"><?php echo $this->generated_tanggal->ubahtanggal($row->created); ?> <span style="margin-left:10px;" class="label label-info"><?php echo $this->generated_tanggal->ubahtanggaltime($row->created); ?></span> </th>
                   </tr>
 
                   <tr>
-                    <th style="width:400px;">Test Venue</th>
-                    <th style="width:5px">:</th>
-                    <th style="width:400px;"><?php echo $row->branchname ?></th>
+                    <th style="width:400px;background:#efefef">Test Venue</th>
+                    <th style="width:5px;background:#efefef">:</th>
+                    <th style="width:400px;background:#efefef"><?php echo $row->branchname ?></th>
                   </tr>
 
                   <tr>
@@ -186,11 +183,11 @@
                      <td><?php echo $row->userdob ?></td>
                   </tr>
                  
-                </table>
+           
+                  <tr>
+                    <td colspan="3" style="width:470px;padding:10px;padding-left:0px;background:#efefef;"><div class="h3" style="font-size:14px;">Detail Info</div></td>
+                  </tr>
 
-                <div class="h3" style="margin-top:40px;margin-bottom:20px;">Detail Info</div>
-
-                <table class="table table-striped">
                   <tr>
                     <td style="width:400px;">Identity Document</td>
                     <td style="width:10px">:</td>
@@ -288,28 +285,80 @@
                     <td>Do you have any special needs due to ill health/medical conditions?</td>
                     <td>:</td>
                     <td>
-                      <?php if($row->userspecialcondition != '') { echo 'Y'; } else { echo 'N'; } ?>
+                      <?php if($row->usertakenielts == 'Y') { echo 'Ya'; } else { echo 'No'; } ?>
                     </td>
                   </tr>
 
+                 
+
+                  
+                  <?php if($row->usertakenielts == 'Y') { ?>
+
                   <tr>
-                    <td>Descriptions</td>
-                    <td>:</td>
-                    <td>
+                    <td colspan="3" style="width:470px;padding:10px;padding-left:0px;background:#efefef;"><div class="h3" style="font-size:14px;">Explanation special needs</div></td>
+                  </tr>
+                  <tr>
+                    <td style="width:470px" valign="top">Descriptions</td>
+                    <td style="width:5px;">:</td>
+                    <td style="width:300px;">
+                    <p style="width:250px;font-size:13px;">
                       <?php echo $row->userspecialcondition ?>
+                    </p>  
                     </td>
                   </tr>
 
                   <tr>
-                    <td>notes</td>
+                    <td valign="top">notes</td>
                     <td>:</td>
                     <td>
+                      <p style="width:250px;font-size:13px;">
                       <?php echo $row->usernotes ?>
+                      </p>
                     </td>
                   </tr>
 
-                  
-                  
+                <?php } ?>
+
+
+                  <?php if($akademik) { ?>
+                    <tr>
+                    <td colspan="3" style="width:470px;padding:10px;padding-left:0px;"><div class="h3" style="font-size:14px;background:#efefef;">Recognising Organisations</div></td>
+                    </tr>
+                    <?php $i = 1; ?>
+                    <?php foreach ($akademik as $rew ) { ?>
+     
+                      <tr>
+                        <td style="width:480px;color:#333;">Name Of Person / Departement</td>
+                        <td style="width:5px;color:#333;">:</td>
+                        <td style="width:290px;color:#333;">
+                          <?php echo $rew->nop ?>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="color:#333;">Name of institution</td>
+                        <td style="color:#333;">:</td>
+                        <td style="color:#333;">
+                          <?php echo $rew->noi ?>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="color:#333;">File/case number</td>
+                        <td style="color:#333;">:</td>
+                        <td style="color:#333;">
+                          <?php echo $rew->files ?>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="color:#333;">Address</td>
+                        <td style="color:#333;">:</td>
+                        <td style="color:#333;">
+                          <?php echo $rew->addr ?>
+                        </td>
+                      </tr>
+                    
+                      <?php $i++; ?>
+                      <?php } ?>
+                  <?php } ?>
 
 
 

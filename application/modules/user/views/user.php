@@ -1,7 +1,7 @@
 <script>
   $(document).ready(function() {
     $('#adduser').css({'width':'770px','margin-left':'-375px'});
-    $('#edituser').css({'width':'770px','margin-left':'-375px'});
+    $('#edituser').css({'width':'790px','margin-left':'-395px'});
 
     $('.box-adduser').slimScroll({
              width: '750px',
@@ -9,7 +9,7 @@
     });
 
     $('.box-edituser').slimScroll({
-             width: '750px',
+             width: '765px',
              height:'380px'
     });
 

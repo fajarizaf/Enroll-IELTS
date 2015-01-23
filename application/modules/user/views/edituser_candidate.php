@@ -1,5 +1,31 @@
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('.box-editpayment').on('click','#idcard', function() {    
+      $('.box-idcard').toggle();
+    });
+  });
+</script>
 
 
+<style>
+  .table tr td {
+    padding:4px;
+  }
+
+   .table tr th {
+    padding:4px;
+  }
+
+  table {
+    width:100%;
+  }
+
+  .label {
+    font-weight:normal;
+  }
+
+
+</style>
       
 
 
@@ -7,31 +33,39 @@
         <?php $atributes = array ('id' => 'formupdateuser'); ?> 
         <?php echo form_open('user/updateuser', $atributes); ?>    
 
-          <table class="table" >
+          <table class="table" style="margin-left:5px;" >
 
           <tr style="border:none;margin-top:-10px;padding-bottom:20px;">
             <td colspan="3" style="border:none;">
-              <div style="margin-bottom:10px;color:#fff;padding:10px;width:98%;height:40px;-moz-border-radius:5px 5px 5px;-webkit-border-radius:5px 5px 5px;border-radius:5px 5px 5px;background:orange;">
-                <div style="width:270px;float:left;color:#fff">
+              <div class="box-editpayment" style="margin-left:-5px;margin-bottom:10px;color:#fff;padding:10px;width:98%;height:40px;-moz-border-radius:5px 5px 5px;-webkit-border-radius:5px 5px 5px;border-radius:5px 5px 5px;background:orange;">
+                <div style="width:auto;float:left;color:#fff">
                 <h3 style="margin-top:-5px;"><?php echo $row->userfirstname.' '.$row->userfamilyname  ?></h3>
                 Candidate
                 </div>
+                <div id="idcard" class="label label-warning" style="float:left;margin-left:20px;padding:8px;margin-top:3px;cursor:pointer">Id Card</div>
                   <a style="float:right;" href="<?php echo base_url() ?>user/createpdf/<?php echo $row->idusers ?>"><img src="<?php echo base_url() ?>assets/pic/pdficon.png" width="42px" height="40px"></a>
               </div>
             </td>
-          </tr>  
+          </tr>
+
+                  <tr class="box-idcard">
+                    <th colspan="3"><img style="width:740px;" src="<?php echo base_url(); ?>upload/<?php echo $row->useridfile ?>"></th>
+                  </tr>  
 
                   <tr>
-                    <th style="width:400px;">User ID</th>
+                    <td colspan="3" style="width:470px;padding:10px;padding-left:0px;background:#efefef;"><div class="h3" style="font-size:14px;">Basic Info</div></td>
+                  </tr>
+                  <tr>
+                    <th style="width:470px;">User ID</th>
                     <th style="width:5px">:</th>
-                    <th style="width:400px;">IELTS<?php echo substr("00000" . $row->idusers, -6); ?></th>
+                    <th style="width:300px;">IELTS<?php echo substr("00000" . $row->idusers, -6); ?></th>
                   </tr>
 
 
                 
                   <tr>
-                    <td style="width:400px">Username</td>
-                    <td style="width:10px">:</td>
+                    <td >Username</td>
+                    <td >:</td>
                     <td><?php echo $row->username ?></td>
                   </tr>
                   
@@ -93,16 +127,17 @@
                     <td>:</td>
                      <td><?php echo $row->userdob ?></td>
                   </tr>
-                 
-                </table>
+      
 
-                <div class="h3" style="margin-top:40px;margin-bottom:20px;">Detail Info</div>
-
-                <table class="table table-striped">
                   <tr>
-                    <td style="width:400px;">Identity Document</td>
-                    <td style="width:10px">:</td>
-                    <td><?php echo $row->useridcard ?></td>
+                    <td colspan="3" style="width:470px;padding:10px;padding-left:0px;background:#efefef;"><div class="h3" style="font-size:14px;">Detail Info</div></td>
+                  </tr>
+
+
+                  <tr>
+                    <td style="width:470px;">Identity Document</td>
+                    <td style="width:5px">:</td>
+                    <td style="width:300px;"><?php echo $row->useridcard ?></td>
                   </tr>
                   <tr>
                     <td>Pasport/NIC Number</td>
@@ -196,31 +231,80 @@
                     <td>Do you have any special needs due to ill health/medical conditions?</td>
                     <td>:</td>
                     <td>
-                      <?php if($row->userspecialcondition != '') { echo 'Y'; } else { echo 'N'; } ?>
+                      <?php if($row->usertakenielts == 'Y') { echo 'Ya'; } else { echo 'No'; } ?>
                     </td>
                   </tr>
+          
+
+
+                <?php if($row->usertakenielts == 'Y') { ?>
 
                   <tr>
-                    <td>Descriptions</td>
-                    <td>:</td>
-                    <td>
+                    <td colspan="3" style="width:470px;padding:10px;padding-left:0px;background:#efefef;"><div class="h3" style="font-size:14px;">Explanation special needs</div></td>
+                  </tr>
+                  <tr>
+                    <td style="width:470px" valign="top">Descriptions</td>
+                    <td style="width:5px;">:</td>
+                    <td style="width:300px;">
+                    <p style="width:250px;font-size:13px;">
                       <?php echo $row->userspecialcondition ?>
+                    </p>  
                     </td>
                   </tr>
 
                   <tr>
-                    <td>notes</td>
+                    <td valign="top">notes</td>
                     <td>:</td>
                     <td>
+                      <p style="width:250px;font-size:13px;">
                       <?php echo $row->usernotes ?>
+                      </p>
                     </td>
                   </tr>
-                  
+
+                <?php } ?>
 
 
-
-                <table>
-
+                  <?php if($akademik) { ?>
+                    <tr>
+                    <td colspan="3" style="width:470px;padding:10px;padding-left:0px;"><div class="h3" style="font-size:14px;background:#efefef;">Recognising Organisations</div></td>
+                    </tr>
+                    <?php $i = 1; ?>
+                    <?php foreach ($akademik as $rew ) { ?>
+     
+                      <tr>
+                        <td style="width:480px;color:#333;">Name Of Person / Departement</td>
+                        <td style="width:5px;color:#333;">:</td>
+                        <td style="width:290px;color:#333;">
+                          <?php echo $rew->nop ?>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="color:#333;">Name of institution</td>
+                        <td style="color:#333;">:</td>
+                        <td style="color:#333;">
+                          <?php echo $rew->noi ?>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="color:#333;">File/case number</td>
+                        <td style="color:#333;">:</td>
+                        <td style="color:#333;">
+                          <?php echo $rew->files ?>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="color:#333;">Address</td>
+                        <td style="color:#333;">:</td>
+                        <td style="color:#333;">
+                          <?php echo $rew->addr ?>
+                        </td>
+                      </tr>
+                    
+                      <?php $i++; ?>
+                      <?php } ?>
+                  <?php } ?>
+                </table>
 
 <?php echo form_close(); ?> 
 

@@ -70,6 +70,11 @@
                   });
 
 
+     
+                   
+             
+
+
                  $('#btnnew-registers').click(function() {
                      $('#parentloading').fadeIn('slow');
                      var counter=2;

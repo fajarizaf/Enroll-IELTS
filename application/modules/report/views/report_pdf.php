@@ -4,7 +4,7 @@
 
 <style>
   table tr td {
-    padding:3px;
+    padding:0px;
     border-top:0.5px solid #efefef;
     font-size: 11px;
   }
@@ -31,22 +31,29 @@
         <?php echo form_open('user/updateuser', $atributes); ?>    
 
         <div style="width:740px;margin:0px auto;margin-top:10px;">
-        <div class="h3" style="margin-top:10px;margin-bottom:20px;">Basic Info</div>
           <table >
+
+                  <tr>
+                    <td style="width:300px;color:#333;">Date Of Register</td>
+                    <td style="width:5px;color:#333;">:</td>
+                    <td style="color:#333;"><?php echo $row->created ?></td>
+                  </tr>
+
+                  <tr>
+                    <td style="width:300px;color:#333;">Venue Of Test</td>
+                    <td style="width:5px;color:#333;">:</td>
+                    <td style="color:#333;"><?php echo $row->created ?></td>
+                  </tr>
+
+                  <tr>
+                    <td colspan="3" style="padding:10px;padding-left:0px;background:#efefef;"><div class="h3" style="font-size:14px;">Detail Info</div></td>
+                  </tr>
+
                   <tr>
                     <td style="width:300px;color:#333;">User ID</td>
                     <td style="width:5px;color:#333;">:</td>
                     <td style="color:#333;">IELTS<?php echo substr("00000" . $row->idusers, -6); ?></td>
                   </tr>
-
-
-                
-                  <tr>
-                    <td style="width:300px">Username</td>
-                    <td style="width:10px">:</td>
-                    <td><?php echo $row->username ?></td>
-                  </tr>
-                  
 
                   <tr>
                     <td>Last Name (family name/surname)</td>
@@ -106,11 +113,10 @@
                      <td><?php echo $row->userdob ?></td>
                   </tr>
                  
-                </table>
+                  <tr>
+                    <td colspan="3" style="padding:10px;padding-left:0px;background:#efefef;"><div class="h3" style="font-size:14px;">Detail Info</div></td>
+                  </tr>
 
-                <div class="h3" style="margin-top:10px;margin-bottom:20px;">Detail Info</div>
-
-                <table >
                   <tr>
                     <td style="width:300px;">Identity Document</td>
                     <td style="width:10px">:</td>
@@ -135,7 +141,7 @@
                     <td>Occupation (sector)</td>
                     <td>:</td>
                     <td>
-                      <div class="label" style="width:20px;float:left;"><?php echo $row->useroccupationsector ?></div>&nbsp;&nbsp;<?php $this->showuser->getnameaditionalinfo('sector',$row->useroccupationsector) ?>
+                    <div class="label" style="width:20px;float:left;"><?php echo $row->useroccupationsector ?></div>&nbsp;&nbsp;<?php $this->showuser->getnameaditionalinfo('sector',$row->useroccupationsector) ?>
                     </td>
                   </tr>
                   
@@ -151,14 +157,14 @@
                     <td>Why are you taking the test?</td>
                     <td>:</td>
                     <td>
-                      <div class="label" style="width:20px;float:left;"><?php echo $row->userwhytaketest ?></div>&nbsp;&nbsp;<?php $this->showuser->getnameaditionalinfo('question',$row->userwhytaketest) ?>
+                    <div class="label" style="width:20px;float:left;"><?php echo $row->userwhytaketest ?></div>&nbsp;&nbsp;<?php $this->showuser->getnameaditionalinfo('question',$row->userwhytaketest) ?>
                     </td>
                   </tr>
                   
                   <tr>
                     <td>Which country are you applying/intending to go to?</td>
                     <td>:</td>
-                    <td>
+                    <td><div class="label" style="width:20px;float:left;"><?php echo $row->usertargetcountry ?></div>&nbsp;&nbsp;
                      <?php if($row->usertargetcountry == 'AUS') {
                               echo 'Australia';
                             } elseif($row->usertargetcountry == 'CAN') {
@@ -208,25 +214,77 @@
                     <td>Do you have any special needs due to ill health/medical conditions?</td>
                     <td>:</td>
                     <td>
-                      <?php if($row->userspecialcondition != '') { echo 'Y'; } else { echo 'N'; } ?>
+                      <?php if($row->usertakenielts == 'Y') { echo 'Ya'; } else { echo 'No'; } ?>
                     </td>
                   </tr>
 
+                  <?php if($row->usertakenielts == 'Y') { ?>
                   <tr>
-                    <td>Descriptions</td>
+                    <td colspan="3" style="padding:10px;padding-left:0px;background:#efefef;"><div class="h3" style="font-size:14px;">Explanation Special Needs</div></td>
+                  </tr>
+                  <tr>
+                    <td valign="top">Descriptions</td>
                     <td>:</td>
-                    <td>
+                    <td >
+                    <p style="width:250px;font-size:11px;">
                       <?php echo $row->userspecialcondition ?>
+                    </p>  
                     </td>
                   </tr>
 
                   <tr>
-                    <td>notes</td>
+                    <td valign="top">notes</td>
                     <td>:</td>
                     <td>
+                      <p style="width:250px;font-size:11px;">
                       <?php echo $row->usernotes ?>
+                      </p>
                     </td>
                   </tr>
+                 </table> 
+                  <?php } ?>
+
+
+                
+                  <?php if($akademik) { ?>
+                  <tr>
+                    <td colspan="3" style="padding:10px;padding-left:0px;background:#efefef;"><div class="h3" style="font-size:14px;">Recognising Organisations</div></td>
+                  </tr>
+                    <?php $i = 1; ?>
+                    <?php foreach ($akademik as $rew ) { ?>
+                      <tr>
+                        <td>Name Of Person / Departement</td>
+                        <td>:</td>
+                        <td>
+                          <?php echo $rew->nop ?>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Name of institution</td>
+                        <td>:</td>
+                        <td>
+                          <?php echo $rew->noi ?>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>File/case number</td>
+                        <td>:</td>
+                        <td>
+                          <?php echo $rew->files ?>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Address</td>
+                        <td>:</td>
+                        <td>
+                          <?php echo $rew->addr ?>
+                        </td>
+                      </tr>
+                 
+                      <?php $i++; ?>
+                      <?php } ?>
+                  <?php } ?>
+
                 <table>
               </div>
 

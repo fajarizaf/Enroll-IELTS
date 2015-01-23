@@ -182,6 +182,8 @@ class Payment extends CI_Controller {
         $idroles = $this->session->userdata('statususer');
         $idpayment = $this->uri->segment(3);
         $data['datapayment'] = $this->payment_model->geteditpayment($idpayment);
+        $where1['userid'] = $this->uri->segment(4);
+        $data['akademik'] = $this->app_model->getSelectedData('academic',$where1);
         if($idroles == 3 ) {
         $this->load->view('editpaymentcandidate',$data);
         } else {

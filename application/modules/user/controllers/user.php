@@ -201,6 +201,8 @@ class User extends CI_Controller {
       $idusers = $this->uri->segment(4);
 
       $data['datauser'] = $this->useradmin_model->getedituser($idusers);
+      $where1['userid'] = $this->uri->segment(4);
+      $data['akademik'] = $this->app_model->getSelectedData('academic',$where1);
     
      
 
@@ -220,6 +222,8 @@ class User extends CI_Controller {
       $idusers = $this->uri->segment(3);
       $where['idusers'] = $this->uri->segment(3);
       $data['datauser'] = $this->useradmin_model->getedituser($idusers);
+      $where1['userid'] = $this->uri->segment(3);
+      $data['akademik'] = $this->app_model->getSelectedData('academic',$where1);
       $nameuser = $this->app_model->getSelectedData('users',$where);
       $html = $this->load->view('candidate_pdf',$data, true);
       $this->load->helper(array('dompdf', 'file'));    
@@ -233,6 +237,8 @@ class User extends CI_Controller {
     public function createpdfs() {
       $idusers = $this->uri->segment(3);
       $data['datauser'] = $this->useradmin_model->getedituser($idusers);
+      $where1['userid'] = $this->uri->segment(3);
+      $data['akademik'] = $this->app_model->getSelectedData('academic',$where1);
       $html = $this->load->view('candidate_pdf',$data);
     }
 

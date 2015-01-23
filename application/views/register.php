@@ -3,7 +3,8 @@
 
 <div class="content">
 	
-    <div class="h1" style="margin-top:20px;margin-bottom:20px;">Register</div>
+    <div class="h1" style="margin-top:20px;margin-bottom:20px;float:left;">Register</div>
+    <div id="waktu" style="width:50px;float:right;"></div>
 	<div class="box-tab">
     	<ul>
         	<li id="btn-city"  class="active"><div class="icon-city"></div><div class="title-tab"><div>STEP 1</div>Select a City</div></li>
