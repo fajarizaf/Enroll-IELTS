@@ -100,17 +100,25 @@ border-radius: 4px;
 
 
 
+<div class="boxactivesuccess">
 
-                      <div class="box-login" style="text-align:center;">
-                      
+<div style="width:400px;height:280px;float:left;margin-top:110px;">
+  <img src="<?php echo base_url() ?>assets/pic/succesconfirm.png" width="54" style="float:left;margin-right:10px;">
+  <h3 style="margin-top:5px;">Activation Success</h3>
+  <p>Your account has been activated<br/><br/>
+  After payment,please login To <b style="color:#00a6e0;">confirm payment</b> your registration status and payment information,and upload proof of payment
+at the time of confirmation</p>
+</div>  
+
+
+                      <div class="box-login" style="text-align:center;float:right;">
                           <table style="margin-top:-20px;width:320px;margin-left:20px;">
                               <tr>
-                                <td class="box-alert" style="margin-bottom:0px;padding-bottom:0px;color:red">
-                                  <?php if($this->session->flashdata('errorreset')) { ?>
-                                  
-                                  <?php echo $this->session->flashdata('errorreset') ?>
-                                 
-                                  <?php } ?>
+                                <td class="box-alert" style="margin-bottom:0px;padding-bottom:0px;">
+                                  <div class="alert alert-warning" role="alert" style="padding:10px;font-size:14px;">
+                                  Login Failed
+                                  <button style="MARGIN-RIGHT:12px;line-height:22px;" type="button" class="close" data-dismiss="alert" aria-label="Close"><span style="color:#c39d5a;padding:8px;" aria-hidden="true">X</span></button>
+                                  </div>
                                   <img class="load" src="<?php echo base_url() ?>assets/pic/load1.gif" style="margin-top:0px;margin:0px auto;float:left;" wisth="30">
                                   <div class="redorect" style="width:40px;float:left;margin-left:7px;margin-top:5px;">Redirect</div>
                                 </td>
@@ -126,4 +134,11 @@ border-radius: 4px;
                               </tr>
                           </table>
                           <a style="margin-left:27px;margin-top:27px;" href="<?php echo base_url(); ?>register/forgotpassword">Forgot Your Password?</a>
-                      </div>    
+                      </div> 
+
+
+</div>
+
+
+
+

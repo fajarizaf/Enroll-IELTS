@@ -21,7 +21,7 @@
 </style>
 
 
-<div class="headerform">
+<div class="headerform" style="margin-left:-10px;">
   
 </div>
 
@@ -30,20 +30,28 @@
         <?php $atributes = array ('id' => 'formupdateuser'); ?> 
         <?php echo form_open('user/updateuser', $atributes); ?>    
 
-        <div style="width:740px;margin:0px auto;margin-top:10px;">
+        <div style="width:740px;margin:0px auto;margin-top:10px;margin-left:-10px;">
           <table >
 
                   <tr>
                     <td style="width:300px;color:#333;">Date Of Register</td>
                     <td style="width:5px;color:#333;">:</td>
-                    <td style="color:#333;"><?php echo $row->created ?></td>
+                    <td style="color:#333;"><?php echo $this->generated_tanggal->ubahtanggal($row->created); ?></td>
                   </tr>
 
+                  <?php foreach ($branches as $riw) { ?>
                   <tr>
                     <td style="width:300px;color:#333;">Venue Of Test</td>
                     <td style="width:5px;color:#333;">:</td>
-                    <td style="color:#333;"><?php echo $row->created ?></td>
+                    <td style="color:#333;"><?php echo $riw->branchname ?></td>
                   </tr>
+
+                  <tr>
+                    <td style="width:300px;color:#333;">Date Of Test</td>
+                    <td style="width:5px;color:#333;">:</td>
+                    <td style="color:#333;"><?php echo $this->generated_tanggal->ubahtanggal($riw->schdate); ?></td>
+                  </tr>
+                  <?php } ?>
 
                   <tr>
                     <td colspan="3" style="padding:10px;padding-left:0px;background:#efefef;"><div class="h3" style="font-size:14px;">Detail Info</div></td>
@@ -102,11 +110,7 @@
                     <td>:</td>
                     <td><?php echo $row->useraddr4 ?></td>
                   </tr>
-                  <tr>
-                    <td>Country</td>
-                    <td>:</td>
-                    <td><?php echo  $row->useraddr2 ?>&nbsp;&nbsp;<?php $this->showuser->getnameaditionalinfo('city', $row->useraddr2 ) ?></td>
-                  </tr>
+               
                   <tr>
                     <td>Date Of Birth</td>
                     <td>:</td>
@@ -280,12 +284,21 @@
                           <?php echo $rew->addr ?>
                         </td>
                       </tr>
-                 
+
                       <?php $i++; ?>
                       <?php } ?>
-                  <?php } ?>
 
+                    
+
+                  <?php } ?>
                 <table>
+
+                <img  width="450" src="<?php echo base_url(); ?>upload/<?php echo $row->useridfile ?>">
+                <?php foreach ($proof as $rqw ) { ?>
+                  <img  width="800" src="<?php echo base_url(); ?>upload/<?php echo $rqw->paymentreceipt; ?>">
+                <?php }  ?>
+                
+
               </div>
 
 <?php echo form_close(); ?> 

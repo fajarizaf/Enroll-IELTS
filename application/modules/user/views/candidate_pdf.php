@@ -21,7 +21,7 @@
 </style>
 
 
-<div class="headerform">
+<div class="headerform" style="margin-left:-10px;">
   
 </div>
 
@@ -30,7 +30,7 @@
         <?php $atributes = array ('id' => 'formupdateuser'); ?> 
         <?php echo form_open('user/updateuser', $atributes); ?>    
 
-        <div style="width:730px;margin:0px auto;margin-top:10px;">
+        <div style="width:730px;margin:0px auto;margin-top:10px;margin-left:-10px;">
         
           <table style="margin-bottom:10px;">
                   <tr>
@@ -96,11 +96,7 @@
                     <td>:</td>
                     <td><?php echo $row->useraddr4 ?></td>
                   </tr>
-                  <tr>
-                    <td>Country</td>
-                    <td>:</td>
-                    <td><div class="label" style="width:20px;float:left;"><?php echo  $row->useraddr2 ?></div>&nbsp;&nbsp;<?php $this->showuser->getnameaditionalinfo('city', $row->useraddr2 ) ?></td>
-                  </tr>
+                  
                   <tr>
                     <td>Date Of Birth</td>
                     <td>:</td>
@@ -277,9 +273,11 @@
                  
                       <?php $i++; ?>
                       <?php } ?>
+
+
                   <?php } ?>
                   </table>
-                  
+                  <img   width="450" src="<?php echo base_url(); ?>upload/<?php echo $row->useridfile ?>">
 
               </div>
 

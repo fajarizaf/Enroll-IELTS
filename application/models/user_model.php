@@ -96,11 +96,17 @@ class   User_model extends CI_Model {
     }
 
     public function getUserregistered($idschedules) {
-        $this->db->where('idschedules', $idschedules);
-        $query = $this->db->get('registrations');
+        $this->db->join("schedules","registrations.idschedules = schedules.idschedules");
+        $this->db->join("users","registrations.idusers = users.idusers");
+        $this->db->join("branches","schedules.idbranches = branches.idbranches");
+        $this->db->join("exams","schedules.idexams = exams.idexams");
+        $this->db->where('registrations.idschedules',$idschedules);
+        $query =  $this->db->get("registrations");
         $count = $query->num_rows();
         echo $count;
     }
+
+    
 
     
 }

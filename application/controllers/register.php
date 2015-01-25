@@ -9,8 +9,10 @@ class Register extends CI_Controller {
         $this->load->model('user_model');  
         $this->load->library('listexams');
         $this->load->library('showuser');
+        $this->load->library('session');
         $this->load->library('generated_tanggal');
         $this->load->helper('form','url','html');
+        $this->load->library('encrypt');
         }
     
     
@@ -244,7 +246,9 @@ class Register extends CI_Controller {
             <?php }
 
             } else { ?>
-                <div style="width:150px;color:red;margin:0px auto;margin-top:10px;" ">Result Not Found</div>     
+
+                <div style="width:150px;color:red;margin:0px auto;margin-top:10px;">Result Not Found</div>     
+
       <?php }
 
         }
@@ -409,6 +413,51 @@ class Register extends CI_Controller {
 
             <?php      }
 
+        }
+
+
+        public function testemail() {
+            $this->register_model->testemail();
+        }
+
+        public function activeaccount() {
+            $iduser = $this->uri->segment(3);
+            $this->register_model->activeaccount($iduser);
+        }
+
+
+        public function activesucces() {
+
+            $this->load->view('global/header');
+            $this->load->view('activesuccess');
+            $this->load->view('global/footer');
+        }
+
+        public function forgotpassword() {
+            $this->load->view('global/header');
+            $this->load->view('forgotpass');
+            $this->load->view('global/footer');
+        }
+
+        public function linkresset() {
+            $this->register_model->resetpassword();
+        }
+
+        public function resetpassword() {
+            $email = $this->uri->segment(3);
+            $cekUser = $this->register_model->cekuser($email);
+            if($cekUser == 1) {
+                $this->load->view('global/header');
+                $this->load->view('formressetpassword');
+                $this->load->view('global/footer');
+            } else {
+                $this->session->set_flashdata('errorreset','ERROR: There is no user registered with that email addres');
+                redirect('register/formlogin/');
+            }
+        }
+
+        public function prosesresetpassword() {
+            $this->register_model->prosesresetpassword();
         }
 
 

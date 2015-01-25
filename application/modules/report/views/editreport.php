@@ -10,7 +10,7 @@
                 <?php echo $this->generated_tanggal->ubahtanggal($rows->schdate); ?>
                 </div>
                 <span class="label label-warning" style="margin-left:20px;padding:10px; display:inline-block;margin-top:3px;"><?php echo count($editreport); ?>&nbsp;Candidate</span>
-                <a style="float:right;padding-left:15px;padding-right:15px;" href="<?php echo base_url() ?>report/createxml/<?php echo $rows->idschedules ?>"><img src="<?php echo base_url() ?>assets/pic/PPT.png" width="42px" ></a>
+                <a style="float:right;padding-left:15px;padding-right:15px;" href="<?php echo base_url() ?>report/createxml/<?php echo $rows->idschedules ?>"><img src="<?php echo base_url() ?>assets/pic/PPTs.png" width="42px" ></a>
                 <a style="float:right;padding-left:15px;padding-right:15px;border-right:1px solid #ffbf4b" href="<?php echo base_url() ?>report/createxls/<?php echo $rows->idschedules ?>"><img src="<?php echo base_url() ?>assets/pic/xls.png" width="42px" ></a>            
               </div>
             <?php } ?>  
@@ -39,7 +39,7 @@
         <td><?php $this->showuser->getDateRegisteredUsertime($row->idregistrations); ?></td>
         <td><?php echo $row->userfirstname.' '.$row->userfamilyname  ?></td>
         <td><?php echo $row->useraddr3  ?></td>
-        <td><a href="<?php echo base_url(); ?>report/createpdf/<?php $this->showuser->getidUsers($row->idregistrations); ?>"><div class="iconpdf"></div></a></td>
+        <td><a href="<?php echo base_url(); ?>report/createpdf/<?php $this->showuser->getidUsers($row->idregistrations); ?>/<?php echo $row->idregistrations; ?>"><div class="iconpdf"></div></a></td>
       </tr>
     <?php } ?>
     <?php } else { ?>

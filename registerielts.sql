@@ -19,8 +19,7 @@ SET time_zone = "+00:00";
 --
 -- Basis data: `registerielts`
 --
-CREATE DATABASE IF NOT EXISTS `registerielts` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `registerielts`;
+
 
 -- --------------------------------------------------------
 

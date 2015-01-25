@@ -25,6 +25,23 @@ class register_model extends CI_Model {
     }
 
 
+    function getbranch($idbranches) {
+        $query = $this->db->query('select * from branches where idbranches="'.$idbranches.'"');
+            foreach ($query->result() as $rew ) {
+                return $rew->branchname;
+            }
+    }
+
+
+    function getbranches($idschedules) {       
+        $this->db->where('schedules.idschedules', $idschedules);
+        $q = $this->db->get('schedules');
+        foreach ($q->result() as $row) {
+            $this->getbranch($row->idbranches);
+        }
+    }
+
+
     
     function readable_random_string($length = 6){
         $conso=array("b","c","d","f","g","h","j","k","l",
@@ -69,9 +86,6 @@ class register_model extends CI_Model {
                                             );
 
                                     $query1 = $this->db->insert("registrations",$reg);
-
-
-
 
                                          //proses pengurangan kuota schedule test date
                                          $dataupdate = array(
@@ -178,13 +192,14 @@ class register_model extends CI_Model {
                     } else if ($specialneeds == 'NO') {
                         $specialneedsdesc = '-';
                     }
-
+                    $pass = $this->readable_random_string(15);
+                    $enpass = md5($pass);
 
                     $dt = array(
                         "idroles" => $idroles,
                         "usertitle" => $title,
                         "username" => $this->readable_random_string(11),
-                        "userpass" => md5($this->readable_random_string(15)),
+                        "userpass" => $enpass,
                         "userfamilyname" => $last_name,
                         "userfirstname" => $first_name,
                         "userothername" => 'x',
@@ -224,6 +239,9 @@ class register_model extends CI_Model {
 
                     foreach ($getiduser->result() as $row) {
                         $iduser = $row->idusers;
+                        $username = $row->username;
+                        $userpass = $row->userpass;
+                        $useremail = $row->useremail;
 
                         $reg = array(
                                         "idschedules" => $this->uri->segment(3),
@@ -237,7 +255,7 @@ class register_model extends CI_Model {
 
 
 
-                                    //proses pengurangan kuota schedule test date
+                              //proses pengurangan kuota schedule test date
                                     $dataupdate = array(
                                         "maxuser" => $this->getmaxuser_schedule($this->uri->segment(3))
                                     );
@@ -247,24 +265,25 @@ class register_model extends CI_Model {
 
                               // input other option akademik
                                 $nameperson = $this->input->post('name-person');
-                                $nameinstitusi = $this->input->post('name-institusi');
-                                $casenumber = $this->input->post('case-number');
-                                $addr = $this->input->post('addr');  
+                                if($nameperson) {
+                                    $nameinstitusi = $this->input->post('name-institusi');
+                                    $casenumber = $this->input->post('case-number');
+                                    $addr = $this->input->post('addr');  
 
-                                    foreach( $nameperson as $key => $n ) {
-                                      
-                                        $data = array(
-                                                'userid' => $iduser,
-                                                'nop' => $nameperson[$key],
-                                                'noi' => $nameinstitusi[$key],
-                                                'files' => $casenumber[$key],
-                                                'addr' => $addr[$key]
-                                            );
+                                        foreach( $nameperson as $key => $n ) {
+                                          
+                                            $data = array(
+                                                    'userid' => $iduser,
+                                                    'nop' => $nameperson[$key],
+                                                    'noi' => $nameinstitusi[$key],
+                                                    'files' => $casenumber[$key],
+                                                    'addr' => $addr[$key]
+                                                );
 
-                                        $this->db->insert('academic',$data);
+                                            $this->db->insert('academic',$data);
 
-                                    }          
-                                
+                                        }          
+                                }                                    
 
                                
                              $selectSchedules = $this->db->query('select * from schedules where idschedules="'.$this->uri->segment(3).'"');
@@ -286,6 +305,97 @@ class register_model extends CI_Model {
                                     );
 
                                     echo '{"result":'.json_encode($result).'}';
+
+                                                                         // -- EMAIL CONFIRMATION -- //
+                                                                $config = Array(
+                                                                   'protocol' => 'mail',
+                                                                   'smtp_host' => 'mail.webdev.dlanet.com',
+                                                                   'smtp_port' => 25,
+                                                                   'smtp_user' => 'register@webdev.dlanet.com',
+                                                                   'smtp_pass' => 'rahasia123',
+                                                                   'mailtype'  => 'html',
+                                                                   'charset'   => 'iso-8859-1',
+                                                                   'wordwrap'  => TRUE
+                                                                );
+
+                                                                $this->load->library('email', $config);
+                                                                $this->email->from('register@webdev.dlanet.com', 'IELTS Indonesia');
+                                                                
+                                                                $this->email->to($useremail);
+                                                                $this->email->subject('Activation Account');
+                                                                
+
+                                                                foreach ($selectSchedules->result() as $row) {
+                                                                $message = '
+                                                            
+                                                                <div style="font-size: 18px; font-weight: bold; padding: 5px;height:68px;border-bottom:2px solid red;">
+                                                                       <img src="'.base_url().'/assets/pic/utclogo.png" style="float:left;margin-right:5px;" />
+                                                                       <img src="'.base_url().'/assets/pic/bc-logo.png" style="float:left;margin-right:5px;" />
+                                                                       <img src="'.base_url().'/assets/pic/ielts-logo.png" style="float:left;margin-right:5px;" />
+                                                                </div>
+
+                                                                <div style="margin-top:12px;margin-bottom:12px;width:100%;padding:8px;background:#faedc1;color:#ed4b1a;-moz-border-radius:3px 3px 3px;-webkit-border-radius:3px 3px 3px;border-radius:3px 3px 3px;border:1px solid #f4c375;">
+                                                                <span style="color:#c0322f;font-weight:bold;">Register Successful</span>&nbsp;Thank you registering for our ieltsindonesia as candidate IELTS test
+                                                                </div>
+
+                                                                <div style="width:330px;float:left;">
+                                                                <div style="color:#626262;font-weight:bold;margin-top:7px;">The following test schedule that you choose :</div>
+
+                                                                <table style="margin-top:10px;">
+                                                                <tr>
+                                                                <td style="color:#626262">Test Date</td>
+                                                                <td style="color:#626262">:</td>
+                                                                <td style="color:#626262">'.$this->generated_tanggal->ubahtanggal($row->schdate).'</td>
+                                                                </tr>
+
+                                                                <tr>
+                                                                <td style="color:#626262">Test Module</td>
+                                                                <td style="color:#626262">:</td>
+                                                                <td style="color:#626262">'.$module.'</td>
+                                                                </tr>
+
+                                                                <tr>
+                                                                <td style="color:#626262">Make Your Payment</td>
+                                                                <td style="color:#626262">:</td>
+                                                                <td style="color:#626262">IDR '.number_format($row->rupiah,2,',','.').' / USD.'.$row->dollar.' / GBP.'.$row->gbp.'</td>
+                                                                </tr>
+                                                                </table>
+                                                                </div>
+
+
+                                                                <div style="width:300px;float:left;">
+                                                                <div style="color:#626262;font-weight:bold;margin-top:7px;">Your login information is as follows :</div>
+
+                                                                <table style="margin-top:10px;">
+                                                                <tr>
+                                                                <td style="color:#626262">username</td>
+                                                                <td style="color:#626262">:</td>
+                                                                <td style="color:#626262">'.$username.'</td>
+                                                                </tr>
+
+                                                                <tr>
+                                                                <td style="color:#626262">password</td>
+                                                                <td style="color:#626262">:</td>
+                                                                <td style="color:#626262">'.$pass.'</td>
+                                                                </tr>
+
+                                                                
+                                                                </table>
+                                                                </div>
+
+                                                                <div style="clear:both;"></div>
+                                                                <div style="color:#626262;margin-top:12px;">After payment,please login To <b style="color:#00a6e0;">confirm payment</b> your registration status and payment information,and upload proof of payment at the time of confirmation</div>
+                                                                <div style="color:#626262;width:100%;height:20px;border-top:1px solid #ccc;padding-top:7px;margin-top:12px;">
+                                                                &copy;  2015  ieltsindonesia.co.id. All Rights Reserved
+                                                                </div>
+
+
+                                                        '; }
+
+                                                        $this->email->message($message);
+                                                        $this->email->send();
+
+
                              }
 
                     }
@@ -389,6 +499,9 @@ class register_model extends CI_Model {
 
             foreach ($getiduser->result() as $row) {
                 $iduser = $row->idusers;
+                $username = $row->username;
+                $userpass = $row->userpass;
+                $usermail = $row->useremail;
 
                 $reg = array(
                                 "idschedules" => $this->uri->segment(3),
@@ -455,6 +568,104 @@ class register_model extends CI_Model {
                             echo '{"result":'.json_encode($result).'}';
                      }
 
+
+
+                                                                 // -- EMAIL CONFIRMATION -- //
+                                                                    $config = Array(
+                                                                       'protocol' => 'mail',
+                                                                       'smtp_host' => 'mail.webdev.dlanet.com',
+                                                                       'smtp_port' => 25,
+                                                                       'smtp_user' => 'register@webdev.dlanet.com',
+                                                                       'smtp_pass' => 'rahasia123',
+                                                                       'mailtype'  => 'html',
+                                                                       'charset'   => 'iso-8859-1',
+                                                                       'wordwrap'  => TRUE
+                                                                    );
+
+                                                            $this->load->library('email', $config);
+                                                            $this->email->from('register@webdev.dlanet.com', 'IELTS Indonesia');
+                                                            
+                                                            $this->email->to($usermail);
+                                                            $this->email->subject('Activation Account');
+                                                            
+
+                                                            foreach ($selectSchedules->result() as $row) {
+                                                            $message = '
+                                                                
+                                                                    <div style="font-size: 18px; font-weight: bold; padding: 5px;height:68px;border-bottom:2px solid red;">
+                                                                           <img src="'.base_url().'/assets/pic/utclogo.png" style="float:left;margin-right:5px;" />
+                                                                           <img src="'.base_url().'/assets/pic/bc-logo.png" style="float:left;margin-right:5px;" />
+                                                                           <img src="'.base_url().'/assets/pic/ielts-logo.png" style="float:left;margin-right:5px;" />
+                                                                    </div>
+
+                                                                    <div style="margin-top:12px;margin-bottom:12px;width:100%;padding:8px;background:#faedc1;color:#ed4b1a;-moz-border-radius:3px 3px 3px;-webkit-border-radius:3px 3px 3px;border-radius:3px 3px 3px;border:1px solid #f4c375;">
+                                                                    <span style="color:#c0322f;font-weight:bold;">Register Successful</span>&nbsp;Thank you registering for our ieltsindonesia as candidate IELTS test
+                                                                    </div>
+
+                                                                    <div style="width:330px;float:left;">
+                                                                    <div style="color:#626262;font-weight:bold;margin-top:7px;">The following test schedule that you choose :</div>
+
+                                                                    <table style="margin-top:10px;">
+                                                                    <tr>
+                                                                    <td style="color:#626262">Test Date</td>
+                                                                    <td style="color:#626262">:</td>
+                                                                    <td style="color:#626262">'.$this->generated_tanggal->ubahtanggal($row->schdate).'</td>
+                                                                    </tr>
+
+                                                                    <tr>
+                                                                    <td style="color:#626262">Test Module</td>
+                                                                    <td style="color:#626262">:</td>
+                                                                    <td style="color:#626262">'.$module.'</td>
+                                                                    </tr>
+
+                                                                    <tr>
+                                                                    <td style="color:#626262">Make Your Payment</td>
+                                                                    <td style="color:#626262">:</td>
+                                                                    <td style="color:#626262">IDR '.number_format($row->rupiah,2,',','.').' / USD.'.$row->dollar.' / GBP.'.$row->gbp.'</td>
+                                                                    </tr>
+                                                                    </table>
+                                                                    </div>
+
+
+                                                                    <div style="width:300px;float:left;">
+                                                                    <div style="color:#626262;font-weight:bold;margin-top:7px;">Your login information is as follows :</div>
+
+                                                                    <table style="margin-top:10px;">
+                                                                    <tr>
+                                                                    <td style="color:#626262">username</td>
+                                                                    <td style="color:#626262">:</td>
+                                                                    <td style="color:#626262">'.$username.'</td>
+                                                                    </tr>
+
+                                                                    <tr>
+                                                                    <td style="color:#626262">password</td>
+                                                                    <td style="color:#626262">:</td>
+                                                                    <td style="color:#626262">'.$password.'</td>
+                                                                    </tr>
+
+                                                                    
+                                                                    </table>
+                                                                    </div>
+
+                                                                    <div style="clear:both;"></div>
+
+                                                                    <div style="color:#626262;margin-top:12px;">In order to activate your account,please follow the link bellow</div>
+                                                                    <a style="text-decoration:none;" href="'.base_url().'register/activeaccount/'.$iduser.'"><div style="margin-top:7px;background:#00a6e0;padding:6px;width:120px;color:#fff;-moz-border-radius:4px 4px 4px;-webkit-border-radius:4px 4px 4px;border-radius:4px 4px 4px;">Activation Account</div></a>
+
+                                                                    <div style="color:#626262;margin-top:7px;">Thanks You,</div>
+                                                                    <div style="color:#626262;text-decoration:none;">Ieltsindonesia.co.id</div>
+
+                                                                    <div style="color:#626262;width:100%;height:20px;border-top:1px solid #ccc;padding-top:7px;margin-top:12px;">
+                                                                    &copy;  2015  ieltsindonesia.co.id. All Rights Reserved
+                                                                    </div>
+
+
+                                                            '; }
+
+                                                            $this->email->message($message);
+                                                            $this->email->send();
+
+
             }
 
                 
@@ -498,12 +709,12 @@ class register_model extends CI_Model {
 
         $ex_user = explode(',' , $idusers);
 
-        foreach ($ex_user as $row) {
+        foreach ($ex_user as $raw) {
 
-            if($row != '') {
+            if($raw != '') {
            $data = array (
                 "idschedules" => $idschedules,
-                "idusers" => $row,
+                "idusers" => $raw,
                 "registrationspayment" => 'unpaid',
                 "status" => 0,
                 "created" => date("Y-m-d H:i:s"),
@@ -521,7 +732,7 @@ class register_model extends CI_Model {
 
 
                     $selectSchedules = $this->db->query('select * from schedules where idschedules="'.$idschedules.'"');
-                     foreach ($selectSchedules->result() as $row) {
+                    foreach ($selectSchedules->result() as $row) {
 
                         if($row->idexams == '4') {
                             $module = 'Academic';
@@ -539,7 +750,85 @@ class register_model extends CI_Model {
                             );
 
                             echo '{"result":'.json_encode($result).'}';
-                     }
+                     
+                                  $getiduser = $this->db->query('select * from users where idusers="'.$raw.'"');
+                                  foreach ($getiduser->result() as $reww) {
+
+
+
+                                                                         // -- EMAIL CONFIRMATION -- //
+                                                                            $config = Array(
+                                                                               'protocol' => 'mail',
+                                                                               'smtp_host' => 'mail.webdev.dlanet.com',
+                                                                               'smtp_port' => 25,
+                                                                               'smtp_user' => 'register@webdev.dlanet.com',
+                                                                               'smtp_pass' => 'rahasia123',
+                                                                               'mailtype'  => 'html',
+                                                                               'charset'   => 'iso-8859-1',
+                                                                               'wordwrap'  => TRUE
+                                                                            );
+
+                                                                            $this->load->library('email', $config);
+                                                                            $this->email->from('register@webdev.dlanet.com', 'IELTS Indonesia');
+                                                                            
+                                                                            $this->email->to($reww->useremail);
+                                                                            $this->email->subject('Activation Account');
+
+                                                                            
+                                                                                $iduser = $reww->idusers;
+                                                                                $username = $reww->username;
+                                                                                $userpass = $reww->userpass;
+                                                                            
+                                                                            $message = '
+                                                                                
+                                                                                    <div style="font-size: 18px; font-weight: bold; padding: 5px;height:68px;border-bottom:2px solid red;">
+                                                                                           <img src="'.base_url().'/assets/pic/utclogo.png" style="float:left;margin-right:5px;" />
+                                                                                           <img src="'.base_url().'/assets/pic/bc-logo.png" style="float:left;margin-right:5px;" />
+                                                                                           <img src="'.base_url().'/assets/pic/ielts-logo.png" style="float:left;margin-right:5px;" />
+                                                                                    </div>
+
+                                                                                    <div style="margin-top:12px;margin-bottom:12px;width:100%;padding:8px;background:#faedc1;color:#ed4b1a;-moz-border-radius:3px 3px 3px;-webkit-border-radius:3px 3px 3px;border-radius:3px 3px 3px;border:1px solid #f4c375;">
+                                                                                    <span style="color:#c0322f;font-weight:bold;">Register Successful</span>&nbsp;Thank you registering for our ieltsindonesia as candidate IELTS test
+                                                                                    </div>
+
+                                                                                    <div style="width:330px;float:left;">
+                                                                                    <div style="color:#626262;font-weight:bold;margin-top:7px;">The following test schedule that you choose :</div>
+
+                                                                                    <table style="margin-top:10px;">
+                                                                                    <tr>
+                                                                                    <td style="color:#626262">Test Date</td>
+                                                                                    <td style="color:#626262">:</td>
+                                                                                    <td style="color:#626262">'.$this->generated_tanggal->ubahtanggal($row->schdate).'</td>
+                                                                                    </tr>
+
+                                                                                    <tr>
+                                                                                    <td style="color:#626262">Test Module</td>
+                                                                                    <td style="color:#626262">:</td>
+                                                                                    <td style="color:#626262">'.$module.'</td>
+                                                                                    </tr>
+
+                                                                                    <tr>
+                                                                                    <td style="color:#626262">Make Your Payment</td>
+                                                                                    <td style="color:#626262">:</td>
+                                                                                    <td style="color:#626262">IDR '.number_format($row->rupiah,2,',','.').' / USD.'.$row->dollar.' / GBP.'.$row->gbp.'</td>
+                                                                                    </tr>
+                                                                                    </table>
+                                                                                    </div>
+
+                                                                                    <div style="clear:both;"></div>
+                                                                                    <div style="color:#626262;margin-top:12px;">After payment,please login To <b style="color:#00a6e0;">confirm payment</b> your registration status and payment information,and upload proof of payment at the time of confirmation</div>
+                                                                                    <div style="color:#626262;width:100%;height:20px;border-top:1px solid #ccc;padding-top:7px;margin-top:12px;">
+                                                                                    &copy;  2015  ieltsindonesia.co.id. All Rights Reserved
+                                                                                    </div>
+
+
+                                                                            '; 
+                                                                         }   
+
+                                                            }
+
+                                                    $this->email->message($message);
+                                                    $this->email->send();
 
 
         }
@@ -990,7 +1279,187 @@ class register_model extends CI_Model {
             $this->db->like($field,$keyword);
             $data1 = $this->db->get($table);
             return $data1->result();
-        }    
+        } 
+
+
+    function testemail() {
+          // -- EMAIL CONFIRMATION -- //
+                        $config = Array(
+                           'protocol' => 'mail',
+                           'smtp_host' => 'mail.webdev.dlanet.com',
+                           'smtp_port' => 25,
+                           'smtp_user' => 'register@webdev.dlanet.com',
+                           'smtp_pass' => 'rahasia123',
+                           'mailtype'  => 'html',
+                           'charset'   => 'iso-8859-1',
+                           'wordwrap'  => TRUE
+                        );
+
+                $this->load->library('email', $config);
+                $this->email->from('register@webdev.dlanet.com', 'IELTS Indonesia');
+                
+                $this->email->to('fajarizaf@gmail.com');
+                $this->email->subject('Activation Account');
+                
+                $message = '
+                    
+                        <div style="font-size: 18px; font-weight: bold; padding: 5px;height:68px;border-bottom:2px solid red;">
+                               <img src="'.base_url().'/assets/pic/utclogo.png" style="float:left;margin-right:5px;" />
+                               <img src="'.base_url().'/assets/pic/bc-logo.png" style="float:left;margin-right:5px;" />
+                               <img src="'.base_url().'/assets/pic/ielts-logo.png" style="float:left;margin-right:5px;" />
+                        </div>
+
+                        <div style="margin-top:7px;width:100%;padding:8px;background:#faedc1;color:#ed4b1a;-moz-border-radius:3px 3px 3px;-webkit-border-radius:3px 3px 3px;border-radius:3px 3px 3px;border:1px solid #f4c375;">
+                        <span style="color:#c0322f;font-weight:bold;">Register Successful</span>&nbsp;Thank you registering for our ieltsindonesia as candidate IELTS test
+                        </div>
+
+                        <div style="color:#626262;font-weight:bold;margin-top:7px;">The following test schedule that you choose :</div>
+
+                        <table style="margin-top:10px;">
+                        <tr>
+                        <td style="color:#626262">Test Date</td>
+                        <td style="color:#626262">:</td>
+                        <td style="color:#626262">29 januari 2015</td>
+                        </tr>
+
+                        <tr>
+                        <td style="color:#626262">Test Venue</td>
+                        <td style="color:#626262">:</td>
+                        <td style="color:#626262">UTC</td>
+                        </tr>
+
+                        <tr>
+                        <td style="color:#626262">Test Module</td>
+                        <td style="color:#626262">:</td>
+                        <td style="color:#626262">Akademik</td>
+                        </tr>
+
+                        <tr>
+                        <td style="color:#626262">Make Your Payment</td>
+                        <td style="color:#626262">:</td>
+                        <td style="color:#626262">IDR 2.400.000,00 / USD.190 / GBP.120</td>
+                        </tr>
+
+                        </table>
+
+                        <div style="color:#626262;margin-top:7px;">In order to activate your account,please follow the link bellow</div>
+                        <a style="text-decoration:none;" href="'.base_url().'register/activeaccount/"><div style="margin-top:7px;background:#00a6e0;padding:6px;width:120px;color:#fff;-moz-border-radius:4px 4px 4px;-webkit-border-radius:4px 4px 4px;border-radius:4px 4px 4px;">Activation Account</div></a>
+
+                        <div style="color:#626262;margin-top:7px;">Thanks You,</div>
+                        <div style="color:#626262;text-decoration:none;">Ieltsindonesia.co.id</div>
+
+                        <div style="color:#626262;width:100%;height:20px;border-top:1px solid #ccc;padding-top:7px;margin-top:12px;">
+                        &copy;  2015  ieltsindonesia.co.id. All Rights Reserved
+                        </div>
+
+
+                ';
+                $this->email->message($message);
+                $this->email->send();
+            
+    } 
+
+
+    function activeaccount($iduser) {
+        $data = array(
+            'userstatus' => '1'
+            );
+
+        $this->db->where('idusers',$iduser);
+        $q = $this->db->update('users',$data);
+
+        if($q) {
+            redirect('register/activesucces');
+        }
+    }
+
+    function cekuser($email) {
+        $this->db->where('useremail',$email);
+        $q = $this->db->get('users');
+        return $q->num_rows();
+    }
+
+
+
+    function prosesresetpassword() {
+        $email = $this->input->post('email');
+        $password = $this->input->post('password');
+
+        $data = array(
+            'userpass' => md5($password),
+            );
+        $this->db->where('useremail',$email);
+        $q = $this->db->update('users',$data);
+        if($q) {
+            $response = array('status' => 'sukses');
+            echo '{"status":'.json_encode($response).'}';   
+        }
+    }
+
+
+
+    function resetpassword() {
+        $email = $this->input->post('email');
+        // -- EMAIL CONFIRMATION -- //
+                                                                            $config = Array(
+                                                                               'protocol' => 'mail',
+                                                                               'smtp_host' => 'mail.webdev.dlanet.com',
+                                                                               'smtp_port' => 25,
+                                                                               'smtp_user' => 'register@webdev.dlanet.com',
+                                                                               'smtp_pass' => 'rahasia123',
+                                                                               'mailtype'  => 'html',
+                                                                               'charset'   => 'iso-8859-1',
+                                                                               'wordwrap'  => TRUE
+                                                                            );
+
+                                                                            $this->load->library('email', $config);
+                                                                            $this->email->from('register@webdev.dlanet.com', 'IELTS Indonesia');
+                                                                            
+                                                                            $this->email->to($email);
+                                                                            $this->email->subject('Activation Account');
+
+                                                                            
+                                                                            $message = '
+                                                                                
+                                                                                    <div style="font-size: 18px; font-weight: bold; padding: 5px;height:68px;border-bottom:2px solid red;">
+                                                                                           <img src="'.base_url().'/assets/pic/utclogo.png" style="float:left;margin-right:5px;" />
+                                                                                           <img src="'.base_url().'/assets/pic/bc-logo.png" style="float:left;margin-right:5px;" />
+                                                                                           <img src="'.base_url().'/assets/pic/ielts-logo.png" style="float:left;margin-right:5px;" />
+                                                                                    </div>
+
+                                                                                
+
+                                                                                    <div style="width:330px;float:left;">
+                                                                                    <div style="color:#626262;font-weight:bold;margin-top:7px;">We Received a request to change your password:</div>
+                                                                                    <p>Click the link bellow to set a new password :</p>
+                                                                                    
+                                                                                    <a href="'.base_url().'register/resetpassword/'.$email.'">'.base_url().'register/resetpassword/</a>
+
+                                                                                    
+                                                                                    <div style="color:#626262;margin-top:12px;">if you don"t want to change your password,you can ignore this email.</div>
+                                                                                    <div style="color:#626262;width:100%;height:20px;border-top:1px solid #ccc;padding-top:7px;margin-top:12px;">
+                                                                                    &copy;  2015  ieltsindonesia.co.id. All Rights Reserved
+                                                                                    </div>
+
+
+                                                                            '; 
+                                                                            
+
+                                                            
+
+                                                    $this->email->message($message);
+                                                    $qe = $this->email->send();
+
+                                                    if($qe) {
+                                                        $response = array('status' => 'sukses');
+                                                        echo '{"status":'.json_encode($response).'}';
+                                                    } else {
+                                                        $response = array('status' => 'gagal');
+                                                        echo '{"status":'.json_encode($response).'}';
+                                                    }
+
+
+    }     
 
 
 }

@@ -176,10 +176,14 @@ class Report extends CI_Controller {
     public function createpdf() {
       ini_set('memory_limit', '128M');
       $idusers = $this->uri->segment(3);
+      $idregistrations = $this->uri->segment(4);
       $where['idusers'] = $this->uri->segment(3);
       $data['datareport'] = $this->report_model->getdatareport($idusers);
       $where1['userid'] = $this->uri->segment(3);
       $data['akademik'] = $this->app_model->getSelectedData('academic',$where1);
+      $data['branches'] = $this->report_model->getBranches($idregistrations);
+      $where2['idusers'] = $this->uri->segment(3);
+      $data['proof'] = $this->app_model->getSelectedData('registrations', $where2);
       $nameuser = $this->app_model->getSelectedData('users',$where);
       $html = $this->load->view('report_pdf',$data, true);
       $this->load->helper(array('dompdf', 'file')); 

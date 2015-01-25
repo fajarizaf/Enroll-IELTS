@@ -68,6 +68,12 @@
                     <td >:</td>
                     <td><?php echo $row->username ?></td>
                   </tr>
+
+                  <tr>
+                    <td >Password</td>
+                    <td >:</td>
+                    <td><?php echo $this->encrypt->decode($row->userpass) ?></td>
+                  </tr>
                   
 
                   <tr>
@@ -117,11 +123,7 @@
                     <td>:</td>
                     <td><?php echo $row->useraddr4 ?></td>
                   </tr>
-                  <tr>
-                    <td>Country</td>
-                    <td>:</td>
-                    <td><div class="label" style="width:auto;float:left;"><?php echo  $row->useraddr2 ?></div>&nbsp;&nbsp;<?php $this->showuser->getnameaditionalinfo('city', $row->useraddr2 ) ?></td>
-                  </tr>
+              
                   <tr>
                     <td>Date Of Birth</td>
                     <td>:</td>
