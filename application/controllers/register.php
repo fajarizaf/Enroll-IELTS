@@ -10,6 +10,7 @@ class Register extends CI_Controller {
         $this->load->library('listexams');
         $this->load->library('showuser');
         $this->load->library('session');
+        $this->load->library('getschedules');
         $this->load->library('generated_tanggal');
         $this->load->helper('form','url','html');
         $this->load->library('encrypt');
@@ -36,6 +37,11 @@ class Register extends CI_Controller {
         $this->load->view('global/header', $data);
         $this->load->view('register', $data);
         $this->load->view('global/footer', $data);
+    }
+
+     function getschedulesview() {
+        $data['monthavailable'] = $this->register_model->selectmonthavailable();
+        $this->load->view('listschedules',$data);
     }
 
 

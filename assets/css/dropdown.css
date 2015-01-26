@@ -1,0 +1,23 @@
+.nav-left ul .active > a {
+	background: #2d5c65 url(../images/panhover.png) no-repeat;
+	background-position: 10px 12px;
+	color:#fff;
+}
+
+.nav-left ul li a {
+	-moz-border-radius:3px 3px 3px;-webkit-border-radius:3px 3px 3px;border-radius:3px 3px 3px;color: #2d5c65;text-decoration:none; display: block; border:none;margin-bottom:5px; line-height: 20px;text-decoration:none font-weight: bold;	
+	padding-left:0px;
+	margin-left:0px;
+	padding-top:10px;
+	padding-bottom: 10px;
+	background: #ebeff0 url(../images/pan.png) no-repeat;
+	background-position: 570px 12px;
+	width:240px;
+	padding-left: 42px;
+}
+
+.content-left .nav-left ul li .active {
+	background: #2d5c65 url(../images/panhover.png) no-repeat;
+	background-position: 570px 12px;
+	color:#fff;
+	}

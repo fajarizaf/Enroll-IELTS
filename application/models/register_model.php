@@ -1459,7 +1459,19 @@ class register_model extends CI_Model {
                                                     }
 
 
-    }     
+    }
+
+
+    function getlistschedule($month) {
+        $query = $this->db->query('select * from schedules where MONTH(schdate)="'.$month.'" and schstatus="1" and schdate > NOW() ');
+        return $query->result();
+    }
+
+
+    function selectmonthavailable() { 
+    $q = $this->db->query('select distinct MONTH(schdate) as "vbn" from schedules where schstatus="1" and schdate > NOW() order by MONTH(schdate) ASC');
+    return $q->result();    
+    }   
 
 
 }

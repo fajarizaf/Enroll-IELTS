@@ -3,7 +3,7 @@
 
 <div class="content">
 	
-    <div class="h1" style="margin-top:20px;margin-bottom:20px;float:left;">Register</div>
+    <div class="h1" style="margin-top:20px;margin-bottom:20px;">Register</div>
     <div id="waktu" style="width:50px;float:right;"></div>
 	<div class="box-tab">
     	<ul>
@@ -34,7 +34,7 @@
                         <select id="selectCity" name="city" class="chosen-select" style="width:320px;">
                         <option value="">select city available</option>
                         	<?php foreach ($city as $row1 ) { ?>
-                            <option value="<?php echo $row1->city ?>" ><?php echo $row1->city ?></option>
+                            <option value="<?php echo $row1->city ?>" ><?php echo $row1->cityname ?></option>
                             <?php } ?>
                         </select>
 
