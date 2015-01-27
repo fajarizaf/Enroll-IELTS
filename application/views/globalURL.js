@@ -1,0 +1,1 @@
+var base_url = 'http://demo-af.webdev.dlanet.com/ielts/';

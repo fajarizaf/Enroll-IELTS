@@ -1,5 +1,5 @@
 .nav-left ul .active > a {
-	background: #2d5c65 url(../images/panhover.png) no-repeat;
+	background: #2d5c65 url(../pic/pansshover.png) no-repeat;
 	background-position: 10px 12px;
 	color:#fff;
 }
@@ -10,14 +10,14 @@
 	margin-left:0px;
 	padding-top:10px;
 	padding-bottom: 10px;
-	background: #ebeff0 url(../images/pan.png) no-repeat;
+	background: #ebeff0 url(../pic/panss.png) no-repeat;
 	background-position: 570px 12px;
 	width:240px;
 	padding-left: 42px;
 }
 
 .content-left .nav-left ul li .active {
-	background: #2d5c65 url(../images/panhover.png) no-repeat;
+	background: #2d5c65 url(../pic/pansshover.png) no-repeat;
 	background-position: 570px 12px;
 	color:#fff;
 	}

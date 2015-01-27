@@ -329,9 +329,9 @@ class register_model extends CI_Model {
                                                                 $message = '
                                                             
                                                                 <div style="font-size: 18px; font-weight: bold; padding: 5px;height:68px;border-bottom:2px solid red;">
-                                                                       <img src="'.base_url().'/assets/pic/utclogo.png" style="float:left;margin-right:5px;" />
-                                                                       <img src="'.base_url().'/assets/pic/bc-logo.png" style="float:left;margin-right:5px;" />
-                                                                       <img src="'.base_url().'/assets/pic/ielts-logo.png" style="float:left;margin-right:5px;" />
+                                                                       <img src="'.base_url().'assets/pic/utclogo.png" style="float:left;width:40px;margin-right:15px;margin-top:7px;" />
+                                                                       <img src="'.base_url().'assets/pic/bc-logo1.png" style="float:left;width:220px;margin-right:15px;margin-top:7px;" />
+                                                                       <img src="'.base_url().'assets/pic/ielts-logo.png" style="float:left;margin-right:5px;margin-top:7px;" />
                                                                 </div>
 
                                                                 <div style="margin-top:12px;margin-bottom:12px;width:100%;padding:8px;background:#faedc1;color:#ed4b1a;-moz-border-radius:3px 3px 3px;-webkit-border-radius:3px 3px 3px;border-radius:3px 3px 3px;border:1px solid #f4c375;">
@@ -346,6 +346,12 @@ class register_model extends CI_Model {
                                                                 <td style="color:#626262">Test Date</td>
                                                                 <td style="color:#626262">:</td>
                                                                 <td style="color:#626262">'.$this->generated_tanggal->ubahtanggal($row->schdate).'</td>
+                                                                </tr>
+
+                                                                <tr>
+                                                                <td style="color:#626262">Test Venue</td>
+                                                                <td style="color:#626262">:</td>
+                                                                <td style="color:#626262">'.$this->showuser->getvenue($row->idbranches).'</td>
                                                                 </tr>
 
                                                                 <tr>
@@ -593,9 +599,9 @@ class register_model extends CI_Model {
                                                             $message = '
                                                                 
                                                                     <div style="font-size: 18px; font-weight: bold; padding: 5px;height:68px;border-bottom:2px solid red;">
-                                                                           <img src="'.base_url().'/assets/pic/utclogo.png" style="float:left;margin-right:5px;" />
-                                                                           <img src="'.base_url().'/assets/pic/bc-logo.png" style="float:left;margin-right:5px;" />
-                                                                           <img src="'.base_url().'/assets/pic/ielts-logo.png" style="float:left;margin-right:5px;" />
+                                                                           <img src="'.base_url().'assets/pic/utclogo.png" style="float:left;width:40px;margin-right:15px;margin-top:7px;" />
+                                                                           <img src="'.base_url().'assets/pic/bc-logo1.png" style="float:left;width:220px;margin-right:15px;margin-top:7px;" />
+                                                                           <img src="'.base_url().'assets/pic/ielts-logo.png" style="float:left;margin-right:5px;margin-top:7px;" />
                                                                     </div>
 
                                                                     <div style="margin-top:12px;margin-bottom:12px;width:100%;padding:8px;background:#faedc1;color:#ed4b1a;-moz-border-radius:3px 3px 3px;-webkit-border-radius:3px 3px 3px;border-radius:3px 3px 3px;border:1px solid #f4c375;">
@@ -610,6 +616,12 @@ class register_model extends CI_Model {
                                                                     <td style="color:#626262">Test Date</td>
                                                                     <td style="color:#626262">:</td>
                                                                     <td style="color:#626262">'.$this->generated_tanggal->ubahtanggal($row->schdate).'</td>
+                                                                    </tr>
+
+                                                                    <tr>
+                                                                    <td style="color:#626262">Test Venue</td>
+                                                                    <td style="color:#626262">:</td>
+                                                                    <td style="color:#626262">'.$this->showuser->getvenue($row->idbranches).'</td>
                                                                     </tr>
 
                                                                     <tr>
@@ -782,9 +794,9 @@ class register_model extends CI_Model {
                                                                             $message = '
                                                                                 
                                                                                     <div style="font-size: 18px; font-weight: bold; padding: 5px;height:68px;border-bottom:2px solid red;">
-                                                                                           <img src="'.base_url().'/assets/pic/utclogo.png" style="float:left;margin-right:5px;" />
-                                                                                           <img src="'.base_url().'/assets/pic/bc-logo.png" style="float:left;margin-right:5px;" />
-                                                                                           <img src="'.base_url().'/assets/pic/ielts-logo.png" style="float:left;margin-right:5px;" />
+                                                                                           <img src="'.base_url().'assets/pic/utclogo.png" style="float:left;width:40px;margin-right:15px;margin-top:7px;" />
+                                                                                           <img src="'.base_url().'assets/pic/bc-logo1.png" style="float:left;width:220px;margin-right:15px;margin-top:7px;" />
+                                                                                           <img src="'.base_url().'assets/pic/ielts-logo.png" style="float:left;margin-right:5px;margin-top:7px;" />
                                                                                     </div>
 
                                                                                     <div style="margin-top:12px;margin-bottom:12px;width:100%;padding:8px;background:#faedc1;color:#ed4b1a;-moz-border-radius:3px 3px 3px;-webkit-border-radius:3px 3px 3px;border-radius:3px 3px 3px;border:1px solid #f4c375;">
@@ -799,6 +811,12 @@ class register_model extends CI_Model {
                                                                                     <td style="color:#626262">Test Date</td>
                                                                                     <td style="color:#626262">:</td>
                                                                                     <td style="color:#626262">'.$this->generated_tanggal->ubahtanggal($row->schdate).'</td>
+                                                                                    </tr>
+
+                                                                                    <tr>
+                                                                                    <td style="color:#626262">Test Venue</td>
+                                                                                    <td style="color:#626262">:</td>
+                                                                                    <td style="color:#626262">'.$this->showuser->getvenue($row->idbranches).'</td>
                                                                                     </tr>
 
                                                                                     <tr>
@@ -1443,9 +1461,7 @@ class register_model extends CI_Model {
 
 
                                                                             '; 
-                                                                            
-
-                                                            
+                                                         
 
                                                     $this->email->message($message);
                                                     $qe = $this->email->send();

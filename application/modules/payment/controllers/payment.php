@@ -284,6 +284,10 @@ class Payment extends CI_Controller {
         $this->payment_model->paid();
     }
 
+    public function delpaymentunpaid() {
+      $this->payment_model->delpaymentunpaid();
+    }
+
 
 
 

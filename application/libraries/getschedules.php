@@ -121,28 +121,28 @@ class Getschedules  {
         if($query) { ?>
 
             <table style="margin-left:0px;">
-                    <tr style="background:#efefef;">
-                        <th class="font2" style="width:70px;color:#333;padding-right:30px;padding-top:1px;padding-bottom:1px;">Module</th>
-                        <th class="font2"  style="width:110px;color:#333;padding-right:30px;padding-top:1px;padding-bottom:1px;">Test Date</th>
-                        <th class="font2"  style="width:220px;color:#333;padding:5px;padding-top:1px;padding-bottom:1px;">Test Venue</th>
-                        <th class="font2"  style="width:90px;color:#333;padding:5px;padding-top:1px;padding-bottom:1px;">Availability</th>
+                    <tr style="background:#efefef;height:40px;">
+                        <th class="font2" style="width:70px;color:#333;padding-right:30px;padding-top:1px;padding-bottom:1px;text-align:left;">Module</th>
+                        <th class="font2"  style="width:110px;color:#333;padding-right:30px;padding-top:1px;padding-bottom:1px;text-align:left;">Test Date</th>
+                        <th class="font2"  style="width:220px;color:#333;padding:5px;padding-top:1px;padding-bottom:1px;text-align:left;">Test Venue</th>
+                        <th class="font2"  style="width:90px;color:#333;padding:5px;padding-top:1px;padding-bottom:1px;text-align:left;">Availability</th>
                     </tr>
-                </table>
+     
 
         <?php
             foreach ( $query as $row ) { ?>
-                <li style="width:580px;padding-top:2px;padding-bottom:2px;background:#efefef;"">
-                <table style="margin-left:0px;">
+
                     <tr style="background:#efefef;">
-                        <td class="font2" style="width:70px;color:#666;padding-right:30px;padding-top:1px;padding-bottom:1px;"><?php if($this->examname($row->idexams) == 'Academic') {echo "AC";} else if($this->examname($row->idexams) == 'General Training') { echo "GT"; }; ?></td>
-                        <td class="font2"  style="width:110px;color:#666;padding-right:30px;padding-top:1px;padding-bottom:1px;"><?php echo $this->ubahtanggal($row->schdate)?></td>
-                        <td class="font2"  style="width:220px;color:#666;padding:5px;padding-top:1px;padding-bottom:1px;"><?php echo $this->location($row->idbranches)?></td>
-                        <td class="font2"  style="width:90px;color:#666;padding:5px;padding-top:1px;padding-bottom:1px;"><?php  if($row->schclosingreg < date("Y-m-d H:i:s")) { echo "Full"; } else { echo "Available"; }  ?></td>
+                        <td class="font2" style="padding-top:7px;padding-bottom:7px;width:70px;color:#666;"><?php if($this->examname($row->idexams) == 'Academic') {echo "AC";} else if($this->examname($row->idexams) == 'General Training') { echo "GT"; }; ?></td>
+                        <td class="font2"  style="padding-top:7px;padding-bottom:7px;width:110px;color:#666;"><?php echo $this->ubahtanggal($row->schdate)?></td>
+                        <td class="font2"  style="padding-top:7px;padding-bottom:7px;width:220px;color:#666;"><?php echo $this->location($row->idbranches)?></td>
+                        <td class="font2"  style="padding-top:7px;padding-bottom:7px;width:90px;color:#666;"><?php  if($row->schclosingreg < date("Y-m-d H:i:s")) { echo "Full"; } else { echo "Available"; }  ?></td>
                     </tr>
-                </table>
-                </li>
-    <?php   }
-        } else { ?>
+               
+              
+    <?php   }  ?>
+            </table>
+    <?php } else { ?>
             <li style="width:560px;padding:10px;margin-top:-10px;background:#efefef;">no schedule this month</li>
      <?php   }
     }

@@ -181,6 +181,22 @@ function ubahtanggal2($parameter) {
   }
 
 
+  function getEmailuser($code) {
+    $CI =& get_instance();
+      $CI->load->model('app_model');
+
+        $data['idusers'] = $code;
+        $query =  $CI->app_model->getSelectedData('users', $data);
+        
+        if($query) {
+          foreach ($query as $row ) {
+            return $row->useremail;
+          }
+        }
+  }
+
+
+
   function getRolesss($code) {
     $CI =& get_instance();
       $CI->load->model('app_model');
@@ -305,6 +321,20 @@ function ubahtanggal2($parameter) {
       $CI->load->model('test_model');
         $query =  $CI->test_model->countvenue($idcity);
 
+  }
+
+  function getvenue($code) {
+    $CI =& get_instance();
+      $CI->load->model('app_model');
+
+        $data['idbranches'] = $code;
+        $query =  $CI->app_model->getSelectedData('branches', $data);
+        
+        if($query) {
+          foreach ($query as $row ) {
+            return $row->branchname;
+          }
+        }
   }
 
 
