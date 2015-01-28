@@ -211,9 +211,9 @@
                     <td>Country*</td>
                     <td>:</td>
                     <td>
-                       <div href="#listcity" data-toggle="modal" id="namecountry" class="selecboxstyle"></div>
+                       <div href="#liststate" data-toggle="modal" id="namecountry" class="selecboxstyle"></div>
                        <input type="hidden"  id="country" name="country">
-                       <input type="text" name="codecity" class="codecity">
+                       <input type="text" name="codecity" style="display:none;" class="codecity">
                     </td>
                   </tr>
                   <tr>
@@ -312,7 +312,6 @@
                                                             <option value="EIR">Republic of Ireland</option>
                                                             <option value="UK">United Kingdom</option>
                                                             <option value="USA">United States of America</option>
-                                                            <option value="000">Other</option>
                     </select>
                     </td>
                   </tr>

@@ -80,6 +80,7 @@ class Register extends CI_Controller {
                         $this->load->view('form_candidate');
                          
                          $this->load->view('modal/list-city', $data);
+                         $this->load->view('modal/list-state', $data);
                          $this->load->view('modal/list-language', $data);
                          $this->load->view('modal/ocupation-sector', $data);
                          $this->load->view('modal/ocupation-level', $data);      
@@ -100,6 +101,7 @@ class Register extends CI_Controller {
 
 
                          $this->load->view('modal/list-city', $data);
+                         $this->load->view('modal/list-state', $data);
                          $this->load->view('modal/list-language', $data);
                          $this->load->view('modal/ocupation-sector', $data);
                          $this->load->view('modal/ocupation-level', $data);      

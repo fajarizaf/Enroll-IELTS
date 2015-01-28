@@ -156,7 +156,7 @@ class register_model extends CI_Model {
                     $address = $this->input->post('address');
                     $city = $this->input->post('city');
                     $zipcode = $this->input->post('zipcode');
-                    $country = $this->input->post('codecity');
+                    $country = $this->input->post('country');
                     $date = $this->input->post('date_of_birth');
                     $identity = $this->input->post('identity');
                     $number_identity = $this->input->post('number_identity');
@@ -176,22 +176,40 @@ class register_model extends CI_Model {
          
 
                     if($codesector == '00') {
-                        $codesector = $this->input->post('sector_other');
+                        $codesector_other = $this->input->post('sector_other');
+                    }  else {
+                        $codesector_other =  '-';
                     }
+
+
                     if($codelevel == '0') {
-                        $codelevel =  $this->input->post('level_other');
+                        $codelevel_other =  $this->input->post('level_other');
+                    } else {
+                        $codelevel_other =  '-';
                     }
+
+
                     if($codequestion == '0' ) {
-                        $codequestion = $this->input->post('other_taking_test');
+                        $codequestion_other = $this->input->post('other_taking_test');
+                    }  else {
+                        $codequestion_other =  '-';
                     }
+
+
                     if($country_applying == '0') {
-                        $country_applying = $this->input->post('other_country_applying');
+                        $country_applying_other = $this->input->post('other_country_applying');
+                    }  else {
+                        $country_applying_other =  '-';
                     }
+
+
                     if($specialneeds == 'YES') {
                         $specialneedsdesc = $this->input->post('specialneedsdesc');
                     } else if ($specialneeds == 'NO') {
                         $specialneedsdesc = '-';
                     }
+
+
                     $pass = $this->readable_random_string(15);
                     $enpass = md5($pass);
 
@@ -216,9 +234,13 @@ class register_model extends CI_Model {
                         "usercountryorigin" => $codecountryorigin,
                         "userfirstlanguage" => $codelang,
                         "useroccupationsector" => $codesector,
+                        "sector_other" => $codesector_other,
                         "useroccupationlevel" => $codelevel,
+                        "level_other" => $codelevel_other,
                         "userwhytaketest" => $codequestion,
+                        "userwhytaketest_other" => $codequestion_other,
                         "usertargetcountry" => $country_applying,
+                        "usertargetcountry_other" => $country_applying_other,
                         "usertakenielts" => $specialneeds,
                         "userwherestudyingeng" => $studying_english,
                         "userlevelofeducation" => $level_of_education,
@@ -423,7 +445,7 @@ class register_model extends CI_Model {
             $address = $this->input->post('address');
             $city = $this->input->post('city');
             $zipcode = $this->input->post('zipcode');
-            $country = $this->input->post('codecity');
+            $country = $this->input->post('country');
             $date = $this->input->post('date_of_birth');
             $identity = $this->input->post('identity');
             $number_identity = $this->input->post('number_identity');
@@ -443,17 +465,33 @@ class register_model extends CI_Model {
  
 
             if($codesector == '00') {
-                $codesector = $this->input->post('sector_other');
+                $codesector_other = $this->input->post('sector_other');
+            }  else {
+                $codesector_other =  '-';
             }
+
+
             if($codelevel == '0') {
-                $codelevel =  $this->input->post('level_other');
+                $codelevel_other =  $this->input->post('level_other');
+            } else {
+                $codelevel_other =  '-';
             }
+
+
             if($codequestion == '0' ) {
-                $codequestion = $this->input->post('other_taking_test');
+                $codequestion_other = $this->input->post('other_taking_test');
+            }  else {
+                $codequestion_other =  '-';
             }
+
+
             if($country_applying == '0') {
-                $country_applying = $this->input->post('other_country_applying');
+                $country_applying_other = $this->input->post('other_country_applying');
+            }  else {
+                $country_applying_other =  '-';
             }
+
+
             if($specialneeds == 'YES') {
                 $specialneedsdesc = $this->input->post('specialneedsdesc');
             } else if ($specialneeds == 'NO') {
@@ -483,9 +521,13 @@ class register_model extends CI_Model {
                 "usercountryorigin" => $codecountryorigin,
                 "userfirstlanguage" => $codelang,
                 "useroccupationsector" => $codesector,
+                "sector_other" => $codesector_other,
                 "useroccupationlevel" => $codelevel,
+                "level_other" => $codelevel_other,
                 "userwhytaketest" => $codequestion,
+                "userwhytaketest_other" => $codequestion_other,
                 "usertargetcountry" => $country_applying,
+                "usertargetcountry_other" => $country_applying_other,
                 "usertakenielts" => $specialneeds,
                 "userwherestudyingeng" => $studying_english,
                 "userlevelofeducation" => $level_of_education,

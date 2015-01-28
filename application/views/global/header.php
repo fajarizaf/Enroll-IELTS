@@ -181,9 +181,11 @@
 <body>
 <div class="header">
     <div class="child-header">
-    <img src="<?php echo base_url() ?>assets/pic/ielts-logo.png" style="float:left;margin-top:22px;" />
-    <img src="<?php echo base_url() ?>assets/pic/bc-logo.png" style="float:left;margin-top:22px;"/>
-    <img src="<?php echo base_url() ?>assets/pic/utclogo.png" style="float:right;margin-top:10px;" />
+    <img src="<?php echo base_url() ?>assets/pic/utclogo.png" style="float:left;margin-top:12px;margin-right:20px;width:50px;" />
+    <img src="<?php echo base_url() ?>assets/pic/bc-logo1.png" style="float:left;margin-top:22px;width:176px;margin-right:20px;"/>
+    <img src="<?php echo base_url() ?>assets/pic/ielts-logo.png" style="float:left;margin-top:20px;width:130px;" />
+    
+    
     <?php if($this->session->userdata('login') == 'true') { ?>
         <div class="stat_member">
             <div class="stat_photo">
