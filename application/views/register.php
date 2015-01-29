@@ -1,15 +1,64 @@
 
-
+<script type="text/javascript">
+  $(document).ready(function() {
+      /** Membuat Waktu Mulai Hitung Mundur Dengan 
+                   * var detik = 0,
+                   * var menit = 1,
+                   * var jam = 1
+                   */
+                   var detik = 0;
+                   var menit = 30;
+             
+                  /**
+                   * Membuat function hitung() sebagai Penghitungan Waktu
+                   */
+                   function hitung() {
+                      /** setTimout(hitung, 1000) digunakan untuk 
+                 *  mengulang atau merefresh halaman selama 1000 (1 detik) */
+                 setTimeout(hitung,1000);
+             
+                /** Menampilkan Waktu Timer pada Tag #Timer di HTML yang tersedia */
+                 $('#timer').html( '' + menit + ':' + detik + '');
+             
+                /** Melakukan Hitung Mundur dengan Mengurangi variabel detik - 1 */
+                 detik --;
+             
+                /** Jika var detik < 0
+                 *  var detik akan dikembalikan ke 59
+                 *  Menit akan Berkurang 1
+                 */
+                 if(detik < 0) {
+                    detik = 59;
+                    menit --;
+             
+                    /** Jika menit < 0
+                     *  Maka menit akan dikembali ke 59
+                     *  Jam akan Berkurang 1
+                     */
+                     if(menit < 0) {
+                  menit = 59;
+                      clearInterval();
+                      window.location = ""+base_url+"";
+                  
+                     }
+                 }    
+                    }
+              /** Menjalankan Function Hitung Waktu Mundur */
+                    hitung(); 
+  });
+</script>
 
 <div class="content">
 	
-    <div class="h1" style="margin-top:20px;margin-bottom:20px;">Register</div>
-    <div id="waktu" style="width:50px;float:right;"></div>
-	<div class="box-tab">
+    <div class="h1" style="margin-top:20px;margin-bottom:20px;float:left;">Register</div>
+    <div class="label label-info" style="width:130px;float:right;background:#1ba4dd;padding:5px;margin-top:20px;"><div style="width:80px;float:left;margin-right:11px;color:#fff;">Time Remains :</div><div id="timer" style="color:#fff;width:30px;float:left;margin-left:7px;"></div></div>
+	
+  <div style="clear:both;"></div>
+  <div class="box-tab">
     	<ul>
-        	<li id="btn-city"  class="active"><div class="icon-city"></div><div class="title-tab"><div>STEP 1</div>Select a City</div></li>
+        	<li id="btn-city" style="width:160px;"  class="active"><div class="icon-city"></div><div class="title-tab" style="width:90px;"><div>STEP 1</div>Select a City</div></li>
             <li id="btn-date"><div class="icon-date"></div><div class="title-tab"><div>STEP 2</div>Find Test Date</div></li>
-            <li id="btn-tos"><div class="icon-tos"></div><div class="title-tab"><div>STEP 3</div>Term & Conditions</div></li>
+            <li id="btn-tos" style="width:202px;"><div class="icon-tos"></div><div class="title-tab" style="width:130px;"><div>STEP 3</div>Registration Checklist</div></li>
             <li id="btn-candidate"><div class="icon-candidate"></div><div class="title-tab"><div>STEP 4</div>Candidate Details</div></li>
             <li id="btn-finish"><div class="icon-finish"></div><div class="title-tab"><div>STEP 5</div>Finish</div></li>
         </ul>
@@ -34,14 +83,14 @@
                         <select id="selectCity" name="city" class="chosen-select" style="width:320px;">
                         <option value="">select city available</option>
                         	<?php foreach ($city as $row1 ) { ?>
-                            <option value="<?php echo $row1->city ?>" ><?php echo $row1->cityname ?></option>
+                            <option value="<?php echo $row1->city ?>" ><?php echo $this->showuser->cityname($row1->city); ?></option>
                             <?php } ?>
                         </select>
 
                 </div>
                 
                 
-                <div class="right">
+                <div class="right" style="padding-right:0px;float:right;">
                     <div class="h3" style="width:200px;float:left;margin-top:0px;margin-bottom:10px;">LIST BY CITY LOCATION EXAM</div>
                         <div class="statloc" style="float:right;width:120px;font-size:18px;margin-top:10px;"></div>
                           
@@ -164,175 +213,58 @@
 
             <!-- Content Tab Select Terms On Conditions -->
             <div id="sec-tos" class="contents" style="padding-top:30px;">
-            
-            <div class="h2">Terms And Conditions</div>
+
             <div class="box-tos">	
-            <h4>You must...</h4>
-            <ul>
-              <li>provide proof of your identity (passport or national identity card) at
-                  registration. This identity document must contain a number, a signature, a
-                  date of birth and a photograph. You should contact your test centre who will
-                  tell you which type of identity document they accept. Candidates taking the
-                  test outside their own country must produce a passport.</li>
-              <li>provide two recent identical passport-sized photographs on registration.
-                  (See page iv for guidance on photograph requirements.)</li>
-              <li>inform the test centre of any changes to your identity document before the
-                  test date. If you do not do this you will not be allowed to take the test and you
-                  will not be eligible for a refund or transfer</li>
-              <li>bring the same identity document on the test day as the one recorded on
-                  your Application Form. If you do not do this you will not be allowed to take
-                  the test and you will not be eligible for a refund or transfer. </li>
-              <li>arrive at the test centre before the scheduled test start time. If you arrive late:
-                  – you will not be admitted to the test room.<br/>
-                  – you will not be allowed to take any of the test components.<br/>
-                  – you will not be eligible for a refund or transfer.</li>
-              <li>leave personal belongings outside the test room. The following items may
-                  not be taken into the test room: bags, correction fluid, highlighter pens
-                  and electronic devices such as mobile phones, pagers, recorders and
-                  dictionaries. Candidates must ensure that mobile phones and pagers which
-                  are left outside the test room are switched off. Any candidate who does not
-                  switch off their phone or pager, or takes any electronic device into the test
-                  room, will not be allowed to complete the test and will not receive an IELTS
-                  test result or be eligible for a refund or transfer. Candidates must not bring
-                  valuables to the test centre as the test centre cannot be responsible for these.</li>
-              <li>consent for your identity to be verified either at test registration or on test
-                  day. This may include<br/>
-                  – having your photograph taken.<br/>
-                  You will be required to temporarily remove any covering from your
-                  face. Any candidate who refuses to have a photograph taken will not
-                  be permitted to sit the test and will not be entitled to a refund. This
-                  photograph taken by the test centre will appear on your Test Report Form.
-                  – providing a sample of your signature.<br/>
-                  – having your finger-scan taken.</li>
-              <li>keep only the following items on your desk: your identity document, pen(s),
-                  pencil(s) and eraser(s). </li>
+            <h3 style="color:#333;margin-top:17px;margin-bottom:7px;">Registration Checklist</h3>
+            <b>Before proceeding to registration, please have the following contents available</b><br/>
+    
+            <ul style="list-style:number;width:850px;">
+              <li>A valid ID document or passport. On the test day, you must bring the same form of ID document that you indicate on your application form. NOTE: Student's Pass, Employment Pass and Work Permit are not allowed.</li>
+              <li>A copy of your previous IELTS test report if you have taken IELTS before.</li>
+              <li>Soft copy of an image of your ID document or passport. [ Sample and specifications ]</li>
+            </ul>
 
-              <li>
-                  tell the test supervisor or invigilator at once:<br/>
-                  – if you think you have not been given the correct question paper.<br/>
-                  – if the question paper is incomplete or illegible.  
-              </li>
-              <li>raise your hand to attract attention if you are in doubt about what you should
-                  do. An invigilator will come to your assistance. Candidates may not ask for,
-                  and will not be given, any explanation of the test questions</li>
-              <li>inform the test supervisor or invigilator on the day of the test, if you believe
-                  that your performance may be affected by ill health, by the way in which
-                  the test is delivered at the centre or for any other reason. If you have a
-                  complaint relating to the delivery of the test, you must submit your complaint
-                  to the test centre before your results have been issued. The IELTS Test
-                  Partners will not accept complaints relating to the delivery of the test after
-                  results have been issued</li>
-              <li>when leaving the test room at the end of the test, leave behind all test
-                  materials. The test materials include, but are not limited to, question papers,
-                  Speaking tasks, answer sheets/booklets and any paper used for rough work.
-                  Any candidate who attempts to remove test materials from the test room will
-                  be disqualified and will not receive an IELTS test result.</li>
 
-              <h4>You must not ...</h4>
-              <ul>
-                <li>talk to or disturb other candidates once the test has started.</li>
-                <li>lend anything to, or borrow anything from, another candidate during the test.</li>
-                <li>eat or smoke in the test room</li>
-                <li>leave the test room without the permission of the test supervisor or invigilator.</li>
-                <li>leave your seat until all test materials have been collected and you have been told you can leave</li>
-                <li>engage in any form of malpractice which may damage the integrity and security of the IELTS test. Malpractice includes, but is not limited to:</li>
-                <li>-attempting to cheat in any way.
-                    – impersonating another candidate or having another personimpersonate you.
-                    – copying the work of another candidate.
-                    – disrupting the test in any way.
-                    – reproducing any part of the test in any medium.
-                    – attempting to alter the data on the Test Report Form.
-                </li>
-                <li>Candidates engaging in malpractice will not be allowed to complete the
-                    test and will not receive an IELTS test result. Candidates who are found to
-                    have engaged in malpractice on test day after their result has been issued
-                    will have their result can</li>
+              <h3 style="color:#333;margin-top:7px;margin-bottom:7px;">Important Notes</h3>
+              <ul style="list-style:number;width:850px;">
+                <li>Your have to complete the whole registration process including online payment within 30 minutes. The time slot you hold will be automatically released after 30 minutes if we cannot receive your payment.</li>
+                <li> IELTS test fee for test dates from 2015 is IDR 2.400.000.</li>
+                <li>Places are reserved on a first-come, first-served basis.</li>
+                <li>The application will only be processed with all the necessary contents.</li>
+                <li>No refund will be made for cancellation of examinations under any circumstances.</li>
+                <li>IELTS is not recommended for candidates under the age of 16.</li>
               </ul>
 
 
-              <div class="h3" style="margin-top:30px;">Your IELTS test result</div>
+              <h3  style="color:#333;margin-top:7px;margin-bottom:7px;">Changes Of Test Date</h3>
 
-              <ul>
-                <li>Results are issued by test centres, usually 13 days after the test</li>
-                <li>You will receive only one copy of your Test Report Form. The test centre is
-                    not permitted to issue a replacement copy in the event of loss or damage.</li>
-                <li>The Test Report Form will be issued in your name as it appears on the identity
-                    document used at registration. If you find that your personal details are
-                    incorrect on the Test Report Form, please contact the centre where you took
-                    the test to request changes. Documentation must be provided to verify the
-                    correct details. If the centre is unable to assist with your request for a change
-                    to your personal details please contact either IDP (ielts@idp.com) or British
-                    Council (ielts@britishcouncil.org) for further advice</li>
-                <li>If you change your name after receiving your Test Report Form, the name
-                    will not be changed on the Test Report Form. In the unusual event that
-                    a replacement Test Report Form is approved centrally by the IELTS Test
-                    Partners, it will be issued with the name provided on the original Test Report
-                    Form.</li>
-                <li>Your result may not be issued 13 days after the test if any of the IELTS Test
-                    Partners deem it necessary to review any matter associated with your test.
-                    In exceptional circumstances you may be required to re-take one or more
-                    IELTS components.</li>
-                <li>The Test Report Form may be cancelled after it has been issued if any
-                    irregularity is identified. You may be required to re-take one or more IELTS
-                    components</li>
-                <li>Your result will be disclosed by the IELTS Test Partners to the Recognising
-                    Organisations which you nominated on your Application Form, for the
-                    purpose of allowing those organisations to verify the result or to carry out
-                    any enquiries in relation to suspected malpractice. </li>
-                <li>f any of the data on the Test Report Form provided by you or your agent to
-                    Recognising Organisations has been altered in any way, your original test
-                    result will be cancelled by the IELTS Test Partners. </li>
-                <li>You will not be permitted access to the work you produce in the IELTS test.
-                    The IELTS Test Partners will retain the work you produce to assess your test
-                    performance, and it may be used for quality control purposes and research
-                    activities.</li>
-              </ul>
+              <div style="margin-top:10px;width:850px;">
+                You should inform the ieltsindonesia Exams Services no later than five weeks before the date of exam if you want to change the exam date. This also applies to registrations made within 5 weeks of the test date. A transfer fee of S$80.00 (inclusive of GST) is applicable for any change of date.
+              </div>
 
 
-              <div class="h3" style="margin-top:30px;">Cancelling your IELTS test or requesting a transfer</div>
+              <h3  style="color:#333;margin-top:7px;margin-bottom:7px;">Special Circumstances</h3>
 
-              <ul>
-                <li>If you cancel your test or request a transfer five weeks or more before the
+              <div style="width:850px;list-style:none;">
+                <p style="margin-top:8px;">If you cancel your test or request a transfer five weeks or more before the
                     test date, the test centre will charge an administration fee of up to 25% of
-                    the total test fee. </li>
-                <li>If you cancel your test within five weeks of the test date for any reason apart
+                    the total test fee. </p>
+                <p style="margin-top:8px;">If you cancel your test within five weeks of the test date for any reason apart
                     from medical ones, you will not be eligible to receive a refund. If you cancel
                     your test or request a transfer within five weeks of the test date for medical
                     reasons, you must provide supporting medical evidence within five working
                     days of the test date. Only evidence of serious illness will be considered.
                     Only original medical certificates will be accepted and must state inability to
-                    appear for the test on the scheduled test date. </li>
-              </ul>
+                    appear for the test on the scheduled test date. </p>
+              </div>
 
-              <div class="h3" style="margin-top:30px;">How IELTS uses your information</div>
-
-              <ul>
-                <li>The IELTS Test Partners recognise and support the right of genuine IELTS
-                    test candidates to privacy</li>
-                <li>Test Report Forms will only be sent to those Recognising Organisations
-                    nominated by the IELTS candidate on their Application Form or at the
-                    request of the candidate after the issue of results.</li>
-                <li>The IELTS Test Partners or their authorised representatives may share
-                    candidate personal data including without limitation test performance or
-                    score data or photographs taken by the IELTS test centre with educational
-                    institutions, governments (including visa processing authorities),
-                    professional bodies and commercial organisations that recognise IELTS
-                    scores (‘Recognising Organisations’) or law enforcement agencies where
-                    required for verification purposes or other purposes to protect the IELTS
-                    test and its stakeholders against any form of malpractice. Finger-scan data,
-                    where obtained, will not be disclosed to any entity except the IELTS Test
-                    Partners.</li>
-                <li>The IELTS Test Partners may use IELTS test score data and test responses,
-                    in an anonymous form, for informational, research, statistical or training
-                    purposes.</li>
-              </ul>
-            </ul>
-            <div class="box-termconditions">
-              <input type="radio" name="combo-tos" style="float:left;" class="combo-tos">
-              <p style="width:200px;float:left;color:#802222;margin-left:10px;">I agree to these terms</p>
+             
+         
+            <div class="box-termconditions" style="width:870px">
+              <input type="checkbox" name="combo-tos" style="float:left;" class="combo-tos">
+              <p style="width:500px;float:left;color:#802222;margin-left:10px;">I do not need any special arrangement for the test</p>
             </div>
             </div>
-
 
             <div id="next-tos"  style="float:right;margin-top:10px;"class="btn btn-warning">Continue</div>
 

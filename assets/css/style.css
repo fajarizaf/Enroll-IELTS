@@ -69,6 +69,7 @@ body {
 	border-radius:6px 6px 6px;
 	overflow:hidden;
 	border-bottom:none;
+	margin-top:5px;
 }
 
 .box-tab ul {
@@ -329,11 +330,14 @@ border-bottom-left-radius: 2px;
 
 .box-tos {
 	margin-top:20px;
-	padding-right: 10px;
+	padding-right: 20px;
+	padding-left: 20px;
+	height:630px;
+
 	
 }
 
-#sec-tos .slimScrollDiv {
+.box-tos {
 	margin-top: 20px;
 	padding-bottom: 40px;
 	border:1px solid #ccc;
@@ -341,12 +345,12 @@ border-bottom-left-radius: 2px;
     -webkit-border-radius:4px 4px 4px;
     border-radius:4px 4px 4px;
     background: #f4f4f4;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
 }
 
 
-#sec-tos .slimScrollDiv .box-tos ul li {
+.box-tos .box-tos ul li {
 	padding-top:6px;
 	padding-bottom: 6px;
 }
@@ -357,10 +361,11 @@ border-bottom-left-radius: 2px;
 	background: #f9edbe;
     padding:10px;
     border:1px solid #f0c36d;
-    margin-left:20px;
+    margin-left:0px;
     -moz-border-radius:4px 4px 4px;
     -webkit-border-radius:4px 4px 4px;
     border-radius:4px 4px 4px;
+    margin-top:30px;
 }
 
 

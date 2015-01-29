@@ -154,7 +154,7 @@
                   <tr>
                     <td>Country*</td>
                     <td>:</td>
-                    <td><div class="label" style="width:20px;float:left;"><?php echo  $row->useraddr2 ?></div>&nbsp;&nbsp;<?php $this->showuser->getnameaditionalinfo('city', $row->useraddr2 ) ?></td>
+                    <td><div class="label" style="float:left;"><?php echo  $row->useraddr2 ?></div>&nbsp;&nbsp;<?php $this->showuser->getnameaditionalinfo('city', $row->useraddr2 ) ?></td>
                   </tr>
                   <tr>
                     <td>Date Of Birth</td>
@@ -180,18 +180,18 @@
                   <tr>
                     <td>Country or region of origin *</td>
                     <td>:</td>
-                    <td><div class="label" style="width:20px;float:left;"><?php echo $row->usercountryorigin ?></div>&nbsp;&nbsp;<?php $this->showuser->getnameaditionalinfo('city',$row->usercountryorigin) ?></td>
+                    <td><div class="label" style="float:left;"><?php echo $row->usercountryorigin ?></div>&nbsp;&nbsp;<?php $this->showuser->getnameaditionalinfo('city',$row->usercountryorigin) ?></td>
                   </tr>
                   <tr>
                     <td>First Language*</td>
                     <td>:</td>
-                    <td><div class="label" style="width:20px;float:left;"><?php echo $row->userfirstlanguage ?></div>&nbsp;&nbsp;<?php $this->showuser->getnameaditionalinfo('language',$row->userfirstlanguage) ?></td>
+                    <td><div class="label" style="float:left;"><?php echo $row->userfirstlanguage ?></div>&nbsp;&nbsp;<?php $this->showuser->getnameaditionalinfo('language',$row->userfirstlanguage) ?></td>
                   </tr>
                   <tr>
                     <td>Occupation (sector)*</td>
                     <td>:</td>
                     <td>
-                      <div class="label" style="width:20px;float:left;"><?php echo $row->useroccupationsector ?></div>&nbsp;&nbsp;<?php $this->showuser->getnameaditionalinfo('sector',$row->useroccupationsector) ?>
+                      <div class="label" style="float:left;"><?php echo $row->useroccupationsector ?></div>&nbsp;&nbsp;<?php $this->showuser->getnameaditionalinfo('sector',$row->useroccupationsector) ?>
                     </td>
                   </tr>
                   
@@ -199,7 +199,7 @@
                     <td>Occupation (level)*</td>
                     <td>:</td>
                     <td>
-                      <div class="label" style="width:20px;float:left;"><?php echo $row->useroccupationlevel ?></div>&nbsp;&nbsp;<?php $this->showuser->getnameaditionalinfo('level',$row->useroccupationlevel) ?>
+                      <div class="label" style="float:left;"><?php echo $row->useroccupationlevel ?></div>&nbsp;&nbsp;<?php $this->showuser->getnameaditionalinfo('level',$row->useroccupationlevel) ?>
                     </td>
                   </tr>
                   
@@ -207,7 +207,7 @@
                     <td>Why are you taking the test?*</td>
                     <td>:</td>
                     <td>
-                      <div class="label" style="width:20px;float:left;"><?php echo $row->userwhytaketest ?></div>&nbsp;&nbsp;<?php $this->showuser->getnameaditionalinfo('question',$row->userwhytaketest) ?>
+                      <div class="label" style="float:left;"><?php echo $row->userwhytaketest ?></div>&nbsp;&nbsp;<?php $this->showuser->getnameaditionalinfo('question',$row->userwhytaketest) ?>
                     </td>
                   </tr>
                   

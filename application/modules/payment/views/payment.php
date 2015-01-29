@@ -303,7 +303,7 @@
             <td style="border-left:none;"><input  style="opacity:0.4"  type="button"  class="btn" value="Confirmed"></td>
           <?php } ?>
         <?php } else { ?>
-        <td style="border-left:none;"><h4 style="color:orangered;"><?php echo $row->userfirstname.' '.$row->userfamilyname  ?></h4><p>IELTS<?php echo substr("00000" . $row->idusers, -6); ?></p></td>
+        <td style="border-left:none;"><h4 style="color:orangered;"><?php echo $row->userfamilyname.' '.$row->userfirstname  ?></h4><p>IELTS<?php echo substr("00000" . $row->idusers, -6); ?></p></td>
         <td style="border-left:none;"><div style="margin-top:10px;" url="<?php echo base_url() ?>payment/editpayment/<?php echo $row->idregistrations; ?>/" href="#editregistrations" data-toggle="modal" class="iconedit"></div></td>
         <td style="border-left:none;"><?php $receipt =  $row->paymentreceipt; if($receipt != '') { ?><div style="margin-top:6px;padding-top:7px;padding-left:8px;cursor:pointer" btn="paid" atr="<?php echo $row->idregistrations ?>" class="label label-warning">Uploaded</div><?php } else {?>n/a<?php } ?></td>
         <?php } ?>

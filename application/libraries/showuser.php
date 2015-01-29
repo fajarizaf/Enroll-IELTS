@@ -338,6 +338,21 @@ function ubahtanggal2($parameter) {
   }
 
 
+  function cityname($idcity) {
+      $CI =& get_instance();
+      $CI->load->model('app_model');
+
+        $data['idcity'] = $idcity;
+        $query =  $CI->app_model->getSelectedData('citybranches', $data);
+        
+        if($query) {
+          foreach ($query as $row ) {
+            return $row->cityname;
+          }
+        }
+  }
+
+
 
   
 

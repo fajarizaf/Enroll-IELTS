@@ -36,6 +36,8 @@ class Register extends CI_Controller {
 
         $this->load->view('global/header', $data);
         $this->load->view('register', $data);
+        $this->load->view('modal/circumtances', $data);
+        $this->load->view('modal/declarations', $data);
         $this->load->view('global/footer', $data);
     }
 

@@ -53,7 +53,7 @@
 
         <script type="text/javascript">
             $(document).ready(function() {
-
+ 
                 <?php if($this->session->userdata('statususer') == '3') { ?>
                 // load form register sebagai user candidate
                      $('.sudahlogin').load(''+base_url+'register/form_candidate_login/');
@@ -70,9 +70,6 @@
                   });
 
 
-     
-                   
-             
 
 
                  $('#btnnew-registers').click(function() {

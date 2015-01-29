@@ -11,10 +11,7 @@
              height:'340px'
          });
 
-         $('.box-tos').slimScroll({
-             width: '935px',
-             height:'300px'
-         });
+      
 
          
 
@@ -351,29 +348,29 @@
 
         // button next di city di click
         $('#next-tos').click(function() {
-           $('#parentloading').fadeIn('slow');
-           $("html, body").animate({ scrollTop: 0 }, "slow");
-
-            var counter=2;
-              var countdown = setInterval(function(){
-                if (counter == 0) {
-                clearInterval(countdown);
                 $('#parentloading').fadeOut('fast');
 
                     if ( $('.combo-tos').is(':checked') ) {
+                      $('#parentloading').fadeIn('slow');
+                      $("html, body").animate({ scrollTop: 0 }, "slow");
+                      var counter=2;
+                      var countdown = setInterval(function(){
+                        if (counter == 0) {
+                        clearInterval(countdown);
+                        $('#parentloading').fadeOut('slow');
                         $('#btn-city').attr('class','visited');
                         $('#btn-date').attr('class','visited');
                         $('#btn-tos').attr('class','visited');
                         $('#btn-candidate').attr('class','active');
-                        
                         $('.content-tab').animate({ scrollLeft:'2880px' });
+                        }
+                        counter--;
+                      }, 500); 
                     } else {
-                        $('#sticky').sticky('<span style="color:#802222;">you must select I agree to these terms</span>');
+                        $('#circumtances').modal('show');
                     }
 
-                 }
-                counter--;
-              }, 500); 
+     
 
             
         });
