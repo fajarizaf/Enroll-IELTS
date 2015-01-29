@@ -44,6 +44,10 @@ body {
 	padding-bottom:12px;
 }
 
+.menu ul li:hover {
+	background:#f6f6f6;
+}
+
 .menu ul li a {
 	text-decoration:none;
 	color:#333;	
@@ -801,6 +805,12 @@ border:none;
 	background:url(../pic/pdf.png) no-repeat;
 }
 
+.iconpdf:hover {
+	width:25px;
+	height:25px; 
+	background:url(../pic/pdf-hover.png) no-repeat;
+}
+
 
 .headerform {
 	width:740px;
@@ -893,4 +903,27 @@ div[btn=paid] {
 	margin:0px auto;
 }
 
+.btnxls {
+	width:42px;
+	height:40px;
+	background: url(../pic/xls.png);
+}
+
+.btnxls:hover {
+	width:42px;
+	height:40px;
+	background: url(../pic/xls-hover.png);
+}
+
+.btnxml {
+	width:42px;
+	height:40px;
+	background: url(../pic/PPTs.png);
+}
+
+.btnxml:hover {
+	width:42px;
+	height:40px;
+	background: url(../pic/PPTs-hover.png);
+}
 
