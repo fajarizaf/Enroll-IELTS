@@ -352,6 +352,76 @@ function ubahtanggal2($parameter) {
         }
   }
 
+  function showcountryorigin($code) {
+      $CI =& get_instance();
+      $CI->load->model('app_model');
+
+        $data['code'] = $code;
+        $query =  $CI->app_model->getSelectedData('city', $data);
+        
+        if($query) {
+          foreach ($query as $row ) {
+            return $row->name;
+          }
+        }
+  }
+
+  function showfirstlangguage($code) {
+      $CI =& get_instance();
+      $CI->load->model('app_model');
+
+        $data['code'] = $code;
+        $query =  $CI->app_model->getSelectedData('language', $data);
+        
+        if($query) {
+          foreach ($query as $row ) {
+            return $row->name;
+          }
+        }
+  }
+
+  function showocupationsector($code) {
+      $CI =& get_instance();
+      $CI->load->model('app_model');
+
+        $data['code'] = $code;
+        $query =  $CI->app_model->getSelectedData('sector', $data);
+        
+        if($query) {
+          foreach ($query as $row ) {
+            return $row->name;
+          }
+        }
+  }
+
+  function showocupationlevel($code) {
+      $CI =& get_instance();
+      $CI->load->model('app_model');
+
+        $data['code'] = $code;
+        $query =  $CI->app_model->getSelectedData('level', $data);
+        
+        if($query) {
+          foreach ($query as $row ) {
+            return $row->name;
+          }
+        }
+  }
+
+  function userwhytaketest1($code) {
+      $CI =& get_instance();
+      $CI->load->model('app_model');
+
+        $data['code'] = $code;
+        $query =  $CI->app_model->getSelectedData('question', $data);
+        
+        if($query) {
+          foreach ($query as $row ) {
+            return $row->name;
+          }
+        }
+  }
+
 
 
   

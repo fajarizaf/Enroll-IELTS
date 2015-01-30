@@ -8,7 +8,7 @@ $('.content-tab').animate({ scrollLeft:'0px' });
 $(".select").selecter();
 $("textarea").val('');
 $("select").prop('selectedIndex',0);
-$('input[type=radio]').attr('checked', false);
+
 
 
 

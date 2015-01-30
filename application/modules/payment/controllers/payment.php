@@ -10,6 +10,7 @@ class Payment extends CI_Controller {
 
     public function  __construct() {
         parent::__construct();
+        date_default_timezone_set('Asia/Jakarta');
         $this->load->model('payment_model');
         $this->load->model('user_model');
         $this->load->model('app_model');

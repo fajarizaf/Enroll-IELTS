@@ -69,11 +69,6 @@
                     <td><?php echo $row->username ?></td>
                   </tr>
 
-                  <tr>
-                    <td >Password</td>
-                    <td >:</td>
-                    <td><?php echo $this->encrypt->decode($row->userpass) ?></td>
-                  </tr>
                   
 
                   <tr>

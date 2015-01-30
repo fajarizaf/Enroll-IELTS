@@ -927,3 +927,13 @@ div[btn=paid] {
 	background: url(../pic/PPTs-hover.png);
 }
 
+.photoprofile {
+	width:70px;
+	height: 70px;
+	-moz-border-radius:4px 4px 4px;
+	-webkit-border-radius:4px 4px 4px;
+	border-radius:4px 4px 4px;
+	overflow: hidden;
+	border:1px solid #ccc;
+}
+

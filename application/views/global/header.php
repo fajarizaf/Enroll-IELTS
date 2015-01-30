@@ -110,8 +110,13 @@
 
 
             // button upload di click
-            $('body').on('click','#uploadidcard1', function() {
+            $('body').on('click','#uploadidcard', function() {
                $('.uploadidcard').click();      
+            });
+
+            // button upload di click
+            $('body').on('click','#uploadidcard1', function() {
+               $('.uploadidcard1').click();      
             });
 
 
@@ -162,6 +167,54 @@
 
                    
                    
+                 }
+                counter--;
+              }, 500);
+        });
+
+
+//proses upload file
+
+              $('body').on('change','.uploadidcard1', function() {   
+              $('#parentloading').fadeIn('slow');
+              $('.load').fadeIn('fast');
+              var counter=2;
+              var countdown = setInterval(function(){
+                if (counter == 0) {
+                clearInterval(countdown);
+                $('#parentloading').fadeOut('fast');
+                $('.load').fadeOut('fast');
+
+                  var namephoto = $('.uploadidcard1').val();
+                  var sizephoto = ($(".uploadidcard1")[0].files[0].size / 1024);
+                    if(sizephoto / 1024 > 1) {
+                       
+
+                    } else {
+
+                        AjaxUploads.UploadsReady(
+                          evt = function(){
+                            AjaxUploads.UploadsConfig = {
+                              actToUploads   : ''+base_url+'register/uploadphotos',    // nama file php untuk prosess uploads dflt: upload.php
+                              methodUploads  : 'POST',      // mthod action /post/get dflt:POST
+                              fileToUploads  : 'uploadidcard1',  // nama id pada type file input dflt : fileToupload
+                              numberProgress : 'progressNumber',  // progress bar id dalam percent  dflt ::  progressNumber
+                              innerProgress  : 'prog',      // progress bar id   dflt ::  prog
+                              
+                              fileInfoUploads  : {
+                                  fileName :'fileName',       // nama id untuk informasi nama file   dflt ::  fileName
+                                  fileType :'fileType',       // nama id untuk informasi type file   dflt ::  fileType
+                                  fileSize :'fileSize'        // nama id untuk informasi Ukuran file  dflt ::  fileType
+                              }
+                            }
+                          },
+                          evt()
+                        );
+                        sizephotoKB = (Math.round(sizephoto * 100) / 100 ) +' KB'; 
+                        $('.uploadfile1').val(namephoto);
+                        $('.uploadfile1').valid();
+                        alert(namephoto);
+                    }
                  }
                 counter--;
               }, 500);
