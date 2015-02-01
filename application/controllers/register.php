@@ -86,7 +86,8 @@ class Register extends CI_Controller {
                          $this->load->view('modal/list-state', $data);
                          $this->load->view('modal/list-language', $data);
                          $this->load->view('modal/ocupation-sector', $data);
-                         $this->load->view('modal/ocupation-level', $data);      
+                         $this->load->view('modal/ocupation-level', $data);
+                         $this->load->view('modal/uploadphotos');       
                          $this->load->view('modal/question', $data); 
                 }
 

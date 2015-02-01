@@ -8,6 +8,8 @@
     $("select").prop('selectedIndex',0);
     $('.register-new-account input[type=radio]').attr('checked', false);
     $('#declarations').css({'width':'985px','margin-left':'-495px'});
+    $('#uploadphotos').css({'width':'685px','margin-left':'-345px'});
+    
 
 
          $('.box-list-country').slimScroll({
@@ -385,11 +387,9 @@
                     <td colspan="2" ><span style="font-weight:bold;">Please click 'Browse' to upload ID Card</span><br/>
                         Browse to image</td>
                     <td>
-                     <input type="file" onChange="JavaScript:AjaxUploads.UploadsFile();" name="uploadidcard[]" id="uploadidcard" style="display:none;" class="uploadidcard">
-                     <input type="hidden" name="uploadfile" class="uploadfile"> 
-                     <div name="upload" style="float:right;" class="btn btn-warning" id="uploadidcard1" value="Upload">Upload</div>
-                     <img src="<?php echo base_url(); ?>assets/pic/load1.gif" style="margin-top:5px;margin-left:5px;float:right;margin-right:10px;" class="load">
-                     <div class="resultphoto" style="float:right;margin-right:10px;"></div>
+                     <input type="text" name="uploadfile" style="display:none;" class="uploadfile"> 
+                     <div name="upload" style="float:right;" data-toggle="modal" href="#uploadphotos" class="btn btn-warning"  value="Upload">Upload</div>
+                    
                     </td>
                   </tr>
 

@@ -70,8 +70,6 @@
                   });
 
 
-
-
                  $('#btnnew-registers').click(function() {
                      $('#parentloading').fadeIn('slow');
                      var counter=2;
@@ -110,14 +108,12 @@
 
 
             // button upload di click
-            $('body').on('click','#uploadidcard', function() {
+            $('body').on('click','#uploadidcard1', function() {
                $('.uploadidcard').click();      
             });
 
-            // button upload di click
-            $('body').on('click','#uploadidcard1', function() {
-               $('.uploadidcard1').click();      
-            });
+            
+
 
 
             //proses upload file
@@ -135,11 +131,17 @@
                   var namephoto = $('.uploadidcard').val();
                   var sizephoto = ($(".uploadidcard")[0].files[0].size / 1024);
                     if(sizephoto / 1024 > 1) {
+
                         alert = '<div style="color:orange;margin-top:7px;">Maximum Upload File Size 1Mb</div>';  
                         $('.resultphoto').html(alert);
 
-                    } else {
+                    } else if(sizephoto / 1024 < 0.1)  {
 
+                        alert = '<div style="color:orange;margin-top:7px;">Minimum Upload File Size 100Kb</div>';  
+                        $('.resultphoto').html(alert);
+
+                    } else {
+                      
                         AjaxUploads.UploadsReady(
                           evt = function(){
                             AjaxUploads.UploadsConfig = {
@@ -159,62 +161,16 @@
                           evt()
                         );
 
-                        sizephotoKB = (Math.round(sizephoto * 100) / 100 ) +' KB'; 
-                        $('.resultphoto').html('<p style="color:orangered">'+namephoto+'<br/><span style="font-weight:bold;color:#666;">'+sizephotoKB+'</span></p>');
-                        $('.uploadfile').val(namephoto);
-                        $('.uploadfile').valid();
+                        sizephotoKB = (Math.round(sizephoto * 100) / 100 ) +' KB';
+                        var nameimage = $('.uploadidcard')[0].files[0];
+                        $('.resultphoto').html('<p style="color:orangered">'+nameimage.name+'<br/><span style="font-weight:bold;color:#666;">'+sizephotoKB+'</span></p>');
+                        $('.photosid img').attr('src', ''+base_url+'upload/'+nameimage.name+'');
+                        $('.uploadfileimage').val(nameimage.name);
+                        
                     }
 
                    
                    
-                 }
-                counter--;
-              }, 500);
-        });
-
-
-//proses upload file
-
-              $('body').on('change','.uploadidcard1', function() {   
-              $('#parentloading').fadeIn('slow');
-              $('.load').fadeIn('fast');
-              var counter=2;
-              var countdown = setInterval(function(){
-                if (counter == 0) {
-                clearInterval(countdown);
-                $('#parentloading').fadeOut('fast');
-                $('.load').fadeOut('fast');
-
-                  var namephoto = $('.uploadidcard1').val();
-                  var sizephoto = ($(".uploadidcard1")[0].files[0].size / 1024);
-                    if(sizephoto / 1024 > 1) {
-                       
-
-                    } else {
-
-                        AjaxUploads.UploadsReady(
-                          evt = function(){
-                            AjaxUploads.UploadsConfig = {
-                              actToUploads   : ''+base_url+'register/uploadphotos',    // nama file php untuk prosess uploads dflt: upload.php
-                              methodUploads  : 'POST',      // mthod action /post/get dflt:POST
-                              fileToUploads  : 'uploadidcard1',  // nama id pada type file input dflt : fileToupload
-                              numberProgress : 'progressNumber',  // progress bar id dalam percent  dflt ::  progressNumber
-                              innerProgress  : 'prog',      // progress bar id   dflt ::  prog
-                              
-                              fileInfoUploads  : {
-                                  fileName :'fileName',       // nama id untuk informasi nama file   dflt ::  fileName
-                                  fileType :'fileType',       // nama id untuk informasi type file   dflt ::  fileType
-                                  fileSize :'fileSize'        // nama id untuk informasi Ukuran file  dflt ::  fileType
-                              }
-                            }
-                          },
-                          evt()
-                        );
-                        sizephotoKB = (Math.round(sizephoto * 100) / 100 ) +' KB'; 
-                        $('.uploadfile1').val(namephoto);
-                        $('.uploadfile1').valid();
-                        alert(namephoto);
-                    }
                  }
                 counter--;
               }, 500);

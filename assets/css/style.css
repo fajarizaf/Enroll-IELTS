@@ -937,3 +937,16 @@ div[btn=paid] {
 	border:1px solid #ccc;
 }
 
+.photosid {
+	width:400px;
+	height:200px;
+	background:#f9f9f9;
+	background-position:100px 0px;
+	float: left;
+	border:1px solid #ccc;
+	-moz-border-radius:3px 3px 3px;
+	-webkit-border-radius:3px 3px 3px;
+	border-radius:3px 3px 3px;
+	overflow: hidden;
+}
+

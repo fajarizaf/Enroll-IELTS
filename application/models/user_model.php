@@ -54,6 +54,7 @@ class   User_model extends CI_Model {
     public function menuadmin($idroles) {
         $this->db->where('privileges.idroles', $idroles);
         $this->db->join('menus', 'menus.idmenu = privileges.idmenu');
+        $this->db->order_by('menus.idmenu', 'ASC');
         $this->db->group_by('seq');        
         return $this->db->get("privileges")->result();
     }

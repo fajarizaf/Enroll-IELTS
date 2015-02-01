@@ -1,1 +1,1 @@
-var base_url = 'http://demo-af.webdev.dlanet.com/ielts/';
+var base_url = 'localhost/project/registerielts/';
