@@ -202,7 +202,7 @@ class Schedule extends CI_Controller {
     }
 
     function filterbydate($offset = NULL) {
-         $limit = 2;
+         $limit = 10;
        if( is_null ($offset)) { $offset = 0; }else {$offset = $this->uri->segment(4);}
        $date = $this->input->post('date');
 
@@ -223,7 +223,7 @@ class Schedule extends CI_Controller {
 
     public function pagedate($offset = NULL) {
 
-            $limit = 2;
+            $limit = 10;
             if( is_null ($offset)) { $offset = 0; }else {$offset = $this->uri->segment(4);}
             $date = $this->uri->segment(3);
 
@@ -244,7 +244,7 @@ class Schedule extends CI_Controller {
 
 
     function filterbyvenue($offset = NULL) {
-         $limit = 2;
+         $limit = 10;
        if( is_null ($offset)) { $offset = 0; }else {$offset = $this->uri->segment(4);}
        $date = $this->input->post('venue');
 
@@ -265,7 +265,7 @@ class Schedule extends CI_Controller {
 
     public function pagevenue($offset = NULL) {
 
-            $limit = 2;
+            $limit = 10;
             if( is_null ($offset)) { $offset = 0; }else {$offset = $this->uri->segment(4);}
             $date = $this->uri->segment(3);
 

@@ -83,7 +83,7 @@
                         <select id="selectCity" name="city" class="chosen-select" style="width:320px;">
                         <option value="">select city available</option>
                         	<?php foreach ($city as $row1 ) { ?>
-                            <option value="<?php echo $row1->city ?>" ><?php echo $this->showuser->cityname($row1->city); ?></option>
+                            <option value="<?php echo $row1->city ?>/<?php echo $this->showuser->cityname($row1->city); ?>" ><?php echo $this->showuser->cityname($row1->city); ?></option>
                             <?php } ?>
                         </select>
 

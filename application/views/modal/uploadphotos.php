@@ -29,7 +29,7 @@
               </div>
               <div style="width:250px;float:left;">
                 <ul>
-                  <li>Recommended dimension of the photo is 500 x 750 and the file size must be smaller than 1MB and must be greater than 100Kb</li>
+                  <li>Recommended dimension of the photo is 500 x 750 and the file size must be smaller than 1MB and must be greater than 50Kb</li>
                 </ul>
                  
               </div>

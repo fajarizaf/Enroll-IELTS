@@ -1060,7 +1060,7 @@ class register_model extends CI_Model {
                     <td style="color:#333;"><?php echo $row->branchname ?></td>
                     <td><?php $this->getAddr($row->branchname ); ?></td>
                     <td ><?php echo $return ?></td>
-                    <td><input class="locations-test" style="margin-top:15px;" value="<?php echo $this->getIdbranches($row->branchname ); ?>" type="radio" name="location-test" /></td>
+                    <td><input <?php if($available > 0 ) { echo 'enabled'; } else { echo 'disabled'; } ?> class="locations-test" style="margin-top:15px;" value="<?php echo $this->getIdbranches($row->branchname ); ?>" type="radio" name="location-test" /></td>
                 </tr>                
             <?php }  ?>
 

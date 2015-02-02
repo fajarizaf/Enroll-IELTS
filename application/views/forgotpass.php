@@ -88,7 +88,7 @@ border-radius: 4px;
 
 
 
-                      <div class="box-login" style="text-align:center;">
+                      <div class="box-login" style="text-align:center;height:400px;">
                       
                       <p style="margin-left:35px;margin-bottom:10px;height:65px;">Please enter your  email address. You will receive a link to create a new password via email.</p>
 

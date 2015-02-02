@@ -79,6 +79,7 @@
                              $('#parentloading').fadeOut('slow');
                              $('.register-or-login').load(''+base_url+'register/form_candidate/').hide().fadeIn('slow');
                              $('#sticky').sticky('<span style="color:#802222;">please fill out a form below to complete</span>');
+                             $('.content-tab').css({'height':'2300px'});
                          }
                         counter--;
                       }, 500);                
@@ -135,9 +136,9 @@
                         alert = '<div style="color:orange;margin-top:7px;">Maximum Upload File Size 1Mb</div>';  
                         $('.resultphoto').html(alert);
 
-                    } else if(sizephoto / 1024 < 0.1)  {
+                    } else if(sizephoto / 1024 < 0.05)  {
 
-                        alert = '<div style="color:orange;margin-top:7px;">Minimum Upload File Size 100Kb</div>';  
+                        alert = '<div style="color:orange;margin-top:7px;">Minimum Upload File Size 50Kb</div>';  
                         $('.resultphoto').html(alert);
 
                     } else {
@@ -219,7 +220,7 @@
         <?php if($this->session->userdata('login') != 'true') { ?>
             <li style="border-top:5px solid #7dab36;"><a href="#">How To Register</a></li>
             <li style="border-top:5px solid #ff6600;"><a href="#">How To Book IELTS</a></li>
-            <li class="active" style="border-top:5px solid #00a2c8;"><a href="#">Register</a></li>
+            <li class="active" style="border-top:5px solid #00a2c8;"><a href="<?php echo base_url() ?>register/">Register</a></li>
         <?php } else { ?>
 
             <?php foreach ($menuadmin as $row) {   ?>

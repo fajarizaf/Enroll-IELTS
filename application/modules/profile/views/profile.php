@@ -534,7 +534,7 @@
                   </tr>
 
 
-                <table>
+                </table>
 
 
           <?php } ?>

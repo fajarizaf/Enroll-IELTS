@@ -35,7 +35,7 @@ border-radius: 4px;
         <?php echo form_open('register/prosesresetpassword', $atributes); ?> 
 
 
-                      <div class="box-login" style="text-align:center;width:350px;">
+                      <div class="box-login" style="text-align:center;width:350px;height:400px;">
                       
                           <table style="margin-top:-20px;width:320px;margin-left:20px;width:350px;">
                               <tr>

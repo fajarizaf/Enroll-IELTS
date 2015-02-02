@@ -15,6 +15,18 @@
 
 <script src="<?php echo base_url();?>assets/js/bootstrap.js" type="text/javascript"></script>
 
+
+<div class="footerfixed">
+  <ul>
+    <li style="margin-right:100px;color:#626262;">Copyright 2015. ieltsindonesia.co.id. All rights reserved.</li>
+    <li><img src="<?php echo base_url(); ?>assets/pic/f.png" style="width:17px"></li>
+    <li><img src="<?php echo base_url(); ?>assets/pic/t.png" style="width:17px"></li>
+    <li><img src="<?php echo base_url(); ?>assets/pic/y.png" style="width:17px"></li>
+    <li style="float:right;padding-left:20px;"><div style="width:100px;float:left;">Site Design:</div><a href="http://www.dlanet.com" style="float:left;margin-top:-1px;"><img src="<?php echo base_url(); ?>assets/pic/dlanetlogo.png" style="width:60px;" ></a></li>
+  </ul>
+</div>
+
+
 </body>
 
 

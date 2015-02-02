@@ -93,6 +93,7 @@
                 });
 
                 $('#btnaddrecog').click(function() {
+                 $('.content-tab').css({'height':'3900px'});
                   var n = $(".recognizing-organizations").length;
                   if(n >= 5 ) {
                   } else { 

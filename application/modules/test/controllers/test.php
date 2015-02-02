@@ -176,7 +176,7 @@ class Test extends CI_Controller {
     }
 
     function filterbypartner($offset = NULL) {
-         $limit = 2;
+         $limit = 10;
        if( is_null ($offset)) { $offset = 0; }else {$offset = $this->uri->segment(4);}
        $date = $this->input->post('partner');
 
@@ -197,7 +197,7 @@ class Test extends CI_Controller {
 
 
     function filterbycity($offset = NULL) {
-         $limit = 2;
+         $limit = 10;
        if( is_null ($offset)) { $offset = 0; }else {$offset = $this->uri->segment(4);}
        $date = $this->input->post('city');
 
@@ -218,7 +218,7 @@ class Test extends CI_Controller {
 
     public function pagecity($offset = NULL) {
 
-            $limit = 2;
+            $limit = 10;
             if( is_null ($offset)) { $offset = 0; }else {$offset = $this->uri->segment(4);}
             $date = $this->uri->segment(3);
 
@@ -238,7 +238,7 @@ class Test extends CI_Controller {
 
     public function pagepartner($offset = NULL) {
 
-            $limit = 2;
+            $limit = 10;
             if( is_null ($offset)) { $offset = 0; }else {$offset = $this->uri->segment(4);}
             $date = $this->uri->segment(3);
 

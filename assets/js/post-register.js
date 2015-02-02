@@ -21,9 +21,10 @@
 
          // event combobox city di pilih
          $('#selectCity').change(function() {
-            var city = $(this).val(); 
-            var dataString = 'city=' + city; 
 
+            var city = $(this).val().split('/');
+            var dataString = 'city=' + city[0];
+ 
 
             $('#parentloading').fadeIn('slow');
             $('.load').fadeIn('slow');
@@ -37,7 +38,7 @@
                     $('#parentloading').fadeOut('fast');
                     $('.load').fadeOut('fast');
                     $('.table-city').css({'opacity':'1'});
-                    $('.statloc').html(city); 
+                    $('.statloc').html(city[1]); 
 
                             $.ajax({
                             type  : "POST",
@@ -317,6 +318,7 @@
         // button next di city di click
         $('#next-date').click(function() {
            $('#parentloading').fadeIn('slow');
+           $('.content-tab').css({'height':'900px'});
            $("html, body").animate({ scrollTop: 0 }, "slow");
 
             var counter=2;

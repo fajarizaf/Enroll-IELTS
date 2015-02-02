@@ -23,10 +23,8 @@ class Register extends CI_Controller {
         
 	public function index()
 	{
-
         $where["schstatus"] = "1";
         $where["schdate >"] = date("Y-m-d H:i:s");
-
         $data['city'] = $this->register_model->getCityschedule();
         $data['schedule'] = $this->register_model->getAll($where);
 
@@ -42,6 +40,8 @@ class Register extends CI_Controller {
         $this->load->view('global/footer', $data);
     }
 
+
+
      function getschedulesview() {
         $data['monthavailable'] = $this->register_model->selectmonthavailable();
         $this->load->view('listschedules',$data);
@@ -53,17 +53,11 @@ class Register extends CI_Controller {
         if($this->session->userdata('login') == 'true') {
             redirect('register');
         } else {
-
         $this->load->view('global/header');
         $this->load->view('login');
         $this->load->view('global/footer');
-
-
         }
-
-
         
-            
     }
 
 
@@ -233,10 +227,18 @@ class Register extends CI_Controller {
             echo $addr;
         }
 
+        function cityname($code) {
+            $where['idcity'] = $code;
+            $query = $this->app_model->getSelectedData('citybranches', $where);
+            foreach ($query as $row) {
+                return $row->cityname;
+            }
+        }
+
         public function getlocationcity() {
             $query  =  $this->register_model->getlocation();
             foreach ($query as $row) {
-                $addr = $row->city;
+                $addr = $this->cityname($row->city);
             }
             echo $addr;
         }

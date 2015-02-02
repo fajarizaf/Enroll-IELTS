@@ -101,7 +101,7 @@ border-radius: 4px;
 
 
 
-                      <div class="box-login" style="text-align:center;">
+                      <div class="box-login" style="text-align:center;height:400px;">
                       
                           <table style="margin-top:-20px;width:320px;margin-left:20px;">
                               <tr>

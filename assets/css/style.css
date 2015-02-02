@@ -59,7 +59,8 @@ body {
 
 .content {
 	width:960px;
-	height:700px;
+	height:auto;
+	min-height: 850px;
 	margin:0px auto;	
 }
 
@@ -231,7 +232,7 @@ body {
 
 .content-tab {
 	width:960px;
-	height:3680px;
+	height:auto;
 	margin:0px auto;
 	overflow:hidden;
 }
@@ -243,20 +244,20 @@ body {
 
 .contents {
 	width:960px;
-	height:680px;
+	height:auto;
 	float:left;
 }
 
 	.contents .left {
 		width:320px;
-		height:680px;
+		height:480px;
 		float:left;
 		padding:10px;
 	}
 	
 	.contents .right {
 		width:520px;
-		height:680px;
+		height:480px;
 		float:left;
 		padding:30px;
 		padding-left:70px;	
@@ -948,5 +949,42 @@ div[btn=paid] {
 	-webkit-border-radius:3px 3px 3px;
 	border-radius:3px 3px 3px;
 	overflow: hidden;
+}
+
+.footer {
+	width:100%;
+	height: 302px;
+	background: #ebebeb;
+	float:left;
+	margin-top: 30px;
+}
+
+.child-footer {
+	width:100%;
+	height:75px;
+	background: #eb203f;
+}
+
+.footerfixed {
+	width:100%;
+	height: 28px;
+	background: #dadada;
+  	margin-right: auto;
+  	margin-left: auto;
+  	border-top:1px solid #bfbfbf;
+  	overflow: hidden;
+}
+
+.footerfixed ul  {
+	list-style: none;
+	width:960px;
+	margin:0px auto;
+}
+
+.footerfixed ul li {
+	padding:5px;
+	width:auto;
+	float: left;
+	border-left:1px solid #bfbfbf ;
 }
 

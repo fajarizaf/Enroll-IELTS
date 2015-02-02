@@ -168,7 +168,7 @@ class Report extends CI_Controller {
 
 
     function filterByVenue($offset = NULL) {
-      $limit = 3;
+      $limit = 10;
             if( is_null ($offset)) { $offset = 0; }else {$offset = $this->uri->segment(3);}
             $idbranches = $this->input->post('selectvenues');
             $config['uri_segment'] = 3;
@@ -184,7 +184,7 @@ class Report extends CI_Controller {
     }
 
     public function pagevenue($offset = NULL) {
-            $limit = 2;
+            $limit = 10;
             if( is_null ($offset)) { $offset = 0; }else {$offset = $this->uri->segment(4);}
             $date = $this->uri->segment(3);
             $config['uri_segment'] = 4;
@@ -202,7 +202,7 @@ class Report extends CI_Controller {
 
 
     function filterByDate($offset = NULL) {
-            $limit = 3;
+            $limit = 10;
             if( is_null ($offset)) { $offset = 0; }else {$offset = $this->uri->segment(3);}
             $date = $this->input->post('date');
             $config['uri_segment'] = 3;
@@ -219,7 +219,7 @@ class Report extends CI_Controller {
 
 
     function pagedate($offset = NULL) {
-            $limit = 3;
+            $limit = 10;
             if( is_null ($offset)) { $offset = 0; }else {$offset = $this->uri->segment(4);}
             $date = $this->uri->segment(3);
             $config['uri_segment'] = 4;
