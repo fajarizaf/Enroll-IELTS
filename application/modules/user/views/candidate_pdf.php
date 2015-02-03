@@ -30,7 +30,7 @@
         <?php $atributes = array ('id' => 'formupdateuser'); ?> 
         <?php echo form_open('user/updateuser', $atributes); ?>    
 
-        <div style="width:730px;margin:0px auto;margin-top:10px;margin-left:-10px;">
+        <div style="width:676px;margin:0px auto;margin-top:10px;margin-left:-10px;">
         
           <table style="margin-bottom:10px;">
                   <tr>
@@ -231,7 +231,7 @@
                       </p>
                     </td>
                   </tr>
-                 </table> 
+             
                   <?php } ?>
 
 

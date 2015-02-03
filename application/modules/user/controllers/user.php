@@ -170,6 +170,10 @@ class User extends CI_Controller {
       $this->load->view('filter',$data);
     }
 
+    public function deleteuser() {
+      $this->useradmin_model->deleteuser();
+    }
+
 
 
 

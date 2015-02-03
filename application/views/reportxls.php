@@ -46,7 +46,7 @@ header("Expires: 0");
                                 <td><?php echo $row->userphone; ?></td>
                                 <td><?php echo $row->useremail; ?></td>
                                 <td><?php echo $row->useridnumber; ?></td>
-                                <td><?php echo $row->userdot; ?></td>
+                                <td><?php echo $row->userdob; ?></td>
                                 <td><?php echo $row->usergender; ?></td>
                             </tr>
                         <?php

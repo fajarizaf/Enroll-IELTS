@@ -3,15 +3,7 @@
     $('#addschedule').css({'width':'770px','margin-left':'-375px'});
     $('#editschedule').css({'width':'770px','margin-left':'-375px'});
 
-    $('.box-schedule').slimScroll({
-             width: '760px',
-             height:'400px'
-    });
-
-    $('.box-editschedule').slimScroll({
-             width: '760px',
-             height:'380px'
-    });
+   
 
      $('.search-admin').keyup(function() {
 
@@ -209,6 +201,10 @@
   }
   #filtertestvenue .selecter .selecter-options{
     width:254px;
+  }
+
+  .ui-datepicker-trigger {
+    cursor: pointer;
   }
 
 </style>

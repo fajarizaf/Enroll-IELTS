@@ -51,7 +51,7 @@
 <div class="content">
 	
     <div class="h1" style="margin-top:20px;margin-bottom:20px;float:left;">Register</div>
-    <div class="label label-info" style="width:130px;float:right;background:#1ba4dd;padding:5px;margin-top:20px;"><div style="width:80px;float:left;margin-right:11px;color:#fff;">Time Remains :</div><div id="timer" style="color:#fff;width:30px;float:left;margin-left:7px;"></div></div>
+    <div class="label label-info" style="width:130px;float:right;background:#1ba4dd;padding:5px;margin-top:20px;padding-right:10px;"><div style="width:80px;float:left;margin-right:11px;color:#fff;">Time Remains :</div><div id="timer" style="color:#fff;width:30px;float:left;margin-left:7px;"></div></div>
 	
   <div style="clear:both;"></div>
   <div class="box-tab">

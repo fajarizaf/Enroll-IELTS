@@ -10,8 +10,8 @@
                 <?php echo $this->generated_tanggal->ubahtanggal($rows->schdate); ?>
                 </div>
                 <span class="label label-warning" style="margin-left:20px;padding:10px; display:inline-block;margin-top:3px;"><?php echo count($editreport); ?>&nbsp;Candidate</span>
-                <a style="float:right;padding-left:15px;padding-right:15px;" href="<?php echo base_url() ?>laporan/createxml/<?php echo $this->uri->segment(3); ?>"><div class="btnxls" ></div></a>
-                <a style="float:right;padding-left:15px;padding-right:15px;border-right:1px solid #ffbf4b" href="<?php echo base_url() ?>laporan/createxls/<?php echo $this->uri->segment(3); ?>"><div class="btnxml" ></div></a>            
+                <a style="float:right;padding-left:15px;padding-right:15px;" href="<?php echo base_url() ?>laporan/createxml/<?php echo $this->uri->segment(3); ?>"><div class="btnxml" ></div></a>
+                <a style="float:right;padding-left:15px;padding-right:15px;border-right:1px solid #ffbf4b" href="<?php echo base_url() ?>laporan/createxls/<?php echo $this->uri->segment(3); ?>"><div class="btnxls" ></div></a>            
               </div>
             <?php } ?>  
 

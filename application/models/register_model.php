@@ -1476,15 +1476,15 @@ class register_model extends CI_Model {
                                                                             $this->email->from('register@webdev.dlanet.com', 'IELTS Indonesia');
                                                                             
                                                                             $this->email->to($email);
-                                                                            $this->email->subject('Activation Account');
+                                                                            $this->email->subject('Resset Password');
 
                                                                             
                                                                             $message = '
                                                                                 
-                                                                                    <div style="font-size: 18px; font-weight: bold; padding: 5px;height:68px;border-bottom:2px solid red;">
-                                                                                           <img src="'.base_url().'/assets/pic/utclogo.png" style="float:left;margin-right:5px;" />
-                                                                                           <img src="'.base_url().'/assets/pic/bc-logo.png" style="float:left;margin-right:5px;" />
-                                                                                           <img src="'.base_url().'/assets/pic/ielts-logo.png" style="float:left;margin-right:5px;" />
+                                                                                     <div style="font-size: 18px; font-weight: bold; padding: 5px;height:68px;border-bottom:2px solid red;">
+                                                                                           <img src="'.base_url().'assets/pic/utclogo.png" style="float:left;width:40px;margin-right:15px;margin-top:7px;" />
+                                                                                           <img src="'.base_url().'assets/pic/bc-logo1.png" style="float:left;width:220px;margin-right:15px;margin-top:7px;" />
+                                                                                           <img src="'.base_url().'assets/pic/ielts-logo.png" style="float:left;margin-right:5px;margin-top:7px;" />
                                                                                     </div>
 
                                                                                 

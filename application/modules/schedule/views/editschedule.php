@@ -94,7 +94,7 @@
                     <select id="testvenues"  name="testvenues"  style="width:320px;height:40px;">
                         <option value="<?php echo $rows->idbranches ?>"><?php echo $rows->branchname ?></option>
                         <?php foreach ($partnerselected as $rew ) { ?>
-                        <option value="<?php echo $rows->idbranches ?>"><?php echo $rew->branchname ?></option>      
+                        <option value="<?php echo $rew->idbranches ?>"><?php echo $rew->branchname ?></option>      
                         <?php } ?>
                     </select>
             </td>
@@ -198,7 +198,7 @@
                               var countdown = setInterval(function(){
                                 if (counter == 0) {
                                 clearInterval(countdown);
-                                $('.load').fadeOut('slow');
+                                
 
                                 $.ajax({
                                       type  : "POST",
@@ -209,6 +209,7 @@
 
                                         $.each( response , function(key,val) {
                                           if( val.statuss == 'sukses') {
+                                            $('.load').fadeOut('slow');
                                             $('#editschedule').modal('hide');
                                             $('#sticky').sticky('<span style="color:#802222;">user has been Updated</span>');
 

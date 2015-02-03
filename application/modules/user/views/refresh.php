@@ -6,7 +6,7 @@
       <th style="width:8%;">Status</th>
       <th style="width:40px;">Email</th>
       <th style="width:4%;">Create By</th>
-      <th style="width:1%;">edit</th>
+      <th style="width:1%;">view</th>
       <th style="width:1%;">delete</th>
 
     </tr>

@@ -48,6 +48,7 @@ $(document).ready(function() {
           $( "tr[valuecode="+id+"]" ).remove();
           var listtable = '<tr valuecode="'+id+'"><td style="padding-left:9px;width:120px;border-bottom:1px solid #f0c36d;padding-top:8px;padding-bottom:8px;color:#802222">IDIELTS'+id+'</td><td style="width:200px;border-bottom:1px solid #f0c36d;color:#802222">'+name+'</td><td style="width:10px;border-bottom:1px solid #f0c36d;"><span id="deleteuserlist" value="'+id+'" tgl="'+tgl+'" name="'+name+'" style="margin-right:5px;" class="label label-warning">delete</span></td></tr>';
           $('.value-multiple-user').append(crop);
+          $('.no-item').remove();
           $('.list-user-append').append(listtable);
           $('ul[valuecode='+id+']').remove();
 
@@ -238,7 +239,7 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
                 <table class="table table-stripped">
                   <div class="list-user-append" style="margin-left:0px;padding-top:0px;margin-top:-10px;">
 
-                   <span style="color:#c78425;margin-left:20px;margin-top:3px;">No Item Selected</span>
+                   <span class="no-item" style="color:#c78425;margin-left:20px;margin-top:3px;">No Item Selected</span>
 
                   </div>
                 </table>

@@ -170,7 +170,7 @@
                               var countdown = setInterval(function(){
                                 if (counter == 0) {
                                 clearInterval(countdown);
-                                $('.load').fadeOut('slow');
+                               
 
                                 $.ajax({
                                       type  : "POST",
@@ -182,7 +182,7 @@
                                         $.each( response , function(key,val) {
                                           if( val.statuss == 'sukses') {
                                             $('#edittest').modal('hide');
-
+                                             $('.load').fadeOut('slow');
                                             $('#sticky').sticky('<span style="color:#802222;">user has been Updated</span>');
 
                                                

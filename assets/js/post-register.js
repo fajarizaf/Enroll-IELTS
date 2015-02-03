@@ -35,16 +35,18 @@
                 if (counter == 0) {
                 clearInterval(countdown);
 
-                    $('#parentloading').fadeOut('fast');
-                    $('.load').fadeOut('fast');
-                    $('.table-city').css({'opacity':'1'});
-                    $('.statloc').html(city[1]); 
+                     
 
                             $.ajax({
                             type  : "POST",
                             url: ""+base_url+"register/filterbycity",
                             data: dataString,
                             success : function(data){
+
+                              $('#parentloading').fadeOut('fast');
+                              $('.load').fadeOut('fast');
+                              $('.table-city').css({'opacity':'1'});
+                              $('.statloc').html(city[1]);
                
                                $(".table-city").html(data);
                                     
@@ -78,15 +80,17 @@
                     if (counter == 0) {
                     clearInterval(countdown);
 
-                        $('#parentloading').fadeOut('fast');
-                        $('.load').fadeOut('fast');
-                        $('.table-date').css({'opacity':'1'}); 
+                       
 
                                 $.ajax({
                                 type  : "POST",
                                 url: ""+base_url+"register/filterbydate",
                                 data: dataString,
                                 success : function(data){
+
+                                    $('#parentloading').fadeOut('fast');
+                                    $('.load').fadeOut('fast');
+                                    $('.table-date').css({'opacity':'1'}); 
                    
                                    $(".table-date").html(data);
                                         
@@ -155,9 +159,7 @@
                     if (counter == 0) {
                     clearInterval(countdown);
 
-                        $('#parentloading').fadeOut('fast');
-                        $('.load').fadeOut('fast');
-                        $('.table-date').css({'opacity':'1'}); 
+                        
 
                                 $.ajax({
                                 type  : "POST",
@@ -165,6 +167,10 @@
                                 data: dataString,
                                 success : function(data){
                    
+                                    $('#parentloading').fadeOut('fast');
+                                    $('.load').fadeOut('fast');
+                                    $('.table-date').css({'opacity':'1'});
+                                    
                                    $(".table-date").html(data);
                                         
                                 }
@@ -221,7 +227,7 @@
               var countdown = setInterval(function(){
                 if (counter == 0) {
                 clearInterval(countdown);
-                $('#parentloading').fadeOut('fast');
+                
 
                     if ( $('.locations-test').is(':checked') ) {
                         $('#btn-city').attr('class','visited');
@@ -235,14 +241,14 @@
                                 url: ""+base_url+"register/filterbylocation",
                                 data: dataString,
                                 success : function(data){
-                   
+                                   $('#parentloading').fadeOut('fast');
                                    $(".table-date").html(data);
-
+                                   $('.content-tab').animate({ scrollLeft:'960px' });
                                         
                                 }
                             });
 
-                        $('.content-tab').animate({ scrollLeft:'960px' });
+                        
 
                     } else {
                         $('#sticky').sticky('<span style="color:#802222;">choice must be in select locations</span>');

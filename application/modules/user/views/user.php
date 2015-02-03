@@ -35,6 +35,47 @@
       });
 
 
+
+
+     $('#list-user').on('click','.icondelete', function() {
+        $('.sticky-close').click();
+        $('#parentloading').fadeIn('slow');
+        var idexams = $(this).attr('value');
+        dataString = 'idusers=' + idexams;
+
+            var counter=2;
+              var countdown = setInterval(function(){
+                if (counter == 0) {
+                clearInterval(countdown);
+
+                  $.ajax({
+                    type  : "POST",
+                    url: ""+base_url+"user/deleteuser",
+                    data: dataString,
+                    dataType:'json',          
+                    success : function(data){
+                      $('#parentloading').fadeOut('fast');
+                                          
+                         $.each( data, function(key,val) { 
+                                
+                                $('tr[atr='+val+']').css({'background':'#feeda9'}).fadeOut('slow');
+                                $('#sticky').sticky('<span style="color:#802222;">Delete Successfully</span>'); 
+                    
+                         });               
+                                              
+                      }
+                    });
+                    return false;
+
+            }
+            counter--;
+        }, 500);         
+        
+      });
+
+
+
+
     $('#selectroles').change(function() {
         $('#parentloading').fadeIn('slow');
         $('.content-user').css({'opacity':'0.2'}); 
@@ -198,7 +239,7 @@
       <th style="width:8%;">Status</th>
       <th style="width:40px;">Email</th>
       <th style="width:4%;">Create By</th>
-      <th style="width:1%;">edit</th>
+      <th style="width:1%;">view</th>
       <th style="width:1%;">delete</th>
 
     </tr>
