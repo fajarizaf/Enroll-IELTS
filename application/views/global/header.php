@@ -218,8 +218,8 @@
 <div class="menu">
     <ul>
         <?php if($this->session->userdata('login') != 'true') { ?>
-            <li style="border-top:5px solid #7dab36;"><a href="#">How To Register</a></li>
-            <li style="border-top:5px solid #ff6600;"><a href="#">How To Book IELTS</a></li>
+            <li style="border-top:5px solid #7dab36;"><a href="http://demo-af.webdev.dlanet.com/ielts/home/how-to-register/">How To Register</a></li>
+            <li style="border-top:5px solid #ff6600;"><a href="http://demo-af.webdev.dlanet.com/ielts/home/preparation/">IELTS Preparation</a></li>
             <li class="active" style="border-top:5px solid #00a2c8;"><a href="<?php echo base_url() ?>register/">Register</a></li>
         <?php } else { ?>
 
