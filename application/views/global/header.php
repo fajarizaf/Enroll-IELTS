@@ -72,22 +72,18 @@
 
                  $('#btnnew-registers').click(function() {
                      $('#parentloading').fadeIn('slow');
-                     var counter=2;
-                      var countdown = setInterval(function(){
-                        if (counter == 0) {
-                        clearInterval(countdown);
-                             $('#parentloading').fadeOut('slow');
-                             $('.register-or-login').load(''+base_url+'register/form_candidate/').hide().fadeIn('slow');
-                             $('#sticky').sticky('<span style="color:#802222;">please fill out a form below to complete</span>');
-                             $('.content-tab').css({'height':'2300px'});
-                         }
-                        counter--;
-                      }, 500);                
+                      $("html, body").animate({ scrollTop: 0 }, "slow");
+                              $('.register-or-login').load(''+base_url+'register/form_candidate/', function(){
+                                   $('#parentloading').fadeOut('slow');
+                                   $('.register-or-login').hide().fadeIn('slow');
+                                   $('#sticky').sticky('<span style="color:#802222;">please fill out a form below to complete</span>');
+                                   $('.content-tab').css({'height':'2300px'});
+                              });
+  
                  });
 
 
                  $('#btnnewaccount1').click(function() {
-                    alert('asdasd');
                      $('#parentloading').fadeIn('slow');
                      var counter=2;
                       var countdown = setInterval(function(){
@@ -162,11 +158,21 @@
                           evt()
                         );
 
+
+                      function loadImage(path, width, target) {
+                          $('<img src="'+ path +'">').load(function() {
+                            $(this).width(width).appendTo(target);
+                          });
+                      }
+
                         sizephotoKB = (Math.round(sizephoto * 100) / 100 ) +' KB';
                         var nameimage = $('.uploadidcard')[0].files[0];
                         $('.resultphoto').html('<p style="color:orangered">'+nameimage.name+'<br/><span style="font-weight:bold;color:#666;">'+sizephotoKB+'</span></p>');
-                        $('.photosid img').attr('src', ''+base_url+'upload/'+nameimage.name+'');
+                        var imgPaht =  ''+base_url+'upload/'+nameimage.name+'';
+                        loadImage(imgPaht, 800,'.photosid');
+
                         $('.uploadfileimage').val(nameimage.name);
+                        $('.uploadfile').val(nameimage.name);
                         
                     }
 
@@ -199,7 +205,8 @@
                 <img <?php if($this->session->userdata('images') == '') { ?> src="<?php echo base_url() ?>assets/pic/default.jpg"  <?php } else { ?>  src="<?php echo base_url() ?>upload/<?php echo $this->session->userdata('images') ?>"  <?php } ?> width="105%">
                 
             </div>
-            <div class="stat"><span style="font-weight:bold;">Welcome</span><br/><?php echo $this->session->userdata('username'); ?></div>
+            <div class="stat" style="border-right:1px solid #ececec;padding-right:10px;"><span style="font-weight:bold;">Welcome</span><br/><?php echo $this->session->userdata('username'); ?></div>
+            <div style="float:left;width:auto;height:40px;padding-left:10px;padding-top:3px;"><a style="text-decoration:none;margin-top:3px;" href="<?php echo base_url() ?>register/logout"><b>Log Out</b></div>
         </div>
     <?php } else { ?>
         <div class="stat_members">
@@ -218,8 +225,8 @@
 <div class="menu">
     <ul>
         <?php if($this->session->userdata('login') != 'true') { ?>
-            <li style="border-top:5px solid #7dab36;"><a href="#">How To Register</a></li>
-            <li style="border-top:5px solid #ff6600;"><a href="#">How To Book IELTS</a></li>
+            <li style="border-top:5px solid #7dab36;"><a href="http://demo-af.webdev.dlanet.com/ielts/home/how-to-register/">How To Register</a></li>
+            <li style="border-top:5px solid #ff6600;"><a href="http://demo-af.webdev.dlanet.com/ielts/home/preparation/">IELTS Preparation</a></li>
             <li class="active" style="border-top:5px solid #00a2c8;"><a href="<?php echo base_url() ?>register/">Register</a></li>
         <?php } else { ?>
 

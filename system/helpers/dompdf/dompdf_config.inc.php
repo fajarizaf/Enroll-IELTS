@@ -379,7 +379,7 @@ $_DOMPDF_DEBUG_TYPES = array(); //array("page-break" => 1);
  * E.g. on repeated display of same pdf in browser when pdf is not taken out of
  * the browser cache and the premature output prevents setting of the mime type.
  */
-def('DEBUGPNG', false);
+def('DEBUGPNG', true);
 def('DEBUGKEEPTEMP', false);
 def('DEBUGCSS', false);
 

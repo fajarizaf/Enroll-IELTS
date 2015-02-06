@@ -22,10 +22,21 @@
           <tr style="border:none;margin-top:-10px;">
             <td colspan="3" style="border:none;">
               <div style="margin-bottom:10px;color:#fff;padding:10px;width:98%;height:40px;-moz-border-radius:5px 5px 5px;-webkit-border-radius:5px 5px 5px;border-radius:5px 5px 5px;background:#00a6e3;">
-                <div style="width:270px;float:left;color:#fff">
-                <h3 style="margin-top:-5px;"><?php echo $row->userfirstname.' '.$row->userfamilyname  ?></h3>
-                Registration Centre
+                <div style="width:280px;float:left;color:#fff">
+                    <div style="width:auto;float:left;height:50px;color:#fff;margin-right:25px;">
+                    <h3 style="margin-top:-5px;color:#fff;"><?php echo $row->userfirstname.' '.$row->userfamilyname  ?></h3>
+                    Registration Centre
+                    </div>
+
+                    <div style="float:left;height:37px;width:auto;" id="countreg" class="label label-info">
+                    <a href="<?php echo base_url() ?>payment/filterbyregcenter/<?php echo $row->idusers ?>">
+                    <div style="padding:10px;margin-top:-5px;"><h3 style="color:#fff;"><?php $this->showuser->getregisteredregcenter($row->idusers);  ?></h3></div>
+                    </a>  
+                    </div>
+
                 </div>
+
+
                   <div class="stat_photo" style="float:right;">
                     <img <?php if($row->userphoto == '') { ?> src="<?php echo base_url() ?>assets/pic/default.jpg"  <?php } else { ?>  src="<?php echo base_url() ?>upload/<?php echo $row->userphoto ?>"  <?php } ?> width="105%">
                   </div>
@@ -34,7 +45,7 @@
           </tr> 
 
 
-          <tr>
+                  <tr>
                     <th style="width:400px;">Registered ID</th>
                     <th style="width:5px">:</th>
                     <th style="width:400px;">IELTS<?php echo substr("00000" . $row->idusers, -6); ?></th>

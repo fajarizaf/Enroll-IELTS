@@ -1529,7 +1529,20 @@ class register_model extends CI_Model {
     function selectmonthavailable() { 
     $q = $this->db->query('select distinct MONTH(schdate) as "vbn" from schedules where schstatus="1" and schdate > NOW() order by MONTH(schdate) ASC');
     return $q->result();    
-    }   
+    }
+
+
+    function getregisteredregcenter($idusers) {
+
+        $this->db->join("schedules","registrations.idschedules = schedules.idschedules");
+        $this->db->join("branches","schedules.idbranches = branches.idbranches");
+        $this->db->join("exams","schedules.idexams = exams.idexams");
+        $this->db->join("users","registrations.idusers = users.idusers");
+        $this->db->where('schedules.schclosingreg > ', date("Y-m-d H:i:s"));
+        $this->db->where('registrations.createdbys',$idusers);
+        $q =  $this->db->get("registrations");
+        return $q->num_rows();
+    }  
 
 
 }

@@ -69,7 +69,8 @@
                     <?php if($row->paymentreceipt != '') { ?><div class="label" style="float:left;margin-left:20px;padding:8px;margin-top:3px;">Confirmed</div><?php } ?>
                       <?php if($row->paymentreceipt != '') { ?><div id="proof" class="label label-warning" style="float:left;margin-left:20px;padding:8px;margin-top:3px;">Proof of Payment</div><?php } ?>
                       <div id="idcard" class="label label-warning" style="float:left;margin-left:20px;padding:8px;margin-top:3px;cursor:pointer">Id Card</div>
-                    <?php if($row->paymentreceipt != '') { ?><span id="btnpaid" atr="<?php echo $row->idregistrations ?>" class="label label-warning" style="width:70px;">Paid</div><?php } ?>
+
+                    <?php if($row->paymentreceipt != '') { ?><a style="float:right;" href="<?php echo base_url() ?>payment/createpdf/<?php echo $row->idusers ?>"><img src="<?php echo base_url() ?>assets/pic/pdficon.png" width="40px" ></a><span id="btnpaid" atr="<?php echo $row->idregistrations ?>" class="label label-warning" style="width:70px;">Paid</div><?php } ?>
                   </div>
                 <?php } else if($roles == 2) { ?>
                   <div style="margin-bottom:10px;color:#fff;padding:10px;width:98%;height:40px;-moz-border-radius:5px 5px 5px;-webkit-border-radius:5px 5px 5px;border-radius:5px 5px 5px;background:#00a6e3;margin-left:-8px;">

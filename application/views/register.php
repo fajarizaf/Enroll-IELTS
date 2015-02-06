@@ -86,8 +86,7 @@
                             <option value="<?php echo $row1->city ?>/<?php echo $this->showuser->cityname($row1->city); ?>" ><?php echo $this->showuser->cityname($row1->city); ?></option>
                             <?php } ?>
                         </select>
-
-                </div>
+              </div>
                 
                 
                 <div class="right" style="padding-right:0px;float:right;">
@@ -406,7 +405,7 @@
                 <img style="float:left;" width="30px" src="<?php echo base_url() ?>assets/pic/important.png">
                 <p style="color:red;width:120px;float:left;font-weight:bold;margin-top:5px;margin-left:10px;" class="font1">Important</p>
                 <div style="clear:both;"></div>
-                    your Payment receipt must be uploaded before 16.00 WIB at (http://www.ieltsindonesia.co.id/registeronline/status). You will receive the confirmation of your IELTS Test Application within 1 hour after payment has been received. Late payments will not be processed and applications will need to be resubmitted in the following business day. Seats will also not be secured until payment is received. Thank you, IELTS INDONESIA
+                    your Payment receipt must be uploaded before 16.00 WIB at (http://www.ieltsindonesia.co.id/registeronline/payment/). You will receive the confirmation of your IELTS Test Application within 1 hour after payment has been received. Late payments will not be processed and applications will need to be resubmitted in the following business day. Seats will also not be secured until payment is received. Thank you, IELTS INDONESIA
                 </div>
               
             </div>

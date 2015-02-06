@@ -61,6 +61,22 @@ class Register extends CI_Controller {
     }
 
 
+    public function logout() {
+
+                        $data = array (
+                            'idusers' => $row->idusers,
+                            'statususer' => $row->idroles,
+                            'username' => $row->userfamilyname,
+                            'images' => $row->userphoto,
+                            'login' => 'true'
+                        );    
+
+    $this->session->sess_destroy();
+    $this->session->unset_userdata($data);
+    redirect('register/formlogin');
+    }
+
+
 
 
 
@@ -471,6 +487,10 @@ class Register extends CI_Controller {
         }
 
         public function prosesresetpassword() {
+            $this->register_model->prosesresetpassword();
+        }
+
+        public function showphotos() {
             $this->register_model->prosesresetpassword();
         }
 

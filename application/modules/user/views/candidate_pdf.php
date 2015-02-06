@@ -276,8 +276,10 @@
 
 
                   <?php } ?>
-                  </table>
-                  <img   width="450" src="<?php echo base_url(); ?>upload/<?php echo $row->useridfile ?>">
+                  </table><br/>
+                  <div style="width:800px;height:60px;margin-top:20px;">  
+                <img  width="350" src="upload/<?php echo $row->useridfile ?>">
+                </div>
 
               </div>
 

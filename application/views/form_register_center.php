@@ -14,6 +14,7 @@ $(document).ready(function() {
                              $('.switch').fadeOut('fast');
                              $('.register-or-login').load(''+base_url+'register/form_candidate/').hide().fadeIn('slow');
                              $('#sticky').sticky('<span style="color:#802222;">please fill out a form below to complete</span>');
+                              $('.content-tab').css({'height':'2300px'});
                          }
                         counter--;
                       }, 500);                

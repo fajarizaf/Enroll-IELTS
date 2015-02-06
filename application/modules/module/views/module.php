@@ -62,7 +62,7 @@
               var countdown = setInterval(function(){
                 if (counter == 0) {
                 clearInterval(countdown);
-                $('#parentloading').fadeOut('slow');
+                
 
                       var namemodule = $('tr[status=show] td .shownamemodule').val();
                       var idexams = $('tr[status=show] input[type=hidden]').val();
@@ -80,12 +80,16 @@
                         data: dataString,
                         dataType:'json',          
                         success : function(data){
+                        $('#parentloading').fadeOut('slow');
                                               
                              $.each( data, function(key,val) { 
 
                                   if(val == 'sukses') {
                                     $('#sticky').sticky('<span style="color:#802222;">Update Successfully</span>');
                                     $('tr[status=show]').slideUp('slow');
+
+                                     window.location.href =""+base_url+"module/";
+
                                   } else {
                                     $('#sticky').sticky('<span style="color:#802222;">Update Unsuccessfully</span>');
                                     $('tr[status=show]').slideUp('slow'); 

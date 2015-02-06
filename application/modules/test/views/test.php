@@ -107,7 +107,7 @@
 
 
 
-    $('#list-user').on('click','.iconedit', function() {
+    $('.content-user').on('click','.iconedit', function() {
       var url = $(this).attr('url');
           // Refresh List 
             $.get( ""+url+"", function( data ) {

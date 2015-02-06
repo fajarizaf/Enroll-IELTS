@@ -290,8 +290,11 @@
                     
 
                   <?php } ?>
+                  
                 <table>
 
+                
+                
                 <?php foreach ($proof as $rqw ) { ?>
                   <img  width="800" src="upload/<?php echo $rqw->paymentreceipt; ?>">
                 <?php }  ?>

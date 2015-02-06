@@ -65,7 +65,7 @@ body {
 }
 
 .box-tab {
-	width:960px;
+	width:961px;
 	height:70px;
 	background:#f8f8f8;
 	border:1px solid #d6d6d6;
@@ -628,7 +628,7 @@ border:none;
 }
 
 .stat_member {
-	width:250px;
+	width:auto;
 	height:50px;
 	float: right;
 	margin-right: 30px;
@@ -636,7 +636,7 @@ border:none;
 }
 
 .stat_members {
-	width:250px;
+	width:auto;
 	height:50px;
 	float: right;
 	margin-right: 30px;
@@ -659,7 +659,7 @@ border:none;
 	
 .stat {
 	margin-top:3px;
-	width:170px;
+	width:auto;
 	float:left;
 }
 
@@ -986,5 +986,9 @@ div[btn=paid] {
 	width:auto;
 	float: left;
 	border-left:1px solid #bfbfbf ;
+}
+
+#countreg:hover {
+	background:#146c97;
 }
 

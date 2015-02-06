@@ -422,6 +422,15 @@ function ubahtanggal2($parameter) {
         }
   }
 
+  function getregisteredregcenter($idusers) {
+      $CI =& get_instance();
+      $CI->load->model('register_model');
+
+        $query =  $CI->register_model->getregisteredregcenter($idusers);
+        
+        echo $query;
+  }
+
 
 
   

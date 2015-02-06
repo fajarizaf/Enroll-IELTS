@@ -162,7 +162,7 @@ class Payment extends CI_Controller {
           <?php } else { ?>
             <td style="border-left:none"><?php echo $this->generated_tanggal->ubahtanggal($row->created); ?> <span style="margin-left:10px;" class="label label-info"><?php echo $this->generated_tanggal->ubahtanggaltime($row->created); ?></span></td>
             <td style="border-left:none;"><div style="margin-top:10px;" url="<?php echo base_url() ?>payment/editpayment/<?php echo $row->idregistrations; ?>/" href="#editregistrations" data-toggle="modal" class="iconedit"></div></td>  
-            <td style="border-left:none;"><input  style="opacity:0.4"  type="button"  class="btn" value="Confirmed"></td>
+            <td style="border-left:none;"><input  style="opacity:0.4"  type="button"  class="btn" value="Submited"></td>
           <?php } ?>
         <?php } else { ?>
         <td style="border-left:none;"><h4 style="color:orangered;"><?php echo $row->userfirstname.' '.$row->userfamilyname  ?></h4><p>IELTS<?php echo substr("00000" . $row->idusers, -6); ?></p></td>
@@ -216,6 +216,36 @@ class Payment extends CI_Controller {
        $this->load->view('refresh',$data);
     }
 
+    function filterbyregcenter($offset = NULL) {
+         $limit = 10;
+       if( is_null ($offset)) { $offset = 0; }else {$offset = $this->uri->segment(4);}
+       $venue = $this->uri->segment(3);
+
+            $config['uri_segment'] = 4;
+            $config['base_url'] = base_url().'payment/pageregcenter/'.$venue.'';
+            $config['total_rows'] = $this->payment_model->count_paymentregcenter($venue);
+            $config['per_page'] = $limit;
+            $config['num_link'] = 1;
+            $config['next_page'] = '&laquo;';
+            $config['prev_page'] = '&raquo;';
+
+
+       $data['payment'] = $this->payment_model->filterbyregcenter($venue,$limit,$offset);
+       $this->pagination->initialize($config);
+
+                $idroles = $this->session->userdata('statususer');
+                $data['menuadmin'] = $this->user_model->menuadmin($idroles);
+                $data['venuetest'] = $this->app_model->get_data('branches');
+                $this->pagination->initialize($config);
+
+                $this->load->view('global/header', $data);
+                $this->load->view('payment',$data);
+                $this->load->view('widget/addpayment',$data);
+                $this->load->view('widget/editpayment',$data);
+                $this->load->view('widget/confirmpayment',$data);
+                $this->load->view('global/footer');
+    }
+
 
      public function pagevenue($offset = NULL) {
 
@@ -232,6 +262,25 @@ class Payment extends CI_Controller {
             $config['prev_page'] = '&raquo;';
 
                 $data['refresh'] = $this->payment_model->filterbyvenue($date,$limit,$offset);
+                $this->pagination->initialize($config);
+                $this->load->view('refresh',$data);
+    }
+
+    public function pageregcenter($offset = NULL) {
+
+            $limit = 10;
+            if( is_null ($offset)) { $offset = 0; }else {$offset = $this->uri->segment(4);}
+            $date = $this->uri->segment(3);
+
+            $config['uri_segment'] = 4;
+            $config['base_url'] = base_url().'payment/pageregcenter/'.$date.'';
+            $config['total_rows'] = $this->payment_model->count_paymentregcenter($date);
+            $config['per_page'] = $limit;
+            $config['num_link'] = 1;
+            $config['next_page'] = '&laquo;';
+            $config['prev_page'] = '&raquo;';
+
+                $data['refresh'] = $this->payment_model->filterbyregcenter($date,$limit,$offset);
                 $this->pagination->initialize($config);
                 $this->load->view('refresh',$data);
     }
@@ -287,6 +336,26 @@ class Payment extends CI_Controller {
 
     public function delpaymentunpaid() {
       $this->payment_model->delpaymentunpaid();
+    }
+
+
+    public function createpdf() {
+      ini_set('memory_limit', '128M');
+      $idusers = $this->uri->segment(3);
+      $idregistrations = $this->uri->segment(4);
+      $where['idusers'] = $this->uri->segment(3);
+      $data['datareport'] = $this->payment_model->getdatareport($idusers);
+      $where1['userid'] = $this->uri->segment(3);
+      $data['akademik'] = $this->app_model->getSelectedData('academic',$where1);
+      $data['branches'] = $this->payment_model->getBranches($idregistrations);
+      $where2['idusers'] = $this->uri->segment(3);
+      $data['proof'] = $this->app_model->getSelectedData('registrations', $where2);
+      $nameuser = $this->app_model->getSelectedData('users',$where);
+      $html = $this->load->view('report_pdf',$data, true);
+      $this->load->helper(array('dompdf', 'file')); 
+      foreach ($nameuser as $row) {
+            pdf_create($html, $row->userfirstname.' '.$row->userfamilyname);  
+      }   
     }
 
 

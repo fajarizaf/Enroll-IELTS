@@ -101,7 +101,7 @@ $(document).ready(function() {
                               var countdown = setInterval(function(){
                                 if (counter == 0) {
                                 clearInterval(countdown);
-                                $('#parentloading').fadeOut('slow');
+                                
 
                                 if($('.value-multiple-user').is(':empty')) {
                                   $('#sticky').sticky('<span style="color:#802222;">the user must be selected</span>');
@@ -119,7 +119,7 @@ $(document).ready(function() {
                                       data: dataString,
 
                                       success : function(response){
-
+                                          $('#parentloading').fadeOut('slow');
                                                $('#btn-city').attr('class','visited');
                                                $('#btn-date').attr('class','visited');
                                                $('#btn-tos').attr('class','visited');
@@ -150,10 +150,6 @@ $(document).ready(function() {
                                                        $('.content-tab').animate({ scrollLeft:'3840px' });
                                                        $('#sticky').sticky('<span style="color:#802222;">Register successful.</span>');
                                                        $('.box-tab ul li').attr('action','disabled');
-
-                                           
-
-
                                       }
                                   });      
 

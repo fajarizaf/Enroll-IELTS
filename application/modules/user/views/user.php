@@ -14,7 +14,6 @@
     });
 
      $('.search-admin').keyup(function() {
-
       var valueserch = $(this).val();
       var searchby = $('#searchby').val();
       var idroles = $('#selectroles').val();
@@ -27,7 +26,6 @@
                             url: ""+base_url+"user/filter",
                             data: dataString,
                             success : function(data){
-               
                                $(".content-user").html(data);
                                     
                             }
@@ -249,7 +247,7 @@
       <tr atr="<?php echo $row->idusers ?>">
         <td>IELTS<?php echo substr("00000" . $row->idusers, -6); ?></td>
         <td><?php echo $this->generated_tanggal->ubahtanggal($row->created); ?></td>
-        <td><?php echo $row->userfamilyname.' '.$row->userfirstname ?></td>
+        <td><?php echo $row->userfirstname.' '.$row->userfamilyname ?></td>
         <td><?php echo $this->showuser->getStatusUser($row->idroles) ?></td>
         <td style="width:40px;"><?php echo $row->useremail ?></td>
         <td><?php echo $this->showuser->getNameUser($row->createdby); ?></td>

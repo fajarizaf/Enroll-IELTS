@@ -63,7 +63,7 @@
               var countdown = setInterval(function(){
                 if (counter == 0) {
                 clearInterval(countdown);
-                $('#parentloading').fadeOut('slow');
+               
 
                       var namemodule = $('tr[status=show] td .partnername').val();
                       var idexams = $('tr[status=show] input[type=hidden]').val();
@@ -84,9 +84,13 @@
                                               
                              $.each( data, function(key,val) { 
 
-                                  if(val == 'sukses') {
+                                  if(val.status == 'sukses') {
                                     $('#sticky').sticky('<span style="color:#802222;">Update Successfully</span>');
                                     $('tr[status=show]').slideUp('slow');
+                                     $('#parentloading').fadeOut('slow'); 
+
+                                        window.location.href =""+base_url+"partner/";
+
                                   } else {
                                     $('#sticky').sticky('<span style="color:#802222;">Update Unsuccessfully</span>');
                                     $('tr[status=show]').slideUp('slow'); 
@@ -195,9 +199,9 @@
     <?php $i =1 ?>
     <?php foreach ( $datapartner as $row ) { ?>
 
-      <tr atr="<?php echo $row->idpartners ?>" style="background:#efefef">
+      <tr id="<?php echo $row->idpartners ?>" atr="<?php echo $row->idpartners ?>" style="background:#efefef">
         <td><?php echo $row->partnername ?></td>
-        <td><?php echo $row->partnerstatus ?></td>
+        <td><?php if($row->partnerstatus == '1') { echo 'enable'; } else { echo 'disable'; }; ?></td>
         <td><div show="show_edit<?php echo $row->idpartners; ?>" value="<?php echo $row->idpartners; ?>" class="iconedit"></div></td>
         <td><div value="<?php echo $row->idpartners; ?>"  class="icondelete"></div></td>
       </tr>

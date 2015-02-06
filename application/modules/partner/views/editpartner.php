@@ -159,7 +159,7 @@
 
                                 $.ajax({
                                       type  : "POST",
-                                      url: ""+base_url+"test/updatetest",
+                                      url: ""+base_url+"partner/updatepartner",
                                       data: $("#formupdatetest").serialize(),
                                       dataType: "json",
                                       success : function(response){
@@ -170,11 +170,9 @@
 
                                             $('#sticky').sticky('<span style="color:#802222;">user has been Updated</span>');
 
-                                               
-
                                             // load content module 
-                                            $.get( ""+base_url+"test/getUpdateTest/"+val.idbranches+"", function( data ) {
-                                              $("#list-user #"+val.idbranches+"").html(data);
+                                            $.get( ""+base_url+"partner/getUpdatePartner/"+val.idpartners+"", function( data ) {
+                                              $("#list-user #"+val.idpartners+"").html(data);
                                             });
 
                                            

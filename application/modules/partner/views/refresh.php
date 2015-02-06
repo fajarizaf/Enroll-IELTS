@@ -10,7 +10,7 @@
     <?php $i =1 ?>
     <?php foreach ( $datapartner as $row ) { ?>
 
-      <tr atr="<?php echo $row->idpartners ?>" style="background:#efefef">
+      <tr id="<?php echo $row->idpartners ?>" atr="<?php echo $row->idpartners ?>" style="background:#efefef">
         <td><?php echo $row->partnername ?></td>
         <td><?php echo $row->partnerstatus ?></td>
         <td><div show="show_edit<?php echo $row->idpartners; ?>" value="<?php echo $row->idpartners; ?>" class="iconedit"></div></td>

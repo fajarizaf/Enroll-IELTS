@@ -25,7 +25,7 @@
             <div class="modal-body">
                
               <div class="photosid">
-                <img id="imageid" src="<?php echo base_url() ?>assets/pic/noimaages.png"  style="width:auto;">
+                
               </div>
               <div style="width:250px;float:left;">
                 <ul>
