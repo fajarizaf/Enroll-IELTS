@@ -225,7 +225,7 @@
         <?php echo form_open_multipart ('profile/updateprofile', $atributes); ?>
 
         <?php foreach ($dataprofile as $row) { ?>
-                <input type="hidden" name="idusers" value="<?php echo $row->idusers ?>">
+                <input type="text" style="display:none;" name="idusers" value="<?php echo $this->uri->segment(3); ?>">
                 <table class="table table-striped">
 
                   <tr>

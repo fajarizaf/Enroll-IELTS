@@ -50,6 +50,7 @@ header("Expires: 0");
                                 <td><?php echo $row->usergender; ?></td>
                             </tr>
                         <?php
+                     $i++;   
                     }
                 } else {
                     echo "<td colspan=6>You Don't have any record yet</td>";

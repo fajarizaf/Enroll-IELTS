@@ -357,8 +357,7 @@
         // button next di city di click
         $('#next-tos').click(function() {
                 $('#parentloading').fadeOut('fast');
-                $('.content-tab').css({'height':'1600px'});
-                alert('adasd');  
+                $('.content-tab').css({'height':'1600px'}); 
                     if ( $('.combo-tos').is(':checked') ) {
                       $('#parentloading').fadeIn('slow');
                       $("html, body").animate({ scrollTop: 0 }, "slow");

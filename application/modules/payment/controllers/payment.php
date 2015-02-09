@@ -55,6 +55,7 @@ class Payment extends CI_Controller {
                 $this->load->view('widget/addpayment',$data);
                 $this->load->view('widget/editpayment',$data);
                 $this->load->view('widget/confirmpayment',$data);
+                $this->load->view('widget/box-tos',$data);
                 $this->load->view('global/footer');
 
            } else {
@@ -332,6 +333,10 @@ class Payment extends CI_Controller {
 
     public function paid() {
         $this->payment_model->paid();
+    }
+
+    public function unpaid() {
+        $this->payment_model->unpaid();
     }
 
     public function delpaymentunpaid() {

@@ -7,22 +7,7 @@ class register_model extends CI_Model {
     }
 
 
-    function getmaxuser_schedule($idschedule) {
-        $query = $this->db->query('select * from schedules where idschedules="'.$idschedule.'"');
-        foreach ($query->result() as $row) {
-            $newmaxuser =  $row->maxuser - 1;
-        }
-
-                            if( $newmaxuser == '0') {
-                                    $dataupdate = array(
-                                        "schstatus" => '2'
-                                    );
-                                    $this->db->where('idschedules', $idschedule);
-                                    $this->db->update('schedules', $dataupdate);
-                             }
-
-        return $newmaxuser;
-    }
+    
 
 
     function getbranch($idbranches) {
@@ -87,12 +72,7 @@ class register_model extends CI_Model {
 
                                     $query1 = $this->db->insert("registrations",$reg);
 
-                                         //proses pengurangan kuota schedule test date
-                                         $dataupdate = array(
-                                                "maxuser" => $this->getmaxuser_schedule($this->uri->segment(3))
-                                            );
-                                            $this->db->where('idschedules', $this->uri->segment(3));
-                                            $this->db->update('schedules', $dataupdate);
+                                         
 
 
                                     $selectSchedules = $this->db->query('select * from schedules where idschedules="'.$this->uri->segment(3).'"');
@@ -274,15 +254,6 @@ class register_model extends CI_Model {
                                         "createdbys" => $this->session->userdata('idusers'),
                                     );
                          $query1 = $this->db->insert("registrations",$reg);
-
-
-
-                              //proses pengurangan kuota schedule test date
-                                    $dataupdate = array(
-                                        "maxuser" => $this->getmaxuser_schedule($this->uri->segment(3))
-                                    );
-                                    $this->db->where('idschedules', $this->uri->segment(3));
-                                    $this->db->update('schedules', $dataupdate);
 
 
                               // input other option akademik
@@ -563,14 +534,6 @@ class register_model extends CI_Model {
 
 
 
-                            //proses pengurangan kuota schedule test date
-                            $dataupdate = array(
-                                "maxuser" => $this->getmaxuser_schedule($this->uri->segment(3))
-                            );
-                            $this->db->where('idschedules', $this->uri->segment(3));
-                            $this->db->update('schedules', $dataupdate);
-
-
                 // input other option akademik
                 $nameperson = $this->input->post('name-person');
                 if($nameperson) {
@@ -776,13 +739,6 @@ class register_model extends CI_Model {
             );
 
            $this->db->insert('registrations', $data);
-
-                            //proses pengurangan kuota schedule test date
-                            $dataupdate = array(
-                                "maxuser" => $this->getmaxuser_schedule($idschedules)
-                            );
-                            $this->db->where('idschedules', $idschedules);
-                            $this->db->update('schedules', $dataupdate);
 
 
                     $selectSchedules = $this->db->query('select * from schedules where idschedules="'.$idschedules.'"');

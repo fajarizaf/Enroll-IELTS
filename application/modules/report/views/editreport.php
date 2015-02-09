@@ -28,6 +28,7 @@
       <th style="width:3%;">Time Of Register</th>
       <th style="width:18%;">User Name</th>
       <th style="width:3%;">City</th>
+      <th style="width:1%;">Edit</th>
       <th style="width:3%;">Export</th>
     </tr>
     <?php  if($editreport) { ?>
@@ -39,6 +40,7 @@
         <td><?php $this->showuser->getDateRegisteredUsertime($row->idregistrations); ?></td>
         <td><?php echo $row->userfirstname.' '.$row->userfamilyname  ?></td>
         <td><?php echo $row->useraddr3  ?></td>
+        <td><a href="<?php echo base_url() ?>profile/edit/<?php echo $row->idsers; ?>"><div   class="iconedit"></div></a></td>
         <td><a href="<?php echo base_url(); ?>report/createpdf/<?php $this->showuser->getidUsers($row->idregistrations); ?>/<?php echo $row->idregistrations; ?>"><div class="iconpdf"></div></a></td>
       </tr>
     <?php } ?>

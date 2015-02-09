@@ -3,6 +3,8 @@
     $('#addschedule').css({'width':'770px','margin-left':'-375px'});
     $('#editregistrations').css({'width':'885px','margin-left':'-445px'});
     $('#confirmpayment').css({'width':'385px','margin-left':'-175px'});
+    $('#box-tos').css({'width':'785px','margin-left':'-375px','margin-top':'-60px;'});
+
 
     $('.box-schedule').slimScroll({
              width: '760px',
@@ -133,6 +135,7 @@
 
     $('.content-user').on('click','div[btn=paid]', function() {
         var idreg = $(this).attr('atr');
+        var idschedules = $(this).attr('scd');
         $(this).html('<div class="ajaxload"></div><div style="width:20px;float:left;color:#fff;">proses...</div>');
 
                   var counter=5;
@@ -143,7 +146,7 @@
 
                    $.ajax({
                             type  : "POST",
-                            url: ""+base_url+"payment/paid/"+idreg+"",
+                            url: ""+base_url+"payment/paid/"+idreg+"/"+idschedules+"",
                             success : function(data){              
                                  $('tr[atr='+idreg+']').css({'background':'#feeda9'}).fadeOut('slow');
                                  $('#sticky').sticky('<span style="color:#802222;">Payment Status Paid</span>'); 
@@ -244,6 +247,10 @@
     width:254px;
   }
 
+#box-tos {
+  margin-top:-25%;
+}  
+
 }
 
 </style>
@@ -288,7 +295,7 @@
     </tr>
     <?php  if($payment) { ?>
     <?php foreach ( $payment as $row ) { ?>
-      <tr  atr="<?php echo $row->useridnumber ?>" id="<?php echo $row->idregistrations ?>" >
+      <tr  atr="<?php echo $row->idregistrations ?>" id="<?php echo $row->idregistrations ?>" >
         <td ><?php echo $row->useridnumber ?></td>
         <td style="border-left:none;" ><p style="color:#333;padding-left:15px;font-size:16px;"><?php echo $row->branchname ?></p><p style="margin-left:15px;"><?php echo $row->examname ?></p></td>
         <td style="border-left:none;"><?php echo $this->generated_tanggal->ubahtanggal($row->schdate); ?></td>
@@ -305,7 +312,7 @@
         <?php } else { ?>
         <td style="border-left:none;"><h4 style="color:orangered;"><?php echo $row->userfamilyname.' '.$row->userfirstname  ?></h4><p>IELTS<?php echo substr("00000" . $row->idusers, -6); ?></p></td>
         <td style="border-left:none;"><div style="margin-top:10px;" url="<?php echo base_url() ?>payment/editpayment/<?php echo $row->idregistrations; ?>/" href="#editregistrations" data-toggle="modal" class="iconedit"></div></td>
-        <td style="border-left:none;"><?php $receipt =  $row->paymentreceipt; if($receipt != '') { ?><div style="margin-top:6px;padding-top:7px;padding-left:8px;cursor:pointer" btn="paid" atr="<?php echo $row->idregistrations ?>" class="label label-warning">Uploaded</div><?php } else {?>n/a<?php } ?></td>
+        <td style="border-left:none;"><?php $receipt =  $row->paymentreceipt; if($receipt != '') { ?><div style="margin-top:6px;padding-top:7px;padding-left:8px;cursor:pointer" btn="paid" atr="<?php echo $row->idregistrations ?>" scd="<?php echo $row->idschedules; ?>" class="label label-warning">Uploaded</div><?php } else {?>n/a<?php } ?></td>
         <?php } ?>
       </tr>
     <?php } ?>

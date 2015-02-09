@@ -27,6 +27,37 @@
 
     });
 
+
+
+    
+    $('#btnunpaid').click(function() {
+        var idreg = $(this).attr('atr');
+        $(this).html('<div class="ajaxload"></div><div style="width:20px;float:left;color:#fff;">proses...</div>');
+
+                  var counter=5;
+                      var countdown = setInterval(function(){
+                        if (counter == 0) {
+                        clearInterval(countdown);
+
+
+                   $.ajax({
+                            type  : "POST",
+                            url: ""+base_url+"payment/unpaid/"+idreg+"",
+                            success : function(data){              
+                                 $('#editregistrations').modal('hide'); 
+                                 $('tr[atr='+idreg+']').css({'background':'#feeda9'}).fadeOut('slow');
+                                 $('#sticky').sticky('<span style="color:#802222;">Payment Status Paid</span>'); 
+                            }
+                    });
+
+                  }
+                  counter--;
+                }, 500);           
+
+    });
+
+
+
   });
 </script>
  
@@ -53,8 +84,8 @@
                     <h3 style="margin-top:-5px;"><?php echo $row->userfirstname.' '.$row->userfamilyname  ?></h3>
                     Candidate
                     </div>
-                    <?php if($row->paymentreceipt != '') { ?><div class="label label-warning" style="float:left;margin-left:20px;padding:8px;margin-top:3px;">Confirmed</div><?php } ?>
                       <?php if($row->paymentreceipt != '') { ?><div id="proof" class="label label-warning" style="float:left;margin-left:20px;padding:8px;margin-top:3px;">Proof of Payment</div><?php } ?>
+                    <?php if($row->paymentreceipt != '') { ?><div class="label label-warning" style="float:right;margin-left:20px;padding:8px;margin-top:3px;">Confirmed</div> <?php } ?> 
                     <?php if($row->paymentreceipt != '') { ?><span class="label label-warning" style="float:right;padding:8px;border:1px solid #fff;margin-top:3px;width:70px;">Paid</div><?php } ?>
                   </div>
 
@@ -66,11 +97,11 @@
                     <h3 style="margin-top:-5px;"><?php echo $row->userfirstname.' '.$row->userfamilyname  ?></h3>
                     Candidate
                     </div>
-                    <?php if($row->paymentreceipt != '') { ?><div class="label" style="float:left;margin-left:20px;padding:8px;margin-top:3px;">Confirmed</div><?php } ?>
                       <?php if($row->paymentreceipt != '') { ?><div id="proof" class="label label-warning" style="float:left;margin-left:20px;padding:8px;margin-top:3px;">Proof of Payment</div><?php } ?>
-                      <div id="idcard" class="label label-warning" style="float:left;margin-left:20px;padding:8px;margin-top:3px;cursor:pointer">Id Card</div>
-
-                    <?php if($row->paymentreceipt != '') { ?><a style="float:right;" href="<?php echo base_url() ?>payment/createpdf/<?php echo $row->idusers ?>"><img src="<?php echo base_url() ?>assets/pic/pdficon.png" width="40px" ></a><span id="btnpaid" atr="<?php echo $row->idregistrations ?>" class="label label-warning" style="width:70px;">Paid</div><?php } ?>
+                      <div id="idcard" class="label label-warning" style="float:left;margin-left:20px;padding:8px;margin-top:3px;cursor:pointer">Id Card</div>  
+                      <?php if($row->paymentreceipt != '') { ?><a style="float:right;" href="<?php echo base_url() ?>payment/createpdf/<?php echo $row->idusers ?>"><img src="<?php echo base_url() ?>assets/pic/pdficon.png" width="40px" ></a><?php } ?>
+                      <div id="btnunpaid" atr="<?php echo $row->idregistrations ?>" class="label label-warning" style="float:right;margin-left:10px;margin-right:10px;padding:8px;margin-top:3px;border:1px solid #fff;cursor:pointer;width:70px;">unpaid</div>  
+                      <?php if($row->paymentreceipt != '') { ?><span id="btnpaid" atr="<?php echo $row->idregistrations ?>" class="label label-warning" style="width:70px;">Paid</div><?php } ?>
                   </div>
                 <?php } else if($roles == 2) { ?>
                   <div style="margin-bottom:10px;color:#fff;padding:10px;width:98%;height:40px;-moz-border-radius:5px 5px 5px;-webkit-border-radius:5px 5px 5px;border-radius:5px 5px 5px;background:#00a6e3;margin-left:-8px;">

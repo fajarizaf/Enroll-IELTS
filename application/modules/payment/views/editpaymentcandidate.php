@@ -64,9 +64,9 @@
 
                 <div class="imageproof">
                   <?php if($row->paymentreceipt != '') { ?>
-                    <img src="<?php echo base_url() ?>upload/<?php echo $row->paymentreceipt ?>" width="200px">
+                    <img src="<?php echo base_url() ?>upload/<?php echo $row->paymentreceipt ?>" width="300px">
                   <?php } else { ?>
-                    <img src="<?php echo base_url() ?>assets/pic/noimage.jpg" width="200px">
+                    <img src="<?php echo base_url() ?>assets/pic/noimage.jpg" width="200px" style="margin-left:50px;">
                   <?php } ?>
                 </div>
 
