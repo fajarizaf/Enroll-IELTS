@@ -44,6 +44,88 @@ class register_model extends CI_Model {
     }
 
 
+    function updateprofile($iduser) {
+                    $identity = $this->input->post('identity');
+                    $number_identity = $this->input->post('number_identity');
+                    $codecountryorigin = $this->input->post('codecountryorigin');
+                    $codelang = $this->input->post('codelang');
+                    $codesector = $this->input->post('codesector');
+                    $codelevel = $this->input->post('codelevel');
+                    $codequestion = $this->input->post('codequestion');
+                    $country_applying = $this->input->post('country_applying');
+                    $studying_english = $this->input->post('studying_English');
+                    $level_of_education = $this->input->post('level_of_education');
+                    $many_years = $this->input->post('many_years');
+                    $specialneeds = $this->input->post('specialneeds');
+                    $notes = $this->input->post('notes');
+
+
+                                    if($codesector == '00') {
+                                        $codesector_other = $this->input->post('sector_other');
+                                    }  else {
+                                        $codesector_other =  '-';
+                                    }
+
+
+                                    if($codelevel == '0') {
+                                        $codelevel_other =  $this->input->post('level_other');
+                                    } else {
+                                        $codelevel_other =  '-';
+                                    }
+
+
+                                    if($codequestion == '0' ) {
+                                        $codequestion_other = $this->input->post('other_taking_test');
+                                    }  else {
+                                        $codequestion_other =  '-';
+                                    }
+
+
+                                    if($country_applying == '0') {
+                                        $country_applying_other = $this->input->post('other_country_applying');
+                                    }  else {
+                                        $country_applying_other =  '-';
+                                    }
+
+
+                                    if($specialneeds == 'YES') {
+                                        $specialneedsdesc = $this->input->post('specialneedsdesc');
+                                        $notes = $this->input->post('notes');
+                                    } else if ($specialneeds == 'NO') {
+                                        $specialneedsdesc = '-';
+                                        $notes = '-';
+                                    }
+
+
+
+                                    $dt = array(
+                                        "useridcard" => $identity,
+                                        "useridnumber" => $number_identity,
+                                        "usercountryorigin" => $codecountryorigin,
+                                        "userfirstlanguage" => $codelang,
+                                        "useroccupationsector" => $codesector,
+                                        "sector_other" => $codesector_other,
+                                        "useroccupationlevel" => $codelevel,
+                                        "level_other" => $codelevel_other,
+                                        "userwhytaketest" => $codequestion,
+                                        "userwhytaketest_other" => $codequestion_other,
+                                        "usertargetcountry" => $country_applying,
+                                        "usertargetcountry_other" => $country_applying_other,
+                                        "usertakenielts" => $specialneeds,
+                                        "userwherestudyingeng" => $studying_english,
+                                        "userlevelofeducation" => $level_of_education,
+                                        "useryearsofenglishstudy" => $many_years,
+                                        "userspecialcondition" => $specialneedsdesc,
+                                        "usernotes" => $notes,
+                                        "created" => date("Y-m-d H:i:s"),
+                                        "updated" => date("Y-m-d H:i:s"),
+                                        );
+                                
+                                    $this->db->where('idusers',$iduser);
+                                    $query =  $this->db->update("users", $dt);
+    }
+
+
 
     function proses_register() {
 
@@ -73,7 +155,8 @@ class register_model extends CI_Model {
                                     $query1 = $this->db->insert("registrations",$reg);
 
                                          
-
+                                    // update profile user 
+                                    $this->updateprofile($iduser);
 
                                     $selectSchedules = $this->db->query('select * from schedules where idschedules="'.$this->uri->segment(3).'"');
                                     foreach ($selectSchedules->result() as $row) {
@@ -97,6 +180,9 @@ class register_model extends CI_Model {
                                   }
 
                             } else {
+
+                                    // update profile user 
+                                    $this->updateprofile($iduser);
                              
                                      $selectSchedules = $this->db->query('select * from schedules where idschedules="'.$this->uri->segment(3).'"');
                                      foreach ($selectSchedules->result() as $row) {

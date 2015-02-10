@@ -198,9 +198,17 @@
                           evt()
                         );
 
+                        function loadImage(path, width, target) {
+                          $('<img src="'+ path +'">').load(function() {
+                            $(this).width(width).appendTo(target);
+                          });
+                        }
+
                         sizephotoKB = (Math.round(sizephoto * 100) / 100 ) +' KB';
                         var nameimage = $('.uploadidcard1')[0].files[0];
                         $('.resultphoto').html('<p style="color:orangered">'+nameimage.name+'<br/><span style="font-weight:bold;color:#666;">'+sizephotoKB+'</span></p>');
+                        var imgPaht =  ''+base_url+'upload/'+nameimage.name+'';
+                        loadImage(imgPaht, 800,'.photosid');
                         $('#imageid').attr('src', ''+base_url+'upload/'+nameimage.name+'');
                         $('.uploadfile').val(nameimage.name);
                         
@@ -226,10 +234,10 @@
 
         <?php foreach ($dataprofile as $row) { ?>
                 <input type="text" style="display:none;" name="idusers" value="<?php echo $this->uri->segment(3); ?>">
-                <table class="table table-striped">
+                <table class="table table-striped" style="margin-bottom:130px;">
 
                   <tr>
-                    <td style="width:450px;">Title*</td>
+                    <td >Title*</td>
                     <td>:</td>
                     <td>
                     <select class="select" id="title" name="title">
@@ -253,17 +261,6 @@
                      <div name="upload" style="" class="btn btn-warning" id="uploadidcard2" style="margin-left:-50px;margin-top:16px;" value="Upload">Change</div>
                     </td>
                   </tr>
-
-
-                  <tr>
-                    <td>Username*</td>
-                    <td>:</td>
-                    <td colspan="2"><input type="text" id="username" name="username" value="<?php echo $row->username ?>"></td>
-                  </tr>
-
-
-
-
 
                   <tr>
                     <td>Last Name (family name/surname)*</td>
@@ -290,16 +287,6 @@
                     <td>Phone Number*</td>
                     <td>:</td>
                     <td colspan="2"><input type="text" id="phone_number" name="phone_number" value="<?php echo $row->userphone ?>"></td>
-                  </tr>
-
-                  <tr>
-                    <td>Email Address*</td>
-                    <td>:</td>
-                    <td colspan="2">
-                    <input type="text" id="email_address" style="float:left;" value="<?php echo $row->useremail ?>" name="email_address" >
-                    <div class="resultemail" style="display:none;margin-left:10px;-moz-border-radius:3px 3px 3px;-webkit-border-radius:3px 3px 3px;border-radius:3px 3px 3px;float:left;padding:5px;background:#fff5d4;border:1px solid #ffa500;width:170px;height:20px;color:#d37700;margin-top:4px;"></div>
-                    <img src="<?php echo base_url(); ?>assets/pic/load1.gif" style="margin-top:5px;margin-left:5px;float:left;margin-right:10px;" class="load">
-                    </td>
                   </tr>
 
                   <tr>
@@ -332,13 +319,9 @@
                     <td>:</td>
                     <td colspan="2"><input value="<?php echo $row->userdob ?>" type="text" id="date_of_birth" name="date_of_birth"></td>
                   </tr>
-                </table>
 
-                <div class="h3" style="margin-top:40px;margin-bottom:20px;">Detail Info</div>
-
-                <table class="table table-striped">
                   <tr>
-                    <td style="width:300px;">Identity Document</td>
+                    <td style="width:400px;">Identity Document</td>
                     <td></td>
                     <td colspan="2">
                       <input type="radio" <?php if($row->useridcard == 'passport' ) { echo 'checked'; } ?> style="float:left;" class="identity" name="identity" value="passport" style="float:left;"><div style="float:left;width:100px;margin-left:10px;">Passport</div>
@@ -350,138 +333,7 @@
                     <td>:</td>
                     <td colspan="2"><input type="text" id="number_identity" name="number_identity" value="<?php echo $row->useridnumber ?>"></td>
                   </tr>
-                  <tr>
-                    <td>Country of Nationality *</td>
-                    <td>:</td>
-                    <td colspan="2">
-                      
-                      <div href="#listcity" data-toggle="modal" id="countryorigin" class="selecboxstyle"><?php echo $this->showuser->showcountryorigin($row->usercountryorigin); ?></div>
-                      <input type="hidden" id="country_origin" value="<?php echo $row->usercountryorigin ?>" name="country_origin">
-                      <input type="text" name="codecountryorigin" value="<?php echo $row->usercountryorigin ?>" class="codecountryorigin">  
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>First Language*</td>
-                    <td>:</td>
-                    <td colspan="2">
-                      <div href="#listlanguage" data-toggle="modal" id="namelanguage" class="selecboxstyle" ><?php echo $this->showuser->showfirstlangguage($row->userfirstlanguage); ?></div>
-                       <input type="hidden" id="language" name="language" value="<?php echo $row->userfirstlanguage ?>">
-                       <input type="text" name="codelang" class="codelang" value="<?php echo $row->userfirstlanguage ?>">
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Occupation (sector)*</td>
-                    <td>:</td>
-                    <td colspan="2">
-                      <div href="#sector" data-toggle="modal" id="namesector" class="selecboxstyle"><?php echo $this->showuser->showocupationsector($row->useroccupationsector); ?></div>
-                       <input type="hidden" id="sectors" name="sectors" value="<?php echo $row->useroccupationsector ?>">
-                       <input type="text" name="codesector" class="codesector" value="<?php echo $row->useroccupationsector ?>">
-                    </td>
-                  </tr>
                   
-                  <tr class="sector_other" <?php if($row->useroccupationsector == '00' ) { ?> style="display:table-row;"  <?php } ?> >
-                    <td style="background:#fff5d4;color:#D37700;border:none;">If other please specify**</td>
-                    <td style="background:#fff5d4;border:none;color:#D37700;">:</td>
-                    <td colspan="2" style="background:#fff5d4;border:none;"><input style="border-color:orange" type="text" id="sector_other" name="sector_other"  value="<?php echo $row->sector_other ?>" ></td>
-                  </tr>
-                  
-                  <tr>
-                    <td>Occupation (level)*</td>
-                    <td>:</td>
-                    <td colspan="2">
-                      <div href="#levels" data-toggle="modal" id="namelevel" class="selecboxstyle"><?php echo $this->showuser->showocupationlevel($row->useroccupationlevel); ?></div>
-                       <input type="hidden" id="levelss" name="level" value="<?php echo $row->useroccupationlevel ?>">
-                       <input type="text" name="codelevel" class="codelevel" value="<?php echo $row->useroccupationlevel ?>">
-                    </td>
-                  </tr>
-                 
-                  <tr class="level_other"  <?php if($row->useroccupationlevel == '0' ) { ?> style="display:table-row;" <?php } ?> >
-                    <td style="background:#fff5d4;color:#D37700;border:none;" >If other please specify**</td>
-                    <td style="background:#fff5d4;border:none;color:#D37700;">:</td>
-                    <td colspan="2" style="background:#fff5d4;border:none;"><input style="border-color:orange" type="text" id="level_other" name="level_other" value="<?php echo $row->level_other ?>"></td>
-                  </tr>
-                  
-                  <tr>
-                    <td>Why are you taking the test?*</td>
-                    <td>:</td>
-                    <td colspan="2">
-                      <div href="#question" data-toggle="modal" id="namequestion" class="selecboxstyle" ><?php echo $this->showuser->userwhytaketest1($row->userwhytaketest); ?></div>
-                       <input type="hidden" id="taking_test" name="taking_test" value="<?php echo $row->userwhytaketest ?>">
-                       <input type="text" name="codequestion" class="codequestion" value="<?php echo $row->userwhytaketest ?>">
-                    </td>
-                  </tr>
-                  
-                  <tr class="question_other" <?php if($row->userwhytaketest == '0' ) { ?> style="display:table-row;" <?php } ?> >
-                    <td  style="background:#fff5d4;color:#D37700;border:none;">If other please specify**</td>
-                    <td  style="background:#fff5d4;color:#D37700;border:none;">:</td>
-                    <td colspan="2"  style="background:#fff5d4;color:orangered;border:none;"><input type="text" id="other_taking_test" name="other_taking_test" value="<?php echo $row->userwhytaketest_other ?>"></td>
-                  </tr>
-                  
-                  <tr>
-                    <td>Which country are you applying/intending to go to?*</td>
-                    <td>:</td>
-                    <td colspan="2">
-                      <select class="select" name="country_applying" id="country_applying">
-                                                            <option selected="selected" value="<?php echo $row->usertargetcountry; ?>"><?php if($row->usertargetcountry == '000') {echo 'Other';} else { echo $row->usertargetcountry; } ?></option>
-                                                            <option value="AUS">Australia</option>
-                                                            <option value="CAN">Canada</option>
-                                                            <option value="NZ">New Zealand</option>
-                                                            <option value="EIR">Republic of Ireland</option>
-                                                            <option value="UK">United Kingdom</option>
-                                                            <option value="USA">United States of America</option>
-                                                            <option value="000">Other</option>
-                    </select>
-                    </td>
-                  </tr>
-                  
-                  <tr class="other_applying" <?php if($row->usertargetcountry == '000' ) { ?> style="display:table-row;" <?php } ?> >
-                    <td style="color:#D37700;border:none;">If other please specify**</td>
-                    <td>:</td>
-                    <td colspan="2"><input type="text" id="other_country_applying" name="other_country_applying" value="<?php echo $row->usertargetcountry_other; ?>"></td>
-                  </tr>
-                  
-                  <tr>
-                    <td>Where are you currently studying English (if applicable)?</td>
-                    <td>:</td>
-                    <td colspan="2"><input type="text" id="studying_English" name="studying_English" value="<?php echo $row->userwherestudyingeng ?>"></td>
-                  </tr>
-                  <tr>
-                    <td>What level of education have you completed?*</td>
-                    <td>:</td>
-                    <td colspan="2">
-                    <select class="select" name="level_of_education" id="level_of_education">
-                                                            <option selected="selected" value="<?php echo $row->userlevelofeducation ?>">
-                                                            <?php if($row->userlevelofeducation == '0') { echo 'Secondary up to 16 years';}
-                                                              else if($row->userlevelofeducation == '1') { echo 'Secondary 16 to 19 years';}
-                                                              else if($row->userlevelofeducation == '2') {echo 'Degree or equivalent';}
-                                                              else if($row->userlevelofeducation == '3') {echo 'Post graduate';}  
-                                                             ?>
-                                                            </option>
-                                                            <option value="0">Secondary up to 16 years</option>
-                                                            <option value="1">Secondary 16 to 19 years</option>
-                                                            <option value="2">Degree or equivalent</option>
-                                                            <option value="3">Post graduate</option>
-                    </select>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>How many years have you been studying English?*</td>
-                    <td>:</td>
-                    <td colspan="2">
-                      <select class="select" name="many_years" id="many_years">
-                                                                <option selected="selected"><?php echo $row->useryearsofenglishstudy ?></option>
-                                                                <option value="Less than 1 year">Less than 1 year</option>
-                                                                <option value="2 years">2 years</option>
-                                                                <option value="3 years">3 years</option>
-                                                                <option value="4 years">4 years</option>
-                                                                <option value="5 years">5 years</option>
-                                                                <option value="6 years">6 years</option>
-                                                                <option value="7 years">7 years</option>
-                                                                <option value="8 years">8 years</option>
-                                                                <option value="9 years or more">9 years or more</option>
-                    </select>
-                    </td>
-                  </tr>
                   <tr>
                     <td>Do you have any special needs due to ill health/medical conditions?*</td>
                     <td>:</td>
@@ -505,8 +357,9 @@
                   </tr>
 
                   <tr>
-                    <td colspan="3" ><span style="font-weight:bold;">ID Card</span></td>
-                    <td>
+                    <td><span style="font-weight:bold;">ID Card</span></td>
+                    <td></td>
+                    <td colspan="2">
                     
                     <div class="photosid">
                       <?php if($row->useridfile == '') { ?>
@@ -519,7 +372,7 @@
                     <div style="clear:both;"></div>
 
                      <input type="file" onChange="JavaScript:AjaxUploads.UploadsFile();" name="uploadidcard1[]" id="uploadidcard1" style="display:none;" class="uploadidcard1">
-                     <input type="hidden" name="uploadfile" class="uploadfile" value="<?php echo $row->useridfile; ?>"> 
+                     <input type="text" style="display:none;" name="uploadfile" class="uploadfile" value="<?php echo $row->useridfile; ?>"> 
                      <div name="upload" style="margin-top:7px;float:left;margin-right:10px;" class="btn btn-warning" id="uploadidcard" value="Upload">Change</div>
                      <img src="<?php echo base_url(); ?>assets/pic/load1.gif" style="margin-top:9px;margin-left:5px;float:left;margin-right:10px;" class="load">
                      <div class="resultphoto" style="float:left;margin-right:10px;margin-top:7px;"></div>
@@ -632,33 +485,6 @@
                   required: true
                 },
                 number_identity: {
-                  required: true
-                },
-                codecountryorigin: {
-                  required: true
-                },
-                codelang: {
-                  required: true
-                },
-                codesector: {
-                  required: true
-                },
-                codelevel: {
-                  required: true
-                },
-                codequestion: {
-                  required: true
-                },
-                country_applying: {
-                  required: true
-                },
-                studying_English: {
-                  required: true
-                },
-                level_of_education: {
-                  required: true
-                },
-                many_years: {
                   required: true
                 }
               }

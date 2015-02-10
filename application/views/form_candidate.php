@@ -210,7 +210,7 @@
                   <tr>
                     <td>Zipcode*</td>
                     <td>:</td>
-                    <td><input type="text" id="zipcode" name="zipcode"></td>
+                    <td></td>
                   </tr>
                   <tr>
                     <td>Country or region*</td>
@@ -248,7 +248,6 @@
                     <td>Country of Nationality *</td>
                     <td>:</td>
                     <td>
-                      
                       <div href="#listcity" data-toggle="modal" id="countryorigin" class="selecboxstyle"></div>
                       <input type="hidden" id="country_origin" name="country_origin">
                       <input type="text" name="codecountryorigin" class="codecountryorigin">  
@@ -258,7 +257,7 @@
                     <td>First Language*</td>
                     <td>:</td>
                     <td>
-                      <div href="#listlanguage" data-toggle="modal" id="namelanguage" class="selecboxstyle"></div>
+                       <div href="#listlanguage" data-toggle="modal" id="namelanguage" class="selecboxstyle"></div>
                        <input type="hidden" id="language" name="language">
                        <input type="text" name="codelang" class="codelang">
                     </td>
@@ -267,7 +266,7 @@
                     <td>Occupation (sector)*</td>
                     <td>:</td>
                     <td>
-                      <div href="#sector" data-toggle="modal" id="namesector" class="selecboxstyle"></div>
+                       <div href="#sector" data-toggle="modal" id="namesector" class="selecboxstyle"></div>
                        <input type="hidden" id="sectors" name="sectors">
                        <input type="text" name="codesector" class="codesector">
                     </td>
@@ -281,7 +280,7 @@
                     <td>Occupation (level)*</td>
                     <td>:</td>
                     <td>
-                      <div href="#levels" data-toggle="modal" id="namelevel" class="selecboxstyle"></div>
+                       <div href="#levels" data-toggle="modal" id="namelevel" class="selecboxstyle"></div>
                        <input type="hidden" id="levelss" name="level">
                        <input type="text" name="codelevel" class="codelevel">
                     </td>
@@ -337,7 +336,7 @@
                     <td>
                     <select class="select" name="level_of_education" id="level_of_education">
                                                             <option value="">Select</option>
-                                                            <option value="0" selected="selected">Secondary up to 16 years</option>
+                                                            <option value="0" >Secondary up to 16 years</option>
                                                             <option value="1">Secondary 16 to 19 years</option>
                                                             <option value="2">Degree or equivalent</option>
                                                             <option value="3">Post graduate</option>

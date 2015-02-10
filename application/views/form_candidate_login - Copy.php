@@ -118,20 +118,20 @@ input[type=text] {
 
                   <tr>
                     <td>Last Name (family name/surname)*</td>
-                    <td style="width:5px;">:</td>
-                    <td><?php echo $row->userfamilyname ?></td>
+                    <td>:</td>
+                    <td colspan="2"><?php echo $row->userfamilyname ?></td>
                   </tr>
 
                   <tr>
                     <td>First (given) name(s)*</td>
                     <td>:</td>
-                    <td><?php echo $row->userfirstname ?></td>
+                    <td colspan="2"><?php echo $row->userfirstname ?></td>
                   </tr>
 
                   <tr>
                     <td>User Gender*</td>
                     <td>:</td>
-                    <td>
+                    <td colspan="2">
                       <?php if($row->usergender == 'M' ) { echo 'Male'; } else { echo 'Female'; } ?>
                     </td>
                   </tr>
@@ -139,125 +139,132 @@ input[type=text] {
                   <tr>
                     <td>Phone Number*</td>
                     <td>:</td>
-                    <td><?php echo $row->userphone ?></td>
+                    <td colspan="2"><?php echo $row->userphone ?></td>
                   </tr>
 
                   <tr>
                     <td>Address</td>
                     <td>:</td>
-                    <td ><?php echo $row->useraddr1 ?></td>
+                    <td colspan="2"><?php echo $row->useraddr1 ?></td>
                   </tr>
 
                   <tr>
                     <td>City*</td>
                     <td>:</td>
-                    <td ><?php echo $row->useraddr3 ?></td>
+                    <td colspan="2"><?php echo $row->useraddr3 ?></td>
                   </tr>
                   <tr>
                     <td>Zipcode*</td>
                     <td>:</td>
-                    <td ><?php echo $row->useraddr4 ?></td>
+                    <td colspan="2"><?php echo $row->useraddr4 ?></td>
                   </tr>
                   <tr>
                     <td>Country or region*</td>
                     <td>:</td>
-                    <td >
+                    <td colspan="2">
                        <?php echo $row->useraddr2 ?>
                     </td>
                   </tr>
                   <tr>
                     <td>Date Of Birth*</td>
                     <td>:</td>
-                    <td ><?php echo $row->userdob ?></td>
+                    <td colspan="2"><?php echo $row->userdob ?></td>
                   </tr>
 
 
                   <tr>
                     <td><div class="h3" style="margin-top:20px;margin-bottom:20px;">Detail Info</div></td>
                     <td></td>
-                    <td ></td>
+                    <td colspan="2"></td>
                   </tr>
                 
 
                   <tr>
                     <td style="width:300px;">Identity Document</td>
                     <td></td>
-                    <td style="width:500px;">
-                      <input type="radio" style="float:left;" class="identity" name="identity" value="passport" style="float:left;"><div style="float:left;width:100px;margin-left:10px;">Passport</div>
-                      <input type="radio" style="float:left;" class="identity" name="identity" value="nic" ><div style="float:left;width:150px;margin-left:10px;">Number Identity Card</div>
+                    <td colspan="2">
+                      <input type="radio" <?php if($row->useridcard == 'passport' ) { echo 'checked'; } ?> style="float:left;" class="identity" name="identity" value="passport" style="float:left;"><div style="float:left;width:100px;margin-left:10px;">Passport</div>
+                      <input type="radio" <?php if($row->useridcard == 'nic' ) { echo 'checked'; } ?> style="float:left;" class="identity" name="identity" value="nic" ><div style="float:left;width:150px;margin-left:10px;">Number Identity Card</div>
                     </td>
                   </tr>
                   <tr>
                     <td>Pasport/NIC Number*</td>
                     <td>:</td>
-                    <td><input type="text" id="number_identity" name="number_identity"></td>
+                    <td colspan="2"><input type="text" id="number_identity" name="number_identity" value="<?php echo $row->useridnumber ?>"></td>
                   </tr>
                   <tr>
                     <td>Country of Nationality *</td>
                     <td>:</td>
-                    <td>
-                      <div href="#listcity" data-toggle="modal" id="countryorigin" class="selecboxstyle"></div>
-                      <input type="hidden" id="country_origin" name="country_origin">
-                      <input type="text" name="codecountryorigin" class="codecountryorigin">  
+                    <td colspan="2">
+                      
+                      <div href="#listcity" data-toggle="modal" id="countryorigin" class="selecboxstyle"><?php echo $this->showuser->showcountryorigin($row->usercountryorigin); ?></div>
+                      <input type="hidden" id="country_origin" value="<?php echo $row->usercountryorigin ?>" name="country_origin">
+                      <input type="text" name="codecountryorigin" value="<?php echo $row->usercountryorigin ?>" class="codecountryorigin">  
                     </td>
                   </tr>
                   <tr>
                     <td>First Language*</td>
                     <td>:</td>
-                    <td>
-                       <div href="#listlanguage" data-toggle="modal" id="namelanguage" class="selecboxstyle"></div>
-                       <input type="hidden" id="language" name="language">
-                       <input type="text" name="codelang" class="codelang">
+                    <td colspan="2">
+                      <div href="#listlanguage" data-toggle="modal" id="namelanguage" class="selecboxstyle" ><?php echo $this->showuser->showfirstlangguage($row->userfirstlanguage); ?></div>
+                       <input type="hidden" id="language" name="language" value="<?php echo $row->userfirstlanguage ?>">
+                       <input type="text" name="codelang" class="codelang" value="<?php echo $row->userfirstlanguage ?>">
                     </td>
                   </tr>
                   <tr>
                     <td>Occupation (sector)*</td>
                     <td>:</td>
-                    <td>
-                       <div href="#sector" data-toggle="modal" id="namesector" class="selecboxstyle"></div>
-                       <input type="hidden" id="sectors" name="sectors">
-                       <input type="text" name="codesector" class="codesector">
+                    <td colspan="2">
+                      <div href="#sector" data-toggle="modal" id="namesector" class="selecboxstyle"><?php echo $this->showuser->showocupationsector($row->useroccupationsector); ?></div>
+                       <input type="hidden" id="sectors" name="sectors" value="<?php echo $row->useroccupationsector ?>">
+                       <input type="text" name="codesector" class="codesector" value="<?php echo $row->useroccupationsector ?>">
                     </td>
                   </tr>
-                  <tr class="sector_other">
+                  
+                  <tr class="sector_other" <?php if($row->useroccupationsector == '00' ) { ?> style="display:table-row;"  <?php } ?> >
                     <td style="background:#fff5d4;color:#D37700;border:none;">If other please specify**</td>
                     <td style="background:#fff5d4;border:none;color:#D37700;">:</td>
-                    <td style="background:#fff5d4;border:none;"><input style="border-color:orange" type="text" id="sector_other" name="sector_other"></td>
+                    <td colspan="2" style="background:#fff5d4;border:none;"><input style="border-color:orange" type="text" id="sector_other" name="sector_other"  value="<?php echo $row->sector_other ?>" ></td>
                   </tr>
+                  
                   <tr>
                     <td>Occupation (level)*</td>
                     <td>:</td>
-                    <td>
-                       <div href="#levels" data-toggle="modal" id="namelevel" class="selecboxstyle"></div>
-                       <input type="hidden" id="levelss" name="level">
-                       <input type="text" name="codelevel" class="codelevel">
+                    <td colspan="2">
+                      <div href="#levels" data-toggle="modal" id="namelevel" class="selecboxstyle"><?php echo $this->showuser->showocupationlevel($row->useroccupationlevel); ?></div>
+                       <input type="hidden" id="levelss" name="level" value="<?php echo $row->useroccupationlevel ?>">
+                       <input type="text" name="codelevel" class="codelevel" value="<?php echo $row->useroccupationlevel ?>">
                     </td>
                   </tr>
-                  <tr class="level_other">
+                 
+                  <tr class="level_other"  <?php if($row->useroccupationlevel == '0' ) { ?> style="display:table-row;" <?php } ?> >
                     <td style="background:#fff5d4;color:#D37700;border:none;" >If other please specify**</td>
                     <td style="background:#fff5d4;border:none;color:#D37700;">:</td>
-                    <td style="background:#fff5d4;border:none;"><input style="border-color:orange" type="text" id="level_other" name="level_other"></td>
+                    <td colspan="2" style="background:#fff5d4;border:none;"><input style="border-color:orange" type="text" id="level_other" name="level_other" value="<?php echo $row->level_other ?>"></td>
                   </tr>
+                  
                   <tr>
                     <td>Why are you taking the test?*</td>
                     <td>:</td>
-                    <td>
-                      <div href="#question" data-toggle="modal" id="namequestion" class="selecboxstyle"></div>
-                       <input type="hidden" id="taking_test" name="taking_test">
-                       <input type="text" name="codequestion" class="codequestion">
+                    <td colspan="2">
+                      <div href="#question" data-toggle="modal" id="namequestion" class="selecboxstyle" ><?php echo $this->showuser->userwhytaketest1($row->userwhytaketest); ?></div>
+                       <input type="hidden" id="taking_test" name="taking_test" value="<?php echo $row->userwhytaketest ?>">
+                       <input type="text" name="codequestion" class="codequestion" value="<?php echo $row->userwhytaketest ?>">
                     </td>
                   </tr>
-                  <tr class="question_other">
+                  
+                  <tr class="question_other" <?php if($row->userwhytaketest == '0' ) { ?> style="display:table-row;" <?php } ?> >
                     <td  style="background:#fff5d4;color:#D37700;border:none;">If other please specify**</td>
                     <td  style="background:#fff5d4;color:#D37700;border:none;">:</td>
-                    <td  style="background:#fff5d4;color:orangered;border:none;"><input type="text" id="other_taking_test" name="other_taking_test"></td>
+                    <td colspan="2"  style="background:#fff5d4;color:orangered;border:none;"><input type="text" id="other_taking_test" name="other_taking_test" value="<?php echo $row->userwhytaketest_other ?>"></td>
                   </tr>
+                  
                   <tr>
                     <td>Which country are you applying/intending to go to?*</td>
                     <td>:</td>
-                    <td>
+                    <td colspan="2">
                       <select class="select" name="country_applying" id="country_applying">
-                                                            <option value="">Select</option>
+                                                            <option selected="selected" value="<?php echo $row->usertargetcountry; ?>"><?php if($row->usertargetcountry == '000') {echo 'Other';} else { echo $row->usertargetcountry; } ?></option>
                                                             <option value="AUS">Australia</option>
                                                             <option value="CAN">Canada</option>
                                                             <option value="NZ">New Zealand</option>
@@ -268,22 +275,30 @@ input[type=text] {
                     </select>
                     </td>
                   </tr>
-                  <tr class="other_applying">
+                  
+                  <tr class="other_applying" <?php if($row->usertargetcountry == '000' ) { ?> style="display:table-row;" <?php } ?> >
                     <td style="color:#D37700;border:none;">If other please specify**</td>
                     <td>:</td>
-                    <td><input type="text" id="other_country_applying" name="other_country_applying"></td>
+                    <td colspan="2"><input type="text" id="other_country_applying" name="other_country_applying" value="<?php echo $row->usertargetcountry_other; ?>"></td>
                   </tr>
+                  
                   <tr>
                     <td>Where are you currently studying English (if applicable)?</td>
                     <td>:</td>
-                    <td><input type="text" id="studying_English" name="studying_English"></td>
+                    <td colspan="2"><input type="text" id="studying_English" name="studying_English" value="<?php echo $row->userwherestudyingeng ?>"></td>
                   </tr>
                   <tr>
                     <td>What level of education have you completed?*</td>
                     <td>:</td>
-                    <td>
+                    <td colspan="2">
                     <select class="select" name="level_of_education" id="level_of_education">
-                                                            <option value="">Select</option>
+                                                            <option selected="selected" value="<?php echo $row->userlevelofeducation ?>">
+                                                            <?php if($row->userlevelofeducation == '0') { echo 'Secondary up to 16 years';}
+                                                              else if($row->userlevelofeducation == '1') { echo 'Secondary 16 to 19 years';}
+                                                              else if($row->userlevelofeducation == '2') {echo 'Degree or equivalent';}
+                                                              else if($row->userlevelofeducation == '3') {echo 'Post graduate';}  
+                                                             ?>
+                                                            </option>
                                                             <option value="0">Secondary up to 16 years</option>
                                                             <option value="1">Secondary 16 to 19 years</option>
                                                             <option value="2">Degree or equivalent</option>
@@ -294,9 +309,9 @@ input[type=text] {
                   <tr>
                     <td>How many years have you been studying English?*</td>
                     <td>:</td>
-                    <td>
+                    <td colspan="2">
                       <select class="select" name="many_years" id="many_years">
-                                                                <option value="">Select</option>
+                                                                <option selected="selected"><?php echo $row->useryearsofenglishstudy ?></option>
                                                                 <option value="Less than 1 year">Less than 1 year</option>
                                                                 <option value="2 years">2 years</option>
                                                                 <option value="3 years">3 years</option>
@@ -312,26 +327,27 @@ input[type=text] {
                   <tr>
                     <td>Do you have any special needs due to ill health/medical conditions?*</td>
                     <td>:</td>
-                    <td >
+                    <td colspan="2" >
                       <input type="radio" class="specialneeds" name="specialneeds" value="YES" style="float:left;"><div style="float:left;width:20px;margin-left:10px;" class="label label-warning">YES</div>
                       <input type="radio" checked class="specialneeds" name="specialneeds" value="NO" style="float:left;margin-left:10px;" ><div style="float:left;width:20px;margin-left:10px;" class="label label-warning">NO</div>
                     </td>
                   </tr>
                   <tr class="listspecialneeds">
-                    <td style="background:#f9edbe;border-color:#f9edbe;color:orange;" colspan="3">If yes, please specify your requirements below. You must attach supporting medical evidence to this form. Requests for modified test materials must be submitted at least 3 months before the test.</td>
+                    <td style="background:#f9edbe;border-color:#f9edbe;color:orange;" colspan="4">If yes, please specify your requirements below. You must attach supporting medical evidence to this form. Requests for modified test materials must be submitted at least 3 months before the test.</td>
                   </tr>
-                  <tr  class="listspecialneeds">
-                    <td style="background:#f9edbe;border-color:#f9edbe;color:orangered;" colspan="3">
+                  <tr class="listspecialneeds">
+                    <td style="background:#f9edbe;border-color:#f9edbe;color:orangered;" colspan="4">
                     <p>Please Specify**</p>
                     <textarea style="width:100%;-moz-border-radius:2px 2px 2px;-webkit-border-radius:2px 2px 2px;border-radius:2px 2px 2px" class="specialneedsdesc" name="specialneedsdesc"></textarea></td>
                   </tr>
                   <tr  class="listspecialneeds">
-                  <td style="background:#f9edbe;border-color:#f9edbe;" colspan="3">
+                  <td style="background:#f9edbe;border-color:#f9edbe;" colspan="4">
                     <p>Notes**</p>
                     <textarea style="height:40px;width:100%;-moz-border-radius:2px 2px 2px;-webkit-border-radius:2px 2px 2px;border-radius:2px 2px 2px" class="notes" name="notes"></textarea></td>
                   </tr>
 
                   <tr>
+                    <td></td>
                     <td></td>
                     <td></td>
                     <td><input type="submit" name="Register" id="SubmitRegister" style="float:right;width:200px;" class="btn btn-warning"  value="Continue"></td>
